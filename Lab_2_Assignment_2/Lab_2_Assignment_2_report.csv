@@ -1,0 +1,13 @@
+Student_Name,Test_Case_0 (1),Test_Case_1 (1),Test_Case_2 (1),Code_0 (1),Code_1 (2),Code_2 (2),Code_3 (2),Total_Marks,Comments
+Mokshada Jadhav,1,1,1,1,1,2,2,9,"Failed Criteria: Checking and printing message for complex roots (without computing sqrt) - Mark/s lost: 1"
+Shatansh Patnaik,1,1,1,1,2,2,2,10,""
+Khushiben  Vaghela,0,0,0,0.5,2,2,2,6.5,"Program failed for Test 1: Complex roots (should just print a message) - Mark/s lost: 1;; Program failed for Test 2: Real roots, unequal (should print both roots) - Mark/s lost: 1;; Program failed for Test 3: Real roots, equal (should also print the message) - Mark/s lost: 1;; Failed Criteria: Reading in a, b, c with proper format string - Mark/s lost: 0.5;; Dont use getch() in C, the program is correct but didnt give correct output due to using %d in scanf for float (use %f)"
+MIHIR AGRAWAL,1,1,1,1,2,2,2,10,""
+Abhijeet  Jena,1,1,1,1,2,2,2,10,""
+Nikhil Lahane,1,1,1,1,2,2,2,10,"Try to store intermediate results in variable to avoid comuting them again and again"
+yogender arya,0,0,0,1,2,2,2,7,"The Code didn't compile successfully - Mark/s lost: 3"
+Nishita Singh,1,1,1,1,2,2,2,10,"Dont put extra spaces in "scanf()", the program may not work sometimes"
+Avi Amalanshu,1,1,1,1,2,2,2,10,""
+Satish Sahu,1,1,0.5,0.5,2,2,1,8,"Program failed for Test 3: Real roots, equal (should also print the message) - Mark/s lost: 0.5;; Failed Criteria: Reading in a, b, c with proper format string - Mark/s lost: 0.5;; Failed Criteria: Checking and printing real, equal roots - Mark/s lost: 1;; Use float/double for such problems because coefficients can be floating numbers as well, also you forgot to print the root when its equal"
+Ankush Agarwal,1,1,1,1,2,2,2,10,""
+Mahim M Jain,0,0,0,1,2,2,2,7,"The Code didn't compile successfully - Mark/s lost: 3;; Always try to compile the file to check for errors, good that you've covered many cases that dont need computation"

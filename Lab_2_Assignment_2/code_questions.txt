@@ -1,0 +1,4 @@
+1;Reading in a, b, c with proper format string
+2;Checking and printing message for complex roots (without computing sqrt)
+2;Checking and printing real, unequal roots
+2;Checking and printing real, equal roots
