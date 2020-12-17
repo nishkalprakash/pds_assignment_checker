@@ -1,12 +1,12 @@
 # PDS LAB Assignment Checker Tool
 
 ---
-## Requirements
+## Requirements:-
 * Python >=3.7 (should exist in path)
 * Gcc >= 8.1 (should exist in path)
 * Default editor for `.c` files should be set
 
-## Features
+## Features:-
 1. Only read files of the students from the list in `students.txt`
 2. Grading for each Student:
     * Opens the `.c` file in the default text editor (set by user)
@@ -18,7 +18,7 @@
         - Adds comments automatically according to Failed criteria and marks lost
 3. At the end, makes a composite `.csv` report file with the resutls (open with MS Excel or similar application to view)
 
-## How to use
+## How to use:-
 * Download the code anywhere
 * Run `init.py` and enter the Assignment number to initialize
 * Download all the Assignments from moodle
@@ -28,7 +28,7 @@
     - Edit the `test_cases.txt` file (located inside the `Assignment_#` folder)
     - Edit the `code_qestions.txt` file (located inside the `Assignment_#` folder)
 
-### Editing `students.txt`
+### Editing `students.txt`:-
 - Put names of your students in each line (you have to do this only once)
 - Open the PDSA* folder to check their name 
 - Use the same case as used in the PDSA* Folder:
@@ -37,7 +37,7 @@
     * Put `Nishkal Prakash` inside the `students.txt`
     * Then put the next student in the next line
 
-### Editing `test_cases.txt`
+### Editing `test_cases.txt`:-
 - This file has to be edited for each Assignment
 - Test cases *NEED* to have marks and comments/label for each test case
 - Format: `{marks};{label};{test_case}`
@@ -47,7 +47,7 @@
 10;Outside Rectangle (should print Outside);0 0 7 7 9 2
 10;On Rectange (should print Outside);0 0 7 7 7 2
 ```
-### Editing `code_questions.txt`
+### Editing `code_questions.txt`:-
 - This file has to be edited for each Assignment
 - Code questions *NEED* to have marks and the question 
 - Format: `{marks};{code_question}`
@@ -59,7 +59,7 @@
 30;If-else statement for checking point is inside or outside
 ```
 
-## License
+## License:-
 Copyright <2020> <Nishkal Prakash>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
