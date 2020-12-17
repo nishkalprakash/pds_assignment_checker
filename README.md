@@ -27,6 +27,7 @@
 * For each assignment:
     - Edit the `test_cases.txt` file (located inside the `Assignment_#` folder)
     - Edit the `code_qestions.txt` file (located inside the `Assignment_#` folder)
+* Finally run `main.py`
 
 ### Editing `students.txt`:-
 - Put names of your students in each line (you have to do this only once)
