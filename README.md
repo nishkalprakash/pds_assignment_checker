@@ -33,7 +33,7 @@
 - Open the PDSA* folder to check their name 
 - Use the same case as used in the PDSA* Folder:
 - For Example: 
-    * If student file is: "Nishkal Prakash_1236957_assignsubmission_file_claas.c"
+    * If student file is: "Nishkal Prakash_1236957_assignsubmission_file_class.c"
     * Put `Nishkal Prakash` inside the `students.txt`
     * Then put the next student in the next line
 
@@ -42,10 +42,9 @@
 - Test cases *NEED* to have marks and comments/label for each test case
 - Format: `{marks};{label};{test_case}`
 - For Example:
-    > 10;Inside Rectangle (should print inside);0 0 7 7 2 3
-
+    
+> 10;Inside Rectangle (should print inside);0 0 7 7 2 3
     > 10;Outside Rectangle (should print Outside);0 0 7 7 9 2
-
     > 10;On Rectange (should print Outside);0 0 7 7 7 2
 
 ### Editing `code_questions.txt`
@@ -53,12 +52,10 @@
 - Code questions *NEED* to have marks and the question 
 - Format: `{marks};{code_question}`
 - For Example:
-    > 10;Reading in a and b in a single scanf
 
+> 10;Reading in a and b in a single scanf
     > 10;Reading in c and d in a single scanf
-
     > 20;All four corners computed and printed correctly in correct order
-
     > 30;If-else statement for checking point is inside or outside
 
 ## License
