@@ -33,7 +33,11 @@ def main():
             "Please enter the Assignment number which you want to Grade [1]: ", "1").strip()
 
     base = Path(f"Assignment_{a}")
-    os.chdir(base)
+    if base.exists():
+        os.chdir(base)
+    else:
+        from init import init
+        init(a)
 
     try:
         home = next(Path.cwd().glob('PDS*/'))
