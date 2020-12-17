@@ -24,9 +24,13 @@ def def_input(text, default=""):
 
 def main():
     students = pull("students.txt")
-
-    a = def_input(
-        "Please enter the Assignment number which you want to Grade [3]: ", "3").strip()
+    def_assign=[i.name[-1] for i in Path.cwd().glob("Ass*")][-1]
+    if def_assign:
+        a = def_input(
+            f"Please enter the Assignment number which you want to Grade [{def_assign}]: ", def_assign).strip()
+    else:
+        a = def_input(
+            "Please enter the Assignment number which you want to Grade [1]: ", "1").strip()
 
     base = Path(f"Assignment_{a}")
     os.chdir(base)
