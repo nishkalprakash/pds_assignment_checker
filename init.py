@@ -1,6 +1,6 @@
 from pathlib import Path
-l, a = input("Please enter the lab and assignment number: ").strip().split()
-base = Path(f"Lab_{l}_Assignment_{a}")
+a = input("Please enter the Assignment number: ").strip()
+base = Path(f"Assignment_{a}")
 if base.exists():
     print("The folder already exists.")
     exit()

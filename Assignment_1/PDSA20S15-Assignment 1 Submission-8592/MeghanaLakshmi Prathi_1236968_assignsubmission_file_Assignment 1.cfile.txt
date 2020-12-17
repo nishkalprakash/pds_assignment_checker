@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main()
+{
+    int a,b;
+    scanf("%d%d",&a,&b);
+    int c,d;
+    scanf("%d%d",&c,&d);
+
+printf("Thefourcorners of the rectangle are(%d,%d),(%d,%d),(%d,%d),(%d,%d)/n",a,b,a,d,c,d,c,b);
+
+int p,q;
+scanf("%d%d",&p,&q);
+
+if(a<p&&p<c&&b<q&&q<d)
+    printf("Thepoint(%d,%d)is inside the rectangle",p,q);
+else
+printf("The point(%d,%d)is not inside the rectangle",p,q);
+}
