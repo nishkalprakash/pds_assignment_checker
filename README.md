@@ -16,7 +16,7 @@
         - Asks input from TA to grade the test cases (If correct, Press enter to give default: Max Marks)
         - Ask questions to TA according to criteria and takes input the marks for each question (default: Max)
         - Adds comments automatically according to Failed criteria and marks lost
-3. At the end, makes a composite `.csv` report file with the resutls (open with MS Excel or similar application to view)
+3. At the end, makes a composite `.csv` report file with the results (open with MS Excel or similar application to view)
 
 ## How to use:-
 * Download the code anywhere
