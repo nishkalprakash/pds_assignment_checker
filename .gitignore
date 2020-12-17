@@ -49,7 +49,7 @@ Thumbs.db
 *.wmv
 
 # Program files
-Assignment*/PDS**
+**/PDS*
 
 # Reports
 *.csv
