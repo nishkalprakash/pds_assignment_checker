@@ -25,7 +25,8 @@ def def_input(text, default=""):
 def main():
     students = pull("students.txt")
 
-    a = def_input("Please enter the Assignment number which you want to Grade [3]: ", "3").strip()
+    a = def_input(
+        "Please enter the Assignment number which you want to Grade [3]: ", "3").strip()
 
     base = Path(f"Assignment_{a}")
     os.chdir(base)
@@ -40,22 +41,22 @@ def main():
 
     test_cases = pull("test_cases.txt")
     code_questions = pull("code_questions.txt")
-    test_marks_list = [float(i.split(';')[0])*10 for i in test_cases]
-    code_marks_list = [float(i.split(';')[0])*10 for i in code_questions]
+    test_marks_list = [float(i.split(';')[0]) for i in test_cases]
+    code_marks_list = [float(i.split(';')[0]) for i in code_questions]
     max_marks = sum(test_marks_list+code_marks_list)
     test_marks = [
-        f'Test_Case_{i} ({test_marks_list[i]:g})' for i in range(len(test_cases))]
+        f'"Test_Case_{i} ({test_marks_list[i]:g})"' for i in range(len(test_cases))]
     code_marks = [
-        f'Code_{i} ({code_marks_list[i]:g})' for i in range(len(code_questions))]
+        f'"Code_{i} ({code_marks_list[i]:g})"' for i in range(len(code_questions))]
 
-    header = f"Student_Name,{','.join(test_marks)},{','.join(code_marks)},Total_Marks,Comments"
+    header = f"\"Student_Name\",{','.join(test_marks)},{','.join(code_marks)},\"Total_Marks ({max_marks:g})\",\"Comments\""
 
     report_path = f"Assignment_{a}_report.csv"
     if not Path(report_path).exists():
         push(report_path, header)
-    done_path = "done.txt"
     try:
-        done = set(pull(done_path))
+        done = set(i.split(',')[0].strip('"')
+                   for i in pull(report_path)[1:] if i.startswith('"'))
     except:
         done = set()
 
@@ -77,7 +78,7 @@ def main():
             except StopIteration as si:
                 print(f"C File for {student} not found")
                 comments.append(
-                    f"Assignment was not submitted on time - Mark/s lost: {max_marks:g}")
+                    f"Assignment was not submitted on time - Mark/s lost: {max_marks:g} out of {max_marks:g}")
                 file_exists = False
             # TODO: COMPILE THE C FILE
             if file_exists:
@@ -86,34 +87,34 @@ def main():
                     print("Code ran successfully")
                     # test = test_cases[0]  # TODO: TESTING
                     for i, line in enumerate(test_cases):
-                        #TODO: RUN C FILE here with the test case
+                        # TODO: RUN C FILE here with the test case
                         mark, test_comment, test = line.split(";")
-                        mark = float(mark)*10
-                        print(f"Test_Case_{i+1}:".center(50,'-'))
+                        mark = float(mark)
+                        print(f"Test_Case_{i+1}:".center(50, '-'))
                         print(f"Input: {test}")
                         print(f"Desired Output: {test_comment}")
                         print(f"Program Output:")
                         os.system(f"echo {test} | a.exe")
                         test_marks[i] = float(
-                            def_input(f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ", mark))*10
+                            def_input(f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ", mark))
                         if test_marks[i] < mark:
                             comments.append(
-                                f"Program failed for Test {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g}")
+                                f"Program failed for Test {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g} out of {test_marks[i]:g}")
                         elif test_marks[i] > mark:  # in case of typing errpr
                             test_marks[i] = mark
                 else:
                     print("The code didn't compile")
                     comments.append(
-                        f"The Code didn't compile successfully - Mark/s lost: {sum(test_marks_list):g}")
+                        f"The Code didn't compile successfully - Mark/s lost: {sum(test_marks_list):g} out of {sum(test_marks_list):g}")
                 for i, q in enumerate(code_questions):
                     mark, ques = q.split(';')
-                    mark = float(mark)*10
+                    mark = float(mark)
                     code_marks[i] = float(
-                        def_input(f"\n\n{ques} - [{mark:g}] Mark/s : ", mark))*10
+                        def_input(f"\n\n{ques} - [{mark:g}] Mark/s : ", mark))
 
                     if code_marks[i] < mark:
                         comments.append(
-                            f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g}")
+                            f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {code_marks[i]:g}")
                     elif code_marks[i] > mark:  # in case of typing errpr
                         code_marks[i] = mark
                 total_marks = sum(test_marks+code_marks)
@@ -138,14 +139,19 @@ def main():
             print("Something went wrong: ", str(e))
             return
         else:
-            comm = "\n".join(comments)
-            report = f'{student},{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" for i in code_marks)},{total_marks:g},"{comm}"'
-            push(report_path, report)
-            push(done_path, student)
-            done.add(student)
-            print("\n".join(comments))
-            print(f" Done for {student} ".center(100, '#'))
+            try:
+                comm = "\n".join(comments)
+                report = f'"{student}",{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" for i in code_marks)},{total_marks:g},"{comm}"'
+                push(report_path, report)
+                done.add(student)
+                print("The comments given for student:")
+                print("\n".join(comments))
+                print(f" Done for {student} ".center(100, '#'))
+            except:
+                print("Something went wrong: ", str(e))
+                return
+
+    print("Report has been generated.")
 
 
-        # push("report.jl",dict(zip(header,report)))
 main()

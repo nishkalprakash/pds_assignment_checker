@@ -1,4 +1,0 @@
-1;Reading in a and b in a single scanf
-1;Reading in c and d in a single scanf
-2;All four corners computed and printed correctly in correct order
-3;If-else statement for checking point is inside or outside

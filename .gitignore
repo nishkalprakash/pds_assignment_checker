@@ -49,4 +49,11 @@ Thumbs.db
 *.wmv
 
 # Program files
-LAB*/PDS**
+Assignment*/PDS**
+
+# Reports
+*.csv
+
+# PDF files
+pdf*
+*.pdf
