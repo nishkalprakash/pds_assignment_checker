@@ -2,9 +2,12 @@ from pathlib import Path
 a = input("Please enter the Assignment number: ").strip()
 base = Path(f"Assignment_{a}")
 if base.exists():
-    print("The folder already exists.")
+    print(f"{base} folder already exists.")
     exit()
 Path.mkdir(base)
-Path.touch(base/"code_questions.txt")
-Path.touch(base/"test_cases.txt")
-print("Done creating test_cases.txt and code_questions.txt files")
+code_questions = base/"code_questions.txt"
+Path.touch(code_questions)
+test_cases = base/"test_cases.txt"
+Path.touch(test_cases)
+print(f"Created:\n{base}\n{test_cases}\n{code_questions}")
+# print(f"Please edit the following:\n{test_cases}\n{code_questions}")
