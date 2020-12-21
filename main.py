@@ -86,7 +86,7 @@ def main():
             except StopIteration as si:
                 print(f"C File for {student} not found")
                 comments.append(
-                    f"Assignment was not submitted on time - Mark/s lost: {max_marks:g} out of {max_marks:g}")
+                    f"Assignment was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}")
                 file_exists = False
             # TODO: COMPILE THE C FILE
             if file_exists:
