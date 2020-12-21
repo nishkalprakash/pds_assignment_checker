@@ -50,6 +50,7 @@ Thumbs.db
 
 # Program files
 **/PDSA20S15*
+Assignment**
 
 # Reports
 *.csv
@@ -57,3 +58,6 @@ Thumbs.db
 # PDF files
 pdf*
 *.pdf
+
+# Credentials
+creds*

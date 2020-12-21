@@ -17,7 +17,7 @@
         - Ask questions to TA according to criteria and takes input the marks for each question (default: Max)
         - Adds comments automatically according to Failed criteria and marks lost
 3. At the end, makes a composite `.csv` report file with the results (open with MS Excel or similar application to view)
-
+4. (EXPERIMENTAL) Auto upload the report to moodle (using selenium)
 ## How to use:-
 * Download the code anywhere
 * Run `init.py` and enter the Assignment number to initialize
