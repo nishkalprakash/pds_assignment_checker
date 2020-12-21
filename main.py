@@ -107,7 +107,7 @@ def main():
                             def_input(f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ", mark))
                         if test_marks[i] < mark:
                             comments.append(
-                                f"Program failed for Test {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g} out of {test_marks[i]:g}")
+                                f"Program failed for Test {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g} out of {mark:g}")
                         elif test_marks[i] > mark:  # in case of typing errpr
                             test_marks[i] = mark
                 else:
@@ -122,26 +122,26 @@ def main():
 
                     if code_marks[i] < mark:
                         comments.append(
-                            f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {code_marks[i]:g}")
+                            f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {mark:g}")
                     elif code_marks[i] > mark:  # in case of typing errpr
                         code_marks[i] = mark
                 total_marks = sum(test_marks+code_marks)
-                if def_input("\n\nGive any other comment? [0]/1: ", 0) == '1':
-                    comments.append("")  # Hack for extra spacing
-                    comments.append(
-                        def_input(f"\nPlease enter your final comment for {student}:\n"))
-                elif total_marks == max_marks:
-                    comments.append("")  # Hack for extra spacing
-                    comments.append("")  # Hack for extra spacing
-                    comments.append(random.choice("""Good work
-                    Keep it up
-                    Keep up the good work
-                    Great Job
-                    Clean Code
-                    Perfect
-                    Good
-                    Nice work""".split("\n")).strip()
-                    )
+            if def_input("\n\nGive any other comment? [0]/1: ", 0) == '1':
+                comments.append("")  # Hack for extra spacing
+                comments.append(
+                    def_input(f"\nPlease enter your final comment for {student}:\n"))
+            elif total_marks == max_marks:
+                comments.append("")  # Hack for extra spacing
+                # comments.append("")  # Hack for extra spacing
+                comments.append(random.choice("""Good work
+                Keep it up
+                Keep up the good work
+                Great Job
+                Clean Code
+                Perfect
+                Good
+                Nice work""".split("\n")).strip()
+                )
 
         except Exception as e:
             print("Something went wrong: ", str(e))
@@ -150,13 +150,22 @@ def main():
             try:
                 comm = "\n".join(comments)
                 report = f'"{student}",{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" for i in code_marks)},{total_marks:g},"{comm}"'
-                push(report_path, report)
+                ## HACK TO fix: keep trying to save record
+                while 1:
+                    try:
+                        push(report_path, report)
+                        break
+                    except PermissionError:
+                        print("The report file is open, please close it to proceed")
+                        if def_input("Press 1 to Try again, or 0 to Quit [1]/0: ", '1') != '1':
+                            print(f"EXITING. {student}'s record not saved")
+                            return
                 done.add(student)
                 print("The comments given for student:")
                 print("\n".join(comments))
                 print(f" Done for {student} ".center(100, '#'))
-            except:
-                print("Something went wrong: ", str(e))
+            except Exception as e:
+                print("Something went wrong: ", e,str(e))
                 return
 
     print("Report has been generated.")
