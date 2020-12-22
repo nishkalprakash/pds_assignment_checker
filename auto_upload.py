@@ -1,7 +1,8 @@
 """
-Auto upload to moodle
-uses a file creds.txt as {Username}:{Password}
-
+* Auto upload to moodle
+* Uses a file creds.txt as {Username}:{Password}
+* Current webdriver for code is chrome 87, change as needed in res/chromedriver.exe
+* Uses id of students found in grading page in moodle, change as needed in res/mapping.txt
 """
 
 from pathlib import Path
