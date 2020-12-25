@@ -1,3 +1,0 @@
-10;Inside Rectangle (should print inside);0 0 7 7 2 3
-10;Outside Rectangle (should print Outside);0 0 7 7 9 2
-10;On Rectange (should print Outside);0 0 7 7 7 2

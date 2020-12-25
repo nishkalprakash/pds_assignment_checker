@@ -1,6 +1,0 @@
-0.5;Proper Header in comment at beginning of program
-1;Reading in the three points (can read in one or more scanf)
-1.5;Checking for collinearity(10) and printing message(5) (use any method to check)
-1;Three sides computed and printed correctly
-1;Area computed and printed correctly
-2;Check for equilateral, isosceles, and neither
