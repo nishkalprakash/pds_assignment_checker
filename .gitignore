@@ -55,6 +55,10 @@ Assignment**
 # Reports
 *.csv
 
+# .vscode
+.vscode
+
+
 # PDF files
 pdf*
 *.pdf
