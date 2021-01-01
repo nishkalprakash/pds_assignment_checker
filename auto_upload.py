@@ -15,17 +15,12 @@ def insert(driver, id, data):
     driver.find_element_by_id(id).send_keys(data)
 
 
-def selenium_auto_upload(arr, a):
-    driver = webdriver.Chrome("res/chromedriver.exe")
-    driver.implicitly_wait(30)
-
-    driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
-    username, password = Path("res/creds.txt").read_text().strip().split(":")
-    insert(driver, "username", username)
-    insert(driver, "password", password)
-    driver.find_element_by_id("loginbtn").click()
+def selenium_auto_upload(driver, arr, a):
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id=362")
-    driver.find_element_by_link_text(f"Assignment {a} Submission").click()
+    try:
+        driver.find_element_by_link_text(f"Assignment {a} Submission").click()
+    except:
+        driver.find_element_by_link_text(f"Assignment {a} Submission (Final)").click()
 
     driver.find_element_by_link_text("View/grade all submissions").click()
     mapping = {
@@ -62,9 +57,31 @@ def upload(a):
         arr.append([student, marks, comments])
         print("*" * 80)
     ## TODO: SELENIUM MAGIC
-    selenium_auto_upload(arr, a)
+    return arr
+
+
+def init_selenium():
+    driver = webdriver.Chrome("res/chromedriver.exe")
+    driver.implicitly_wait(30)
+
+    driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
+    username, password = Path("res/creds.txt").read_text().strip().split(":")
+    insert(driver, "username", username)
+    insert(driver, "password", password)
+    driver.find_element_by_id("loginbtn").click()
+    return driver
 
 
 if __name__ == "__main__":
-    a = input("Please enter the Assignment number to upload report of: ").strip()
-    upload(a)
+    a_list = (
+        input(
+            "Please enter the Assignment numbers separated by space\nto upload report of: \nExample- 5 6 7 8\n"
+        )
+        .strip()
+        .split()
+    )
+    driver = init_selenium()
+    for a in a_list:
+        arr = upload(a)
+        # selenium_auto_upload(driver,arr,a)
+        print(f'{"Done for Assignment {a}":*^50}')

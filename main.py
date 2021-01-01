@@ -170,7 +170,7 @@ def main():
             return
         else:
             try:
-                comm = ";;".join(comments)
+                comm = ";;".join(comments).strip(";;")
                 report = f'"{student}",{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" for i in code_marks)},{total_marks:g},"{comm}"'
                 # HACK TO fix: keep trying to save record
                 while 1:
