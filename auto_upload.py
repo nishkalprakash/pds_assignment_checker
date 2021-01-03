@@ -43,8 +43,8 @@ def upload(a):
     text = report.read_text()
     text_list = text.split('"\n"')
     head = text_list[0].split(",")
-    index = head.index('"Total_Marks (10)"')
-    lines = [f'"{i}"' for i in text_list[1:]]
+    index = [k for i, k in enumerate(head) if i.startswith("Total")]
+    lines = [f'"{i}"' for i in text_list[1:]]  # padding with quotes
     arr = []
     for line in lines:
         l = line.split(",")
