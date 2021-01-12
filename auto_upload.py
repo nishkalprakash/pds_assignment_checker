@@ -35,7 +35,7 @@ def selenium_auto_upload(driver, arr, a):
         insert(driver, f"quickgrade_comments_{mapping[std]}", c)
 
     driver.find_element_by_id("id_savequickgrades").click()
-    driver.close()
+    # driver.close()
 
 
 def upload(a):
@@ -43,7 +43,7 @@ def upload(a):
     text = report.read_text()
     text_list = text.split('"\n"')
     head = text_list[0].split(",")
-    index = [k for i, k in enumerate(head) if i.startswith("Total")]
+    index = [i for i, k in enumerate(head) if k.strip('"').startswith("Total")][0]
     lines = [f'"{i}"' for i in text_list[1:]]  # padding with quotes
     arr = []
     for line in lines:
@@ -83,5 +83,6 @@ if __name__ == "__main__":
     driver = init_selenium()
     for a in a_list:
         arr = upload(a)
-        # selenium_auto_upload(driver,arr,a)
-        print(f'{"Done for Assignment {a}":*^50}')
+        selenium_auto_upload(driver, arr, a)
+        print(f'{f"Done for Assignment {a}":*^50}')
+    driver.close()
