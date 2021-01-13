@@ -11,7 +11,7 @@ def init():
     r = "results.csv"
     Path(r).write_text("")
     n = len(list(Path.cwd().glob("Assign*")))
-    head = [f'"Students"'] + [f"Assign_{i}" for i in range(1, n + 1)] + ["Total"]
+    header = [[f'"Students"'] + [f"Assign_{i}" for i in range(1, n + 1)] + ["Total"]]
     results = []
     std_dict = {}
 
@@ -43,8 +43,8 @@ def init():
             [f'"{s}"'] + list(map(str, ml)) + [f"{(sum(ml) * 100) / (n * 10):.1f}"]
         )
     results.sort(key=lambda x: x[-1])
-    results = [head] + results
-    print([head])
+    results = header + results
+    pprint(results)
     push(r, "\n".join(",".join(i) for i in results))
     # pprint(results)
 
