@@ -46,6 +46,7 @@ def upload(a):
     index = [i for i, k in enumerate(head) if k.strip('"').startswith("Total")][0]
     lines = [f'"{i}"' for i in text_list[1:]]  # padding with quotes
     arr = []
+    # MArks are taken directly from the total column, so if marks just deducted from there, its OK
     for line in lines:
         l = line.split(",")
         student, marks, comments = (

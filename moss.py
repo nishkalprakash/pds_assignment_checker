@@ -8,9 +8,11 @@ import os, shutil
 from shutil import copyfile
 from pathlib import Path
 
+from init import BASE
+
 # from pathlib import Path
-a = input("Please enter the assignment number: ")
-folder_name = "Assignment_" + a
+a = input(f"Please enter the {BASE} number: ")
+folder_name = BASE + "_" + a
 new_name = folder_name + "_moss"
 if os.path.isdir(new_name):
     shutil.rmtree(new_name)

@@ -1,4 +1,5 @@
 from pathlib import Path
+from init import BASE
 
 
 def push(path_str, text):
@@ -6,22 +7,24 @@ def push(path_str, text):
         f.write(text + "\n")
 
 
-def init():
+def init2():
     # push("total_marks.csv",'"Students","Total_marks"')
     r = "results.csv"
     Path(r).write_text("")
-    n = len(list(Path.cwd().glob("Assign*")))
-    header = [[f'"Students"'] + [f"Assign_{i}" for i in range(1, n + 1)] + ["Total"]]
+    n = len(list(Path.cwd().glob(f"{BASE}*")))
+    header = [[f'"Students"'] + [f"{BASE}_{i}" for i in range(1, n + 1)] + ["Total"]]
     results = []
     std_dict = {}
 
     for a in range(1, n + 1):
-        report = Path(f"Assignment_{a}/Assignment_{a}_report.csv")
+        report = Path(f"{BASE}_{a}/{BASE}_{a}_report.csv")
         text = report.read_text()
         text_list = text.split('"\n"')
         head = text_list[0].split(",")
         index, m = [(i, k) for i, k in enumerate(head) if k.startswith('"Total')][0]
         m = int(m.split("(")[1][:-2])
+        # MArks are taken directly from the total column, so if marks just deducted from there, its OK
+
         lines = [f'"{i}"' for i in text_list[1:]]  # padding with quotes
         arr = []
         print(m)
@@ -50,4 +53,4 @@ def init():
 
 
 if __name__ == "__main__":
-    init()
+    init2()

@@ -4,6 +4,8 @@ import random
 from pathlib import Path
 import os
 
+from init import BASE
+
 
 def pull(path):
     return Path(path).read_text().strip().split("\n")
@@ -27,15 +29,15 @@ def main():
     def_assign = [i.name[-1] for i in Path.cwd().glob("Ass*")][-1]
     if def_assign:
         a = def_input(
-            f"Please enter the Assignment number which you want to Grade [{def_assign}]: ",
+            f"Please enter the {BASE} number which you want to Grade [{def_assign}]: ",
             def_assign,
         ).strip()
     else:
         a = def_input(
-            "Please enter the Assignment number which you want to Grade [1]: ", "1"
+            f"Please enter the {BASE} number which you want to Grade [1]: ", "1"
         ).strip()
 
-    base = Path(f"Assignment_{a}")
+    base = Path(f"{BASE}_{a}")
     if base.exists():
         os.chdir(base)
     else:
@@ -47,7 +49,7 @@ def main():
         home = next(Path.cwd().glob("PDS*/"))
     except StopIteration as si:
         print("PDS Directory not found,")
-        print(f"Please download from moodle and place in the folder, Assignment_{a}")
+        print(f"Please download from moodle and place in the folder, {BASE}_{a}")
         return
 
     test_cases = pull("test_cases.txt")
@@ -64,7 +66,7 @@ def main():
 
     header = f"\"Student_Name\",{','.join(test_marks)},{','.join(code_marks)},\"Total_Marks ({max_marks:g})\",\"Comments\""
 
-    report_path = f"Assignment_{a}_report.csv"
+    report_path = f"{BASE}_{a}_report.csv"
     if not Path(report_path).exists():
         push(report_path, header)
     try:
@@ -94,7 +96,7 @@ def main():
             except StopIteration as si:
                 print(f"C File for {student} not found")
                 comments.append(
-                    f"Assignment was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
+                    f"{BASE} was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
                 )
                 file_exists = False
             # TODO: COMPILE THE C FILE

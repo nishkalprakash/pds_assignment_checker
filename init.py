@@ -1,8 +1,11 @@
 from pathlib import Path
 
+BASE = "Assignment"
+BASE = "Lab_Test_1_Part"
+
 
 def init(a):
-    base = Path(f"Assignment_{a}")
+    base = Path(f"{BASE}_{a}")
     if base.exists():
         print(f"{base} folder already exists.")
         exit()
