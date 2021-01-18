@@ -26,7 +26,7 @@ def def_input(text, default=""):
 
 def main():
     students = pull("students.txt")
-    def_assign = [i.name[-1] for i in Path.cwd().glob("Ass*")][-1]
+    def_assign = [i.name[-1] for i in Path.cwd().glob(f"{BASE}*")][-1]
     if def_assign:
         a = def_input(
             f"Please enter the {BASE} number which you want to Grade [{def_assign}]: ",
