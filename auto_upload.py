@@ -7,6 +7,7 @@
 
 from pathlib import Path
 from selenium import webdriver
+from init import BASE
 
 
 def insert(driver, id, data):
@@ -18,7 +19,11 @@ def insert(driver, id, data):
 def selenium_auto_upload(driver, arr, a):
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id=362")
     try:
-        driver.find_element_by_link_text(f"Assignment {a} Submission").click()
+        if "Test" in BASE:
+            driver.find_element_by_link_text(f"PART {a} Submission (Final)").click()
+        else:
+            driver.find_element_by_link_text(f"Assignment {a} Submission").click()
+
     except:
         driver.find_element_by_link_text(f"Assignment {a} Submission (Final)").click()
 
@@ -39,12 +44,13 @@ def selenium_auto_upload(driver, arr, a):
 
 
 def upload(a):
-    report = Path(f"Assignment_{a}/Assignment_{a}_report.csv")
-    text = report.read_text()
-    text_list = text.split('"\n"')
+    report = Path(f"{BASE}_{a}/{BASE}_{a}_report.csv")
+    text = report.read_text().strip()
+    text_list = text.split("\n")
     head = text_list[0].split(",")
     index = [i for i, k in enumerate(head) if k.strip('"').startswith("Total")][0]
-    lines = [f'"{i}"' for i in text_list[1:]]  # padding with quotes
+    # lines = [f'"{i}"' for i in text_list[1:]]  # padding with quotes
+    lines = text_list[1:]
     arr = []
     # MArks are taken directly from the total column, so if marks just deducted from there, its OK
     for line in lines:
@@ -54,7 +60,7 @@ def upload(a):
             l[index],
             "".join(l[index + 1 :]).strip('"').strip().replace(";;", "\n"),
         )
-        print(f"{student},{marks},{comments}")
+        print(f"{student}\n\n{marks}\n\n{comments}")
         arr.append([student, marks, comments])
         print("*" * 80)
     ## TODO: SELENIUM MAGIC
@@ -76,7 +82,7 @@ def init_selenium():
 if __name__ == "__main__":
     a_list = (
         input(
-            "Please enter the Assignment numbers separated by space\nto upload report of: \nExample- 5 6 7 8\n"
+            f"Please enter the {BASE} numbers separated by space\nto upload report of: \nExample- 5 6 7 8\n"
         )
         .strip()
         .split()
@@ -84,6 +90,7 @@ if __name__ == "__main__":
     driver = init_selenium()
     for a in a_list:
         arr = upload(a)
+        print(arr)
         selenium_auto_upload(driver, arr, a)
-        print(f'{f"Done for Assignment {a}":*^50}')
+        print(f'{f"Done for {BASE}_{a}":*^50}')
     driver.close()
