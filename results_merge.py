@@ -43,7 +43,7 @@ def init2():
 
     for s, ml in std_dict.items():
         results.append(
-            [f'"{s}"'] + list(map(str, ml)) + [f"{(sum(ml) * 100) / (n * 10):.1f}"]
+            [f"{s}"] + list(map(str, ml)) + [f"{(sum(ml) * 100) / (n * 10):.1f}"]
         )
     results.sort(key=lambda x: x[-1])
     results = header + results

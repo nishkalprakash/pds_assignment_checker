@@ -60,9 +60,9 @@ def upload(a):
             l[index],
             "".join(l[index + 1 :]).strip('"').strip().replace(";;", "\n"),
         )
-        print(f"{student}\n\n{marks}\n\n{comments}")
+        # print(f"{student}\n\n{marks}\n\n{comments}")
         arr.append([student, marks, comments])
-        print("*" * 80)
+        # print("*" * 80)
     ## TODO: SELENIUM MAGIC
     return arr
 
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     driver = init_selenium()
     for a in a_list:
         arr = upload(a)
-        print(arr)
+        # print(arr)
         selenium_auto_upload(driver, arr, a)
         print(f'{f"Done for {BASE}_{a}":*^50}')
     driver.close()

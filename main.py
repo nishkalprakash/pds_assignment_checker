@@ -70,11 +70,7 @@ def main():
     if not Path(report_path).exists():
         push(report_path, header)
     try:
-        done = set(
-            i.split(",")[0].strip('"')
-            for i in pull(report_path)[1:]
-            if i.startswith('"')
-        )
+        done = set(i.split(",")[0].strip('"') for i in pull(report_path)[1:])
     except:
         done = set()
 
@@ -173,7 +169,7 @@ def main():
         else:
             try:
                 comm = ";;".join(comments).strip(";;")
-                report = f'"{student}",{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" for i in code_marks)},{total_marks:g},"{comm}"'
+                report = f'{student},{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" for i in code_marks)},{total_marks:g},"{comm}"'
                 # HACK TO fix: keep trying to save record
                 while 1:
                     try:
