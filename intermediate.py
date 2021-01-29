@@ -52,48 +52,43 @@ def main():
         print("PDS Directory not found,")
         print(f"Please download from moodle and place in the folder, {BASE}_{a}")
         return
-
-    done = set()
-
+    done_file = "done_intermediate.txt"
+    if Path(done_file).exists():
+        done = set(pull(done_file))  # TODO: Implement a done function to resume
+    else:
+        done = set()
     for student in students:
         if student in done:
             continue
-        comments = []  # String list
         print("Working for student - ", student)
         try:
             try:
-                file_exists = True
                 try:
                     c = next(home.glob(student + "*"))
+                    os.system(f'"{c}"')
                 except:
-                    pass
+                    print(
+                        f"\n\nIntermediate file for {student} not found".center(
+                            100, '*'
+                        )
+                    )
                 try:
-                    c_final = next(home_final.glob(student + "*"))
+                    c_final = next(home_final.glob(student + '*'))
+                    os.system(f'"{c_final}"')
                 except:
-                    pass
-                os.system(f'"{c}"')
-                os.system(f'"{c_final}"')
+                    print(f"\n\Main file for {student} not found".center(100, '*'))
+
             except StopIteration as si:
                 print(f"C File for {student} not found")
-                comments.append(
-                    f"{BASE} was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
-                )
-                file_exists = False
 
         except Exception as e:
-            print("Something went wrong: ", str(e))
+            # print("Something went wrong: ", str(e))
+            raise (e)
             return
-        else:
-            try:
-                print("The comments given for student:")
-                print("\n".join(comments))
-                print(f" Done for {student} ".center(100, "#"))
-                input("PRESS ENTER TO CONTINUE...")
-            except Exception as e:
-                print("Something went wrong: ", e, str(e))
-                return
-
-    print("Report has been generated.")
+        done.add(student)
+        push(done_file, student)
+        print(f" Done for {student} ".center(100, "#"))
+        input("Press enter to continue: ")
 
 
 main()

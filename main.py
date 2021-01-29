@@ -47,6 +47,12 @@ def main():
 
     try:
         home = next(Path.cwd().glob("PDS*/"))
+        try:
+            home_inter = next(Path.cwd().glob("PDS*Intermediate*/"))
+            inter = True
+        except StopIteration as si:
+            print("Inter mediate PDS Directory not found,")
+            inter = False
     except StopIteration as si:
         print("PDS Directory not found,")
         print(f"Please download from moodle and place in the folder, {BASE}_{a}")
@@ -88,6 +94,12 @@ def main():
         try:
             try:
                 file_exists = True
+                if inter:
+                    try:
+                        c_inter = next(home_inter.glob(student + "*"))
+                        os.system(f'"{c_inter}"')
+                    except StopIteration as si:
+                        print(f"Intermediate C File for {student} not found")
                 c = next(home.glob(student + "*"))
                 os.system(f'"{c}"')
             except StopIteration as si:
