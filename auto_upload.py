@@ -52,7 +52,7 @@ def upload(a):
     # lines = [f'"{i}"' for i in text_list[1:]]  # padding with quotes
     lines = text_list[1:]
     arr = []
-    # MArks are taken directly from the total column, so if marks just deducted from there, its OK
+    # Marks are taken directly from the total column, so if marks just deducted from there, its OK
     for line in lines:
         l = line.split(",")
         student, marks, comments = (

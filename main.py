@@ -56,7 +56,8 @@ def main():
     code_questions = pull("code_questions.txt")
     test_marks_list = [float(i.split(";")[0]) for i in test_cases]
     code_marks_list = [float(i.split(";")[0]) for i in code_questions]
-    max_marks = sum(test_marks_list + code_marks_list)
+    # Max marks are calculated ignoring the -ve mark conditions
+    max_marks = sum(i for i in (test_marks_list + code_marks_list) if i > 0)
     test_marks = [
         f'"Test_Case_{i} ({test_marks_list[i]:g})"' for i in range(len(test_cases))
     ]
@@ -77,7 +78,7 @@ def main():
     print(f"Working for {report_path}".center(100, "*"))
 
     for student in students:
-        if student in done:
+        if student in done or student.startswith("#"):
             continue
         total_marks = 0
         test_marks = [0] * len(test_marks)
@@ -129,16 +130,26 @@ def main():
                 for i, q in enumerate(code_questions):
                     mark, ques = q.split(";")
                     mark = float(mark)
-                    code_marks[i] = float(
-                        def_input(f"\n\n{ques} - [{mark:g}] Mark/s : ", mark)
-                    )
-
-                    if code_marks[i] < mark:
-                        comments.append(
-                            f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {mark:g}"
+                    if mark > 0:
+                        code_marks[i] = float(
+                            def_input(f"\n\n{ques} - [{mark:g}] Mark/s : ", mark)
                         )
-                    elif code_marks[i] > mark:  # in case of typing errpr
-                        code_marks[i] = mark
+                        if code_marks[i] < mark:
+                            comments.append(
+                                f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {mark:g}"
+                            )
+                        elif code_marks[i] > mark:  # in case of typing errpr
+                            code_marks[i] = mark
+                    else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
+                        code_marks[i] = float(
+                            def_input(f"\n\n{ques} - ({mark:g}) Mark/s - Def: [0]: ", 0)
+                        )  # defaults to 0
+                        if code_marks[i] == mark:
+                            # if -ve marks are given then add comment
+                            comments.append(
+                                f"Passed Negative Criteria: {ques} - Mark/s lost: {mark:g}"
+                            )
+
                 total_marks = sum(test_marks + code_marks)
             if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
                 comments.append("")  # Hack for extra spacing
