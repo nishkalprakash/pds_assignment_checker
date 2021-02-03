@@ -58,6 +58,7 @@ def upload(a):
         student, marks, comments = (
             l[0].strip('"'),
             l[index],
+            # float(l[index]) * 10,
             "".join(l[index + 1 :]).strip('"').strip().replace(";;", "\n"),
         )
         # print(f"{student}\n\n{marks}\n\n{comments}")
