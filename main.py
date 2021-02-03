@@ -4,6 +4,8 @@ import random
 from pathlib import Path
 import os
 
+from init import BASE
+
 
 def pull(path):
     return Path(path).read_text().strip().split("\n")
@@ -11,7 +13,7 @@ def pull(path):
 
 def push(path, text):
     with Path(path).open("a+") as f:
-        f.write(text+"\n")
+        f.write(text + "\n")
 
 
 def def_input(text, default=""):
@@ -24,69 +26,87 @@ def def_input(text, default=""):
 
 def main():
     students = pull("students.txt")
-    def_assign=[i.name[-1] for i in Path.cwd().glob("Ass*")][-1]
+    def_assign = [i.name[-1] for i in Path.cwd().glob(f"{BASE}*")][-1]
     if def_assign:
         a = def_input(
-            f"Please enter the Assignment number which you want to Grade [{def_assign}]: ", def_assign).strip()
+            f"Please enter the {BASE} number which you want to Grade [{def_assign}]: ",
+            def_assign,
+        ).strip()
     else:
         a = def_input(
-            "Please enter the Assignment number which you want to Grade [1]: ", "1").strip()
+            f"Please enter the {BASE} number which you want to Grade [1]: ", "1"
+        ).strip()
 
-    base = Path(f"Assignment_{a}")
+    base = Path(f"{BASE}_{a}")
     if base.exists():
         os.chdir(base)
     else:
         from init import init
+
         init(a)
 
     try:
-        home = next(Path.cwd().glob('PDS*/'))
+        home = next(Path.cwd().glob("PDS*/"))
+        try:
+            home_inter = next(Path.cwd().glob("PDS*Intermediate*/"))
+            inter = True
+        except StopIteration as si:
+            print("Inter mediate PDS Directory not found,")
+            inter = False
     except StopIteration as si:
         print("PDS Directory not found,")
-        print(
-            f"Please download from moodle and place in the folder, Assignment_{a}")
+        print(f"Please download from moodle and place in the folder, {BASE}_{a}")
         return
 
     test_cases = pull("test_cases.txt")
     code_questions = pull("code_questions.txt")
-    test_marks_list = [float(i.split(';')[0]) for i in test_cases]
-    code_marks_list = [float(i.split(';')[0]) for i in code_questions]
-    max_marks = sum(test_marks_list+code_marks_list)
+    test_marks_list = [float(i.split(";")[0]) for i in test_cases]
+    code_marks_list = [float(i.split(";")[0]) for i in code_questions]
+    # Max marks are calculated ignoring the -ve mark conditions
+    max_marks = sum(i for i in (test_marks_list + code_marks_list) if i > 0)
     test_marks = [
-        f'"Test_Case_{i} ({test_marks_list[i]:g})"' for i in range(len(test_cases))]
+        f'"Test_Case_{i} ({test_marks_list[i]:g})"' for i in range(len(test_cases))
+    ]
     code_marks = [
-        f'"Code_{i} ({code_marks_list[i]:g})"' for i in range(len(code_questions))]
+        f'"Code_{i} ({code_marks_list[i]:g})"' for i in range(len(code_questions))
+    ]
 
     header = f"\"Student_Name\",{','.join(test_marks)},{','.join(code_marks)},\"Total_Marks ({max_marks:g})\",\"Comments\""
 
-    report_path = f"Assignment_{a}_report.csv"
+    report_path = f"{BASE}_{a}_report.csv"
     if not Path(report_path).exists():
         push(report_path, header)
     try:
-        done = set(i.split(',')[0].strip('"')
-                   for i in pull(report_path)[1:] if i.startswith('"'))
+        done = set(i.split(",")[0].strip('"') for i in pull(report_path)[1:])
     except:
         done = set()
 
-    print(f"Working for {report_path}".center(100, '*'))
+    print(f"Working for {report_path}".center(100, "*"))
 
     for student in students:
-        if student in done:
+        if student in done or student.startswith("#"):
             continue
         total_marks = 0
-        test_marks = [0]*len(test_marks)
-        code_marks = [0]*len(code_questions)
+        test_marks = [0] * len(test_marks)
+        code_marks = [0] * len(code_questions)
         comments = []  # String list
         print("Working for student - ", student)
         try:
             try:
                 file_exists = True
-                c = next(home.glob(student+"*"))
+                if inter:
+                    try:
+                        c_inter = next(home_inter.glob(student + "*"))
+                        os.system(f'"{c_inter}"')
+                    except StopIteration as si:
+                        print(f"Intermediate C File for {student} not found")
+                c = next(home.glob(student + "*"))
                 os.system(f'"{c}"')
             except StopIteration as si:
                 print(f"C File for {student} not found")
                 comments.append(
-                    f"Assignment was not submitted on time - Mark/s lost: {max_marks:g} out of {max_marks:g}")
+                    f"{BASE} was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
+                )
                 file_exists = False
             # TODO: COMPILE THE C FILE
             if file_exists:
@@ -98,65 +118,100 @@ def main():
                         # TODO: RUN C FILE here with the test case
                         mark, test_comment, test = line.split(";")
                         mark = float(mark)
-                        print(f"Test_Case_{i+1}:".center(50, '-'))
+                        print(f"Test_Case_{i+1}:".center(50, "-"))
                         print(f"Input: {test}")
                         print(f"Desired Output: {test_comment}")
                         print(f"Program Output:")
                         os.system(f"echo {test} | a.exe")
                         test_marks[i] = float(
-                            def_input(f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ", mark))
+                            def_input(
+                                f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ", mark
+                            )
+                        )
                         if test_marks[i] < mark:
                             comments.append(
-                                f"Program failed for Test {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g} out of {test_marks[i]:g}")
+                                f"Program failed for Test {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g} out of {mark:g}"
+                            )
                         elif test_marks[i] > mark:  # in case of typing errpr
                             test_marks[i] = mark
                 else:
                     print("The code didn't compile")
                     comments.append(
-                        f"The Code didn't compile successfully - Mark/s lost: {sum(test_marks_list):g} out of {sum(test_marks_list):g}")
-                for i, q in enumerate(code_questions):
-                    mark, ques = q.split(';')
-                    mark = float(mark)
-                    code_marks[i] = float(
-                        def_input(f"\n\n{ques} - [{mark:g}] Mark/s : ", mark))
-
-                    if code_marks[i] < mark:
-                        comments.append(
-                            f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {code_marks[i]:g}")
-                    elif code_marks[i] > mark:  # in case of typing errpr
-                        code_marks[i] = mark
-                total_marks = sum(test_marks+code_marks)
-                if def_input("\n\nGive any other comment? [0]/1: ", 0) == '1':
-                    comments.append("")  # Hack for extra spacing
-                    comments.append(
-                        def_input(f"\nPlease enter your final comment for {student}:\n"))
-                elif total_marks == max_marks:
-                    comments.append("")  # Hack for extra spacing
-                    comments.append("")  # Hack for extra spacing
-                    comments.append(random.choice("""Good work
-                    Keep it up
-                    Keep up the good work
-                    Great Job
-                    Clean Code
-                    Perfect
-                    Good
-                    Nice work""".split("\n")).strip()
+                        f"The Code didn't compile successfully - Mark/s lost: {sum(test_marks_list):g} out of {sum(test_marks_list):g}"
                     )
+                for i, q in enumerate(code_questions):
+                    mark, ques = q.split(";")
+                    mark = float(mark)
+                    if mark > 0:
+                        code_marks[i] = float(
+                            def_input(f"\n\n{ques} - [{mark:g}] Mark/s : ", mark)
+                        )
+                        if code_marks[i] < mark:
+                            comments.append(
+                                f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {mark:g}"
+                            )
+                        elif code_marks[i] > mark:  # in case of typing errpr
+                            code_marks[i] = mark
+                    else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
+                        code_marks[i] = float(
+                            def_input(f"\n\n{ques} - ({mark:g}) Mark/s - Def: [0]: ", 0)
+                        )  # defaults to 0
+                        if code_marks[i] == mark:
+                            # if -ve marks are given then add comment
+                            comments.append(
+                                f"Passed Negative Criteria: {ques} - Mark/s lost: {mark:g}"
+                            )
+
+                total_marks = sum(test_marks + code_marks)
+            if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
+                comments.append("")  # Hack for extra spacing
+                comments.append(
+                    def_input(f"\nPlease enter your final comment for {student}:\n")
+                )
+            elif total_marks == max_marks:
+                comments.append("")  # Hack for extra spacing
+                # comments.append("")  # Hack for extra spacing
+                comments.append(
+                    random.choice(
+                        """Good work
+                        Keep it up
+                        Keep up the good work
+                        Great Job
+                        Clean Code
+                        Perfect
+                        Good
+                        Nice work""".split(
+                            "\n"
+                        )
+                    ).strip()
+                )
 
         except Exception as e:
             print("Something went wrong: ", str(e))
             return
         else:
             try:
-                comm = "\n".join(comments)
-                report = f'"{student}",{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" for i in code_marks)},{total_marks:g},"{comm}"'
-                push(report_path, report)
+                comm = ";;".join(comments).strip(";;")
+                report = f'{student},{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" for i in code_marks)},{total_marks:g},"{comm}"'
+                # HACK TO fix: keep trying to save record
+                while 1:
+                    try:
+                        push(report_path, report)
+                        break
+                    except PermissionError:
+                        print("The report file is open, please close it to proceed")
+                        if (
+                            def_input("Press 1 to Try again, or 0 to Quit [1]/0: ", "1")
+                            != "1"
+                        ):
+                            print(f"EXITING. {student}'s record not saved")
+                            return
                 done.add(student)
                 print("The comments given for student:")
                 print("\n".join(comments))
-                print(f" Done for {student} ".center(100, '#'))
-            except:
-                print("Something went wrong: ", str(e))
+                print(f" Done for {student} ".center(100, "#"))
+            except Exception as e:
+                print("Something went wrong: ", e, str(e))
                 return
 
     print("Report has been generated.")

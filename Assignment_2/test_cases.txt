@@ -1,3 +1,0 @@
-10;Complex roots (should just print a message);1 2 3
-10;Real roots, unequal (should print both roots);1 5 6
-10;Real roots, equal (should also print the message);1 -10 25

@@ -50,10 +50,21 @@ Thumbs.db
 
 # Program files
 **/PDSA20S15*
+Assignment**
+!Assignment_13/*.txt
+!Assignment_14/*.txt
 
+Lab_Test*
 # Reports
 *.csv
+
+# .vscode
+.vscode
+
 
 # PDF files
 pdf*
 *.pdf
+
+# Credentials
+creds*
