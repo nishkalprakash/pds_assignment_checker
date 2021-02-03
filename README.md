@@ -2,13 +2,13 @@
 
 ***
 
-## Requirements:*
+## Requirements:
 
 * Python >=3.7 (should exist in path)
 * Gcc >= 8.1 (should exist in path)
 * Default editor for `.c` files should be set
 
-## Features:*
+## Features:
 
 1. Only reads files of the students from the list in `students.txt`
 2. Grading for each Student:
@@ -22,7 +22,7 @@
 3. At the end, makes a composite `.csv` report file with the results (open with MS Excel or similar application to view)
 4. (EXPERIMENTAL) Auto upload the report to moodle (using selenium)
 
-## How to use:*
+## How to use:
 
 * Download the code anywhere
 * Run `init.py` and enter the Assignment number to initialize
@@ -34,7 +34,7 @@
     * Edit the `code_qestions.txt` file (located inside the `Assignment_#` folder)
 * Finally run `main.py`
 
-### Editing `students.txt`:*
+### Editing `students.txt`:
 
 * Put names of your students in each line (you have to do this only once)
 * Open the PDSA* folder to check their name
@@ -44,7 +44,7 @@
     * Put `Nishkal Prakash` inside the `students.txt`
     * Then put the next student in the next line
 
-### Editing `test_cases.txt`:*
+### Editing `test_cases.txt`:
 
 * This file has to be edited for each Assignment
 * Test cases *NEED* to have marks and comments/label for each test case
@@ -57,7 +57,7 @@
 10;On Rectange (should print Outside);0 0 7 7 7 2
 ```
 
-### Editing `code_questions.txt`:*
+### Editing `code_questions.txt`:
 
 * This file has to be edited for each Assignment
 * Code questions *NEED* to have marks and the question
@@ -72,7 +72,7 @@
 ```
 ## UPDATE
 ---
-### Features added
+### Features added:
 * (EXPERIMENTAL) Added support for Auto Upload to moodle, REQUIRED:'
     * Install selenium using `pip install selenium`
     * Download and save the corresponding selenium `chromedirver` in `res\chromedriver.exe` 
@@ -92,7 +92,7 @@
 * Added support for assimilating all Assignment and Test results into one csv, use `results_merge.py`
 
 
-## License:*
+## License:
 
 Copyright <2020> (Nishkal Prakash)
 
