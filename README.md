@@ -79,7 +79,7 @@
     * Save moodle credentials in `res\creds.txt` as `{USERNAME}:{PASSWORD}`
     * Student ids that moodle uses in `res\mapping.txt`, For Example:
     > {STUDENT_NAME_1},{ID_1}
-    >
+
     > {STUDENT_NAME_2},{ID_2}
     * To get ID for student:
         * open any assignment grading page
@@ -89,7 +89,7 @@
 * Added support for negative marking in `code_questions.txt`:
     * An entry with negative marks can be given, For Example:
     > -1;Intermediate is missing
-    >
+
     > -0.5;Missed print statement
 * Added support for assimilating all Assignment and Test results into one csv, use `results_merge.py`
 
