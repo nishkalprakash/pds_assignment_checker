@@ -90,7 +90,9 @@
     > -1;Intermediate is missing  
     > -0.5;Missed print statement  
 * Added support for assimilating all Assignment and Test results into one csv, use `results_merge.py`
-
+* Added support for negative marking in `test_cases.txt`:
+* An entry with negative marks can be given, For Example:
+    > -0.5;Test Case 3: Skips repeated element;5 1 2 3 3 5
 
 ## License:
 

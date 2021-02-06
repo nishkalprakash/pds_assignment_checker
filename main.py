@@ -123,17 +123,30 @@ def main():
                         print(f"Desired Output: {test_comment}")
                         print(f"Program Output:")
                         os.system(f"echo {test} | a.exe")
-                        test_marks[i] = float(
-                            def_input(
-                                f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ", mark
+                        if mark > 0:
+                            test_marks[i] = float(
+                                def_input(
+                                    f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ", mark
+                                )
                             )
-                        )
-                        if test_marks[i] < mark:
-                            comments.append(
-                                f"Program failed for Test {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g} out of {mark:g}"
-                            )
-                        elif test_marks[i] > mark:  # in case of typing errpr
-                            test_marks[i] = mark
+                            if test_marks[i] < mark:
+                                comments.append(
+                                    f"Program failed for Test {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g} out of {mark:g}"
+                                )
+                            elif test_marks[i] > mark:  # in case of typing errpr
+                                test_marks[i] = mark
+                        else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
+                            test_marks[i] = float(
+                                def_input(
+                                    f"\n\nTest_Case_{i+1} - ({mark:g}) Mark/s - Def: [0]: ",
+                                    0,
+                                )
+                            )  # defaults to 0
+                            if test_marks[i] == mark:
+                                # if -ve marks are given then add comment
+                                comments.append(
+                                    f"Passed Negative Criteria: {test_comment} - Mark/s lost: {mark:g}"
+                                )
                 else:
                     print("The code didn't compile")
                     comments.append(

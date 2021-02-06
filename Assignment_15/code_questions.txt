@@ -1,0 +1,13 @@
+-1;Intermediate file not submitted
+0.5;Correct parameter return age, salary
+0.5;Correct parameter return name
+1;Searching by employee code
+1;Returning values correctly
+1;Proper Malloc of array of structures
+1;Checking for existing employee code when reading
+-0.5;All n employees are not read
+1;Checking for salary > k and printing
+1;Calling SearchEmpl with correct parameters
+-1;There is no space behind the pointer passed 
+1;Printing appropriate values/message based on return value
+-0.5;Missed the print for x not matching any employee code

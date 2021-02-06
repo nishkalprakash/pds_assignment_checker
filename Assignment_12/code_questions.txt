@@ -1,0 +1,5 @@
+1;Reading in A, B with %s and finding length (-1 if inputted anything else)
+1;Calling IsPrefix and printing message based on return value
+2;Handling the case when h1-l1 is > than h2-l2, (should return 0)
+2;Correct base condition (h1=l1 or equivalent) and return value after check
+2;Correct recursive call and storing the return value (-2 if printed anything inside function)

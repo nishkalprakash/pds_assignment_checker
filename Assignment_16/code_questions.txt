@@ -1,0 +1,7 @@
+1;Reading in array 
+1;Printing array nicely 
+1;While loop to call rotate and exit on opt=0 
+1;Calling  the  function  with  proper  parameters  and  printing  the  array  after  that
+1.5;Right rotate of rows
+1.5;Down rotate of columns
+-1.5;Used  an  additional  2-d array

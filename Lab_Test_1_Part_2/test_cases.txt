@@ -1,0 +1,2 @@
+1;Test case 1: S = "abracadabra", low = 1, high = 15, Should print "Values entered are incorrect";abracadabra 1 15
+1;Test Case 2: S = "zanzibarzingalala", low = 2, high = 15, Should print "a = 3, b = 1, g = 1, i = 2, l = 2, n = 2, r = 1, z = 2";zanzibarzingalala 2 15

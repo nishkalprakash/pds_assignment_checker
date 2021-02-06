@@ -1,0 +1,4 @@
+0.5;Test case 1:  Rectangle: Top-left (3, 12), bottom right (10,10)  Line segment: (5,11) and (12,11)  Should print 1;3 12 10 10 5 11 12 11
+0.5;Test case 2:  Rectangle: Top-left (3, 12), bottom right (10,10)  Line segment: (1,13) and (12,13)  Should print 0;3 12 10 10 1 13 12 13
+0.5;Test case 3:  Rectangle: Top-left (3, 12), bottom right (10,10)  Line segment: (1, 11) and (12,11)  Should print 2;3 12 10 10 1 11 12 11
+0.5;Test case 4:  Rectangle: Top-left (3, 12), bottom right (10,10)  Line segment: (1, 12) and (12,12)  Should either print 0 or Inf;3 12 10 10 1 12 12 12

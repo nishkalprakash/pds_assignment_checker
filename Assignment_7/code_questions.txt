@@ -1,0 +1,3 @@
+2;Reading in the array
+2;Printing the array
+4;Checking for duplicate

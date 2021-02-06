@@ -1,0 +1,7 @@
+1;Reading in the string and the integers
+1;Computing length
+1;Checking for low and high and return
+1;Outer loop to go over all characters from 'a' to 'z'
+1.5;Inner loop to count the frequency of one character in S
+1;Storing in array X at appropriate index
+1.5;Printing from the array X, Must print in separate loop to go over X after the counting is over

@@ -1,0 +1,7 @@
+1;Reading in integers in array
+1;Printing integers in array
+1;Calling OddDigitCount in a loop correctly
+1;Printing the number of odd digits in each number from return value
+1;Max computation and printing at end
+2;Separating the digits in a loop properly
+1;Keeping count of odd digits and returning correctly at end

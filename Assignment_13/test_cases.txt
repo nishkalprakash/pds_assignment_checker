@@ -1,0 +1,2 @@
+1;Test case 1: Array = {10, -20, -25, 35, 60}, Min absolute difference is 5, the numbers are -20 and -25;5 10 -20 -25 35 60
+1;Test case 2: Array = {20, 10, 65, 35, 50}, Min absolute difference is 10 and the numbers are 10 and 20;5 20 10 65 35 50
