@@ -76,7 +76,7 @@ def init2(BASE, WEIGHTAGE):
             + [f"{Weighted_Total:.1f}"]
         )
 
-    results.sort(key=lambda x: x[-1])
+    results.sort(key=lambda x: x[0])
     results = header + results
     return results
     # pprint(results)
