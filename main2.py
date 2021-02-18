@@ -58,44 +58,58 @@ def main():
         print(f"Please download from moodle and place in the folder, {BASE}_{a}")
         return
 
-    test_cases = pull("test_cases.txt")
-    code_questions = pull("code_questions.txt")
-    test_marks_list = [float(i.split(";")[0]) for i in test_cases]
-    code_marks_list = [float(i.split(";")[0]) for i in code_questions]
-    # Max marks are calculated ignoring the -ve mark conditions
-    max_marks = sum(i for i in (test_marks_list + code_marks_list) if i > 0)
-    test_marks = [
-        f'"Test_Case_{i} ({test_marks_list[i]:g})"' for i in range(len(test_cases))
-    ]
-    code_marks = [
-        f'"Code_{i} ({code_marks_list[i]:g})"' for i in range(len(code_questions))
-    ]
 
-    header = f"\"Student_Name\",{','.join(test_marks)},{','.join(code_marks)},\"Total_Marks ({max_marks:g})\",\"Comments\""
+    test_cases_dict={}
+    code_questions_dict={}
 
-    report_path = f"{BASE}_{a}_report.csv"
-    if not Path(report_path).exists():
-        push(report_path, header)
+    test_marks_dict={}
+    code_marks_dict={}
+    # max_marks_dict={}
+
+    report_path_dict={}
+    report_path_dict[0]=f"{BASE}_{a}_report.csv"
+
+    for s in range(1,3):
+        test_cases_dict[s] = pull(f"test_cases_set_{s}.txt")
+        code_questions_dict[s] = pull(f"code_questions_set_{s}.txt")
+        test_marks_dict[s] = [float(i.split(";")[0]) for i in test_cases_dict[s]]
+        code_marks_dict[s] = [float(i.split(";")[0]) for i in code_questions_dict[s]]
+        # Max marks are calculated ignoring the -ve mark conditions
+        max_marks = sum(i for i in (test_marks_dict[s] + code_marks_dict[s]) if i > 0)
+        test_marks_head = [
+            f'"Test_Case_{i} ({test_marks_dict[s][i]:g})"' for i in range(len(test_cases_dict[s]))
+        ]
+        code_marks_head = [
+            f'"Code_{i} ({code_marks_dict[s][i]:g})"' for i in range(len(code_questions_dict[s]))
+        ]
+
+        header = f"\"Student_Name\",{','.join(test_marks_head)},{','.join(code_marks_head)},\"Total_Marks ({max_marks:g})\",\"Comments\""
+
+        report_path_dict[s] = f"{BASE}_{a}_Set_1_report.csv"
+        if not Path(report_path_dict[s]).exists():
+            push(report_path_dict[s], header)
+    header_0= f"\"Student_Name\",\"Test_Cases\",\"Code_Ques\",\"Total_Marks ({max_marks:g})\",\"Comments\""
+    if not Path(report_path_dict[0]).exists():
+            push(report_path_dict[0], header_0)
     try:
-        done = set(i.split(",")[0].strip('"') for i in pull(report_path)[1:])
+        done = set(i.split(",")[0].strip('"') for i in pull(report_path_dict[s])[1:])
     except:
         done = set()
 
-    print(f"Working for {report_path}".center(100, "*"))
+    print(f"Working for {report_path_dict[0]}".center(100, "*"))
 
     for student in students:
         if student in done or student.startswith("#"):
             continue
-        total_marks = 0
-        test_marks = [0] * len(test_cases)
-        code_marks = [0] * len(code_questions)
-        comments = []  # String list
+        total_marks = 0 ## This stores the marks the students got (tc)+(cq)
         print("Working for student - ", student)
-        try:
-            try:
+        
+        comments = []  # String list
+        try: ## This is for overall
+            try: ## For opening Final
                 file_exists = True
                 if inter:
-                    try:
+                    try: ## For opening inter
                         c_inter = next(home_inter.glob(student + "*"))
                         os.system(f'"{c_inter}"')
                     except StopIteration as si:
@@ -108,13 +122,18 @@ def main():
                     f"{BASE} was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
                 )
                 file_exists = False
-            # TODO: COMPILE THE C FILE
+            ## This COMPILEs THE C FILE
             if file_exists:
+                s=def_input("\n\nPlease enter the Set number [1] : ","1")
+                ## test_marks has what marks student got in test_cases
+                test_marks = [0] * len(test_cases_dict[s]) 
+                ## code_marks has what marks student got in code_ques
+                code_marks = [0] * len(code_questions_dict[s])
                 return_code = os.system(f'gcc "{c}"')
                 if return_code == 0:
                     print("Code ran successfully")
                     # test = test_cases[0]  # TODO: TESTING
-                    for i, line in enumerate(test_cases):
+                    for i, line in enumerate(test_cases_dict[s]):
                         # TODO: RUN C FILE here with the test case
                         mark, test_comment, test = line.split(";")
                         mark = float(mark)
@@ -150,9 +169,9 @@ def main():
                 else:
                     print("The code didn't compile")
                     comments.append(
-                        f"The Code didn't compile successfully - Mark/s lost: {sum(test_marks_list):g} out of {sum(test_marks_list):g}"
+                        f"The Code didn't compile successfully - Mark/s lost: {sum(test_marks_dict[s]):g} out of {sum(test_marks_dict[s]):g}"
                     )
-                for i, q in enumerate(code_questions):
+                for i, q in enumerate(code_questions_dict[s]):
                     mark, ques = q.split(";")
                     mark = float(mark)
                     if mark > 0:
@@ -209,7 +228,9 @@ def main():
                 # HACK TO fix: keep trying to save record
                 while 1:
                     try:
-                        push(report_path, report)
+                        push(report_path_dict[s], report)
+                        report_0 = f'{student},{sum(test_marks):g},{sum(code_marks):g},{total_marks:g},"{comm}"'
+                        push(report_path_dict[0], report_0)
                         break
                     except PermissionError:
                         print("The report file is open, please close it to proceed")
