@@ -1,3 +1,4 @@
+-0.5;Did not submit Intermediate Code
 2;CountNonHV():implemented correctly
 1;FindArea():implemented correctly
 1;MaxArea():implemented correctly

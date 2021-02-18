@@ -87,14 +87,14 @@ def main():
 
         header = f"\"Student_Name\",{','.join(test_marks_head)},{','.join(code_marks_head)},\"Total_Marks ({max_marks_dict[s]:g})\",\"Comments\""
 
-        report_path_dict[s] = f"{BASE}_{a}_Set_1_report.csv"
+        report_path_dict[s] = f"{BASE}_{a}_Set_{s}_report.csv"
         if not Path(report_path_dict[s]).exists():
             push(report_path_dict[s], header)
     header_0= f"\"Student_Name\",\"Test_Cases\",\"Code_Ques\",\"Total_Marks ({max_marks_0:g})\",\"Comments\""
     if not Path(report_path_dict[0]).exists():
             push(report_path_dict[0], header_0)
     try:
-        done = set(i.split(",")[0].strip('"') for i in pull(report_path_dict[s])[1:])
+        done = set(i.split(",")[0].strip('"') for i in pull(report_path_dict[0])[1:])
     except:
         done = set()
 
@@ -126,7 +126,7 @@ def main():
                 file_exists = False
             ## This COMPILEs THE C FILE
             if file_exists:
-                s=def_input("\n\nPlease enter the Set number [1] : ","1")
+                s=int(def_input("\n\nPlease enter the Set number [1] : ","1"))
                 ## test_marks has what marks student got in test_cases
                 test_marks = [0] * len(test_cases_dict[s]) 
                 ## code_marks has what marks student got in code_ques

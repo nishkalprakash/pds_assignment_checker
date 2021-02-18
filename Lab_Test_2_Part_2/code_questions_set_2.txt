@@ -1,3 +1,4 @@
+-0.5;Did not submit Intermediate Code
 0.5;IsReversed():Base case
 1;IsReversed():Recursive call
 1;CheckStr():Nested loops to go over characters

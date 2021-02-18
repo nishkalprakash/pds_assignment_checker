@@ -89,7 +89,7 @@ if __name__ == "__main__":
     jobs = [
         ("Assignment", 40),
         ("Lab_Test_1_Part", 20),
-        # ("Lab_Test_1_Part", 20),
+        ("Lab_Test_2_Part", 20),
         # ("Lab_Test_1_Part", 20),
     ]
     for BASE, WEIGHTAGE in jobs:
