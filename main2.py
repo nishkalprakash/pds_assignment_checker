@@ -64,7 +64,8 @@ def main():
 
     test_marks_dict={}
     code_marks_dict={}
-    # max_marks_dict={}
+    max_marks_dict={}
+    max_marks_0=0
 
     report_path_dict={}
     report_path_dict[0]=f"{BASE}_{a}_report.csv"
@@ -75,7 +76,8 @@ def main():
         test_marks_dict[s] = [float(i.split(";")[0]) for i in test_cases_dict[s]]
         code_marks_dict[s] = [float(i.split(";")[0]) for i in code_questions_dict[s]]
         # Max marks are calculated ignoring the -ve mark conditions
-        max_marks = sum(i for i in (test_marks_dict[s] + code_marks_dict[s]) if i > 0)
+        max_marks_dict[s] = sum(i for i in (test_marks_dict[s] + code_marks_dict[s]) if i > 0)
+        max_marks_0=max(max_marks_0,max_marks_dict[s])
         test_marks_head = [
             f'"Test_Case_{i} ({test_marks_dict[s][i]:g})"' for i in range(len(test_cases_dict[s]))
         ]
@@ -83,12 +85,12 @@ def main():
             f'"Code_{i} ({code_marks_dict[s][i]:g})"' for i in range(len(code_questions_dict[s]))
         ]
 
-        header = f"\"Student_Name\",{','.join(test_marks_head)},{','.join(code_marks_head)},\"Total_Marks ({max_marks:g})\",\"Comments\""
+        header = f"\"Student_Name\",{','.join(test_marks_head)},{','.join(code_marks_head)},\"Total_Marks ({max_marks_dict[s]:g})\",\"Comments\""
 
         report_path_dict[s] = f"{BASE}_{a}_Set_1_report.csv"
         if not Path(report_path_dict[s]).exists():
             push(report_path_dict[s], header)
-    header_0= f"\"Student_Name\",\"Test_Cases\",\"Code_Ques\",\"Total_Marks ({max_marks:g})\",\"Comments\""
+    header_0= f"\"Student_Name\",\"Test_Cases\",\"Code_Ques\",\"Total_Marks ({max_marks_0:g})\",\"Comments\""
     if not Path(report_path_dict[0]).exists():
             push(report_path_dict[0], header_0)
     try:
@@ -119,7 +121,7 @@ def main():
             except StopIteration as si:
                 print(f"C File for {student} not found")
                 comments.append(
-                    f"{BASE} was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
+                    f"{BASE} was not submitted properly - Mark/s lost: {max_marks_dict[s]:g} out of {max_marks_dict[s]:g}"
                 )
                 file_exists = False
             ## This COMPILEs THE C FILE
@@ -200,7 +202,7 @@ def main():
                 comments.append(
                     def_input(f"\nPlease enter your final comment for {student}:\n")
                 )
-            elif total_marks == max_marks:
+            elif total_marks == max_marks_dict[s]:
                 comments.append("")  # Hack for extra spacing
                 # comments.append("")  # Hack for extra spacing
                 comments.append(

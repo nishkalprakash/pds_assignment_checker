@@ -1,0 +1,4 @@
+2;CountNonHV():implemented correctly
+1;FindArea():implemented correctly
+1;MaxArea():implemented correctly
+1;main():reading and printing the points

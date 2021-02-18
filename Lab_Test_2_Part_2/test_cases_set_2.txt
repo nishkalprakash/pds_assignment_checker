@@ -1,0 +1,1 @@
+1;S1 = 'ab1cd2ef9g', S2 = 'g9fe2dc1ba' - S1 is reverse of S2, Number of digit character in S1 with desired property = 2
