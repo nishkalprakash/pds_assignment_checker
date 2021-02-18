@@ -23,7 +23,7 @@ try:
     home = next(Path(folder_name).glob("PDS*/"))
 except StopIteration as si:
     print("PDS Directory not found,")
-    print(f"Please download from moodle and place in the folder, Assignment_{a}")
+    print(f"Please download from moodle and place in the folder, {BASE}_{a}")
     exit()
 moss_command = "perl moss.pl -l c -c " + folder_name + "_report "
 folder_name = str(home)

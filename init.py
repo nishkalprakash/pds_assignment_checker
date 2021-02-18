@@ -2,6 +2,7 @@ from pathlib import Path
 
 BASE = "Assignment"
 # BASE = "Lab_Test_1_Part"
+BASE = "Lab_Test_2_Part"
 
 
 def init(a):
@@ -19,5 +20,5 @@ def init(a):
 
 
 if __name__ == "__main__":
-    a = input("Please enter the Assignment number: ").strip()
+    a = input(f"Please enter the {BASE} number: ").strip()
     init(a)

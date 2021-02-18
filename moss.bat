@@ -1,2 +1,0 @@
-python moss.py
-pause
