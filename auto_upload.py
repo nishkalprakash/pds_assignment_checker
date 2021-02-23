@@ -20,7 +20,7 @@ def selenium_auto_upload(driver, arr, a):
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id=362")
     try:
         if "Test" in BASE:
-            driver.find_element_by_link_text(f"PART {a} Submission (Final)").click()
+            driver.find_element_by_link_text(f"PART {a} Submission (FINAL)").click()
         else:
             driver.find_element_by_link_text(f"Assignment {a} Submission").click()
 
@@ -33,7 +33,7 @@ def selenium_auto_upload(driver, arr, a):
         for i in Path("res/mapping.txt").read_text().strip().split("\n")
     }
 
-    driver.find_element_by_link_text("ID number").click()
+    # driver.find_element_by_link_text("ID number").click()
 
     for std, m, c in arr:
         insert(driver, f"quickgrade_{mapping[std]}", f"{m}")
