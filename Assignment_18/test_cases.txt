@@ -1,0 +1,2 @@
+1;Record exists;infile.txt 1 Test1 User1 0
+1;Record does't exist;infile.txt 1 Test1 User4 0

@@ -115,10 +115,7 @@ def main():
                     print("Code ran successfully")
                     # test = test_cases[0]  # TODO: TESTING
                     for i, line in enumerate(test_cases):
-                        ## RUN C FILE here with the test case
-                        ## If test_case_input_file_# exists then copy it to infile.txt
-                        if Path(f"test_case_input_{i}").exists():
-                            Path('infile.txt').write_text(Path(f"test_case_in_{i}").read_text())
+                        # TODO: RUN C FILE here with the test case
                         mark, test_comment, test = line.split(";")
                         mark = float(mark)
                         print(f"Test_Case_{i+1}:".center(50, "-"))
@@ -126,7 +123,6 @@ def main():
                         print(f"Desired Output: {test_comment}")
                         print(f"Program Output:")
                         os.system(f"echo {test} | a.exe")
-                        if Path("outfile.txt").exists(): os.system("outfile.txt")
                         if mark > 0:
                             test_marks[i] = float(
                                 def_input(
