@@ -117,8 +117,8 @@ def main():
                     for i, line in enumerate(test_cases):
                         ## RUN C FILE here with the test case
                         ## If test_case_input_file_# exists then copy it to infile.txt
-                        if Path(f"test_case_input_{i}").exists():
-                            Path('infile.txt').write_text(Path(f"test_case_in_{i}").read_text())
+                        if Path(f"test_case_input_{i+1}.txt").exists():
+                            Path('infile.txt').write_text(Path(f"test_case_input_{i+1}.txt").read_text())
                         mark, test_comment, test = line.split(";")
                         mark = float(mark)
                         print(f"Test_Case_{i+1}:".center(50, "-"))
