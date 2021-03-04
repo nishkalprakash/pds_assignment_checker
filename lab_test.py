@@ -197,6 +197,7 @@ def main():
                             )
 
                 total_marks = sum(test_marks + code_marks)
+                print(f"\n\nThe Total Marks obtained by {student} = {total_marks}")
             if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
                 comments.append("")  # Hack for extra spacing
                 comments.append(
