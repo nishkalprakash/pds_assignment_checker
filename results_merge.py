@@ -90,7 +90,7 @@ if __name__ == "__main__":
         ("Assignment", 40),
         ("Lab_Test_1_Part", 20),
         ("Lab_Test_2_Part", 20),
-        # ("Lab_Test_1_Part", 20),
+        ("Lab_Test_3_Part", 20),
     ]
     for BASE, WEIGHTAGE in jobs:
         temp_res.append(init2(BASE, WEIGHTAGE))
@@ -107,9 +107,10 @@ if __name__ == "__main__":
             temp.extend(test[1:])
             tot.append(test[-1])
         try:
+            ## Here top 2 among the lab tests are taken and added
             total = f"{float(tot[0]) + sum(sorted(map(float, tot[1:]))[-2:]):.1f}"
         except:
-            total = f"FINAL_Weighted_Total ({sum(i[1] for i in jobs)})"
+            total = f"FINAL_Weighted_Total ({sum(i[1] for i in jobs[:-1])})"
         temp.append(total)
         # for header row
         results.append(temp)
