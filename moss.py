@@ -43,7 +43,7 @@ for f in onlyfiles:
     moss_command = moss_command + '"' + os.path.join(new_name, roll_no) + '"' + " "
 print(moss_command)
 os.system(moss_command)
-
-input("Press any key to continue:....")
 if os.path.isdir(new_name):
     shutil.rmtree(new_name)
+
+input("Press any key to continue:....")

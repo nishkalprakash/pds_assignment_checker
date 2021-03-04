@@ -4,12 +4,12 @@
 -0.5;AddPoly():Do not take care of possible negative coefficients and terms disappearing.
 2;AddPoly():Allocating array inside POLY to be returned and computing and storing terms of sum
 -1;AddPoly():Assumed the degrees are in sorted order in t_list array of POLY P1 and P2
--1;AddPoly():Sorted P1 and P2 first
 1;AddPoly():Sorting of degrees at end
 -2;AddPoly():Used any additional array
-0.5;MultPoly():Malloc'ing the POLY structure for return: 0.5 marks
-2;MultPoly():Computing Product: 2 marks
+0.5;MultPoly():Malloc'ing the POLY structure for return
+2;MultPoly():Computing Product
 -1;MultPoly():Used any static array
-0.5;MultPoly():Sorting of degrees at end: 0.5 marks
+0.5;MultPoly():Sorting of degrees at end
 -1;MultPoly():Assumed the degrees are in sorted order in t_list array of POLY P1 and P2
--1;MultPoly():Sorted P1 and P2 first
+-2;main():Sorted P1 and P2 first (explicitly mentioned to not change P1 and P2)
+-1;Created additional Functions
