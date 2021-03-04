@@ -1,0 +1,15 @@
+-1;Did not submit Intermediate Code
+1;AddPoly():Malloc'ing the POLY structure for return
+1;AddPoly():Counting exact number of terms in sum
+-0.5;AddPoly():Do not take care of possible negative coefficients and terms disappearing.
+2;AddPoly():Allocating array inside POLY to be returned and computing and storing terms of sum
+-1;AddPoly():Assumed the degrees are in sorted order in t_list array of POLY P1 and P2
+-1;AddPoly():Sorted P1 and P2 first
+1;AddPoly():Sorting of degrees at end
+-2;AddPoly():Used any additional array
+0.5;MultPoly():Malloc'ing the POLY structure for return: 0.5 marks
+2;MultPoly():Computing Product: 2 marks
+-1;MultPoly():Used any static array
+0.5;MultPoly():Sorting of degrees at end: 0.5 marks
+-1;MultPoly():Assumed the degrees are in sorted order in t_list array of POLY P1 and P2
+-1;MultPoly():Sorted P1 and P2 first

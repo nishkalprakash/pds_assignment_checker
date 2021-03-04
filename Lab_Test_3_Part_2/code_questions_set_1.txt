@@ -1,0 +1,10 @@
+-1;Did not submit Intermediate Code
+1;FindSum():Basic loop to find k-digit consecutive sequence from characters
+2;FindSum():Keeping track of distinct 2nd and 3rd largest
+-2;FindSum():Converted to decimal
+2;FindSum():Summing the two numbers found in base-12
+-2;FindSum():Converted to decimal, then added
+1;FindSum():Converted to decimal
+1;FindSum():Adding proper parameters and return
+-1;FindSum():Used char **p or if the character pointer passed does not have proper backing storage
+1;main():Reading character by character correctly

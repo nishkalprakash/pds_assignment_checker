@@ -1,0 +1,2 @@
+1;n=16, Number = 24A3B3A3B3A3B3A2, k = 3, Distinct 2nd and 3rd Largest: A3B and 4A3, Sum in decimal: 2186;16 24A3B3A3B3A3B3A2 3
+1;n=8, Number = AAAABBBB, k = 4, Distinct 2nd and 3rd Largest: ABBB and AABB, Sum in decimal: 37870;8 AAAABBBB 4
