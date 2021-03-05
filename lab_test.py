@@ -8,7 +8,7 @@ from init import BASE
 
 
 def pull(path):
-    return Path(path).read_text().strip().split("\n")
+    return [i for i in Path(path).read_text().strip().split("\n") if not i.startswith('#')]
 
 
 def push(path, text):
