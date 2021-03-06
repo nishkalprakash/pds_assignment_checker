@@ -20,7 +20,7 @@ def selenium_auto_upload(driver, arr, a):
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id=362")
     try:
         if "Test" in BASE:
-            driver.find_element_by_link_text(f"PART {a} Submission (FINAL)").click()
+            driver.find_element_by_xpath(f"//div[./h3[contains(text(),\'Lab Test {BASE.strip('Lab_Test_Part')}\')]]").find_element_by_link_text(f"PART {a} Submission (Final)").click()
         else:
             driver.find_element_by_link_text(f"Assignment {a} Submission").click()
 
@@ -34,7 +34,7 @@ def selenium_auto_upload(driver, arr, a):
     }
 
     # driver.find_element_by_link_text("ID number").click()
-
+    # input("Press Enter to continue...")
     for std, m, c in arr:
         insert(driver, f"quickgrade_{mapping[std]}", f"{m}")
         insert(driver, f"quickgrade_comments_{mapping[std]}", c)
@@ -56,13 +56,13 @@ def upload(a):
     for line in lines:
         l = line.split(",")
         student, marks, comments = (
-            l[0].strip('"'),
-            l[index],
+            l[0].strip('"').strip(),
+            l[index].strip(),
             # float(l[index]) * 10,
             "".join(l[index + 1 :]).strip('"').strip().replace(";;", "\n"),
         )
         # print(f"{student}\n\n{marks}\n\n{comments}")
-        arr.append([student, marks, comments])
+        arr.append([student.strip(), marks, comments])
         # print("*" * 80)
     ## TODO: SELENIUM MAGIC
     return arr
@@ -70,7 +70,7 @@ def upload(a):
 
 def init_selenium():
     driver = webdriver.Chrome("res/chromedriver.exe")
-    driver.implicitly_wait(30)
+    driver.implicitly_wait(1)
 
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
     username, password = Path("res/creds.txt").read_text().strip().split(":")
