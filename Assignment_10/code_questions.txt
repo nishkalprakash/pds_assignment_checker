@@ -1,7 +1,0 @@
-1;Reading in X1, X2 with %s
-1;Calling CheckStr and printing message based on return value
-1;Finding and printing length
-2;Finding char with max ascii code in S2 and printing (should print both the char and its ascii code)
-1;Nested loop to look at all pairs
-1;Summing ascii codes and comparing with max
-1;If equal, returning immediately ( -0.5 for not calling return immediately)

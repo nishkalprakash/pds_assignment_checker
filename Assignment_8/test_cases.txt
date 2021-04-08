@@ -1,2 +1,0 @@
-1;Test Case 1: S = abracadabra, p = 3, should print either "aca" or "ada";abracadabra 3
-1;Test case 2: S = abcdef, p = 2, should print "No palindrome of length 2" (or similar message);abcdef 2

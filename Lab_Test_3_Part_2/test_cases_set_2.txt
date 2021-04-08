@@ -1,1 +1,0 @@
-1;X = '155462' Y='645' k=4, Largest integer with 4 digits in X is '6554', There is a substring in X that is reverse of Y;155462 645 4

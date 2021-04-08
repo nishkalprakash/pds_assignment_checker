@@ -1,3 +1,0 @@
-10; (it is a perfect number), should print Yes ;496
-10; (non-perfect and non-prime), should print no ;284
-10; (non-perfect and prime), should print no ;83

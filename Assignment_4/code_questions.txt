@@ -1,4 +1,0 @@
-20;Proper for loop (should not go till X-1 to find the factors, better to go uptill X/2, best to go upto sqrt(x))
-20;Finding the factors
-20;Keeping running sum (including initialization)
-10;Equality check and printing

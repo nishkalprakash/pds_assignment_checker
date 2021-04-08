@@ -1,5 +1,0 @@
-2;Reading in x and n correctly
-1;For loop for computing sum
-2;Computing the terms correctly
-2;Computing the sign correctly in the second for loop
-1;Taking sum (including initialization) and printing

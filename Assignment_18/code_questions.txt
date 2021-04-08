@@ -1,8 +1,0 @@
-1;Main():Counting no. of structures in file
-1;Main():Reading into array of structures malloc'ed
--1;Main():Have just assumed affixed constant no. of structures
-2;SortStudents():Sorting by first name
-1;SortStudents():Handling tie-break with last name during sorting
-2;SearchStudents():Searching by first name
-1;SearchStudents():Once first name is found, handling correct last name
--2;SearchStudents():They have not used binary search for sorting by first name
