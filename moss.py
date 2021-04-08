@@ -1,70 +1,70 @@
 ## This file is to perfom a plag test among the submissions
 ## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
 
-import sys
-from os import listdir
-from os.path import isfile, join
-import os, shutil
-from shutil import copyfile
+from os import chdir, getcwd,mkdir,system
+from shutil import copyfile,rmtree
 from pathlib import Path
 import re
 from init import BASE
 
-# from pathlib import Path
 a = input(f"Please enter the {BASE} number: ")
-assign_folder_name = BASE + "_" + a
-for question in Path(assign_folder_name).glob("*_moss/"):
-    shutil.rmtree(question)
-for question in Path(assign_folder_name).glob("*/"):
+
+assign_folder_name = Path(f"{BASE}_{a}").absolute()
+
+# from auto_upload import init_selenium
+
+# driver=init_selenium()
+
+chdir(assign_folder_name)
+
+
+for question in Path().glob("*/"):
     if question.is_file() or (question/'moss_results.txt').exists():
         continue
-    folder_name = question
-    new_name = f"{folder_name}_moss"
-    if os.path.isdir(new_name):
-        shutil.rmtree(new_name)
-    os.mkdir(new_name)
+    chdir(question)
 
-    # pds=Path(folder_name).
     try:
-        home = next(Path(question).glob("PDS*/"))
+        ## Check if PDS Folder exists
+        ## TODO: Automate downloading of PDS folder using selenium
+        pds_folder_name = next(Path().glob("PDS*/"))
     except StopIteration as si:
-        print("PDS Directory not found,")
-        print(f"Please download from moodle and place in the folder, {BASE}_{a}")
+        print("PDS Directory not found")
+        print("Please download from moodle and place in the folder:", Path().cwd())
         exit()
-    moss_command = f"perl moss.pl -l c -c Assignment_{a}_{question.name}_report "
-    folder_name = str(home)
+    
+    ## IF the folder exists, delete and then recreate
+    moss_folder_name = Path(question.name+"_moss")
+    if moss_folder_name.exists():
+        rmtree(moss_folder_name)
+    mkdir(moss_folder_name)
 
-    onlyfiles = [
-        f
-        for f in listdir(folder_name)
-        if isfile(join(folder_name, f))
-        if f.endswith("c") or f.endswith("cfile") or f.endswith("txt")
-    ]
-
-    for f in onlyfiles:
-        ll = f.split("_")
-        roll_no = ll[0] + "_" + ll[-1].split(".")[0] + ".c"
-        # if len(roll_no)==11:
-        copyfile(os.path.join(folder_name, f), os.path.join(new_name, roll_no))
-        moss_command = moss_command + '"' + os.path.join(roll_no) + '"' + " "
-    os.chdir(new_name)
-    moss_command = f'{moss_command} | tee "../{question.name}/moss_results.txt"'
+    moss_command = f"perl moss.pl -l c -c Assignment_{a}_{Path.name}_report "
+    ## Only copy files that have the extensions .c, .C or .txt 
+    for f in pds_folder_name.glob("*.[cC]"):
+        lf = f.name.split("_")
+        new_fname = lf[0].strip() + "_" + lf[-1].split(".")[-2].strip()[-9:] + ".c"
+        copyfile(f, moss_folder_name/new_fname)
+        moss_command += f'"{new_fname}" '
+    
+    chdir(moss_folder_name)
+    moss_command += f' | tee "../moss_results.txt"'
     print(moss_command)
-    os.system(moss_command)
-    os.chdir("../../")
-    if os.path.isdir(new_name):
-        shutil.rmtree(new_name)
+    system(moss_command)
+    if moss_folder_name.is_dir():
+        rmtree(moss_folder_name)
+    chdir(assign_folder_name)
+    
 
-out=[]
-for moss_results in Path(assign_folder_name).glob("*/moss_results.txt"):
-    # shutil.rmtree(question)
-    text=moss_results.read_text()
-    addr=re.findall(r"http.*",text)
-    out.append(f"{moss_results.parent}:\n\t{addr[0]}")
+out_file=Path()/"moss_results.txt"
+if not out_file.exists():
+    out=[]
+    for moss_results in Path().glob("*/moss_results.txt"):
+        text=moss_results.read_text()
+        addr=re.findall(r"http.*",text)
+        out.append(f"Assignment_{a}_{moss_results.parent}:\n\t{addr[0]}")
 
-text="\n\n".join(out)
-(Path(assign_folder_name)/"moss_results.txt").write_text(text)
+    moss_results="\n\n".join(out)
+    out_file.write_text(moss_results)
 
 print("Moss results have been genereated")
-
-print(text)
+print(out_file.read_text())
