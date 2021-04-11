@@ -7,12 +7,13 @@ from pathlib import Path
 import re
 from init import BASE
 
+m=Path("moss.pl").absolute()
+# base=Path.cwd()
 a = input(f"Please enter the {BASE} number: ")
 
 assign_folder_name = Path(f"{BASE}_{a}").absolute()
 
 # from auto_upload import init_selenium
-
 # driver=init_selenium()
 
 chdir(assign_folder_name)
@@ -38,7 +39,7 @@ for question in Path().glob("*/"):
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
 
-    moss_command = f"perl moss.pl -l c -c Assignment_{a}_{Path.name}_report "
+    moss_command = f'perl "{m}" -l c -c Assignment_{a}_{Path().cwd().name}_report '
     ## Only copy files that have the extensions .c, .C or .txt 
     for f in pds_folder_name.glob("*.[cC]"):
         lf = f.name.split("_")
@@ -50,6 +51,8 @@ for question in Path().glob("*/"):
     moss_command += f' | tee "../moss_results.txt"'
     print(moss_command)
     system(moss_command)
+    chdir(assign_folder_name)
+    chdir(question)
     if moss_folder_name.is_dir():
         rmtree(moss_folder_name)
     chdir(assign_folder_name)
