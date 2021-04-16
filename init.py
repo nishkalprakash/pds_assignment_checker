@@ -4,7 +4,7 @@ BASE = "Assignment"
 # BASE = "Lab_Test_1_Part"
 # BASE = "Lab_Test_2_Part"
 # BASE = "Lab_Test_3_Part"
-
+MOODLE_COURSE_ID=400
 
 def init(a):
     base = Path(f"{BASE}_{a}")

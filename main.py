@@ -107,7 +107,7 @@ def main():
                         os.system(f'"{c_inter}"')
                     except StopIteration as si:
                         print(f"Intermediate C File for {student} not found")
-                c = next(home.glob(student + "*"))
+                c = next(home.glob(f"*{student}*"))
                 os.system(f'"{c}"')
             except StopIteration as si:
                 print(f"C File for {student} not found")
