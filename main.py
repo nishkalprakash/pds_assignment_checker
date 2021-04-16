@@ -61,17 +61,24 @@ def main():
     test_cases = pull("test_cases.txt")
     code_questions = pull("code_questions.txt")
     test_marks_list = [float(i.split(";")[0]) for i in test_cases]
-    code_marks_list = [float(i.split(";")[0]) for i in code_questions]
-    # Max marks are calculated ignoring the -ve mark conditions
-    max_marks = sum(i for i in (test_marks_list + code_marks_list) if i > 0)
-    test_marks = [
+    ## Here there is a change for %age negative markings, keeping the % sign to signify
+    code_marks_list = [float(i.split(";")[0]) if '%' not in i else i.split(";")[0] for i in code_questions]
+    
+    ## Max marks are calculated ignoring the -ve mark conditions
+    max_marks = sum(i for i in (test_marks_list + code_marks_list) if i > 0 and '%' not in i)
+    
+    test_marks_header = [
         f'"Test_Case_{i} ({test_marks_list[i]:g})"' for i in range(len(test_cases))
     ]
-    code_marks = [
-        f'"Code_{i} ({code_marks_list[i]:g})"' for i in range(len(code_questions))
-    ]
 
-    header = f"\"Student_Name\",{','.join(test_marks)},{','.join(code_marks)},\"Total_Marks ({max_marks:g})\",\"Comments\""
+    code_marks_header=[]
+    for i in range(len(code_questions)):
+        if '%' in code_marks_list[i]:
+            code_marks_header.append(f'"Code_{i} ({code_marks_list[i]})"')
+        else:
+            code_marks_header.append(f'"Code_{i} ({code_marks_list[i]:g })"')
+
+    header = f"\"Student_Name\",{','.join(test_marks_header)},{','.join(code_marks_header)},\"Total_Marks ({max_marks:g})\",\"Comments\""
 
     report_path = f"{BASE}_{a}_report.csv"
     if not Path(report_path).exists():
@@ -126,7 +133,8 @@ def main():
                         print(f"Desired Output: {test_comment}")
                         print(f"Program Output:")
                         os.system(f"echo {test} | a.exe")
-                        if Path("outfile.txt").exists(): os.system("outfile.txt")
+                        ## This is for a case when an external file is being created
+                        if Path("outfile.txt").exists(): os.system("outfile.txt") 
                         if mark > 0:
                             test_marks[i] = float(
                                 def_input(
@@ -156,30 +164,53 @@ def main():
                     comments.append(
                         f"The Code didn't compile successfully - Mark/s lost: {sum(test_marks_list):g} out of {sum(test_marks_list):g}"
                     )
+                perct=0
                 for i, q in enumerate(code_questions):
                     mark, ques = q.split(";")
-                    mark = float(mark)
-                    if mark > 0:
-                        code_marks[i] = float(
-                            def_input(f"\n\n{ques} - [{mark:g}] Mark/s : ", mark)
-                        )
-                        if code_marks[i] < mark:
-                            comments.append(
-                                f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {mark:g}"
-                            )
-                        elif code_marks[i] > mark:  # in case of typing errpr
-                            code_marks[i] = mark
-                    else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
-                        code_marks[i] = float(
-                            def_input(f"\n\n{ques} - ({mark:g}) Mark/s - Def: [0]: ", 0)
+                    if '%' in mark:  # This case is for % marking, defaults to zero, adds a comment if -ve marks given
+                        code_marks[i] =  float(
+                            def_input(f"\n\n{ques} - ({mark}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ", 0)
                         )  # defaults to 0
-                        if code_marks[i] == mark:
-                            # if -ve marks are given then add comment
+                        ## This is to deal with the case where code marks entered is less than max negtive marks
+                        temp_mark = float(mark.strip('%'))
+                        code_marks[i] = temp_mark if code_marks[i] < temp_mark else code_marks[i] if code_marks[i] <= 0 else -temp_mark
+                        if code_marks[i] < 0:
                             comments.append(
-                                f"Passed Negative Criteria: {ques} - Mark/s lost: {mark:g}"
+                                f"Passed Negative Criteria: {ques} - Mark/s lost: {code_marks[i]:g}% out of {mark}"
                             )
-
-                total_marks = sum(test_marks + code_marks)
+                            code_marks[i]= f"{code_marks[i]:g}%"
+                    else:
+                        mark = float(mark)
+                        if mark >= 0:
+                            code_marks[i] = float(
+                                def_input(f"\n\n{ques} - [{mark:g}] Mark/s : ", mark)
+                            )
+                            if code_marks[i] < mark:
+                                comments.append(
+                                    f"Failed Criteria: {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {mark:g}"
+                                )
+                            elif code_marks[i] >= mark:  # in case of typing err0r
+                                code_marks[i] = mark
+                                comments.append(
+                                    f"Passed Criteria: {ques} - Mark/s Obtained: {mark:g}"
+                                )
+                        elif mark < 0:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
+                            code_marks[i] =  float(
+                                def_input(f"\n\n{ques} - ({mark:g}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ", 0)
+                            )  # defaults to 0
+                            ## This is to deal with the case where code marks entered is less than max negtive marks
+                            code_marks[i] = mark if code_marks[i] < mark else code_marks[i] if code_marks[i] <= 0 else -mark
+                            if code_marks[i] < 0:
+                                comments.append(
+                                    f"Passed Negative Criteria: {ques} - Mark/s lost: {code_marks[i]:g} out of {mark:g}"
+                                )
+                total_marks = sum(i for i in (test_marks + code_marks) if '%' not in i)
+                ## TODO: Here we will deduct the negative percentage sums and round to nearest b=0.5 using formula n=b*round(a/b)
+                rounding_base=0.5
+                total_marks = rounding_base*round(
+                    total_marks +
+                    total_marks*sum(float(i.strip('%')) for i in code_marks if '%' in i
+                    )/(100*rounding_base))
             if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
                 comments.append("")  # Hack for extra spacing
                 comments.append(
