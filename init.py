@@ -6,12 +6,12 @@ BASE = "Assignment"
 # BASE = "Lab_Test_3_Part"
 MOODLE_COURSE_ID=400
 
-def init(a):
-    base = Path(f"{BASE}_{a}")
+def init(a,q=''):
+    base = Path(f"{BASE}_{a}/Question_{q}") if q!='' else Path(f"{BASE}_{a}")
     if base.exists():
         print(f"{base} folder already exists.")
         exit()
-    Path.mkdir(base)
+    Path.mkdir(base,parents=True)
     code_questions = base / "code_questions.txt"
     Path.touch(code_questions)
     test_cases = base / "test_cases.txt"

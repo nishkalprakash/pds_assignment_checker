@@ -7,8 +7,8 @@
 
 from pathlib import Path
 from selenium import webdriver
-from init import BASE
-
+from init import BASE,MOODLE_COURSE_ID
+from main import def_input
 
 def insert(driver, id, data):
     driver.find_element_by_id(id).click()
@@ -17,19 +17,20 @@ def insert(driver, id, data):
 
 
 def selenium_auto_upload(driver, arr, a):
-    driver.get("https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id=362")
-    try:
-        if "Test" in BASE:
-            driver.find_element_by_xpath(f"//div[./h3[contains(text(),\'Lab Test {BASE.strip('Lab_Test_Part')}\')]]").find_element_by_link_text(f"PART {a} Submission (Final)").click()
-        else:
-            driver.find_element_by_link_text(f"Assignment {a} Submission").click()
+    driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id={MOODLE_TOPIC_ID}&action=grading")
+    # try:
+    #     if "Test" in BASE:
+    #         driver.find_element_by_xpath(f"//div[./h3[contains(text(),\'Lab Test {BASE.strip('Lab_Test_Part')}\')]]").find_element_by_link_text(f"PART {a} Submission (Final)").click()
+    #     else:
+    #         driver.find_element_by_link_text(f"Assignment {a} Submission").click()
 
-    except:
-        driver.find_element_by_link_text(f"Assignment {a} Submission (Final)").click()
+    # except:
+    #     driver.find_element_by_link_text(f"Assignment {a} Submission (Final)").click()
 
-    driver.find_element_by_link_text("View/grade all submissions").click()
+    # driver.find_element_by_link_text("View/grade all submissions").click()
+    
     mapping = {
-        i.split(",")[0]: i.split(",")[1]
+        i.split(",")[0].strip(): i.split(",")[1].strip()
         for i in Path("res/mapping.txt").read_text().strip().split("\n")
     }
 
@@ -43,8 +44,11 @@ def selenium_auto_upload(driver, arr, a):
     # driver.close()
 
 
-def upload(a):
-    report = Path(f"{BASE}_{a}/{BASE}_{a}_report.csv")
+def upload(a,q=''):
+    if q!='':
+        report = Path(f"{BASE}_{a}/Question_{q}/{BASE}_{a}_Question_{q}_report.csv")
+    else:
+        report = Path(f"{BASE}_{a}/{BASE}_{a}_report.csv")
     text = report.read_text().strip()
     text_list = text.split("\n")
     head = text_list[0].split(",")
@@ -56,13 +60,13 @@ def upload(a):
     for line in lines:
         l = line.split(",")
         student, marks, comments = (
-            l[0].strip('"').strip(),
+            l[0].strip('"'),
             l[index].strip(),
             # float(l[index]) * 10,
             "".join(l[index + 1 :]).strip('"').strip().replace(";;", "\n"),
         )
         # print(f"{student}\n\n{marks}\n\n{comments}")
-        arr.append([student.strip(), marks, comments])
+        arr.append([student.strip(), marks, comments.strip()])
         # print("*" * 80)
     ## TODO: SELENIUM MAGIC
     return arr
@@ -81,17 +85,24 @@ def init_selenium():
 
 
 if __name__ == "__main__":
-    a_list = (
-        input(
-            f"Please enter the {BASE} numbers separated by space\nto upload report of: \nExample- 5 6 7 8\n"
-        )
-        .strip()
-        .split()
-    )
+    a,q= def_input(
+            f"Please enter the {BASE} number and Question number",'1 4'
+        ).strip().split()
+    MOODLE_TOPIC_ID=def_input(
+            f"Please enter the MOODLE_TOPIC_ID number",'9409'
+        ).strip()
+    
+    # a_list = (
+    #     input(
+    #         f"Please enter the {BASE} numbers separated by space\nto upload report of: \nExample- 5 6 7 8\n"
+    #     )
+    #     .strip()
+    #     .split()
+    # )
     driver = init_selenium()
-    for a in a_list:
-        arr = upload(a)
-        # print(arr)
-        selenium_auto_upload(driver, arr, a)
-        print(f'{f"Done for {BASE}_{a}":*^50}')
+    # for a in a_list:
+    arr = upload(a,q)
+    # print(arr)
+    selenium_auto_upload(driver, arr, a)
+    print(f'{f"Done for {BASE}_{a}":*^50}')
     driver.close()
