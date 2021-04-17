@@ -2,6 +2,7 @@ from pathlib import Path
 from lib.pds import init_selenium,BASE,MOODLE_COURSE_ID, unzip,zipfile
 from re import findall
 import os
+from time import sleep
 
 def create_folders(a,q=''):
     base = Path(f"{BASE}_{a}/Question_{q}") if q!='' else Path(f"{BASE}_{a}")
@@ -34,7 +35,7 @@ def get_assignments(a):
 
         ## download the zip file
         driver.get(dl)
-
+        sleep(2)
         ## Get the zip file name
         try:
             fname=next(a_base.glob("*.zip"))

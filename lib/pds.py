@@ -36,7 +36,7 @@ def init_selenium(def_dwnld_dir:Path = False):
     else:
         driver=webdriver.Chrome("res/chromedriver.exe")
 
-    # driver.implicitly_wait(1)
+    driver.implicitly_wait(2)
     driver.maximize_window()
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
     username, password = Path("res/creds.txt").read_text().strip().split(":")
