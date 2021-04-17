@@ -4,24 +4,7 @@ import random
 from pathlib import Path
 import os
 
-from init import BASE
-
-
-def pull(path):
-    return Path(path).read_text().split("\n")
-
-
-def push(path, text):
-    with Path(path).open("a+") as f:
-        f.write(text + "\n")
-
-
-def def_input(text, default=""):
-    x = input(f"{text} [{default}]: ")
-    if x:
-        return x
-    else:
-        return default
+from lib.pds import BASE,pull,push,def_input
 
 
 def pds_checker():

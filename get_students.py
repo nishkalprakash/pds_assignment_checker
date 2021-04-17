@@ -1,5 +1,5 @@
-from auto_upload import init_selenium
-from init import MOODLE_COURSE_ID,Path
+from lib.pds import init_selenium,MOODLE_COURSE_ID
+from pathlib import Path
 
 driver = init_selenium()
 

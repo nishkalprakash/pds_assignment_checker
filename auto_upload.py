@@ -6,14 +6,9 @@
 """
 
 from pathlib import Path
-from selenium import webdriver
 from init import BASE,MOODLE_COURSE_ID
 from main import def_input
-
-def insert(driver, id, data):
-    driver.find_element_by_id(id).click()
-    driver.find_element_by_id(id).clear()
-    driver.find_element_by_id(id).send_keys(data)
+from lib.pds import insert,init_selenium
 
 
 def selenium_auto_upload(driver, arr, a):
@@ -44,7 +39,7 @@ def selenium_auto_upload(driver, arr, a):
     # driver.close()
 
 
-def upload(a,q=''):
+def get_std_mark_comm_array(a,q=''):
     if q!='':
         report = Path(f"{BASE}_{a}/Question_{q}/{BASE}_{a}_Question_{q}_report.csv")
     else:
@@ -72,16 +67,7 @@ def upload(a,q=''):
     return arr
 
 
-def init_selenium():
-    driver = webdriver.Chrome("res/chromedriver.exe")
-    driver.implicitly_wait(1)
 
-    driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
-    username, password = Path("res/creds.txt").read_text().strip().split(":")
-    insert(driver, "username", username)
-    insert(driver, "password", password)
-    driver.find_element_by_id("loginbtn").click()
-    return driver
 
 
 if __name__ == "__main__":
@@ -101,7 +87,7 @@ if __name__ == "__main__":
     # )
     driver = init_selenium()
     # for a in a_list:
-    arr = upload(a,q)
+    arr = get_std_mark_comm_array(a,q)
     # print(arr)
     selenium_auto_upload(driver, arr, a)
     print(f'{f"Done for {BASE}_{a}":*^50}')
