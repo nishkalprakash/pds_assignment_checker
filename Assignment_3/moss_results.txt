@@ -1,0 +1,8 @@
+Assignment_3_Question_1:
+	http://moss.stanford.edu/results/1/3740848289171
+
+Assignment_3_Question_2:
+	http://moss.stanford.edu/results/6/9977025469216
+
+Assignment_3_Question_3:
+	http://moss.stanford.edu/results/2/1246547830264

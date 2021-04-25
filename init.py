@@ -50,6 +50,7 @@ def get_assignments(a):
 
         ## then delete the original zip
         os.remove(fname)
+    driver.close()
 
 
 if __name__ == "__main__":
