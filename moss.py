@@ -1,11 +1,11 @@
 ## This file is to perfom a plag test among the submissions
 ## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
 
-from os import chdir, getcwd,mkdir,system
+from os import chdir, mkdir,system
 from shutil import copyfile,rmtree
 from pathlib import Path
 import re
-from init import BASE
+from init import BASE,get_assignments
 
 m=Path("moss.pl").absolute()
 # base=Path.cwd()
@@ -15,6 +15,8 @@ assign_folder_name = Path(f"{BASE}_{a}").absolute()
 
 # from auto_upload import init_selenium
 # driver=init_selenium()
+if not assign_folder_name.exists():
+    get_assignments(a)
 
 chdir(assign_folder_name)
 

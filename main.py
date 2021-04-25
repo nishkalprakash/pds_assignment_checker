@@ -29,7 +29,7 @@ def pds_checker():
     else:
         from init import init
 
-        init(a,q)
+        init(a)
 
     try:
         home = next(Path.cwd().glob("PDS*/"))
