@@ -3,11 +3,15 @@ from pathlib import Path
 import zipfile
 
 
+## User Defined Variables
+HOME = "Assignments"
 BASE = "Assignment"
 # BASE = "Lab_Test_1_Part"
 # BASE = "Lab_Test_2_Part"
-# BASE = "Lab_Test_3_Part"
+BASE = "Lab-test"
 MOODLE_COURSE_ID=400
+VAR = "var"
+
 
 def insert(driver, id, data):
     elem=driver.find_element_by_id(id)
@@ -30,16 +34,16 @@ def init_selenium(def_dwnld_dir:Path = False):
         options.add_experimental_option('prefs', prefs)
 
         driver = webdriver.Chrome(
-            executable_path="res/chromedriver.exe",
+            executable_path=f"{VAR}/chromedriver.exe",
             chrome_options=options
             )
     else:
-        driver=webdriver.Chrome("res/chromedriver.exe")
+        driver=webdriver.Chrome(f"{VAR}/chromedriver.exe")
 
     driver.implicitly_wait(2)
     driver.maximize_window()
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
-    username, password = Path("res/creds.txt").read_text().strip().split(":")
+    username, password = Path(f"{VAR}/creds.txt").read_text().strip().split(":")
     insert(driver, "username", username)
     insert(driver, "password", password)
     driver.find_element_by_id("loginbtn").click()
@@ -62,6 +66,9 @@ def def_input(text, default=""):
     else:
         return default
 
+def get_students():
+    """ Returns the students list """
+    return pull(f"{VAR}/students.txt")
 
 ## Decompress the file
 def unzip(fname: Path):

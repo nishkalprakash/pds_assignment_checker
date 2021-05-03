@@ -41,7 +41,7 @@ for question in Path().glob("*/"):
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
 
-    moss_command = f'perl "{m}" -l c -c Assignment_{a}_{Path().cwd().name}_report '
+    moss_command = f'perl "{m}" -l c -c {BASE}_{a}_{Path().cwd().name}_report '
     ## Only copy files that have the extensions .c, .C or .txt 
     for f in pds_folder_name.glob("*.[cC]"):
         lf = f.name.split("_")
@@ -66,7 +66,7 @@ if not out_file.exists():
     for moss_results in Path().glob("*/moss_results.txt"):
         text=moss_results.read_text()
         addr=re.findall(r"http.*",text)
-        out.append(f"Assignment_{a}_{moss_results.parent}:\n\t{addr[0]}")
+        out.append(f"{BASE}_{a}_{moss_results.parent}:\n\t{addr[0]}")
 
     moss_results="\n\n".join(out)
     out_file.write_text(moss_results)

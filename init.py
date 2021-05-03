@@ -1,5 +1,5 @@
 from pathlib import Path
-from lib.pds import init_selenium,BASE,MOODLE_COURSE_ID, unzip,zipfile
+from lib.pds import init_selenium,BASE,MOODLE_COURSE_ID, unzip
 from re import findall
 import os
 from time import sleep
@@ -26,10 +26,22 @@ def get_assignments(a):
     driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id={MOODLE_COURSE_ID}")
     ## here we get all the links that start with "Assignment 2 problem"
     q_links=driver.find_elements_by_partial_link_text(f"{BASE} {a} problem")
+    ## HACK START
+    q_links.append(driver.find_elements_by_partial_link_text(f"{BASE}-{a} problem")[0])
+    ## HACK END
+    
+    ## this is to remove duplicate links with the same value
+    q_links=list({x.text:x for x in q_links}.values())
     ##
     for link in q_links:
         q_id=findall(r'id=(\d+)',link.get_attribute("href"))[0]
-        q=findall(f'{BASE} {a} problem (\d+)',link.text)[0]
+        # q=findall(f'{BASE} {a} problem (\d+)',link.text)[0]
+        ## HACK START
+        try:
+            q=findall(f'{BASE} {a} problem (\d+)',link.text)[0]
+        except:
+            q=findall(f'{BASE}-{a} problem (\d+)',link.text)[0]
+        ## HACK END
         create_folders(a,q)
         dl=f"https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id={q_id}&action=downloadall"
 
@@ -55,5 +67,4 @@ def get_assignments(a):
 
 if __name__ == "__main__":
     a = input(f"Please enter the {BASE} number: ").strip()
-    # create_folders(a)
     get_assignments(a)

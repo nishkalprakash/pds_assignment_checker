@@ -4,7 +4,7 @@
 
 ## Requirements:
 
-* Python >=3.7 (should exist in path)
+* Python >=3.8 (should exist in path) (This code uses walrus/assignment_operator ( `:=` operator ))
 * Gcc >= 8.1 (should exist in path)
 * Default editor for `.c` files should be set
 
