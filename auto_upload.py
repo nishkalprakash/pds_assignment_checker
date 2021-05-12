@@ -60,7 +60,7 @@ def get_std_mark_comm_array(a,q=''):
             "".join(l[index + 1 :]).strip('"').strip().replace(";;", "\n"),
         )
         # print(f"{student}\n\n{marks}\n\n{comments}")
-        arr.append([student.strip(), marks, comments.strip()])
+        arr.append([student, marks, comments.strip()])
         # print("*" * 80)
     ## TODO: SELENIUM MAGIC
     return arr

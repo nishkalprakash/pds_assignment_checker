@@ -224,6 +224,8 @@ def pds_checker():
                         comments.append(f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}")
                 else:
                     print("The code didn't compile")
+                    ## HACK: Start Support for Binary test marks
+                    max_test_marks=sum(i for i in test_marks_list if i>0)
                     comments.append(
                         f"FAILED: Code didn't compile successfully - Mark/s lost: {max_test_marks:g} out of {max_test_marks:g}"
                     )

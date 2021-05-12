@@ -43,3 +43,5 @@ pdf*
 
 # Credentials
 creds*
+client_secret*
+sheets.google*
