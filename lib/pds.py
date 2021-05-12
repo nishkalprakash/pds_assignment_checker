@@ -11,7 +11,7 @@ BASE = "Assignment"
 BASE = "Lab-test"
 MOODLE_COURSE_ID=400
 VAR = "var"
-
+LIB = "lib"
 
 def insert(driver, id, data):
     elem=driver.find_element_by_id(id)
@@ -34,11 +34,11 @@ def init_selenium(def_dwnld_dir:Path = False):
         options.add_experimental_option('prefs', prefs)
 
         driver = webdriver.Chrome(
-            executable_path=f"{VAR}/chromedriver.exe",
+            executable_path=f"{LIB}/chromedriver.exe",
             chrome_options=options
             )
     else:
-        driver=webdriver.Chrome(f"{VAR}/chromedriver.exe")
+        driver=webdriver.Chrome(f"{LIB}/chromedriver.exe")
 
     driver.implicitly_wait(2)
     driver.maximize_window()

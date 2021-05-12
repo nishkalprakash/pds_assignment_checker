@@ -1,14 +1,13 @@
 """
 * Auto upload to moodle
 * Uses a file creds.txt as {Username}:{Password}
-* Current webdriver for code is chrome 87, change as needed in res/chromedriver.exe
-* Uses id of students found in grading page in moodle, change as needed in res/mapping.txt
+* Current webdriver for code is chrome 87, change as needed in lib/chromedriver.exe
+* Uses id of students found in grading page in moodle, change as needed in var/mapping.txt
 """
 
 from pathlib import Path
-from init import BASE,MOODLE_COURSE_ID
-from main import def_input
-from lib.pds import insert,init_selenium
+
+from lib.pds import insert,init_selenium,BASE,def_input
 
 
 def selenium_auto_upload(driver, arr, a):
@@ -26,7 +25,7 @@ def selenium_auto_upload(driver, arr, a):
     
     mapping = {
         i.split(",")[0].strip(): i.split(",")[1].strip()
-        for i in Path("res/mapping.txt").read_text().strip().split("\n")
+        for i in Path("var/mapping.txt").read_text().strip().split("\n")
     }
 
     # driver.find_element_by_link_text("ID number").click()
