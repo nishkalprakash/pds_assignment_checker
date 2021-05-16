@@ -51,7 +51,7 @@ def init_selenium(def_dwnld_dir:Path = False):
 
 
 def pull(path):
-    return Path(path).read_text().split("\n")
+    return [x for i in Path(path).read_text().split("\n").strip() if not (x:=i.strip()) and not x.startswith('#')]
 
 
 def push(path, text):

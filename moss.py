@@ -5,13 +5,14 @@ from os import chdir, mkdir,system
 from shutil import copyfile,rmtree
 from pathlib import Path
 import re
-from init import BASE,get_assignments
+from lib.pds import BASE,def_input,HOME,LIB
+from init import get_assignments
 
-m=Path("moss.pl").absolute()
+m=(Path(LIB)/Path("moss.pl")).absolute()
 # base=Path.cwd()
-a = input(f"Please enter the {BASE} number: ")
+a = def_input(f"Please enter the {BASE} number: ",1)
 
-assign_folder_name = Path(f"{BASE}_{a}").absolute()
+assign_folder_name = Path(f"{HOME}/{BASE}_{a}").absolute()
 
 # from auto_upload import init_selenium
 # driver=init_selenium()
@@ -20,10 +21,16 @@ if not assign_folder_name.exists():
 
 chdir(assign_folder_name)
 
-
+recheck=True
 for question in Path().glob("*/"):
-    if question.is_file() or (question/'moss_results.txt').exists():
+
+    if (question/'moss_results.txt').exists():
+        print(f"\n\nMoss results for {question} exists.")
+        recheck=def_input("Do you want to re-generate the moss report? [0]/1",0)
+        if not recheck: continue
+    if question.is_file():
         continue
+
     chdir(question)
 
     try:
@@ -61,7 +68,7 @@ for question in Path().glob("*/"):
     
 
 out_file=Path()/"moss_results.txt"
-if not out_file.exists():
+if recheck or not out_file.exists():
     out=[]
     for moss_results in Path().glob("*/moss_results.txt"):
         text=moss_results.read_text()
