@@ -3,9 +3,23 @@ from pathlib import Path
 from re import findall
 from lib.pds_globals import BASE,HOME
 
+
+from time import strftime
+
+def dprint(func):
+    def wrapped_func(*args,**kwargs):
+        return func(strftime("%H:%M:%S - "),*args,**kwargs)
+    return wrapped_func
+print=dprint(print)
+
+## Print the variable with the name and value
+def printf(*args):
+    for var in args:
+        print(f"{var=}")
+
 ## Gives the user a default input option which can be inputted using enter
 def def_input(text, default=""):
-    x = input(f"{text} [{default}]: ")
+    x = input(f"{text} [{default}]: ").strip()
     if x:
         return x
     else:
@@ -13,19 +27,17 @@ def def_input(text, default=""):
 
 ## Gets input from user
 def get_a_q_from_user(q=True):
-    from os import chdir
-    chdir(HOME)
-    ll=list(Path.cwd().glob(f"{BASE}*"))
+    ll=list(Path(HOME).glob(f"{BASE}*"))
     latest_a = max(int(findall('\d+$',i.name)[0]) for i in ll) if ll else 0
     a= def_input(
-            f"Please enter the {BASE} number", str(latest_a)
-        ).strip().split()
+            f"Please enter the {BASE} number", latest_a
+        )
     if q:
         ## CURRENTLY supports one question check at a time
         ## q stores the question number
         q= def_input(
             f"Please enter the Question number",'1'
-        ).strip().split()
+        )
     
         return a,q
     else:
@@ -64,7 +76,7 @@ def get_students():
     from lib.pds_globals import VAR
     return pull(f"{VAR}/students.txt")
 
-def unzip(a_base):
+def unzip(a_base,q):
     """unzip files"""
     ## Get the zip file name
     try:
@@ -95,7 +107,7 @@ def unzip(a_base):
 
 def create_base_folders(a,q=None):
     ## Support for creating Questions folder added
-    base = Path(f"{BASE}_{a}/Question_{q}") if q is not None else Path(f"{BASE}_{a}")
+    base = Path(f"{HOME}/{BASE}_{a}/Question_{q}") if q is not None else Path(f"{HOME}/{BASE}_{a}")
     if base.exists():
         print(f"{base} folder already exists.")
         # exit()

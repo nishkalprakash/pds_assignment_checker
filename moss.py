@@ -3,7 +3,7 @@
 
 from lib.pds_selenium import get_assignments
 from lib.pds_globals import BASE,LIB,HOME
-from lib.pds_file_op import def_input
+from lib.pds_file_op import def_input, get_a_q_from_user
 
 from os import chdir, mkdir,system
 from shutil import copyfile,rmtree
@@ -11,7 +11,7 @@ from pathlib import Path
 
 m=(Path(LIB)/Path("moss.pl")).absolute()
 # base=Path.cwd()
-a = def_input(f"Please enter the {BASE} number: ",1)
+a=get_a_q_from_user(q=False)
 
 assign_folder_name = Path(f"{HOME}/{BASE}_{a}").absolute()
 
@@ -70,7 +70,9 @@ for question in Path().glob("*/"):
 
 out_file=Path()/"moss_results.txt"
 if recheck or not out_file.exists():
-    out=[]
+    out=["Hi,",
+    'PFA the moss results.'
+    ]
     for moss_results in Path().glob("*/moss_results.txt"):
         text=moss_results.read_text()
         from re import findall

@@ -8,28 +8,18 @@
 # driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id={MOODLE_COURSE_ID}")
 
 
-from lib.pds import VAR
-import pygsheets
+from lib.pds_pygsheets import get_worksheet
+from lib.pds_file_op import get_std_to_m_c_dict
 import os
 from time import sleep
 
-
-c = pygsheets.authorize(f"{VAR}/client_secret.json")
-
-sp=c.open_by_url("https://docs.google.com/spreadsheets/d/1dU8a6-qc3neQK_7G_6bHrdmN12sMAmJ1N1wImA0DYeU/edit#gid=1121699406")
-
-ws=sp.worksheet_by_title('LTs')
-sp.worksheets()
-r=ws.range('C3:C94')
-os.chdir(r'C:\Users\Admin\Documents\pds_assignment_checker')
-from auto_upload import get_std_mark_comm_array
-
+ws=get_worksheet()
 
 os.chdir(r'C:\Users\Admin\Documents\pds_assignment_checker\Assignments')
 
-std_dict=get_std_mark_comm_array('1','1')
+std_dict=get_std_to_m_c_dict('1','1')
 
-for row in r:
+for row in ws.range('C3:C94'):
     for cell in row:
         m=cell.neighbour('right')
         if not m.note:
