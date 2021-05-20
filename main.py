@@ -7,29 +7,41 @@ from pathlib import Path
 
 from os import system, chdir
 
-from lib.pds_globals import HOME,BASE
-from lib.pds_file_op import get_a_q_from_user, pull,push,def_input,get_students
+from lib.pds_globals import HOME, BASE
+from lib.pds_file_op import (
+    get_a_q_from_user,
+    pull,
+    push,
+    def_input,
+    get_students,
+    print,
+)
 
 from re import findall
 
+
 def base_missing(a):
-    if(def_input(f"{BASE}_{a} folder was not found. Try fetching {BASE} from MOODLE? [{a}]/0",a)):   
+    if def_input(
+        f"{BASE}_{a} folder was not found. Try fetching {BASE} from MOODLE? [{a}]/0", a
+    ):
         from lib.pds_selenium import get_assignments
+
         get_assignments(a)
     else:
         print(f"Did not fetch {BASE} {a}. \n\nEXITING.....")
         exit()
 
+
 def init_checker():
-    a,q=get_a_q_from_user()
+    a, q = get_a_q_from_user()
     ## Set base to the required directory
     base = Path(f"{BASE}_{a}/Question_{q}")
-    
+
     if base.exists():
         ## Change to the base directory for the rest of the program
         chdir(base)
     else:
-        ## The BASE_a directory was not found 
+        ## The BASE_a directory was not found
         ## try to fetch assignments after confirmation from the user
         base_missing(a)
 
@@ -43,7 +55,8 @@ def init_checker():
         base_missing(a)
         home = next(Path.cwd().glob("PDS*/"))
     report_path = f"{BASE}_{a}_Question_{q}_report.csv"
-    return home,report_path
+    return home, report_path
+
 
 def pds_checker():
     """ This is the main method for checking assignments"""
@@ -51,38 +64,41 @@ def pds_checker():
     students = get_students()
 
     ## Getting the BASE number details from user and switching working dir to BASE_a
-    home,report_path=init_checker()
+    home, report_path = init_checker()
 
     ## TODO: HACK FOR binary marking system
-    test_cases=pull("test_cases.txt") # pull only once throughout the program
+    test_cases = pull("test_cases.txt")  # pull only once throughout the program
     test_marks_list = [float(i.split(";")[0]) for i in test_cases]
-    
+
     ## Here there is a change for %age negative markings, keeping the % sign to signify
-    code_questions=pull("code_questions.txt") # pull only once throughout the program
-    code_marks_list = [x if '%' in (x := i.split(";")[0]) else float(x) for i in code_questions]
-    
+    code_questions = pull("code_questions.txt")  # pull only once throughout the program
+    code_marks_list = [
+        x if "%" in (x := i.split(";")[0]) else float(x) for i in code_questions
+    ]
+
     ## Max marks are calculated ignoring the -ve mark conditions
-    max_marks = sum((i for i in (test_marks_list + code_marks_list) if '%' not in str(i) and i > 0))
-    
+    max_marks = sum(
+        (i for i in (test_marks_list + code_marks_list) if "%" not in str(i) and i > 0)
+    )
+
     ## START: Set header
     test_marks_header = [
-        f'"Test_Case_{i} ({tm:g})"' 
-        for i,tm in enumerate(test_marks_list,1)
+        f'"Test_Case_{i} ({tm:g})"' for i, tm in enumerate(test_marks_list, 1)
     ]
 
     ## Here if % exists in marks then the decimal is not truncated as :g doesnt handle strings
-    code_marks_header=[
-        f'"Code_{i} ' + (f'({cm})"' if '%' in str(cm) else f'({cm:g})"') 
-        for i,cm in enumerate(code_marks_list,1)
+    code_marks_header = [
+        f'"Code_{i} ' + (f'({cm})"' if "%" in str(cm) else f'({cm:g})"')
+        for i, cm in enumerate(code_marks_list, 1)
     ]
-    
+
     if not Path(report_path).exists():
         push(
-            report_path, 
-            f"\"Student_Name\",{','.join(test_marks_header)},{','.join(code_marks_header)},\"Total_Marks ({max_marks:g})\",\"Comments\""
+            report_path,
+            f"\"Student_Name\",{','.join(test_marks_header)},{','.join(code_marks_header)},\"Total_Marks ({max_marks:g})\",\"Comments\"",
         )
     ## End
-    
+
     ## START: DONE Support - pulls students details from report to mark them as done
     try:
         done = set(i.split(",")[0].strip('"') for i in pull(report_path)[1:])
@@ -95,16 +111,16 @@ def pds_checker():
     for student in students:
         if student and (student in done or student.startswith("#")):
             continue
-        total_marks = 0 # current student's marks
-        test_marks = [0] * len(test_marks_list) # Current student test case marks
-        code_marks = [0] * len(code_marks_list) # Current student code case marks
+        total_marks = 0  # current student's marks
+        test_marks = [0] * len(test_marks_list)  # Current student test case marks
+        code_marks = [0] * len(code_marks_list)  # Current student code case marks
         comments = []  # String list for current students comments
         print("Working for student - ", student)
         try:
             try:
                 file_exists = True
                 c = next(home.glob(f"*{student}*"))
-                system(f'START /B "" "{c}"') # Opens the file in the background
+                system(f'START /B "" "{c}"')  # Opens the file in the background
             except StopIteration as si:
                 print(f"C File for {student} not found")
                 comments.append(
@@ -117,16 +133,18 @@ def pds_checker():
                 if return_code == 0:
                     print("Code ran successfully")
                     # test = test_cases[0]  # TESTING
-                    comments.append(" TEST CASES ".center(30,'='))
+                    comments.append(" TEST CASES ".center(30, "="))
                     comments.append("")
                     for i, line in enumerate(test_cases):
                         ## RUN C FILE here with the test case
-                        
+
                         ## HACK START: SUPPORT For file input If test_case_input_file_# exists then copy it to infile.txt
                         if Path(f"test_case_input_{i+1}.txt").exists():
-                            Path('infile.txt').write_text(Path(f"test_case_input_{i+1}.txt").read_text())
+                            Path("infile.txt").write_text(
+                                Path(f"test_case_input_{i+1}.txt").read_text()
+                            )
                         ## End
-                        
+
                         mark, test_comment, test = line.split(";")
                         mark = float(mark)
                         print(f"Test_Case_{i+1}:".center(50, "-"))
@@ -134,11 +152,12 @@ def pds_checker():
                         print(f"Desired Output: {test_comment}")
                         print(f"Program Output:")
                         system(f"echo {test} | a.exe")
-                        
+
                         ## HACK: START: Support to open out file in case an external file is being created
-                        if Path("outfile.txt").exists(): system("outfile.txt") 
+                        if Path("outfile.txt").exists():
+                            system("outfile.txt")
                         ## End
-                        
+
                         """
                         This is for non-binary test marks
                         if mark > 0:
@@ -199,38 +218,53 @@ def pds_checker():
                                 )
                         ## End
                     ## HACK: Start Support for Binary test marks
-                    max_test_marks=sum(i for i in test_marks_list if i>0)
+                    max_test_marks = sum(i for i in test_marks_list if i > 0)
                     if sum(test_marks) < max_test_marks:
                         comments.append("")
-                        comments.append(f"FAILED: One or More Test Cases - Marks Lost: {max_test_marks:g} out of {max_test_marks:g}")
-                        test_marks = [0] * len(test_marks_list) # Resetting all marks obtained in test cases to 0
+                        comments.append(
+                            f"FAILED: One or More Test Cases - Marks Lost: {max_test_marks:g} out of {max_test_marks:g}"
+                        )
+                        test_marks = [0] * len(
+                            test_marks_list
+                        )  # Resetting all marks obtained in test cases to 0
                     else:
                         comments.append("")
-                        comments.append(f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}")
+                        comments.append(
+                            f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}"
+                        )
                 else:
                     print("The code didn't compile")
                     ## HACK: Start Support for Binary test marks
-                    max_test_marks=sum(i for i in test_marks_list if i>0)
+                    max_test_marks = sum(i for i in test_marks_list if i > 0)
                     comments.append(
                         f"FAILED: Code didn't compile successfully - Mark/s lost: {max_test_marks:g} out of {max_test_marks:g}"
                     )
                 comments.append("")
-                comments.append(" CODE CASES ".center(30,'='))
+                comments.append(" CODE CASES ".center(30, "="))
                 comments.append("")
                 for i, q in enumerate(code_questions):
                     mark, ques = q.split(";")
-                    if '%' in mark:  # This case is for % marking, defaults to zero, adds a comment if -ve marks given
-                        code_marks[i] =  float(
-                            def_input(f"\n\n{ques} - ({mark}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ", 0)
+                    if (
+                        "%" in mark
+                    ):  # This case is for % marking, defaults to zero, adds a comment if -ve marks given
+                        code_marks[i] = float(
+                            def_input(
+                                f"\n\n{ques} - ({mark}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ",
+                                0,
+                            )
                         )  # defaults to 0
                         ## This is to deal with the case where code marks entered is less than max negtive marks
-                        max_neg_mark = float(mark.strip('%'))
-                        code_marks[i] = code_marks[i] if max_neg_mark < code_marks[i] <= 0 else max_neg_mark
+                        max_neg_mark = float(mark.strip("%"))
+                        code_marks[i] = (
+                            code_marks[i]
+                            if max_neg_mark < code_marks[i] <= 0
+                            else max_neg_mark
+                        )
                         if code_marks[i] < 0:
                             comments.append(
                                 f"FAILED: Negative % Code Case {i+1}:- {ques} - Mark/s lost: {code_marks[i]:g}% out of Total Marks Obtained"
                             )
-                            code_marks[i]= f"{code_marks[i]:g}%"
+                            code_marks[i] = f"{code_marks[i]:g}%"
                     else:
                         mark = float(mark)
                         if mark >= 0:
@@ -246,34 +280,52 @@ def pds_checker():
                                 comments.append(
                                     f"PASSED: Code Case {i+1}:- {ques} - Mark/s : {mark:g}"
                                 )
-                        elif mark < 0:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
-                            code_marks[i] =  float(
-                                def_input(f"\n\n{ques} - ({mark:g}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ", 0)
+                        elif (
+                            mark < 0
+                        ):  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
+                            code_marks[i] = float(
+                                def_input(
+                                    f"\n\n{ques} - ({mark:g}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ",
+                                    0,
+                                )
                             )  # defaults to 0
                             ## This is to deal with the case where code marks entered is less than max negtive marks
-                            code_marks[i] = code_marks[i] if mark <= code_marks[i] <= 0 else mark
+                            code_marks[i] = (
+                                code_marks[i] if mark <= code_marks[i] <= 0 else mark
+                            )
                             if code_marks[i] < 0:
                                 comments.append(
                                     f"FAILED: Negative Code Case {i+1}: {ques} - Mark/s lost: {code_marks[i]:g} out of {mark:g}"
                                 )
-                total_marks = sum((i for i in (test_marks + code_marks) if '%' not in str(i)))
+                total_marks = sum(
+                    (i for i in (test_marks + code_marks) if "%" not in str(i))
+                )
                 ## TODO: Here we will deduct the negative percentage sums and round to nearest b=0.5 using formula n=b*round(a/b)
-                rounding_base=0.5
-                total_marks = rounding_base*round((total_marks + total_marks*sum(float(i.strip('%')) for i in code_marks if '%' in str(i))/100)/rounding_base)
+                rounding_base = 0.5
+                total_marks = rounding_base * round(
+                    (
+                        total_marks
+                        + total_marks
+                        * sum(float(i.strip("%")) for i in code_marks if "%" in str(i))
+                        / 100
+                    )
+                    / rounding_base
+                )
             comments.append("")
-            comments.append("".center(30,'='))
+            comments.append("".center(30, "="))
             comments.append("")
-            comments.append(f" TOTAL MARKS OBTAINED = {total_marks:g} ".center(50,'#'))
+            comments.append(f" TOTAL MARKS OBTAINED = {total_marks:g} ".center(50, "#"))
 
             if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
-                comments.insert(0,"")  # Hack for extra spacing
-                comments.insert(0,
-                    def_input(f"\nPlease enter your final comment for {student}:\n")
+                comments.insert(0, "")  # Hack for extra spacing
+                comments.insert(
+                    0, def_input(f"\nPlease enter your final comment for {student}:\n")
                 )
             elif total_marks == max_marks:
-                comments.insert(0,"")  # Hack for extra spacing
+                comments.insert(0, "")  # Hack for extra spacing
                 # comments.append("")  # Hack for extra spacing
-                comments.insert(0,
+                comments.insert(
+                    0,
                     random.choice(
                         """Good work
                         Keep it up
@@ -285,7 +337,7 @@ def pds_checker():
                         Nice work""".split(
                             "\n"
                         )
-                    ).strip()
+                    ).strip(),
                 )
 
         except Exception as e:
@@ -319,6 +371,7 @@ def pds_checker():
                 return
 
     print("Report has been generated.")
+
 
 if __name__ == "__main__":
     pds_checker()
