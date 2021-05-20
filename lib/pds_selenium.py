@@ -1,0 +1,114 @@
+### !!TODO: make this a class
+
+from lib.pds_globals import VAR, LIB, BASE
+
+## SELENIUM FUNCTIONS
+
+def driver_get_from_topic(driver,topic_id,action='grading'):
+    driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id={topic_id}&action={action}")
+    if action == 'downloadall':
+        from time import sleep
+        sleep(2)
+
+def driver_get_course(driver,course_id=None):
+    if course_id is None:
+        from lib.pds_globals import MOODLE_COURSE_ID
+        course_id=MOODLE_COURSE_ID
+    return driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id={course_id}")
+
+def lt_hack():
+    # try:
+    #     if "Test" in BASE:
+    #         driver.find_element_by_xpath(f"//div[./h3[contains(text(),\'Lab Test {BASE.strip('Lab_Test_Part')}\')]]").find_element_by_link_text(f"PART {a} Submission (Final)").click()
+    #     else:
+    #         driver.find_element_by_link_text(f"Assignment {a} Submission").click()
+
+    # except:
+    #     driver.find_element_by_link_text(f"Assignment {a} Submission (Final)").click()
+
+    # driver.find_element_by_link_text("View/grade all submissions").click()
+    pass
+
+def insert(driver, id, data):
+    elem=driver.find_element_by_id(id)
+    elem.clear()
+    elem.send_keys(data)
+
+def init_selenium(def_dwnld_dir = None):
+    from selenium import webdriver
+    from pathlib import Path
+    if def_dwnld_dir:
+        def_dwnld_dir=Path(def_dwnld_dir)
+        options = webdriver.ChromeOptions()
+        prefs = {
+            'profile.default_content_settings.popups': 0,
+            'download.default_directory': f'{def_dwnld_dir.absolute()}',
+            "download.prompt_for_download": False,
+            "download.directory_upgrade": True,
+            "safebrowsing_for_trusted_sources_enabled": False,
+            "safebrowsing.enabled": False
+            }
+        options.add_argument("--start-maximized")
+        options.add_experimental_option('prefs', prefs)
+
+        driver = webdriver.Chrome(
+            executable_path=f"{LIB}/chromedriver.exe",
+            chrome_options=options
+            )
+    else:
+        driver=webdriver.Chrome(f"{LIB}/chromedriver.exe")
+
+    driver.implicitly_wait(2)
+    driver.maximize_window()
+    driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
+    from lib.pds_file_op import pull
+    username, password = pull(f'{VAR}/creds.txt')[0].split(":")
+    insert(driver, "username", username)
+    insert(driver, "password", password)
+    driver.find_element_by_id("loginbtn").click()
+    return driver
+
+def driver_get_topics_from_a(driver,a,q=None):
+    def get_q_and_topic_id(q_link):
+        ## Extract id from the link
+        from re import findall
+        return dict(
+            q=findall(r'problem (\d+)',q_link.text)[0],
+            topic_id=findall(r'id=(\d+)',q_link.get_attribute("href"))[0]
+        )
+    
+    if q is None:
+        ## Get all the assignments links    
+        ## eg: here we get all the links that start with "Assignment {a} problem"
+        q_links=driver.find_elements_by_partial_link_text(f"{BASE} {a} problem")
+        ## this is to remove duplicate links with the same value
+        q_links=list({x.text:x for x in q_links}.values())
+
+        ## HACK START
+        q_links.append(driver.find_elements_by_partial_link_text(f"{BASE}-{a} problem")[0])
+        ## HACK END
+
+        q_topic_list= [get_q_and_topic_id(q_link) for q_link in q_links] 
+        return q_topic_list
+    else:
+        ## Get only single topic
+        q_link=driver.find_elements_by_partial_link_text(f"{BASE} {a} problem {q}")[0]
+        q_topic = get_q_and_topic_id(q_link)
+        return q_topic
+
+def get_assignments(a):
+
+    a_base=f'{BASE}_{a}'
+    driver=init_selenium(a_base)
+
+    ## This is the Home page of the course
+    driver_get_course(driver)
+
+    q_topic_list=driver_get_topics_from_a(driver,a)
+    from lib.pds_file_op import create_base_folders, unzip
+    for q_topic in q_topic_list:
+        create_base_folders(a,q_topic['q'])
+        driver_get_from_topic(driver,q_topic['topic_id'],'downloadall')
+        unzip(a_base,q_topic['q'])
+
+    driver.close()

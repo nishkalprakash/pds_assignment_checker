@@ -1,12 +1,13 @@
 ## This file is to perfom a plag test among the submissions
 ## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
 
+from lib.pds_selenium import get_assignments
+from lib.pds_globals import BASE,LIB,HOME
+from lib.pds_file_op import def_input
+
 from os import chdir, mkdir,system
 from shutil import copyfile,rmtree
 from pathlib import Path
-import re
-from lib.pds import BASE,def_input,HOME,LIB
-from init import get_assignments
 
 m=(Path(LIB)/Path("moss.pl")).absolute()
 # base=Path.cwd()
@@ -72,7 +73,8 @@ if recheck or not out_file.exists():
     out=[]
     for moss_results in Path().glob("*/moss_results.txt"):
         text=moss_results.read_text()
-        addr=re.findall(r"http.*",text)
+        from re import findall
+        addr=findall(r"http.*",text)
         out.append(f"{BASE}_{a}_{moss_results.parent}:\n\t{addr[0]}")
 
     moss_results="\n\n".join(out)

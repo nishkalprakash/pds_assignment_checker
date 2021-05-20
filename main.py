@@ -7,36 +7,21 @@ from pathlib import Path
 
 from os import system, chdir
 
-from lib.pds import HOME,BASE,pull,push,def_input,get_students
+from lib.pds_globals import HOME,BASE
+from lib.pds_file_op import get_a_q_from_user, pull,push,def_input,get_students
 
 from re import findall
 
 def base_missing(a):
     if(def_input(f"{BASE}_{a} folder was not found. Try fetching {BASE} from MOODLE? [{a}]/0",a)):   
-        from init import get_assignments
+        from lib.pds_selenium import get_assignments
         get_assignments(a)
     else:
         print(f"Did not fetch {BASE} {a}. \n\nEXITING.....")
         exit()
 
 def init_checker():
-    
-    ## TODO: START: Support for last entered assignment number
-    chdir(HOME)
-    ll=list(Path.cwd().glob(f"{BASE}*"))
-    latest_a = max(int(findall('\d+$',i.name)[0]) for i in ll) if ll else 0
-    a = def_input(
-        f"Please enter the {BASE} number which you want to Grade: ",
-        f'{latest_a or 1}',
-    ).strip()
-
-    ## CURRENTLY supports one question check at a time
-    ## q stores the question number
-    q = def_input(
-            f"Please enter the Question number which you want to Grade: ",
-            '1',
-        ).strip()
-    
+    a,q=get_a_q_from_user()
     ## Set base to the required directory
     base = Path(f"{BASE}_{a}/Question_{q}")
     
@@ -123,7 +108,7 @@ def pds_checker():
             except StopIteration as si:
                 print(f"C File for {student} not found")
                 comments.append(
-                    f"{BASE} was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
+                    f"{BASE} file was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
                 )
                 file_exists = False
             ## Compile and run THE C FILE
