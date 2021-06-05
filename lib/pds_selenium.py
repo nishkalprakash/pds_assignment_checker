@@ -65,8 +65,8 @@ def init_selenium(def_dwnld_dir = None):
     from pathlib import Path
     
     options = webdriver.ChromeOptions()
-    options.add_argument('--no-sandbox')
-    options.headless=True
+    # options.add_argument('--no-sandbox')
+    # options.headless=True
     options.add_argument('--disable-gpu')
     options.add_experimental_option("useAutomationExtension", False)
     options.add_argument("--disable-dev-shm-usage") 

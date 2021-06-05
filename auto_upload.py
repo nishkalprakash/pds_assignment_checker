@@ -30,8 +30,8 @@ if __name__ == "__main__":
         }
         ## Upload data to moodle
         for std in std_dict:
-            insert(driver, f"quickgrade_{mapping[std]}", f"{std_dict[std]['m']}")
-            insert(driver, f"quickgrade_comments_{mapping[std]}", std_dict[std]['c'])
+            insert(driver, f"quickgrade_{mapping[std.strip()]}", f"{std_dict[std]['m']}")
+            insert(driver, f"quickgrade_comments_{mapping[std.strip()]}", std_dict[std]['c'])
         ## Save changes
         driver.find_element_by_id("id_savequickgrades").click()
         driver.close()

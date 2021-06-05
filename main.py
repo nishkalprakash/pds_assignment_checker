@@ -17,8 +17,6 @@ from lib.pds_file_op import (
     print,
 )
 
-from re import findall
-
 
 def base_missing(a):
     if def_input(
@@ -35,7 +33,7 @@ def base_missing(a):
 def init_checker():
     a, q = get_a_q_from_user()
     ## Set base to the required directory
-    base = Path(f"{BASE}_{a}/Question_{q}")
+    base = Path(f"{HOME}/{BASE}_{a}/Question_{q}")
 
     if base.exists():
         ## Change to the base directory for the rest of the program

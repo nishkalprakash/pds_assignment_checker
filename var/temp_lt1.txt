@@ -1,0 +1,92 @@
+Good
+Good
+Good
+No Submission
+Good
+Incorrect logic for computing X(i), incorrect logic for computing X(i+1)-X(i), incorrect termination logic.
+Incorrect variable declaration, logic for computing X(i) correct, termination condition for while loop is incorrect.
+Used %d for scanning double, incorrect logic for computing X(i) and X(i+1), incorrect logic for terminating while loop.
+Good
+Good
+& operator missing in scanning of variable. Completely incorrect logic.
+Good
+Good
+not printing any statement in while loop, no condition and semicolons in while loop,X(i+1)-X(i) part not computed.
+Submitted a Blank File
+No Submission
+No Submission
+No Submission
+Good
+Good
+No submission
+Good
+Good
+Good
+Good
+Good
+Good
+Good
+Good
+Good
+Incorrect logic for computing X(i): Wrong variable used. Incorrect logic for computing (Xi+1)-X(i). Incorrect logic for termination.
+No Submission
+Good
+Good
+Good
+Good
+No Submission
+Good
+Good
+Good
+Good
+Good
+Completely incorrect program, tried to use array but have made mistake on that too.
+
+Incomplete program, only variable declaration.
+Good
+Good
+Good
+Good
+Good
+Not printing X(1) - X(0) for any input
+Good
+Good
+Good
+Good
+Good
+Good
+Termination logic for while loop is incorrect, computation of X(i+1)-X(i) is incorrect.
+Good
+Good
+Good
+Difference i.e. X(i+1)-X(i) are not computed, only X(i) are computed.
+No Submission
+Good
+Good
+Good
+Good
+Used %lg, instead of %lf
+Good
+Good
+Good
+Used Array
+Good
+Good
+Good
+Used float variable, incorrect output format
+Good
+Good
+Good
+Good
+No Submission
+Termination condition of for loop is incorrect, computation of X(i+1)-X(i) is incorrect.
+Incorrect output format
+Good
+Good
+Good
+Good
+Good
+Good
+Good
+Good
+Good
