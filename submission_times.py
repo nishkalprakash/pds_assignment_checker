@@ -1,3 +1,4 @@
+from time import sleep
 from lib.pds_file_op import get_a_q_from_user, pull, print
 from lib.pds_globals import BASE, HOME, VAR
 from lib.pds_selenium import (
@@ -12,7 +13,7 @@ a = get_a_q_from_user(q=False)
 # a='4'
 out = Path(f"{HOME}/{BASE}_{a}/submissions.csv")
 c=input("Enter the Column Letter: ").strip()
-range = f"B16:{c.upper()}28"
+range = f"B3:{c.upper()}94"
 
 
 if not out.exists():
@@ -78,4 +79,5 @@ r = ws.range(range)
 for row in r:
     # row[-1].value = ([-1].value + "\n" + roll_status_dict[row[0].value.strip()]).strip()
     row[-1].value = roll_status_dict[row[0].value.strip()].strip()
+    sleep(0.1)
 print("Done uploading to google sheet")

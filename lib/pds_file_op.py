@@ -53,8 +53,12 @@ def push(path, text):
 def get_std_to_m_c_dict(a,q=None):
     if q is not None:
         report = Path(f"{BASE}_{a}/Question_{q}/{BASE}_{a}_Question_{q}_report.csv")
+        
     else:
         report = Path(f"{BASE}_{a}/{BASE}_{a}_report.csv")
+    if not report.exists():
+            report = Path(HOME)/report
+
     text = report.read_text().strip()
     text_list = text.split("\n")
     head = text_list[0].split(",")
