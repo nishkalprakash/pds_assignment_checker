@@ -3,7 +3,7 @@
 HOME = "Assignments"
 
 BASE = "Assignment"
-BASE = "Lab-test"
+# BASE = "Lab-test"
 
 MOODLE_COURSE_ID=400
 VAR = "var"

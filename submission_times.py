@@ -12,6 +12,9 @@ from pathlib import Path
 a = get_a_q_from_user(q=False)
 # a='4'
 out = Path(f"{HOME}/{BASE}_{a}/submissions.csv")
+if not out.parent.exists():
+    out.parent.mkdir(parents=True,exist_ok=True)
+
 c=input("Enter the Column Letter: ").strip()
 range = f"B3:{c.upper()}94"
 
@@ -77,7 +80,10 @@ from lib.pds_pygsheets import get_worksheet
 ws = get_worksheet("Assignments")
 r = ws.range(range)
 for row in r:
-    # row[-1].value = ([-1].value + "\n" + roll_status_dict[row[0].value.strip()]).strip()
-    row[-1].value = roll_status_dict[row[0].value.strip()].strip()
-    sleep(0.1)
+    rv=row[-1].value
+    if rv:
+        row[-1].value = (rv + "\n" + roll_status_dict[row[0].value.strip()]).strip()
+    else:
+        row[-1].value = roll_status_dict[row[0].value.strip()].strip()
+    sleep(0.2)
 print("Done uploading to google sheet")

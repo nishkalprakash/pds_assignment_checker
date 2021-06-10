@@ -17,7 +17,8 @@ assign_folder_name = Path(f"{HOME}/{BASE}_{a}").absolute()
 
 # from auto_upload import init_selenium
 # driver=init_selenium()
-if not assign_folder_name.exists():
+if not len([i for i in assign_folder_name.iterdir() if i.is_dir()]):
+    ## if there are no folders then get the assignments from moodle
     get_assignments(a)
 
 chdir(assign_folder_name)
