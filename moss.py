@@ -50,7 +50,7 @@ for question in Path().glob("*/"):
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
 
-    moss_command = f'perl "{m}" -l c -c {BASE}_{a}_{Path().cwd().name}_report '
+    moss_command = f'perl "{m}" -l c -c "{BASE}_{a}_{Path().cwd().name}_report" '
     ## Only copy files that have the extensions .c, .C or .txt 
     for f in pds_folder_name.glob("*.[cC]"):
         lf = f.name.split("_")

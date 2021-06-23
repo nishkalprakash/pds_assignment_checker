@@ -49,7 +49,12 @@ def sem3_lt_hack():
 def insert(driver, id, data):
     elem=driver.find_element_by_id(id)
     elem.clear()
-    elem.send_keys(data)
+    if len(data)>128:
+        for i in range(0,len(data),64):
+            elem.send_keys(data[i:i+64])
+    else:
+        elem.send_keys(data)
+
 
 def moodle_login(driver):
     print("Trying to login to moodle")
@@ -68,6 +73,7 @@ def init_selenium(def_dwnld_dir = None):
     options.add_argument('--no-sandbox')
     options.headless=True
     options.add_argument('--disable-gpu')
+    options.add_argument('--window-size=1366,768')
     options.add_experimental_option("useAutomationExtension", False)
     options.add_argument("--disable-dev-shm-usage") 
     options.add_argument('--hide-scrollbars')

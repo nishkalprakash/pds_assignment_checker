@@ -32,6 +32,7 @@ if __name__ == "__main__":
         for std in std_dict:
             insert(driver, f"quickgrade_{mapping[std.strip()]}", f"{std_dict[std]['m']}")
             insert(driver, f"quickgrade_comments_{mapping[std.strip()]}", std_dict[std]['c'])
+            print(f"Done for {std}")
         ## Save changes
         driver.find_element_by_id("id_savequickgrades").click()
         driver.close()
