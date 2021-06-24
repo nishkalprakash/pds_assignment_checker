@@ -1,10 +1,11 @@
+## HACK for recheck, keeps all stidents that got 100 or 0
 from lib.pds_file_op import get_std_to_m_c_dict,pull,push
 
 sd=get_std_to_m_c_dict('1','1')
 
 std=[]
 for s in sd:
-    if sd[s]['m']=='100':
+    if sd[s]['m']=='100' or sd[s]['m']=='0':
         print(s)
         std.append(s)
 
