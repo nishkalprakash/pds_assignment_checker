@@ -105,15 +105,16 @@ def pds_checker():
     ## End
 
     print(f"Working for {report_path}".center(100, "*"))
-
+    ctr=0;
     for student in students:
+        ctr+=1;
         if student and (student in done or student.startswith("#")):
             continue
         total_marks = 0  # current student's marks
         test_marks = [0] * len(test_marks_list)  # Current student test case marks
         code_marks = [0] * len(code_marks_list)  # Current student code case marks
         comments = []  # String list for current students comments
-        print("Working for student - ", student)
+        print(f"{ctr} - Working for student - {student}".center(100,"*"))
         try:
             try:
                 file_exists = True
@@ -234,6 +235,8 @@ def pds_checker():
                     print("The code didn't compile")
                     ## HACK: Start Support for Binary test marks
                     max_test_marks = sum(i for i in test_marks_list if i > 0)
+                    comments.append(" TEST CASES ".center(30, "="))
+                    comments.append("")
                     comments.append(
                         f"FAILED: Code didn't compile successfully - Mark/s lost: {max_test_marks:g} out of {max_test_marks:g}"
                     )
@@ -362,7 +365,7 @@ def pds_checker():
                 done.add(student)
                 print("The comments given for student:")
                 print("\n".join(comments))
-                print(f" Done for {student} ".center(100, "#"))
+                print(f" {ctr} - Done for {student} ".center(100, "#"))
             except Exception as e:
                 print("Something went wrong: ", e, str(e))
                 raise

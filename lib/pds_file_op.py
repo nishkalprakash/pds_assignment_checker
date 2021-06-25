@@ -36,7 +36,7 @@ def get_a_q_from_user(q=True):
         ## CURRENTLY supports one question check at a time
         ## q stores the question number
         q= def_input(
-            f"Please enter the Question number",'1'
+            f"Please enter the Question number",'2'
         )
     
         return a,q

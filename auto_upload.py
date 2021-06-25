@@ -5,7 +5,7 @@
 * Uses id of students found in grading page in moodle, change as needed in var/mapping.txt
 """
 
-from lib.pds_file_op import get_a_q_from_user, pull,get_std_to_m_c_dict
+from lib.pds_file_op import get_a_q_from_user, pull,get_std_to_m_c_dict,print
 from lib.pds_selenium import driver_get_course, driver_get_topics_from_a, init_selenium,driver_get_from_topic,insert
 from lib.pds_globals import BASE
 
