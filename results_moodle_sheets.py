@@ -65,7 +65,7 @@ hdf=hdf.replace(" \(Real\)","",regex=True)
 hdf=hdf.replace("Course total","zTotal",regex=True)
 hdf=hdf.replace("ID number","1_Roll",regex=True)
 hdf=hdf.replace("Student","2_Student",regex=True)
-rows,cols=gdf.shape
+
 gdf.columns=hdf.values[0]
 del hdf
 
@@ -100,8 +100,11 @@ gdf=gdf.reindex(sorted(gdf.columns), axis=1)
 
 
 
-#%% Sort the df
-gdf.sort_values(by='zTotal',ascending=False,inplace=True)
+#%% compute total
+gdf.drop('zTotal',axis=1,inplace=True)
+#%%
+gdf["Total"]=gdf.mean(axis=1,numeric_only=True)
+gdf.sort_values(by='Total',ascending=False,inplace=True)
 # table= [gdf.columns.values.tolist()] + gdf.values.tolist()
 # del gdf
 
@@ -115,18 +118,20 @@ ws=get_worksheet(c=cauth,title=ws_name,rows=1,cols=1)
 #%%
 ws.frozen_rows=0
 ws.frozen_cols=0
-ws.resize(1,1)
-# ws.unlink()
 ws.clear()
+ws.resize(1,1)
+#%%
+# ws.unlink()
 # ws.append_table(table,overwrite=True)
 ws.set_dataframe(gdf,start=(1,1),fit=True,copy_index=True)
 ws.cell((1,1)).value="1_Roll"
 ws.frozen_rows=1
 ws.frozen_cols=2
 # ws.adjust_column_width(start=0,end=cols,)
+rows,cols=gdf.shape
 ws.adjust_column_width(start=1,pixel_size=80)
 ws.adjust_column_width(start=cols,pixel_size=50)
-ws.adjust_column_width(start=2,end=cols-1,pixel_size=60)
+ws.adjust_column_width(start=3,end=cols)
 # cauth
 # ws.link()
 # %%
