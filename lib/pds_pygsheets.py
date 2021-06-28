@@ -2,6 +2,7 @@ from lib.pds_globals import VAR
 
 import pygsheets
 progress_monitor_url="https://docs.google.com/spreadsheets/d/1dU8a6-qc3neQK_7G_6bHrdmN12sMAmJ1N1wImA0DYeU/edit#gid=1121699406"
+viva_marks_url="https://docs.google.com/spreadsheets/d/1JmXAW0GQzfDOA87-emeyXMLj1IFFFWdyNvx7wQS4JlI/"
 
 def auth(path=f"{VAR}/client_secret.json"):
     c = pygsheets.authorize(path)
