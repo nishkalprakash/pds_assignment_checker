@@ -1,7 +1,7 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
 from re import findall
-from lib.pds_globals import BASE,HOME
+from lib.pds_globals import BASE,HOME,VAR
 
 
 from time import strftime
@@ -50,6 +50,35 @@ def push(path, text):
     with Path(path).open("a+") as f:
         f.write(text + "\n")
 
+def dict_to_csv(path,d):
+    """This function output dict_key,value or in case of list value dict_key,value1,value2... 
+
+    Args:
+        path (Path): the output path file for cssv
+        d (dict): the dict
+    """
+    try:
+        Path(path).write_text("\n".join(sorted(",".join([k]+v) for k,v in d.items())))
+    except TypeError:
+        Path(path).write_text("\n".join(sorted(",".join([k]+[v]) for k,v in d.items())))
+
+def csv_to_dict(path,d):
+    """To reverse dict_to_csv and data to given dict 
+
+    Args:
+        path (_type_): path of the csv file
+        d (dict): dict to update
+        
+    """
+    ll=pull(path)
+    for l in ll:
+        l=l.split(',')
+        try:
+            d[l[0]].extend(l[1:])
+        except:
+            d[l[0]]=l[1:]
+    return d
+
 def get_std_to_m_c_dict(a,q=None):
     if q is not None:
         report = Path(f"{BASE}_{a}/Question_{q}/{BASE}_{a}_Question_{q}_report.csv")
@@ -80,6 +109,12 @@ def get_students():
     from lib.pds_globals import VAR
     return pull(f"{VAR}/students.txt")
 
+def get_q_list_from_a(a):
+    return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()] 
+
+def get_map_name_to_roll():
+    return {(x:=i.split(','))[0]:x[2] for i in pull(f"{VAR}/mapping.txt")}
+
 def unzip(a_base,q):
     """unzip files"""
     ## Get the zip file name
@@ -92,7 +127,7 @@ def unzip(a_base,q):
         print("ZIP FILE NOT FOUND")
         raise
 
-    ## TODO then extract the zip
+    ## then extract the zip
     from zipfile import ZipFile
     zip_file = ZipFile(fname)
     folder=fname.parent/fname.stem

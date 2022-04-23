@@ -1,93 +1,85 @@
- VIVEK LOYA,12829
-Aaram  Meena ,12569
-Aaryan Tiwari,12502
-ABHAY  MEENA,12572
-Abhiraj Singh,12406
-Aditya Bhatkar,12414
-Ajeet Singh Rajpoot,12632
-Ajitesh Bharti,12553
-Amit Kumar Pal,12426
-Anik Sarkar,12454
-Anuj Kakde,12594
-Arya Rajendra,12431
-Aryan Chandani,12816
-Ashish Kumar,12435
-Atharva Amritkar,12451
-Aumkaar Pranav Shukla,12874
-Ayush Kumar Dwivedi,12524
-BAIBHAV VIKAS,12492
-Bharat Kalyan Kommana,12547
-bhavyaa  sharma,12979
-Deep Sekhar  Ghosh,12412
-Devendra Palod,12419
-Duggireddy Snehithreddy,12819
-Ektha Suhitha Yaram,12566
-Faridun Rahaman,12646
-Giriraj Huliyavar,12443
-Harsh Jha,12585
-Harsh Wasnik,12418
-Harshit Sharma,12544
-Jayanth Chowdary Kasaraneni,12592
-Johaan George,13020
-Kanishk Banker,12505
-Kashyap Pansuriya,12411
-Kshitija Bobade,12517
-Kushall Kandagatla,12407
-Lakshay Singh,12612
-Laxmikant Kadam,12830
-Lohitya Wasnik,12514
-Madhur .,12456
-MAHARSHI VISWA MITHRA  SODE,12578
-Mayank Baid,12703
-Mohd Gufran Ansari,12583
-Mukil Senthilkumar,12506
-nandan kumar singh,12686
-Nandan Kumar Singh,12836
-Narendra Purimetla,12522
-Oindrila Maji,12564
-Parv  Jain,12682
-Piyush Jangid,12608
-Prabhav Patil,12580
-Priyanshu Kumar,12404
-Priyanshu Raj,12586
-Raghav Mittal,12577
-Ram  Patidar,12571
-Rashi Patil,12613
-Ravi  Tripathi ,12512
-Rishabh Prakash,12457
-Rithick Prabakar,12447
-Rohan Sidankar,12573
-Rohit kumar 20AE30020,12821
-Roopsa Sen,12536
-Rushil Venkateswar,12422
-Sahil Das,12579
-SANDEEP CHINTAKAYALA,12472
-Sankalp Patidar,12704
-Sanskar Nankani,12695
-Sarthak Vijaywat,12696
-Sasmit Kolhe,12474
-Satyam Kumar,12597
-Shambo Sinha,12815
-Shri Ram Korroti,12537
-Shubham  Kumar,12822
-Shubham Chadokar,12441
-Soumya Ranjan Sahoo,12421
-Sree Swaksha  Gadipally ,12595
-sri tulasi kadali,12602
-Subhajyoti Halder,12424
-SUDEEP SUDARSHAN RANA (20EE10075),12824
-Suneetha Abothula,12448
-tejaswini KHETHAVATH,12460
-THARAKESWAR PENTAMSETTY,12818
-Ujjwal Raj,12834
-Utsav Agarwal,12417
-Vamsy Karamcheti,12549
-Vanshika sahu,12698
-varun  choudhary,12409
-Vibhushit Agarwal,12596
-vikas kumar soni,12693
-Vikas Tailor,12871
-Vishad Gohel,12833
-vishnu priya garapati,13093
-Vyshnav V S,12620
-Yashwardhan Wasu,12531
+ANMOL MISHRA,14655,21EC30060
+Abani kumar Jena,14919,21ME10100
+Adipta Halder,14760,21EC30003
+Aditya Kumar,14819,21ME10005
+Anfal S,14804,21AE10003
+Anindita Malviya,14721,21MI33004
+Anju Duhan,14324,21CE30007
+Ankit Yadav,14658,21EE30005
+Ankit kumar,14780,21MI10010
+Aryan Kubal,14799,21MT30012
+Atishay Jain,14767,21CE10012
+Avinash Meena,14796,21ME30015
+Ayush Kumar Madhu,14783,21AG30007
+BHUPESH VERMA,14785,21GG10010
+Bharat kabra,14645,21CH10015
+Biswaranjan Samal,14649,21IM10011
+Chetna payal,14706,21CS10019
+Divya Raj,14648,21MT10017
+Gargi Gangwar,14806,21MF10017
+Gulshan Kumar Harijan,15351,21AG10014
+Harish Takri,14692,21CY10016
+Harsh Khandeparkar,14659,21EC30023
+Harsh Raj,14664,21IE10017
+Harsh Somani,14812,21EC10031
+Harshit Raj,14647,21CH30015
+Hema Sai Sagar Banisetty,14797,21EC10011
+Indra Kumar Gupta,14679,21AE10043
+Jit Mandal,14907,21ME30034
+Krish Agarwal,14674,21NA10018
+Kshitij Banerjee,14803,21CH10035
+Kshitij Das,14673,21CS10039
+Kunal Bhure,14651,21ME10043
+Lavanya Birru,14781,21HS10018
+Lohitava Ghosh,14662,21AE10023
+Maanas S L,14784,21CH10055
+Malothro Mena,14650,21GG20002
+Muhib Ali Shaikh,14801,21EE10064
+Naveen Islavath,14808,21IM30007
+Nidhi Nandwani,14792,21MA10036
+Pasupulety Chethan Krishna Venkat,14660,21CS30036
+Pranjal Singh,14670,21EC10051
+Pushkaraj Jagtap,14757,21MF3IM12
+RAKESH TARENDRA,15349,21MT30031
+Raviteja Chityala,14766,21CS30016
+Rishabh Bhardwaj,14687,21CE10052
+Rishi Dhoble,14691,21ME30053
+Rohit Gami,14710,21ME10062
+SENJUTI GHOSH,14742,21CY10036
+SHRITIK JAISWAL,14668,21BT30026
+SN Bibhudutta,14667,21EC30043
+SREEKAR BASA,14646,21EE10024
+Sadique Amin,14759,21CE30027
+Sarthak Gupta,14810,21IM10030
+Satyajit Behera,14640,21AG10034
+Shashwata Roy,14661,21MA10055
+Shivakumar Kethavath,14847,21MI31013
+Shivam Sourav,14805,21CS10059
+Shramitha Boligarla,14782,21ME10024
+Shreya Reddy Kondakindi,14755,21CE10032
+Shruti Srivastava,15012,21EE30025
+Shubham Singh,14676,21EX10032
+Shubham Warkad,14671,21ME30072
+Shubhrashayak Sarkar,14657,21NA30029
+Soumartya Mallick,14693,21IE10036
+Soumojit Bhattacharya,14778,21EC10071
+Souvik Mandal,14690,21MF10036
+Subhajit Bhaumik,14744,21ME10081
+Sumedh Deshkar,14769,21MI33023
+Susank Chigilipalli,14768,21CE10072
+Swarnava Das,14762,21NA10037
+Tanya Jain,15352,21MI10048
+Tejaarka P,14703,21MT10036
+Thiruvignesh R S,14798,21BT10022
+Thota Kesava Chandra,14750,21CS30056
+Tripti Roy,14686,21IM30026
+Tushar Kumar,14680,21CH30035
+Vaibhav Adicherla,14772,21BT10002
+Vigneswaran S,14669,21AE30020
+Vishwajeet Singh Solanki,14688,21CS10079
+Vyshnavi Lagudu,14763,21EE10044
+bimal gayali,14802,21MA10017
+hemanth gunnu,14790,21BT30006
+janak patel,15348,21AG30027
+pavan vankudoth,14807,21CH10075
+subhash kumar ola,14727,21MT10055

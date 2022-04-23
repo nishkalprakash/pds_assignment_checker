@@ -2,7 +2,7 @@
 
 from lib.pds_file_op import printf
 from pathlib import Path
-from lib.pds_globals import VAR, LIB, BASE, HOME
+from lib.pds_globals import VAR, LIB, BASE, HOME, ASSIGN_NAME_PATTERN, ASSIGN_Q_NAME_PATTERN
 
 ## SELENIUM FUNCTIONS
 
@@ -110,29 +110,29 @@ def driver_get_topics_from_a(driver,a,q=None):
         ## Extract id from the link
         from re import findall
         return dict(
-            q=findall(r'problem (\d+)',q_link.text)[0],
+            q=findall(r'\((\w)\)',q_link.text)[0],
             topic_id=findall(r'id=(\d+)',q_link.get_attribute("href"))[0]
         )
     print("inside driver_get_topics_from_a")
     if q is None:
         ## Get all the assignments links    
         ## eg: here we get all the links that start with "Assignment {a} problem"
-        q_links=driver.find_elements_by_partial_link_text(f"{BASE} {a} problem")
+        q_links=driver.find_elements_by_partial_link_text(ASSIGN_NAME_PATTERN.format(BASE=BASE,a=a))
         ## this is to remove duplicate links with the same value
         q_links=list({x.text:x for x in q_links}.values())
 
-        ## HACK START
-        try:
-            q_links.append(driver.find_elements_by_partial_link_text(f"{BASE}-{a} problem")[0])
-        except:
-            pass
+        ## HACK for? START
+        # try:
+        #     q_links.append(driver.find_elements_by_partial_link_text(ASSIGN_NAME_PATTERN.format(BASE=BASE,a=a))[0])
+        # except:
+        #     pass
         ## HACK END
 
         q_topic_list= [get_q_and_topic_id(q_link) for q_link in q_links] 
         return q_topic_list
     else:
         ## Get only single topic
-        q_link=driver.find_elements_by_partial_link_text(f"{BASE} {a} problem {q}")[0]
+        q_link=driver.find_elements_by_partial_link_text(ASSIGN_Q_NAME_PATTERN.format(BASE=BASE,a=a,q=q))[0]
         q_topic = get_q_and_topic_id(q_link)
         return q_topic
 

@@ -1,5 +1,5 @@
 from time import sleep
-from lib.pds_file_op import get_a_q_from_user, pull, print
+from lib.pds_file_op import get_a_q_from_user, get_q_list_from_a, pull, print,get_map_name_to_roll,dict_to_csv, csv_to_dict
 from lib.pds_globals import BASE, HOME, VAR
 from lib.pds_selenium import (
     driver_get_from_topic,
@@ -11,21 +11,30 @@ from pathlib import Path
 
 a = get_a_q_from_user(q=False)
 # a='4'
-out = Path(f"{HOME}/{BASE}_{a}/submissions.csv")
+out = Path(f"{HOME}/{BASE}_{a}/comb_submissions.csv")
 if not out.parent.exists():
     out.parent.mkdir(parents=True,exist_ok=True)
 
 # c=input("Enter the Column Letter: ").strip()
 # range = f"B3:{c.upper()}94"
-
+map_name_to_roll=get_map_name_to_roll()
 
 if not out.exists():
-    driver = init_selenium()
+    ## get q from the folders first and check if submissions file exists
+    q_list=get_q_list_from_a(a)
     # driver_get_course(driver)
-    q_topics = driver_get_topics_from_a(driver, a)
+    # q_topics = 
 
     std_time_dict = {}
-    for q_topic in q_topics:
+    driver = init_selenium()
+    for q in q_list:
+        out_q=Path(f"{HOME}/{BASE}_{a}/Question_{q}/submissions.csv")
+        if out_q.exists():
+            std_time_dict=csv_to_dict(out_q,std_time_dict)
+            continue
+        
+        q_sub_dict={}
+        q_topic=driver_get_topics_from_a(driver, a,q)
         ## Open the topic and fetch the submission time for the student
         driver_get_from_topic(driver, q_topic["topic_id"])
         ## TODO: fetch the submission times
@@ -36,26 +45,31 @@ if not out.exists():
         for tr in t_elems:
             row = [td.text.strip() for td in tr.find_elements_by_xpath(".//td")]
             # table.append()
-            if row[3]:
+            if row[2]:
                 val = (
                     f"Question_{q_topic['q']} Submitted on: {datetime.strptime(row[8],'%A, %d %B %Y, %I:%M %p').strftime('%I:%M %p')}"
                     if row[8] and row[9]
                     else f"Question_{q_topic['q']} Not Submitted"
                 )
                 try:
-                    std_time_dict[row[3]].append(val)
+                    std_time_dict[map_name_to_roll[row[2]]].extend([val])
                 except:
-                    std_time_dict[row[3]] = [val]
+                    std_time_dict[map_name_to_roll[row[2]]] = [val]
+                    
+                q_sub_dict[map_name_to_roll[row[2]]]=val
         # tables.append(table)
+        ## Save the data in a file and just pull if it exissts
+        dict_to_csv(out_q,q_sub_dict)
     driver.close()
     print("Done fetching from Moodle!")
     roll_status_dict = {x: "\n".join(std_time_dict[x]) for x in std_time_dict}
     my_std = pull(f"{VAR}/my_students.txt")
-    text = "\n".join(sorted([(",".join([std] + std_time_dict[std])) for std in my_std]))
-    out.write_text(text)
+    # text = "\n".join(sorted([(",".join([std] + std_time_dict[std])) for std in my_std]))
+    # text="\n".join(sorted([(",".join([std] + std_time_dict.get(std,['Student not found in MOODLE course']))) for std in my_std]))
+    dict_to_csv(out,std_time_dict)
 else:
-    text = pull(out)
-    roll_status_dict = {(x := i.split(","))[0]: "\n".join(x[1:]) for i in text}
+    # text = pull(out)
+    roll_status_dict = {(x := i.split(","))[0]: "\n".join(x[1:]) for i in pull(out)}
 
 
 ## Fix format to short form
@@ -81,14 +95,14 @@ ws = get_worksheet(title="Assignments")
 # c=input("Enter the Column Letter: ").strip()
 # range = f"B3:{c.upper()}94"
 
-r = ws.range(f"B3:{ws.cell((94,ws.cols)).label}")
+r = ws.range(f"B3:{ws.cell((ws.rows,ws.cols)).label}")
 ws.unlink()
 for row in r:
+    val=roll_status_dict.get(row[0].value.strip(),'Student not found in MOODLE course').strip()
+
     rv=row[-1].value
-    if rv:
-        row[-1].value = (rv + "\n" + roll_status_dict[row[0].value.strip()]).strip()
-    else:
-        row[-1].value = roll_status_dict[row[0].value.strip()].strip()
+    row[-1].value = (rv + "\n" + val).strip() if rv else val
+    
     # sleep(0.2)
 
     

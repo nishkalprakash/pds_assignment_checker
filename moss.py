@@ -8,12 +8,15 @@ from lib.pds_file_op import def_input, get_a_q_from_user
 from os import chdir, mkdir,system
 from shutil import copyfile,rmtree
 from pathlib import Path
-
+from time import sleep
+from itertools import chain
 m=(Path(LIB)/Path("moss.pl")).absolute()
 # base=Path.cwd()
 a=get_a_q_from_user(q=False)
 
 assign_folder_name = Path(f"{HOME}/{BASE}_{a}").absolute()
+if not assign_folder_name.exists():
+    assign_folder_name.mkdir(parents=True,exist_ok=True)
 
 # from auto_upload import init_selenium
 # driver=init_selenium()
@@ -52,9 +55,10 @@ for question in Path().glob("*/"):
 
     moss_command = f'perl "{m}" -l c -c "{BASE}_{a}_{Path().cwd().name}_report" '
     ## Only copy files that have the extensions .c, .C or .txt 
-    for f in pds_folder_name.glob("*.[cC]"):
+    for f in chain(pds_folder_name.glob("*.[cC]"),pds_folder_name.glob("*.txt")):
         lf = f.name.split("_")
-        new_fname = lf[0].strip() + "_" + lf[-1].split(".")[-2].strip()[-9:] + ".c"
+        # new_fname = lf[0].strip() + "_" + lf[-1].split(".")[-2].strip()[-9:] + ".c"
+        new_fname = lf[0].strip() + ".c"
         copyfile(f, moss_folder_name/new_fname)
         moss_command += f'"{new_fname}" '
     
@@ -62,6 +66,7 @@ for question in Path().glob("*/"):
     moss_command += f' | tee "../moss_results.txt"'
     print(moss_command)
     system(moss_command)
+    # sleep(10)
     chdir(assign_folder_name)
     chdir(question)
     if moss_folder_name.is_dir():

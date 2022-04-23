@@ -1,11 +1,11 @@
 from lib.pds_globals import VAR
 
 import pygsheets
-progress_monitor_url="https://docs.google.com/spreadsheets/d/1dU8a6-qc3neQK_7G_6bHrdmN12sMAmJ1N1wImA0DYeU/edit#gid=1121699406"
+progress_monitor_url="https://docs.google.com/spreadsheets/d/1N6Ms52hA4LYrbWxg-13Ct0nGFXDf_WtQu3tgpuUTz-k/edit#gid=0"
 viva_marks_url="https://docs.google.com/spreadsheets/d/1JmXAW0GQzfDOA87-emeyXMLj1IFFFWdyNvx7wQS4JlI/"
 
-def auth(path=f"{VAR}/client_secret.json"):
-    c = pygsheets.authorize(path)
+def auth(service_account=f"{VAR}/service_account.json"):
+    c = pygsheets.authorize(service_account_file=service_account)
     return c
 
 def get_spreadsheet(c=None,url=progress_monitor_url):

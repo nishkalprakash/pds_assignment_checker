@@ -42,6 +42,7 @@ def init_checker():
         ## The BASE_a directory was not found
         ## try to fetch assignments after confirmation from the user
         base_missing(a)
+        
 
     ## Check if PDS folder exists in the current directory
     try:

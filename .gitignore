@@ -44,6 +44,7 @@ pdf*
 # Credentials
 creds*
 client_secret*
+service_account*
 sheets.google*
 
 moodle_chrome_data*
