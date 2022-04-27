@@ -76,7 +76,7 @@ else:
 for roll in roll_status_dict:
     text=roll_status_dict[roll]
     text=text.replace("Question_",'Q')
-    text=text.replace(' Not Submitted',"(N/A")
+    text=text.replace(' Not Submitted',"(N / A")
     text=text.replace(' Submitted on: ',"(")
     text=text.replace(' AM',"")
     text=text.replace(' PM',"")
@@ -89,19 +89,21 @@ for roll in roll_status_dict:
 
 
 ## Push to gsheet
+print("Done getting times, now pushing to gsheet")
 from lib.pds_pygsheets import get_worksheet
 
 ws = get_worksheet(title="Assignments")
 # c=input("Enter the Column Letter: ").strip()
 # range = f"B3:{c.upper()}94"
 
-r = ws.range(f"B3:{ws.cell((ws.rows,ws.cols)).label}")
+r = ws.range(f"D3:{ws.cell((ws.rows,ws.cols)).label}")
 ws.unlink()
 for row in r:
-    val=roll_status_dict.get(row[0].value.strip(),'Student not found in MOODLE course').strip()
+    row[-1].value=roll_status_dict.get(row[0].value.strip(),'Student not found in MOODLE course').strip()
+    # row[-1].value = val.strip()
 
-    rv=row[-1].value
-    row[-1].value = (rv + "\n" + val).strip() if rv else val
+    # rv=row[-1].value
+    # row[-1].value = (rv + "\n" + val).strip() if rv else val
     
     # sleep(0.2)
 

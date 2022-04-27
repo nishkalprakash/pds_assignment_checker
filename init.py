@@ -1,7 +1,7 @@
 ## MAKE this the first file to execute at the start
 
 if __name__ == "__main__":
-    from lib.pds_globals import BASE
     from lib.pds_selenium import get_assignments
-    a = input(f"Please enter the {BASE} number: ").strip()
-    get_assignments(a)
+    from lib.pds_file_op import get_a_q_from_user
+    get_assignments(get_a_q_from_user(q=False))
+    # a = input(f"Please enter the {BASE} number: ").strip()

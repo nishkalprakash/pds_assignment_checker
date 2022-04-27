@@ -3,7 +3,7 @@
 
 from lib.pds_selenium import get_assignments
 from lib.pds_globals import BASE,LIB,HOME
-from lib.pds_file_op import def_input, get_a_q_from_user
+from lib.pds_file_op import def_input, get_a_q_from_user, run_command,push
 
 from os import chdir, mkdir,system
 from shutil import copyfile,rmtree
@@ -28,12 +28,12 @@ chdir(assign_folder_name)
 
 recheck=True
 for question in Path().glob("*/"):
-
-    if (question/'moss_results.txt').exists():
+    mq=(assign_folder_name/question/'moss_results.txt')
+    if mq.exists() and len(mq.read_text()):
         print(f"\n\nMoss results for {question} exists.")
         recheck=def_input("Do you want to re-generate the moss report? [0]/1",0)
         if not recheck: continue
-    if question.is_file():
+    if question.is_file(): # bug fix w
         continue
 
     chdir(question)
@@ -58,24 +58,29 @@ for question in Path().glob("*/"):
     for f in chain(pds_folder_name.glob("*.[cC]"),pds_folder_name.glob("*.txt")):
         lf = f.name.split("_")
         # new_fname = lf[0].strip() + "_" + lf[-1].split(".")[-2].strip()[-9:] + ".c"
-        new_fname = lf[0].strip() + ".c"
+        new_fname = lf[0].strip().replace(" ",'_') + ".c"
         copyfile(f, moss_folder_name/new_fname)
         moss_command += f'"{new_fname}" '
     
     chdir(moss_folder_name)
-    moss_command += f' | tee "../moss_results.txt"'
+    # moss_command += f' | tee "../moss_results.txt"'
     print(moss_command)
-    system(moss_command)
+    # system(moss_command)
+    for line in run_command(moss_command):
+        print(line.strip())
+        push(mq,line.strip())
+    # print("Moss finished running - now sleeping for 10 secs")
     # sleep(10)
-    chdir(assign_folder_name)
-    chdir(question)
+    chdir(assign_folder_name/question)
+    # chdir()
+    # Path("moss_results.txt").write_text(moss_out)
     if moss_folder_name.is_dir():
         rmtree(moss_folder_name)
     chdir(assign_folder_name)
     
 
-out_file=Path()/"moss_results.txt"
-if recheck or not out_file.exists():
+moss_out=Path()/"moss_results.txt"
+if recheck or not moss_out.exists():
     out=["Hi,",
     'PFA the moss results.'
     ]
@@ -86,7 +91,7 @@ if recheck or not out_file.exists():
         out.append(f"{BASE}_{a}_{moss_results.parent}:\n\t{addr[0]}")
 
     moss_results="\n\n".join(out)
-    out_file.write_text(moss_results)
+    moss_out.write_text(moss_results)
 
 print("Moss results have been genereated")
-print(out_file.read_text())
+print(mq.read_text())

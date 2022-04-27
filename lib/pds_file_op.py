@@ -17,6 +17,32 @@ def printf(*args):
     for var in args:
         print(f"{var=}")
 
+
+def run_command(command):
+    """To run a command and capture the output
+
+    Args:
+        command (str): the command to be executd
+
+    Yields:
+        str: the output line wise
+    """
+    from subprocess import Popen,PIPE
+    from time import sleep
+    p = Popen(command,stdout=PIPE,stderr=PIPE,shell=True,text=True)
+    # Read stdout from subprocess until the buffer is empty !
+    for line in iter(p.stdout.readline, ''):
+        if line: # Don't print blank lines
+            yield line
+    # This ensures the process has completed, AND sets the 'returncode' attr
+    while p.poll() is None:
+        sleep(.1) #Don't waste CPU-cycles
+    # Empty STDERR buffer
+    err = p.stderr.read()
+    if p.returncode != 0:
+        # The run_command() function is responsible for logging STDERR 
+        print("Error: " + str(err))
+
 ## Gives the user a default input option which can be inputted using enter
 def def_input(text, default=""):
     x = input(f"{text} [{default}]: ").strip()

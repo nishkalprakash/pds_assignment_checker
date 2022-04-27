@@ -1,9 +1,9 @@
 ### !!TODO: make this a class
 
-from lib.pds_file_op import printf
+from lib.pds_file_op import printf,create_base_folders, unzip
+
 from pathlib import Path
 from lib.pds_globals import VAR, LIB, BASE, HOME, ASSIGN_NAME_PATTERN, ASSIGN_Q_NAME_PATTERN
-
 ## SELENIUM FUNCTIONS
 
 def driver_get_from_topic(driver,topic_id,action='grading'):
@@ -18,6 +18,9 @@ def driver_get_from_topic(driver,topic_id,action='grading'):
     if action == 'downloadall':
         from time import sleep
         sleep(2)
+    if action == 'question':
+        return driver.find_element('id','intro').text
+        
 
 def driver_get_course(driver,course_id=None):
     if course_id is None:
@@ -150,11 +153,16 @@ def get_assignments(a):
     driver_get_course(driver)
 
     q_topic_list=driver_get_topics_from_a(driver,a)
-    from lib.pds_file_op import create_base_folders, unzip
     for q_topic in q_topic_list:
-        if not next((Path(a_base)/q_topic['q']).glob("PDS*"),False):
+        q_base=Path(a_base)/f"Question_{q_topic['q']}"
+        if not next(q_base.glob("PDS*"),False):
             create_base_folders(a,q_topic['q'])
             driver_get_from_topic(driver,q_topic['topic_id'],'downloadall')
             unzip(a_base,q_topic['q'])
+        ## SEM 6: This is for a case where question is given in intro
+        ques=q_base/'question.txt'
+        if not ques.exists():
+            ques.write_text(driver_get_from_topic(driver,q_topic['topic_id'],'question'))
+            print('Question Fetched')
 
     driver.close()
