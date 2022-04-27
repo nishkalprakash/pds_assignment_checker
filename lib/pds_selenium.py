@@ -160,9 +160,9 @@ def get_assignments(a):
             driver_get_from_topic(driver,q_topic['topic_id'],'downloadall')
             unzip(a_base,q_topic['q'])
         ## SEM 6: This is for a case where question is given in intro
-        ques=q_base/'question.txt'
+        ques=q_base/f'Assignment_{a}-Question_{q_topic["q"]}.txt'
         if not ques.exists():
             ques.write_text(driver_get_from_topic(driver,q_topic['topic_id'],'question'))
-            print('Question Fetched')
+            print(ques.name," Fetched")
 
     driver.close()
