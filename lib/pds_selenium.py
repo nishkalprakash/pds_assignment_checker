@@ -113,7 +113,7 @@ def driver_get_topics_from_a(driver,a,q=None):
         ## Extract id from the link
         from re import findall
         return dict(
-            q=findall(r'\((\w)\)',q_link.text)[0],
+            q=findall(ASSIGN_Q_NAME_PATTERN.format(a=a,q=r'([\d\w]+)'),q_link.text)[0],
             topic_id=findall(r'id=(\d+)',q_link.get_attribute("href"))[0]
         )
     print("inside driver_get_topics_from_a")

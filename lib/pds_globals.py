@@ -14,5 +14,7 @@ LIB = "lib"
 # ASSIGN_Q_NAME_PATTERN="{BASE} {a} problem {q}"
 
 
-ASSIGN_NAME_PATTERN="{BASE} {a}("
-ASSIGN_Q_NAME_PATTERN="{BASE} {a}({q})"
+# ASSIGN_NAME_PATTERN="{BASE} {a}("
+ASSIGN_NAME_PATTERN=f"{BASE} "+"{a} - Question "
+# ASSIGN_Q_NAME_PATTERN="{BASE} {a}({q})"
+ASSIGN_Q_NAME_PATTERN=f"{BASE} "+"{a} - Question {q}"
