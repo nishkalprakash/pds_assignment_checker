@@ -1,6 +1,6 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
-from re import findall
+from re import findall, sub
 from lib.pds_globals import BASE,HOME,VAR
 
 
@@ -76,6 +76,9 @@ def push(path, text):
     with Path(path).open("a+") as f:
         f.write(text + "\n")
 
+def re_sub_space(name):
+    return sub(r'\s+',' ',name)
+
 def dict_to_csv(path,d):
     """This function output dict_key,value or in case of list value dict_key,value1,value2... 
 
@@ -139,6 +142,13 @@ def get_q_list_from_a(a):
     return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()] 
 
 def get_map_name_to_roll():
+    """Returns a dict {
+        Name : Roll
+    }
+
+    Returns:
+        dict: {name : roll}
+    """
     return {(x:=i.split(','))[0]:x[2] for i in pull(f"{VAR}/mapping.txt")}
 
 def unzip(a_base,q):

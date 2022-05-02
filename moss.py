@@ -3,17 +3,18 @@
 
 from lib.pds_selenium import get_assignments
 from lib.pds_globals import BASE, LIB, HOME
-from lib.pds_file_op import def_input, get_a_q_from_user, run_command, push
+from lib.pds_file_op import def_input, get_a_q_from_user, get_map_name_to_roll, re_sub_space, run_command, push
 
 from os import chdir, mkdir
 from shutil import copyfile, rmtree
 from pathlib import Path
-from time import sleep
 from itertools import chain
 
 m = (Path(LIB) / Path("moss.pl")).absolute()
 # base=Path.cwd()
 a = get_a_q_from_user(q=False)
+
+mapping=get_map_name_to_roll()
 
 assign_folder_name = Path(f"{HOME}/{BASE}_{a}").absolute()
 if not assign_folder_name.exists():
@@ -27,7 +28,8 @@ if not len([i for i in assign_folder_name.iterdir() if i.is_dir()]):
 
 chdir(assign_folder_name)
 
-recheck = True
+recheck = False
+update_main_moss = False
 for question in Path().glob("*/"):
     mq = assign_folder_name / question / "moss_results.txt"
     if mq.exists() and len(mq.read_text()):
@@ -35,6 +37,8 @@ for question in Path().glob("*/"):
         recheck = def_input("Do you want to re-generate the moss report? [0]/1", 0)
         if not recheck:
             continue
+        else:
+            update_main_moss=True
     if question.is_file():  # bug fix w
         continue
 
@@ -54,13 +58,14 @@ for question in Path().glob("*/"):
     if moss_folder_name.exists():
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
-
     moss_command = f'perl "{m}" -l c -c "{BASE}_{a}_{Path().cwd().name}_report" '
     ## Only copy files that have the extensions .c, .C or .txt
     for f in chain(pds_folder_name.glob("*.[cC]"), pds_folder_name.glob("*.txt")):
         lf = f.name.split("_")
         # new_fname = lf[0].strip() + "_" + lf[-1].split(".")[-2].strip()[-9:] + ".c"
-        new_fname = lf[0].strip().replace(" ", "_") + ".c"
+        # name=lf[0].strip().replace(" ", "_")
+        name=re_sub_space(lf[0].strip())
+        new_fname = f"{mapping[name]} - {name} - A{a}_Q{question.name.split('_')[-1]}.c"
         copyfile(f, moss_folder_name / new_fname)
         moss_command += f'"{new_fname}" '
 
@@ -82,6 +87,8 @@ for question in Path().glob("*/"):
 
 
 moss_out = Path() / "moss_results.txt"
+if update_main_moss or moss_out.exists():
+    recheck = def_input("Combined moss results exists.\nDo you want to re-generate the combined moss report? [0]/1", 0)
 if recheck or not moss_out.exists():
     out = ["Hi,", "PFA the moss results."]
     for moss_results in Path().glob("*/moss_results.txt"):
@@ -95,4 +102,4 @@ if recheck or not moss_out.exists():
     moss_out.write_text(moss_results)
 
 print("Moss results have been genereated")
-print(mq.read_text())
+print(moss_out.read_text())
