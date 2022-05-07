@@ -91,6 +91,10 @@
 * Added support for negative marking in `test_cases.txt`:
     * An entry with negative marks can be given, For Example:
     > -0.5;Test Case 3: Skips repeated element;5 1 2 3 3 5
+* Added support for comemnts in `code_questions.txt` and `test_cases.txt` by starting a line with `#`
+* Added support for new line in `code_questions.txt` and `test_cases.txt` by using `!!`
+* Added support for predefined comemnts in `code_questions.txt` and `test_cases.txt`
+
 
 ## License:
 

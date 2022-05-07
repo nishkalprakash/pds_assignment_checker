@@ -8,7 +8,7 @@ from time import strftime
 
 def dprint(func):
     def wrapped_func(*args,**kwargs):
-        return func(strftime("%H:%M:%S - "),*args,**kwargs)
+        return func(strftime("%H:%M:%S - "),map(lambda x: x.replace('!!','\n'),*args),**kwargs)
     return wrapped_func
 print=dprint(print)
 
@@ -128,7 +128,7 @@ def get_std_to_m_c_dict(a,q=None):
         l = line.split(",")
         d[l[0].strip('"')]={
                 'm':l[index].strip(),
-                'c':"".join(l[index + 1 :]).strip('"').strip().replace(";;", "\n").strip()
+                'c':"".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip()
             }
     ## d (dict) = { std : { m:marks, c: comments}}
     return d
@@ -190,8 +190,29 @@ def create_base_folders(a,q=None):
     Path.mkdir(base,parents=True)
     code_questions = base / "code_questions.txt"
     Path.touch(code_questions)
+    ## HACK FOR SEM 6 start ##
+    Path(code_questions).write_text("""
+20;Logic is correct and gives expected output
+20;Efficient and Optimal steps used to get to output
+-5;Comments missing, logic hard to understand
+-5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+""".strip())
+    ## HACK FOR SEM 6 END ##
+    
     test_cases = base / "test_cases.txt"
     Path.touch(test_cases)
+ ## HACK FOR SEM 6 start ##
+    Path(test_cases).write_text("""
+# Format: `{marks};{label};{test_case}`
+# * For Example:
+#
+# ```csv
+# 10;Inside Rectangle (should print inside);0 0 7 7 2 3
+# 10;Outside Rectangle (should print Outside);0 0 7 7 9 2
+# 10;On Rectange (should print Outside);0 0 7 7 7 2
+# ```
+""".strip())
+    ## HACK FOR SEM 6 END ##
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
     # print(f"Please edit the following:\n{test_cases}\n{code_questions}")
     return 0

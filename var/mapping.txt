@@ -34,6 +34,7 @@ Kunal Bhure,14651,21ME10043
 Lavanya Birru,14781,21HS10018
 Lohitava Ghosh,14662,21AE10023
 Maanas S L,14784,21CH10055
+Madhumitha Katreddy,15364,20AG10017
 Malothro Mena,14650,21GG20002
 Muhib Ali Shaikh,14801,21EE10064
 Naveen Islavath,14808,21IM30007
@@ -84,4 +85,5 @@ bimal gayali,14802,21MA10017
 hemanth gunnu,14790,21BT30006
 janak patel,15348,21AG30027
 pavan vankudoth,14807,21CH10075
+shivam ratne,15365,21PH10033
 subhash kumar ola,14727,21MT10055

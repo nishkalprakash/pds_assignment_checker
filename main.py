@@ -106,9 +106,9 @@ def pds_checker():
     ## End
 
     print(f"Working for {report_path}".center(100, "*"))
-    ctr=0;
+    ctr=0
     for student in students:
-        ctr+=1;
+        ctr+=1
         if student and (student in done or student.startswith("#")):
             continue
         total_marks = 0  # current student's marks
@@ -348,7 +348,7 @@ def pds_checker():
             # return
         else:
             try:
-                comm = ";;".join(comments).strip(";;")
+                comm = "!!".join(comments).strip("!!")
                 report = f'{student},{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" if type(i)!=str else i for i in code_marks)},{total_marks:g},"{comm}"'
                 # HACK TO fix: keep trying to save record
                 while 1:
