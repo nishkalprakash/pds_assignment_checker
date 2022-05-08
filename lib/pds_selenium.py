@@ -3,7 +3,7 @@
 from lib.pds_file_op import printf,create_base_folders, unzip
 
 from pathlib import Path
-from lib.pds_globals import VAR, LIB, BASE, HOME, ASSIGN_NAME_PATTERN, ASSIGN_Q_NAME_PATTERN
+from lib.pds_globals import VAR, LIB, HOME, MOODLE_A_NAME_, MOODLE_A_Q_NAME_, A_PATH_
 ## SELENIUM FUNCTIONS
 
 def driver_get_from_topic(driver,topic_id,action='grading'):
@@ -113,14 +113,14 @@ def driver_get_topics_from_a(driver,a,q=None):
         ## Extract id from the link
         from re import findall
         return dict(
-            q=findall(ASSIGN_Q_NAME_PATTERN.format(a=a,q=r'([\d\w]+)'),q_link.text)[0],
+            q=findall(MOODLE_A_Q_NAME_.format(a=a,q=r'([\d\w]+)'),q_link.text)[0],
             topic_id=findall(r'id=(\d+)',q_link.get_attribute("href"))[0]
         )
     print("inside driver_get_topics_from_a")
     if q is None:
         ## Get all the assignments links    
         ## eg: here we get all the links that start with "Assignment {a} problem"
-        q_links=driver.find_elements_by_partial_link_text(ASSIGN_NAME_PATTERN.format(BASE=BASE,a=a))
+        q_links=driver.find_elements_by_partial_link_text(MOODLE_A_NAME_.format(a=a))
         ## this is to remove duplicate links with the same value
         q_links=list({x.text:x for x in q_links}.values())
 
@@ -135,7 +135,7 @@ def driver_get_topics_from_a(driver,a,q=None):
         return q_topic_list
     else:
         ## Get only single topic
-        q_link=driver.find_elements_by_partial_link_text(ASSIGN_Q_NAME_PATTERN.format(BASE=BASE,a=a,q=q))[0]
+        q_link=driver.find_elements_by_partial_link_text(MOODLE_A_Q_NAME_.format(a=a,q=q))[0]
         q_topic = get_q_and_topic_id(q_link)
         return q_topic
 

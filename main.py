@@ -7,9 +7,19 @@ from pathlib import Path
 
 from os import system, chdir
 
-from lib.pds_globals import HOME, BASE
+from lib.pds_globals import (
+    A_Q_,
+    A_Q_PATH_,
+    HOME, 
+    BASE
+    )
 from lib.pds_file_op import (
+    base_missing,
     get_a_q_from_user,
+    get_code_cases,
+    get_code_questions,
+    get_map_name_to_roll,
+    get_test_cases,
     pull,
     push,
     def_input,
@@ -18,22 +28,13 @@ from lib.pds_file_op import (
 )
 
 
-def base_missing(a):
-    if def_input(
-        f"{BASE}_{a} folder was not found. Try fetching {BASE} from MOODLE? [{a}]/0", a
-    ):
-        from lib.pds_selenium import get_assignments
 
-        get_assignments(a)
-    else:
-        print(f"Did not fetch {BASE} {a}. \n\nEXITING.....")
-        exit()
 
 
 def init_checker():
     a, q = get_a_q_from_user()
     ## Set base to the required directory
-    base = Path(f"{HOME}/{BASE}_{a}/Question_{q}")
+    base = A_Q_PATH_.format(a=a,q=q)
 
     if base.exists():
         ## Change to the base directory for the rest of the program
@@ -53,8 +54,11 @@ def init_checker():
         print(f"Please download from moodle and place in the folder, {BASE}_{a}")
         base_missing(a)
         home = next(Path.cwd().glob("PDS*/"))
-    report_path = f"{BASE}_{a}_Question_{q}_report.csv"
-    return home, report_path
+    report_path = f"{A_Q_.format(a=a,q=q)}_report.csv"
+    test_cases = get_test_cases(a,q) # pull only once throughout the program
+    code_questions = get_code_questions(a,q)
+
+    return home, report_path,test_cases, code_questions
 
 
 def pds_checker():
@@ -63,14 +67,13 @@ def pds_checker():
     students = get_students()
 
     ## Getting the BASE number details from user and switching working dir to BASE_a
-    home, report_path = init_checker()
+    home, report_path,test_cases,code_questions = init_checker()
 
     ## TODO: HACK FOR binary marking system
-    test_cases = pull("test_cases.txt")  # pull only once throughout the program
     test_marks_list = [float(i.split(";")[0]) for i in test_cases]
 
     ## Here there is a change for %age negative markings, keeping the % sign to signify
-    code_questions = pull("code_questions.txt")  # pull only once throughout the program
+    # code_questions = pull("code_questions.txt")  # pull only once throughout the program
     code_marks_list = [
         x if "%" in (x := i.split(";")[0]) else float(x) for i in code_questions
     ]
@@ -107,22 +110,23 @@ def pds_checker():
 
     print(f"Working for {report_path}".center(100, "*"))
     ctr=0
-    for student in students:
+    for std in students:
         ctr+=1
-        if student and (student in done or student.startswith("#")):
+        if std in done:
             continue
+        n=get_map_name_to_roll(rev=True)
         total_marks = 0  # current student's marks
         test_marks = [0] * len(test_marks_list)  # Current student test case marks
         code_marks = [0] * len(code_marks_list)  # Current student code case marks
         comments = []  # String list for current students comments
-        print(f"{ctr} - Working for student - {student}".center(100,"*"))
+        print(f"{ctr} - Working for student - {std} - {n[std]}".center(100,"*"))
         try:
             try:
                 file_exists = True
-                c = next(home.glob(f"*{student}*"))
+                c = next(home.glob(f"*{std}*"))
                 system(f'START /B "" "{c}"')  # Opens the file in the background
             except StopIteration as si:
-                print(f"C File for {student} not found")
+                print(f"C File for {std} not found")
                 comments.append(
                     f"{BASE} file was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
                 )
@@ -321,7 +325,7 @@ def pds_checker():
             if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
-                    0, def_input(f"\nPlease enter your final comment for {student}:\n")
+                    0, def_input(f"\nPlease enter your final comment for {std}:\n")
                 )
             elif total_marks == max_marks:
                 comments.insert(0, "")  # Hack for extra spacing
@@ -349,7 +353,7 @@ def pds_checker():
         else:
             try:
                 comm = "!!".join(comments).strip("!!")
-                report = f'{student},{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" if type(i)!=str else i for i in code_marks)},{total_marks:g},"{comm}"'
+                report = f'{std},{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" if type(i)!=str else i for i in code_marks)},{total_marks:g},"{comm}"'
                 # HACK TO fix: keep trying to save record
                 while 1:
                     try:
@@ -361,12 +365,12 @@ def pds_checker():
                             def_input("Press 1 to Try again, or 0 to Quit [1]/0: ", "1")
                             != "1"
                         ):
-                            print(f"EXITING. {student}'s record not saved")
+                            print(f"EXITING. {std}'s record not saved")
                             return
-                done.add(student)
+                done.add(std)
                 print("The comments given for student:")
                 print("\n".join(comments))
-                print(f" {ctr} - Done for {student} ".center(100, "#"))
+                print(f" {ctr} - Done for {std} ".center(100, "#"))
             except Exception as e:
                 print("Something went wrong: ", e, str(e))
                 raise

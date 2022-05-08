@@ -1,7 +1,7 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
 from re import findall, sub
-from lib.pds_globals import BASE,HOME,VAR
+from lib.pds_globals import BASE,HOME, Q_BASE,VAR
 
 
 from time import strftime
@@ -62,7 +62,7 @@ def get_a_q_from_user(q=True):
         ## CURRENTLY supports one question check at a time
         ## q stores the question number
         q= def_input(
-            f"Please enter the Question number",'2'
+            f"Please enter the {Q_BASE} number",'2'
         )
     
         return a,q
@@ -138,18 +138,33 @@ def get_students():
     from lib.pds_globals import VAR
     return pull(f"{VAR}/students.txt")
 
+def get_test_cases(a,q):
+    """ Returns the Test Cases """
+    from lib.pds_globals import TEST_PATH_
+    return pull(TEST_PATH_.format(a=a,q=q))
+
+def get_code_questions(a,q):
+    """ Returns the code cases """
+    from lib.pds_globals import CODE_PATH_
+    return pull(CODE_PATH_.format(a=a,q=q))
+
 def get_q_list_from_a(a):
     return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()] 
 
-def get_map_name_to_roll():
+def get_map_name_to_roll(rev=None):
     """Returns a dict {
         Name : Roll
     }
+    If rev=True then return Roll : Name
 
     Returns:
-        dict: {name : roll}
+        dict: {name : roll} 
+        dict: {roll : name} # if rev=True
     """
-    return {(x:=i.split(','))[0]:x[2] for i in pull(f"{VAR}/mapping.txt")}
+    n_index,r_index=0,2
+    if rev:
+        n_index,r_index=r_index,n_index
+    return {(x:=i.split(','))[n_index]:x[r_index] for i in pull(f"{VAR}/mapping.txt")}
 
 def unzip(a_base,q):
     """unzip files"""
@@ -217,4 +232,13 @@ def create_base_folders(a,q=None):
     # print(f"Please edit the following:\n{test_cases}\n{code_questions}")
     return 0
 
+def base_missing(a):
+    if def_input(
+        f"{BASE}_{a} folder was not found. Try fetching {BASE} from MOODLE? [{a}]/0", a
+    ):
+        from lib.pds_selenium import get_assignments
 
+        get_assignments(a)
+    else:
+        print(f"Did not fetch {BASE} {a}. \n\nEXITING.....")
+        exit()
