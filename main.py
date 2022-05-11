@@ -108,7 +108,7 @@ def pds_checker():
         done = set()
     ## End
 
-    print(f"Working for {report_path}".center(100, "*"))
+    print(f" Working for {report_path} ".center(100, "*"))
     ctr=0
     for std_roll in students:
         std_name=n[std_roll]
@@ -119,7 +119,7 @@ def pds_checker():
         test_marks = [0] * len(test_marks_list)  # Current student test case marks
         code_marks = [0] * len(code_marks_list)  # Current student code case marks
         comments = []  # String list for current students comments
-        print(f"{ctr} - Working for student - {std_roll} - {std_name}".center(100,"*"))
+        print(f" {ctr} - Working for student - {std_roll} - {std_name} ".center(100,"*"))
         try:
             try:
                 file_exists = True
@@ -372,9 +372,9 @@ def pds_checker():
                             print(f"EXITING. {std_roll}'s record not saved")
                             return
                 done.add(std_roll)
-                print("The comments given for student:")
+                print("The comments given for student:\n")
                 print("\n".join(comments))
-                print(f" {ctr} - Done for {std_roll} ".center(100, "#"))
+                print(f" {ctr} - Done for {std_roll} - {std_name} ".center(100, "#"))
             except Exception as e:
                 print("Something went wrong: ", e, str(e))
                 raise
