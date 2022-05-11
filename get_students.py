@@ -34,10 +34,12 @@ std_id_roll_dict={}
 for i in range(n):
     s=elements_name_id[i]
     r=elements_roll[i]
-    std_id_roll_dict[s.text.strip()]={
+    std_id_roll_dict[s.get_attribute('innerHTML').strip()]={
         'id':s.get_attribute("href").split("=")[1][:5].strip(),
         'roll':r.text.strip()
     }
+    # if i==73:
+    #     pass
 
 # stds=Path('students.txt').read_text().split('\n')
 # s={i:[val for key, val in maps.items() if " ".join(i.strip().split()).lower() == key.lower()][0] for i in stds}

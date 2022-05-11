@@ -24,7 +24,7 @@ Harsh Khandeparkar,14659,21EC30023
 Harsh Raj,14664,21IE10017
 Harsh Somani,14812,21EC10031
 Harshit Raj,14647,21CH30015
-Hema Sai Sagar Banisetty,14797,21EC10011
+Hema Sai Sagar  Banisetty,14797,21EC10011
 Indra Kumar Gupta,14679,21AE10043
 Jit Mandal,14907,21ME30034
 Krish Agarwal,14674,21NA10018
@@ -37,13 +37,13 @@ Maanas S L,14784,21CH10055
 Madhumitha Katreddy,15364,20AG10017
 Malothro Mena,14650,21GG20002
 Muhib Ali Shaikh,14801,21EE10064
-Naveen Islavath,14808,21IM30007
+Naveen  Islavath,14808,21IM30007
 Nidhi Nandwani,14792,21MA10036
 Pasupulety Chethan Krishna Venkat,14660,21CS30036
 Pranjal Singh,14670,21EC10051
 Pushkaraj Jagtap,14757,21MF3IM12
 RAKESH TARENDRA,15349,21MT30031
-Raviteja Chityala,14766,21CS30016
+Raviteja  Chityala,14766,21CS30016
 Rishabh Bhardwaj,14687,21CE10052
 Rishi Dhoble,14691,21ME30053
 Rohit Gami,14710,21ME10062
@@ -56,27 +56,27 @@ Sarthak Gupta,14810,21IM10030
 Satyajit Behera,14640,21AG10034
 Shashwata Roy,14661,21MA10055
 Shivakumar Kethavath,14847,21MI31013
-Shivam Sourav,14805,21CS10059
+Shivam  Sourav,14805,21CS10059
 Shramitha Boligarla,14782,21ME10024
 Shreya Reddy Kondakindi,14755,21CE10032
 Shruti Srivastava,15012,21EE30025
+Shubham  Warkad,14671,21ME30072
 Shubham Singh,14676,21EX10032
-Shubham Warkad,14671,21ME30072
 Shubhrashayak Sarkar,14657,21NA30029
 Soumartya Mallick,14693,21IE10036
 Soumojit Bhattacharya,14778,21EC10071
 Souvik Mandal,14690,21MF10036
 Subhajit Bhaumik,14744,21ME10081
-Sumedh Deshkar,14769,21MI33023
+Sumedh  Deshkar,14769,21MI33023
 Sumit Chouhan,15355,20IE10039
 Susank Chigilipalli,14768,21CE10072
 Swarnava Das,14762,21NA10037
 Tanya Jain,15352,21MI10048
 Tejaarka P,14703,21MT10036
 Thiruvignesh R S,14798,21BT10022
-Thota Kesava Chandra,14750,21CS30056
+Thota  Kesava Chandra,14750,21CS30056
 Tripti Roy,14686,21IM30026
-Tushar Kumar,14680,21CH30035
+Tushar  Kumar,14680,21CH30035
 Vaibhav Adicherla,14772,21BT10002
 Vigneswaran S,14669,21AE30020
 Vishwajeet Singh Solanki,14688,21CS10079

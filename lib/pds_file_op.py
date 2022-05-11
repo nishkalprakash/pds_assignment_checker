@@ -1,14 +1,14 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
 from re import findall, sub
-from lib.pds_globals import BASE,HOME, Q_BASE,VAR
+from lib.pds_globals import A_, BASE,HOME, Q_BASE,VAR
 
 
 from time import strftime
 
 def dprint(func):
     def wrapped_func(*args,**kwargs):
-        return func(strftime("%H:%M:%S - "),map(lambda x: x.replace('!!','\n'),*args),**kwargs)
+        return func(strftime("%H:%M:%S - "),*map(lambda x: x.replace('!!','\n'),args),**kwargs)
     return wrapped_func
 print=dprint(print)
 
@@ -136,17 +136,17 @@ def get_std_to_m_c_dict(a,q=None):
 def get_students():
     """ Returns the students list """
     from lib.pds_globals import VAR
-    return pull(f"{VAR}/students.txt")
+    return pull(f"{VAR}/my_students.txt")
 
 def get_test_cases(a,q):
     """ Returns the Test Cases """
-    from lib.pds_globals import TEST_PATH_
-    return pull(TEST_PATH_.format(a=a,q=q))
+    from lib.pds_globals import TEST_
+    return pull(TEST_.format(a=a,q=q))
 
 def get_code_questions(a,q):
     """ Returns the code cases """
-    from lib.pds_globals import CODE_PATH_
-    return pull(CODE_PATH_.format(a=a,q=q))
+    from lib.pds_globals import CODE_
+    return pull(CODE_.format(a=a,q=q))
 
 def get_q_list_from_a(a):
     return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()] 
@@ -207,8 +207,8 @@ def create_base_folders(a,q=None):
     Path.touch(code_questions)
     ## HACK FOR SEM 6 start ##
     Path(code_questions).write_text("""
-20;Logic is correct and gives expected output
-20;Efficient and Optimal steps used to get to output
+30;Logic is correct and gives expected output
+25;Efficient and Optimal steps used to get to output
 -5;Comments missing, logic hard to understand
 -5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
 """.strip())
@@ -234,7 +234,7 @@ def create_base_folders(a,q=None):
 
 def base_missing(a):
     if def_input(
-        f"{BASE}_{a} folder was not found. Try fetching {BASE} from MOODLE? [{a}]/0", a
+        f"{A_.format(a=a)} folder was not found. Try fetching from MOODLE? [{a}]/0", a
     ):
         from lib.pds_selenium import get_assignments
 

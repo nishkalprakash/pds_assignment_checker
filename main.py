@@ -16,7 +16,6 @@ from lib.pds_globals import (
 from lib.pds_file_op import (
     base_missing,
     get_a_q_from_user,
-    get_code_cases,
     get_code_questions,
     get_map_name_to_roll,
     get_test_cases,
@@ -34,7 +33,7 @@ from lib.pds_file_op import (
 def init_checker():
     a, q = get_a_q_from_user()
     ## Set base to the required directory
-    base = A_Q_PATH_.format(a=a,q=q)
+    base = Path(HOME)/A_Q_PATH_.format(a=a,q=q)
 
     if base.exists():
         ## Change to the base directory for the rest of the program
@@ -46,6 +45,7 @@ def init_checker():
         
 
     ## Check if PDS folder exists in the current directory
+    ## Current Dir = {HOME}/{BASE}{a}/{Q_BASE}{q}
     try:
         home = next(Path.cwd().glob("PDS*/"))
     ## IF PDS Folder not found then call get assignments
@@ -65,7 +65,7 @@ def pds_checker():
     """ This is the main method for checking assignments"""
     ## Pull students list before entering the BASE folder
     students = get_students()
-
+    n=get_map_name_to_roll(rev=True)
     ## Getting the BASE number details from user and switching working dir to BASE_a
     home, report_path,test_cases,code_questions = init_checker()
 
@@ -94,7 +94,7 @@ def pds_checker():
         for i, cm in enumerate(code_marks_list, 1)
     ]
 
-    if not Path(report_path).exists():
+    if not Path(report_path).exists(): 
         push(
             report_path,
             f"\"Student_Name\",{','.join(test_marks_header)},{','.join(code_marks_header)},\"Total_Marks ({max_marks:g})\",\"Comments\"",
@@ -110,23 +110,23 @@ def pds_checker():
 
     print(f"Working for {report_path}".center(100, "*"))
     ctr=0
-    for std in students:
+    for std_roll in students:
+        std_name=n[std_roll]
         ctr+=1
-        if std in done:
+        if std_roll in done:
             continue
-        n=get_map_name_to_roll(rev=True)
         total_marks = 0  # current student's marks
         test_marks = [0] * len(test_marks_list)  # Current student test case marks
         code_marks = [0] * len(code_marks_list)  # Current student code case marks
         comments = []  # String list for current students comments
-        print(f"{ctr} - Working for student - {std} - {n[std]}".center(100,"*"))
+        print(f"{ctr} - Working for student - {std_roll} - {std_name}".center(100,"*"))
         try:
             try:
                 file_exists = True
-                c = next(home.glob(f"*{std}*"))
+                c = next(home.glob(f"*{std_name}*"))
                 system(f'START /B "" "{c}"')  # Opens the file in the background
             except StopIteration as si:
-                print(f"C File for {std} not found")
+                print(f"C File for  {std_roll} - {std_name} not found")
                 comments.append(
                     f"{BASE} file was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
                 )
@@ -138,7 +138,7 @@ def pds_checker():
                     print("Code ran successfully")
                     # test = test_cases[0]  # TESTING
                     comments.append(" TEST CASES ".center(30, "="))
-                    comments.append("")
+                    comments.append("") ## Hack for new line
                     for i, line in enumerate(test_cases):
                         ## RUN C FILE here with the test case
 
@@ -162,8 +162,8 @@ def pds_checker():
                             system("outfile.txt")
                         ## End
 
-                        """
-                        This is for non-binary test marks
+                        
+                        # This is for non-binary test marks
                         if mark > 0:
                             test_marks[i] = float(
                                 def_input(
@@ -172,7 +172,7 @@ def pds_checker():
                             )
                             if test_marks[i] < mark:
                                 comments.append(
-                                    f"FAILED: Test Case {i+1}: {test_comment} - Mark/s lost: {mark-test_marks[i]:g} out of {mark:g}"
+                                    f"FAILED: Test Case {i+1}: {test_comment} - Mark/s obtained: {test_marks[i]:g} out of {mark:g}"
                                 )
                             elif test_marks[i] >= mark:  # in case of typing errpr
                                 test_marks[i] = mark
@@ -191,6 +191,7 @@ def pds_checker():
                                 comments.append(
                                     f"Passed Negative Criteria: {test_comment} - Mark/s lost: {mark:g}"
                                 )
+                        
                         """
                         ## HACK: Start Support for Binary test marks
                         if mark > 0:
@@ -221,7 +222,9 @@ def pds_checker():
                                     f"Passed Negative Criteria: {test_comment} - Mark/s lost: {mark:g}"
                                 )
                         ## End
-                    ## HACK: Start Support for Binary test marks
+                        """
+                    """
+                    ## HACK: START Support for Binary test marks (complete)
                     max_test_marks = sum(i for i in test_marks_list if i > 0)
                     if sum(test_marks) < max_test_marks:
                         comments.append("")
@@ -236,6 +239,7 @@ def pds_checker():
                         comments.append(
                             f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}"
                         )
+                    """
                 else:
                     print("The code didn't compile")
                     ## HACK: Start Support for Binary test marks
@@ -243,7 +247,7 @@ def pds_checker():
                     comments.append(" TEST CASES ".center(30, "="))
                     comments.append("")
                     comments.append(
-                        f"FAILED: Code didn't compile successfully - Mark/s lost: {max_test_marks:g} out of {max_test_marks:g}"
+                        f"FAILED: Code didn't compile successfully - Mark/s obtained: {0:g} out of {max_test_marks:g}"
                     )
                 comments.append("")
                 comments.append(" CODE CASES ".center(30, "="))
@@ -279,7 +283,7 @@ def pds_checker():
                             )
                             if code_marks[i] < mark:
                                 comments.append(
-                                    f"FAILED: Code Case {i+1}:- {ques} - Mark/s lost: {mark-code_marks[i]:g} out of {mark:g}"
+                                    f"FAILED: Code Case {i+1}:- {ques} - Mark/s obtained: {code_marks[i]:g} out of {mark:g}"
                                 )
                             elif code_marks[i] >= mark:  # in case of typing err0r
                                 code_marks[i] = mark
@@ -325,7 +329,7 @@ def pds_checker():
             if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
-                    0, def_input(f"\nPlease enter your final comment for {std}:\n")
+                    0, def_input(f"\nPlease enter your final comment for {std_roll} - {std_name}:\n")
                 )
             elif total_marks == max_marks:
                 comments.insert(0, "")  # Hack for extra spacing
@@ -353,7 +357,7 @@ def pds_checker():
         else:
             try:
                 comm = "!!".join(comments).strip("!!")
-                report = f'{std},{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" if type(i)!=str else i for i in code_marks)},{total_marks:g},"{comm}"'
+                report = f'{std_roll},{",".join(f"{i:g}" for i in test_marks)},{",".join(f"{i:g}" if type(i)!=str else i for i in code_marks)},{total_marks:g},"{comm}"'
                 # HACK TO fix: keep trying to save record
                 while 1:
                     try:
@@ -365,12 +369,12 @@ def pds_checker():
                             def_input("Press 1 to Try again, or 0 to Quit [1]/0: ", "1")
                             != "1"
                         ):
-                            print(f"EXITING. {std}'s record not saved")
+                            print(f"EXITING. {std_roll}'s record not saved")
                             return
-                done.add(std)
+                done.add(std_roll)
                 print("The comments given for student:")
                 print("\n".join(comments))
-                print(f" {ctr} - Done for {std} ".center(100, "#"))
+                print(f" {ctr} - Done for {std_roll} ".center(100, "#"))
             except Exception as e:
                 print("Something went wrong: ", e, str(e))
                 raise
