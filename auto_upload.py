@@ -5,39 +5,55 @@
 * Uses id of students found in grading page in moodle, change as needed in var/mapping.txt
 """
 
-from lib.pds_file_op import get_a_q_from_user, pull,get_std_to_m_c_dict,print
-from lib.pds_selenium import driver_get_course, driver_get_topics_from_a, init_selenium,driver_get_from_topic,insert
-from lib.pds_globals import BASE
+from lib.pds_file_op import get_a_q_from_user, get_map_roll_to_name, pull, get_std_roll_to_m_c_dict, print
+from lib.pds_selenium import (
+    driver_get_course,
+    driver_get_topics_from_a,
+    init_selenium,
+    driver_get_from_topic,
+    insert,
+)
+from lib.pds_globals import A_, A_Q_, VAR
 
 if __name__ == "__main__":
 
-    
-    def upload_to_moodle(a,q):
+    def upload_to_moodle(a, q):
         ## Initialize selenium
         driver = init_selenium()
         ## Go to course page
         driver_get_course(driver)
         ## Get the link to the assignemt_question
-        topic_id=driver_get_topics_from_a(driver,a,q)['topic_id']
+        topic_id = driver_get_topics_from_a(driver, a, q)["topic_id"]
         driver_get_from_topic(driver, topic_id)
         ## Get each student marks and comments
-        std_dict = get_std_to_m_c_dict(a,q)
+        std_dict = get_std_roll_to_m_c_dict(a, q)
         ## Get the moodle mapping
         ## Mapping (dict) = { Std : moodle_code}
-        mapping = {
-            (x:=i.split(","))[0].strip() : x[1].strip()
-            for i in pull('var/mapping.txt')
-        }
+        # mapping = {
+        #     (x := i.split(","))[0].strip(): x[1].strip()
+        #     for i in pull(f"{VAR}/mapping.txt")
+        # }
+        mapping=get_map_roll_to_name(moodle=True)
         ## Upload data to moodle
         for std in std_dict:
-            insert(driver, f"quickgrade_{mapping[std.strip()]}", f"{std_dict[std]['m']}")
-            insert(driver, f"quickgrade_comments_{mapping[std.strip()]}", std_dict[std]['c'])
+            insert(
+                driver, f"quickgrade_{mapping[std.strip()]}", f"{std_dict[std]['m']}"
+            )
+            insert(
+                driver,
+                f"quickgrade_comments_{mapping[std.strip()]}",
+                std_dict[std]["c"],
+            )
             print(f"Done for {std}")
         ## Save changes
-        driver.find_element_by_id("id_savequickgrades").click()
+        driver.find_element(by='id',value="id_savequickgrades").click()
         driver.close()
-        print(f'{f"Done for {BASE}_{a}":*^50}')
+        print(f'{f"Done for {A_Q_.format(a=a,q=q)}":*^50}')
         return 0
-    
-    a,q=get_a_q_from_user()
-    upload_to_moodle(a,q)
+
+    a, q = get_a_q_from_user()
+    if type(q)==list:
+        for _q in q:
+            upload_to_moodle(a, _q)
+    else:
+        upload_to_moodle(a, q)

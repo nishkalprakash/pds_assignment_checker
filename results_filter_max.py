@@ -1,7 +1,7 @@
 ## HACK for recheck, keeps all stidents that got 100 or 0
-from lib.pds_file_op import get_std_to_m_c_dict,pull,push
+from lib.pds_file_op import get_std_roll_to_m_c_dict,pull,push
 
-sd=get_std_to_m_c_dict('1','1')
+sd=get_std_roll_to_m_c_dict('1','1')
 
 std=[]
 for s in sd:

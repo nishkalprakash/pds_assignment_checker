@@ -17,7 +17,7 @@ from lib.pds_file_op import (
     base_missing,
     get_a_q_from_user,
     get_code_questions,
-    get_map_name_to_roll,
+    get_map_roll_to_name,
     get_test_cases,
     pull,
     push,
@@ -33,7 +33,7 @@ from lib.pds_file_op import (
 def init_checker():
     a, q = get_a_q_from_user()
     ## Set base to the required directory
-    base = Path(HOME)/A_Q_PATH_.format(a=a,q=q)
+    base = Path(A_Q_PATH_.format(a=a,q=q))
 
     if base.exists():
         ## Change to the base directory for the rest of the program
@@ -51,7 +51,7 @@ def init_checker():
     ## IF PDS Folder not found then call get assignments
     except StopIteration as si:
         print("PDS Directory not found,")
-        print(f"Please download from moodle and place in the folder, {BASE}_{a}")
+        print(f"Please download from moodle and place in the folder, {A_Q_PATH_.format(a=a,q=q)}")
         base_missing(a)
         home = next(Path.cwd().glob("PDS*/"))
     report_path = f"{A_Q_.format(a=a,q=q)}_report.csv"
@@ -65,7 +65,7 @@ def pds_checker():
     """ This is the main method for checking assignments"""
     ## Pull students list before entering the BASE folder
     students = get_students()
-    n=get_map_name_to_roll(rev=True)
+    n=get_map_roll_to_name()
     ## Getting the BASE number details from user and switching working dir to BASE_a
     home, report_path,test_cases,code_questions = init_checker()
 
@@ -128,7 +128,7 @@ def pds_checker():
             except StopIteration as si:
                 print(f"C File for  {std_roll} - {std_name} not found")
                 comments.append(
-                    f"{BASE} file was not submitted properly - Mark/s lost: {max_marks:g} out of {max_marks:g}"
+                    f"{BASE} file was not submitted properly !!Mark/s lost: {max_marks:g} out of {max_marks:g}!!"
                 )
                 file_exists = False
             ## Compile and run THE C FILE
@@ -172,12 +172,12 @@ def pds_checker():
                             )
                             if test_marks[i] < mark:
                                 comments.append(
-                                    f"FAILED: Test Case {i+1}: {test_comment} - Mark/s obtained: {test_marks[i]:g} out of {mark:g}"
+                                    f"!!FAILED: Test Case {i+1}: !!{test_comment} !!  Mark/s obtained: {test_marks[i]:g} out of {mark:g}!!"
                                 )
                             elif test_marks[i] >= mark:  # in case of typing errpr
                                 test_marks[i] = mark
                                 comments.append(
-                                    f"PASSED: Test Case {i+1}: {test_comment} - Mark/s : {mark:g}"
+                                    f"!!PASSED: Test Case {i+1}: !!{test_comment}!!  Mark/s obtained: {mark:g} out of {mark:g}!!"
                                 )
                         else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
                             test_marks[i] = float(
@@ -189,7 +189,7 @@ def pds_checker():
                             if test_marks[i] == mark:
                                 # if -ve marks are given then add comment
                                 comments.append(
-                                    f"Passed Negative Criteria: {test_comment} - Mark/s lost: {mark:g}"
+                                    f"!!Passed Negative Criteria: {test_comment}!!  Mark/s lost: {mark:g}"
                                 )
                         
                         """
@@ -247,7 +247,7 @@ def pds_checker():
                     comments.append(" TEST CASES ".center(30, "="))
                     comments.append("")
                     comments.append(
-                        f"FAILED: Code didn't compile successfully - Mark/s obtained: {0:g} out of {max_test_marks:g}"
+                        f"!!FAILED: Code didn't compile successfully!!  Mark/s obtained: {0:g} out of {max_test_marks:g}!!"
                     )
                 comments.append("")
                 comments.append(" CODE CASES ".center(30, "="))
@@ -272,7 +272,7 @@ def pds_checker():
                         )
                         if code_marks[i] < 0:
                             comments.append(
-                                f"FAILED: Negative % Code Case {i+1}:- {ques} - Mark/s lost: {code_marks[i]:g}% out of Total Marks Obtained"
+                                f"!!FAILED: Negative % Code Case {i+1}:!!{ques} !!  Mark/s lost: {code_marks[i]:g}% out of Total Marks Obtained"
                             )
                             code_marks[i] = f"{code_marks[i]:g}%"
                     else:
@@ -283,12 +283,12 @@ def pds_checker():
                             )
                             if code_marks[i] < mark:
                                 comments.append(
-                                    f"FAILED: Code Case {i+1}:- {ques} - Mark/s obtained: {code_marks[i]:g} out of {mark:g}"
+                                    f"!!FAILED: Code Case {i+1}:!!{ques}!!  Mark/s obtained: {code_marks[i]:g} out of {mark:g}!!"
                                 )
                             elif code_marks[i] >= mark:  # in case of typing err0r
                                 code_marks[i] = mark
                                 comments.append(
-                                    f"PASSED: Code Case {i+1}:- {ques} - Mark/s : {mark:g}"
+                                    f"!!PASSED: Code Case {i+1}:!!{ques}!!  Mark/s obtained: {mark:g} out of {mark:g}!!"
                                 )
                         elif (
                             mark < 0
@@ -305,7 +305,7 @@ def pds_checker():
                             )
                             if code_marks[i] < 0:
                                 comments.append(
-                                    f"FAILED: Negative Code Case {i+1}: {ques} - Mark/s lost: {code_marks[i]:g} out of {mark:g}"
+                                    f"!!FAILED: Negative Code Case {i+1}:!!{ques}!!  Mark/s lost: {code_marks[i]:g} out of {mark:g}!!"
                                 )
                 total_marks = sum(
                     (i for i in (test_marks + code_marks) if "%" not in str(i))

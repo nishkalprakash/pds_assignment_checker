@@ -1,9 +1,10 @@
 ### !!TODO: make this a class
 
 from lib.pds_file_op import printf,create_base_folders, unzip
+from re import findall
 
 from pathlib import Path
-from lib.pds_globals import VAR, LIB, HOME, MOODLE_A_NAME_, MOODLE_A_Q_NAME_, A_PATH_
+from lib.pds_globals import A_Q_PATH_, Q_, VAR, LIB, HOME, MOODLE_A_NAME_, MOODLE_A_Q_NAME_, A_PATH_
 ## SELENIUM FUNCTIONS
 
 def driver_get_from_topic(driver,topic_id,action='grading'):
@@ -36,6 +37,8 @@ def driver_get_course(driver,course_id=None):
         printf(driver.current_url)
     return driver
 
+## SEM 3 Hack
+""" 
 def sem3_lt_hack():
     # try:
     #     if "Test" in BASE:
@@ -47,7 +50,7 @@ def sem3_lt_hack():
     #     driver.find_element_by_link_text(f"Assignment {a} Submission (Final)").click()
 
     # driver.find_element_by_link_text("View/grade all submissions").click()
-    pass
+    pass""" ## END SEM 3 Hack
 
 def insert(driver, id, data):
     elem=driver.find_element_by_id(id)
@@ -90,12 +93,12 @@ def init_selenium(def_dwnld_dir = None):
             'download.default_directory': f'{def_dwnld_dir.absolute()}',
             "download.prompt_for_download": False,
             "download.directory_upgrade": True,
-            "safebrowsing_for_trusted_sources_enabled": False,
-            "safebrowsing.enabled": False
+            # "safebrowsing_for_trusted_sources_enabled": False,
+            # "safebrowsing.enabled": False
             }
         options.add_experimental_option('prefs', prefs)
     # options.add_argument("--start-maximized")
-    options.add_argument(f"--user-data-dir={Path(VAR).absolute()/'moodle_chrome_data'}")
+    # options.add_argument(f"--user-data-dir={Path(VAR).absolute()/'moodle_chrome_data'}")
     driver = webdriver.Chrome(
         executable_path=f"{LIB}/chromedriver.exe",
         options=options
@@ -111,7 +114,6 @@ def init_selenium(def_dwnld_dir = None):
 def driver_get_topics_from_a(driver,a,q=None):
     def get_q_and_topic_id(q_link):
         ## Extract id from the link
-        from re import findall
         return dict(
             q=findall(MOODLE_A_Q_NAME_.format(a=a,q=r'([\d\w]+)'),q_link.text)[0],
             topic_id=findall(r'id=(\d+)',q_link.get_attribute("href"))[0]
@@ -139,12 +141,11 @@ def driver_get_topics_from_a(driver,a,q=None):
         q_topic = get_q_and_topic_id(q_link)
         return q_topic
 
-def extract_q(q_base):
-    from re import findall
-    return findall(r'Question_(\d+)',q_base.name)[0]
+# def extract_q(q_base):
+#     return findall(r'Question \d+',q_base.name)[0]
 
 def get_assignments(a):
-    a_base=f'{HOME}/{BASE}_{a}'
+    a_base=f'{A_PATH_.format(a=a)}'
     ## TODO Check if assignments need to be downloaded
 
     driver=init_selenium(a_base)
@@ -154,13 +155,14 @@ def get_assignments(a):
 
     q_topic_list=driver_get_topics_from_a(driver,a)
     for q_topic in q_topic_list:
-        q_base=Path(a_base)/f"Question_{q_topic['q']}"
+        q_base=f"{A_Q_PATH_.format(a=a,q=q_topic['q'])}"
         if not next(q_base.glob("PDS*"),False):
             create_base_folders(a,q_topic['q'])
             driver_get_from_topic(driver,q_topic['topic_id'],'downloadall')
             unzip(a_base,q_topic['q'])
-        ## SEM 6: This is for a case where question is given in intro
-        ques=q_base/f'Assignment_{a}-Question_{q_topic["q"]}.txt'
+        ## HACK SEM 6: This is for a case where question is given in intro
+        ques=f'{A_Q_PATH_.format(a=a,q=q_topic["q"])}_Question.txt'
+        ## HACK END
         if not ques.exists():
             ques.write_text(driver_get_from_topic(driver,q_topic['topic_id'],'question'))
             print(ques.name," Fetched")

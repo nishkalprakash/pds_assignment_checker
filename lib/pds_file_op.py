@@ -1,7 +1,7 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
 from re import findall, sub
-from lib.pds_globals import A_, BASE,HOME, Q_BASE,VAR
+from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BASE,HOME, Q_BASE,VAR
 
 
 from time import strftime
@@ -47,6 +47,9 @@ def run_command(command):
 def def_input(text, default=""):
     x = input(f"{text} [{default}]: ").strip()
     if x:
+        if ' ' in x:
+            return(x.split(' '))
+        # except:
         return x
     else:
         return default
@@ -61,10 +64,10 @@ def get_a_q_from_user(q=True):
     if q:
         ## CURRENTLY supports one question check at a time
         ## q stores the question number
-        q= def_input(
+        q = def_input(
             f"Please enter the {Q_BASE} number",'2'
         )
-    
+
         return a,q
     else:
         return a
@@ -108,14 +111,14 @@ def csv_to_dict(path,d):
             d[l[0]]=l[1:]
     return d
 
-def get_std_to_m_c_dict(a,q=None):
+def get_std_roll_to_m_c_dict(a,q=None):
     if q is not None:
-        report = Path(f"{BASE}_{a}/Question_{q}/{BASE}_{a}_Question_{q}_report.csv")
+        report = Path(A_Q_PATH_.format(a=a,q=q))/f"{A_Q_.format(a=a,q=q)}_report.csv"
         
     else:
-        report = Path(f"{BASE}_{a}/{BASE}_{a}_report.csv")
-    if not report.exists():
-            report = Path(HOME)/report
+        report = Path(A_PATH_.format(a))/f"{A_.format(a)}_report.csv"
+    # if not report.exists():
+    #         report = report
 
     text = report.read_text().strip()
     text_list = text.split("\n")
@@ -130,7 +133,7 @@ def get_std_to_m_c_dict(a,q=None):
                 'm':l[index].strip(),
                 'c':"".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip()
             }
-    ## d (dict) = { std : { m:marks, c: comments}}
+    ## d (dict) = { std_roll : { m:marks, c: comments}}
     return d
 
 def get_students():
@@ -151,20 +154,27 @@ def get_code_questions(a,q):
 def get_q_list_from_a(a):
     return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()] 
 
-def get_map_name_to_roll(rev=None):
+def get_map_roll_to_name(rev=None,moodle=None):
     """Returns a dict {
         Name : Roll
     }
     If rev=True then return Roll : Name
-
+    0 -> Name
+    1-> Moodle_ID
+    2-> Roll
     Returns:
-        dict: {name : roll} 
-        dict: {roll : name} # if rev=True
+        dict: {name : roll} # if rev=True
+        dict: {roll : name} 
     """
-    n_index,r_index=0,2
+    NAME,M_ID,ROLL=0,1,2
+    key,val=ROLL,NAME
+    if moodle:
+        key,val=ROLL,M_ID
     if rev:
-        n_index,r_index=r_index,n_index
-    return {(x:=i.split(','))[n_index]:x[r_index] for i in pull(f"{VAR}/mapping.txt")}
+        key,val=val,key
+    
+        # n_index=1
+    return {(x:=i.split(','))[key]:x[val] for i in pull(f"{VAR}/mapping.txt")}
 
 def unzip(a_base,q):
     """unzip files"""

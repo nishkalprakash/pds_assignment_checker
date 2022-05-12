@@ -1,5 +1,5 @@
 from time import sleep
-from lib.pds_file_op import get_a_q_from_user, get_q_list_from_a, pull, print,get_map_name_to_roll,dict_to_csv, csv_to_dict
+from lib.pds_file_op import get_a_q_from_user, get_q_list_from_a, pull, print,get_map_roll_to_name,dict_to_csv, csv_to_dict
 from lib.pds_globals import BASE, HOME, VAR
 from lib.pds_selenium import (
     driver_get_from_topic,
@@ -17,7 +17,7 @@ if not out.parent.exists():
 
 # c=input("Enter the Column Letter: ").strip()
 # range = f"B3:{c.upper()}94"
-map_name_to_roll=get_map_name_to_roll()
+map_name_to_roll=get_map_roll_to_name()
 
 if not out.exists():
     ## get q from the folders first and check if submissions file exists

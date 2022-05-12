@@ -9,14 +9,14 @@
 
 
 from lib.pds_pygsheets import get_worksheet
-from lib.pds_file_op import get_std_to_m_c_dict, pull
+from lib.pds_file_op import get_std_roll_to_m_c_dict, pull
 from time import sleep
 
 ws=get_worksheet()
 
 # os.chdir(r'C:\Users\Admin\Documents\pds_assignment_checker\Assignments')
 
-std_dict=get_std_to_m_c_dict('1','1')
+std_dict=get_std_roll_to_m_c_dict('1','1')
 
 for row in ws.range('C3:C94'):
     for cell in row:
@@ -53,5 +53,5 @@ for row in ws.range('C3:C94'):
 #             print(f"done for {std}".center(50,'*'))
 #         sleep(0.2)
 
-x=get_std_to_m_c_dict(1,3)
+x=get_std_roll_to_m_c_dict(1,3)
 x

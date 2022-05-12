@@ -17,7 +17,7 @@ A_PATH_=HOME+"/"+A_
 Q_=Q_BASE+"{q}"
 A_Q_=A_+"_"+Q_
 
-A_Q_PATH_=A_+"/"+Q_
+A_Q_PATH_=A_PATH_+"/"+Q_
 
 TEST_=A_Q_+"_test_cases.txt"
 TEST_PATH_=A_Q_PATH_+"/"+TEST_
@@ -37,5 +37,7 @@ LIB = "lib"
 # A_Q_PATH_=A_PATH_+"/Question_{q}"
 # ASSIGN_NAME_PATTERN_="{BASE} {a}("
 MOODLE_A_NAME_="Assignment {a} - Question "
+# MOODLE_A_NAME_="Assignment {a}("
 MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
+# MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
 # ASSIGN_Q_NAME_PATTERN_=ASSIGN_NAME_PATTERN+"{q})"
