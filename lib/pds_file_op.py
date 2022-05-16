@@ -1,16 +1,37 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
 from re import findall, sub
-from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BASE,HOME, Q_BASE, CODE_DEMO, TEST_DEMO, VAR
-
-
 from time import strftime
 
+from lib.pds_globals import (
+    A_,
+    A_PATH_,
+    A_Q_,
+    A_Q_PATH_,
+    BASE,
+    CODE_DEMO,
+    CODE_PATH_,
+    HOME,
+    Q_,
+    Q_BASE,
+    TEST_DEMO,
+    TEST_PATH_,
+    VAR,
+)
+
+
 def dprint(func):
-    def wrapped_func(*args,**kwargs):
-        return func(strftime("%H:%M:%S - "),*map(lambda x: x.replace('!!','\n'),args),**kwargs)
+    def wrapped_func(*args, **kwargs):
+        return func(
+            strftime("%H:%M:%S - "),
+            *map(lambda x: x.replace("!!", "\n"), args),
+            **kwargs,
+        )
+
     return wrapped_func
-print=dprint(print)
+
+
+print = dprint(print)
 
 ## Print the variable with the name and value
 def printf(*args):
@@ -27,99 +48,109 @@ def run_command(command):
     Yields:
         str: the output line wise
     """
-    from subprocess import Popen,PIPE
+    from subprocess import PIPE, Popen
     from time import sleep
-    p = Popen(command,stdout=PIPE,stderr=PIPE,shell=True,text=True)
+
+    p = Popen(command, stdout=PIPE, stderr=PIPE, shell=True, text=True)
     # Read stdout from subprocess until the buffer is empty !
-    for line in iter(p.stdout.readline, ''):
-        if line: # Don't print blank lines
+    for line in iter(p.stdout.readline, ""):
+        if line:  # Don't print blank lines
             yield line
     # This ensures the process has completed, AND sets the 'returncode' attr
     while p.poll() is None:
-        sleep(.1) #Don't waste CPU-cycles
+        sleep(0.1)  # Don't waste CPU-cycles
     # Empty STDERR buffer
     err = p.stderr.read()
     if p.returncode != 0:
-        # The run_command() function is responsible for logging STDERR 
+        # The run_command() function is responsible for logging STDERR
         print("Error: " + str(err))
+
 
 ## Gives the user a default input option which can be inputted using enter
 def def_input(text, default=""):
     x = input(f"{text} [{default}]: ").strip()
     if x:
-        # if ' ' in x:
-        #     return(x.split(' '))
+        # if " " in x:
+        #     return x.split(" ")
         # except:
         return x
     else:
         return default
 
+
 ## Gets input from user
 def get_a_q_from_user(q=True):
-    ll=list(Path(HOME).glob(f"{BASE}*"))
-    latest_a = max(int(findall('\d+$',i.name)[0]) for i in ll) if ll else 0
-    a= def_input(
-            f"Please enter the {BASE} number", latest_a
-        )
+    ll = list(Path(HOME).glob(f"{BASE}*"))
+    latest_a = max(int(findall("\d+$", i.name)[0]) for i in ll) if ll else 0
+    a = def_input(f"Please enter the {BASE} number", latest_a)
     if q:
         ## CURRENTLY supports one question check at a time
         ## q stores the question number
-        q = def_input(
-            f"Please enter the {Q_BASE} number",'2'
-        )
+        q = def_input(f"Please enter the {Q_BASE} number", "2")
 
-        return a,q
+        return a, q
     else:
         return a
 
-def pull(path):
-    return [x.split(';') if ';' in x else x for i in Path(path).read_text().strip().split("\n") if (x:=i.strip()) and not x.startswith('#')]
 
-def push(path, text,attr="a+"):
-    with Path(path).open(attr) as f:
-        if type(text)==str:
-            f.write(text + "\n")
-        elif type(text)==list:
-            f.write("\n".join(text) + "\n")
+def pull(path):
+    return [
+        x
+        for i in Path(path).read_text().strip().split("\n")
+        if (x := i.strip()) and not x.startswith("#")
+    ]
+
+
+def push(path, text):
+    with Path(path).open("a+") as f:
+        f.write(text + "\n")
+
 
 def re_sub_space(name):
-    return sub(r'\s+',' ',name)
+    return sub(r"\s+", " ", name)
 
-def dict_to_csv(path,d):
-    """This function output dict_key,value or in case of list value dict_key,value1,value2... 
+
+def dict_to_csv(path, d):
+    """This function output dict_key,value or in case of list value dict_key,value1,value2...
 
     Args:
         path (Path): the output path file for cssv
         d (dict): the dict
     """
     try:
-        Path(path).write_text("\n".join(sorted(",".join([k]+v) for k,v in d.items())))
+        Path(path).write_text(
+            "\n".join(sorted(",".join([k] + v) for k, v in d.items()))
+        )
     except TypeError:
-        Path(path).write_text("\n".join(sorted(",".join([k]+[v]) for k,v in d.items())))
+        Path(path).write_text(
+            "\n".join(sorted(",".join([k] + [v]) for k, v in d.items()))
+        )
 
-def csv_to_dict(path,d):
-    """To reverse dict_to_csv and data to given dict 
+
+def csv_to_dict(path, d):
+    """To reverse dict_to_csv and data to given dict
 
     Args:
         path (_type_): path of the csv file
         d (dict): dict to update
-        
+
     """
-    ll=pull(path)
+    ll = pull(path)
     for l in ll:
-        l=l.split(',')
+        l = l.split(",")
         try:
             d[l[0]].extend(l[1:])
         except:
-            d[l[0]]=l[1:]
+            d[l[0]] = l[1:]
     return d
 
-def get_std_roll_to_m_c_dict(a,q=None):
+
+def get_std_roll_to_m_c_dict(a, q=None):
     if q is not None:
-        report = Path(A_Q_PATH_.format(a=a,q=q))/f"{A_Q_.format(a=a,q=q)}_report.csv"
-        
+        report = Path(A_Q_PATH_.format(a=a, q=q)) / f"{A_Q_.format(a=a,q=q)}_report.csv"
+
     else:
-        report = Path(A_PATH_.format(a))/f"{A_.format(a)}_report.csv"
+        report = Path(A_PATH_.format(a)) / f"{A_.format(a)}_report.csv"
     # if not report.exists():
     #         report = report
 
@@ -132,37 +163,47 @@ def get_std_roll_to_m_c_dict(a,q=None):
     # Marks are taken directly from the total column, so if marks just deducted from there, its OK
     for line in lines:
         l = line.split(",")
-        d[l[0].strip('"')]={
-                'm':l[index].strip(),
-                'c':"".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip()
-            }
+        d[l[0].strip('"')] = {
+            "m": l[index].strip(),
+            "c": "".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip(),
+        }
     ## d (dict) = { std_roll : { m:marks, c: comments}}
     return d
 
+
 def get_students():
-    """ Returns the students list """
+    """Returns the students list"""
     from lib.pds_globals import VAR
+
     return pull(f"{VAR}/my_students.txt")
 
-def get_test_cases(a,q,cwd=True):
-    """ Returns the Test Cases as a list of lists [["{marks}","{label}","{INP}"],...]
 
-    """
-    from lib.pds_globals import TEST_,TEST_PATH_
-    p=TEST_.format(a=a,q=q) if cwd else TEST_PATH_.format(a=a,q=q)
-    return pull(p)
+def get_test_cases(a, q):
+    """Returns the Test Cases"""
+    from lib.pds_globals import TEST_
 
-def get_code_questions(a,q):
-    """ Returns the code cases """
+    return pull(TEST_.format(a=a, q=q))
+
+
+def get_code_questions(a, q):
+    """Returns the code cases"""
     from lib.pds_globals import CODE_
-    return pull(CODE_.format(a=a,q=q))
+
+    return pull(CODE_.format(a=a, q=q))
+
 
 def get_q_list_from_a(a):
-    return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()] 
+    # return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()]
+    return [
+        i.name.replace(Q_BASE, "")
+        for i in Path(A_PATH_.format(a=a)).iterdir()
+        if i.is_dir()
+    ]
 
-def get_map_roll_to_name(rev=None,moodle=None):
+
+def get_map_roll_to_name(rev=None, moodle=None):
     """Returns a dict {
-        Name : Roll
+        Roll : Name
     }
     If rev=True then return Roll : Name
     0 -> Name
@@ -170,34 +211,37 @@ def get_map_roll_to_name(rev=None,moodle=None):
     2-> Roll
     Returns:
         dict: {name : roll} # if rev=True
-        dict: {roll : name} 
+        dict: {roll : name}
     """
-    NAME,M_ID,ROLL=0,1,2
-    key,val=ROLL,NAME
+    NAME, M_ID, ROLL = 0, 1, 2
+    key, val = ROLL, NAME
     if moodle:
-        key,val=ROLL,M_ID
+        key, val = ROLL, M_ID
     if rev:
-        key,val=val,key
-    
-        # n_index=1
-    return {(x:=i.split(','))[key]:x[val] for i in pull(f"{VAR}/mapping.txt")}
+        key, val = val, key
 
-def unzip(a_base,q):
+        # n_index=1
+    return {(x := i.split(","))[key]: x[val] for i in pull(f"{VAR}/mapping.txt")}
+
+
+def unzip(a_base, q):
     """unzip files"""
     ## Get the zip file name
     try:
-        a_base=Path(a_base)
-        fname=next(a_base.glob("*.zip"))
-        target=a_base/f'Question_{q}'/fname.name
-        fname=fname.replace(target)
+        a_base = Path(a_base)
+        fname = next(a_base.glob("*.zip"))
+        target = a_base / f"{Q_.format(q=q)}" / fname.name
+        fname = fname.replace(target)
     except StopIteration:
         print("ZIP FILE NOT FOUND")
-        raise
+        return 0
+        # raise
 
     ## then extract the zip
     from zipfile import ZipFile
+
     zip_file = ZipFile(fname)
-    folder=fname.parent/fname.stem
+    folder = fname.parent / fname.stem
     if folder.exists():
         print("FODLER ALREADY EXISTS")
         return -1
@@ -208,26 +252,28 @@ def unzip(a_base,q):
     zip_file.close()
     ## then delete the original zip
     from os import remove
+
     remove(fname)
     return 0
 
-def create_base_folders(a,q=None):
+
+def create_base_folders(a, q):
     ## Support for creating Questions folder added
-    base = Path(f"{HOME}/{BASE}_{a}/Question_{q}") if q is not None else Path(f"{HOME}/{BASE}_{a}")
+    ## Removing support for misisng q
+    base = Path(A_Q_PATH_.format(a=a, q=q))
     if base.exists():
         print(f"{base} folder already exists.")
         # exit()
-        return 1
-    Path.mkdir(base,parents=True)
-    code_questions = base / "code_questions.txt"
-    Path.touch(code_questions)
-    Path(code_questions).write_text(CODE_DEMO)
-    test_cases = base / "test_cases.txt"
-    Path.touch(test_cases)
+        # return 1
+    Path.mkdir(base, parents=True, exist_ok=True)
+    code_questions = CODE_PATH_.format(a=a, q=q)
+    Path(code_questions).write_text(CODE_DEMO
+    )
+    test_cases = TEST_PATH_.format(a=a, q=q)
     Path(test_cases).write_text(TEST_DEMO)
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
-    # print(f"Please edit the following:\n{test_cases}\n{code_questions}")
     return 0
+
 
 def base_missing(a):
     if def_input(

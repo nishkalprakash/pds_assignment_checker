@@ -2,7 +2,7 @@
 
 from pathlib import Path
 from lib.pds_file_op import get_test_cases, push
-from lib.pds_globals import TEST_, TMP
+from lib.pds_globals import A_, TEST_, TMP
 
 
 def reset_test_code():
@@ -20,8 +20,9 @@ def format_test_cases():
     for q in ql.split():
         aq={'a':a,'q':q}
         l=[i[1].replace("!!",'\n').replace('{',"").replace('}',"") for i in get_test_cases(**aq,cwd=False)]
-        p=f"{TMP}/{TEST_.format(**aq)}"
-        Path(p).write_text("")
+        p=Path(f"{TMP}/{A_.format(**aq)}/{TEST_.format(**aq)}")
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("")
         for i,s in enumerate(l):
             push(p,f"Test Case {i+1}:\n{s}",attr='a+')
         
