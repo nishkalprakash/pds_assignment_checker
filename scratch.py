@@ -19,12 +19,12 @@ def format_test_cases():
     a,ql=get_a_q_from_user()
     for q in ql.split():
         aq={'a':a,'q':q}
-        l=[i[1].replace("!!",'\n').replace('{',"").replace('}',"") for i in get_test_cases(**aq,cwd=False)]
+        l=[(i[0],i[1].replace("!!",'\n').replace('{',"").replace('}',"")) for i in get_test_cases(**aq,cwd=False)]
         p=Path(f"{TMP}/{A_.format(**aq)}/{TEST_.format(**aq)}")
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text("")
         for i,s in enumerate(l):
-            push(p,f"Test Case {i+1}:\n{s}",attr='a+')
+            push(p,f"Test Case {i+1} [{s[0]} marks]:\n{s[1]}",attr='a+')
         
     # for _ in q.split(): cbf(a,_)
     

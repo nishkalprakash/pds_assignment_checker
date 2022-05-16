@@ -1,4 +1,4 @@
-Test Case 1:
+Test Case 1 [20 marks]:
 INPUT:
 x-coordinates: 8 2 11 6 5 4 12 9 6 1
 y-coordinates: 3 10 3 6 8 12 1 4 9 14
@@ -6,7 +6,7 @@ OUTPUT:
 m=-1.11, b=14.08, Line equation y='-1.11x + 14.08'
 
 
-Test Case 2:
+Test Case 2 [20 marks]:
 INPUT:
 x-coordinates: 1 2 3 4 5 6 7 8 9 10
 y-coordinates: 1 2 3 4 5 6 7 8 9 10 
