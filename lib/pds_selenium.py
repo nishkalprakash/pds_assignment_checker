@@ -80,7 +80,7 @@ def init_selenium(def_dwnld_dir = None):
     options.headless=True
     options.add_argument('--disable-gpu')
     options.add_argument('--window-size=1366,768')
-    options.add_experimental_option("useAutomationExtension", False)
+    # options.add_experimental_option("useAutomationExtension", False)
     options.add_argument("--disable-dev-shm-usage") 
     options.add_argument('--hide-scrollbars')
     options.add_argument('--disable-extensions')
@@ -155,16 +155,16 @@ def get_assignments(a):
 
     q_topic_list=driver_get_topics_from_a(driver,a)
     for q_topic in q_topic_list:
-        q_base=f"{A_Q_PATH_.format(a=a,q=q_topic['q'])}"
+        q_base=Path(f"{A_Q_PATH_.format(a=a,q=q_topic['q'])}")
         if not next(q_base.glob("PDS*"),False):
             create_base_folders(a,q_topic['q'])
             driver_get_from_topic(driver,q_topic['topic_id'],'downloadall')
             unzip(a_base,q_topic['q'])
         ## HACK SEM 6: This is for a case where question is given in intro
-        ques=f'{A_Q_PATH_.format(a=a,q=q_topic["q"])}_Question.txt'
+        # ques=Path(f'{A_Q_PATH_.format(a=a,q=q_topic["q"])}_Question.txt')
+        # if not ques.exists():
+        #     ques.write_text(driver_get_from_topic(driver,q_topic['topic_id'],'question'))
+        #     print(ques.name," Fetched")
         ## HACK END
-        if not ques.exists():
-            ques.write_text(driver_get_from_topic(driver,q_topic['topic_id'],'question'))
-            print(ques.name," Fetched")
 
     driver.close()

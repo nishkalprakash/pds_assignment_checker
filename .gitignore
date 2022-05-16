@@ -5,7 +5,7 @@
 
 # Compiled Python bytecode
 *.py[cod]
-
+__pycache__
 # Log files
 *.log
 
@@ -18,20 +18,20 @@ Thumbs.db
 *.war
 
 # Program files
-*/PDSA20S15*
-Assignment*/*
-Lab_Test*/*
-Lab-test*/*
+*/PDS*
+# Assignment*/*
+# Lab_Test*/*
+# Lab-test*/*
 
 # Files to track
 # !*/*.txt
 !*/*.txt
 # !res/chromedriver.exe
 
-Assignment*/done_intermediate.txt
+# Assignment*/done_intermediate.txt
 
 # Reports
-*.csv
+# *.csv
 
 # .vscode
 .vscode
@@ -39,7 +39,7 @@ Assignment*/done_intermediate.txt
 
 # PDF files
 pdf*
-*.pdf
+# *.pdf
 
 # Credentials
 creds*
