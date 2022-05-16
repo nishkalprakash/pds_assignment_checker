@@ -1,4 +1,0 @@
-10;{Input: (1,2),(3,4),(5,6)},!!{Output: "Invalid"!!};1 2 3 4 5 6
-10;{Input: (1,2),(3,4),(10,2)},!!{Output: "Obtuse Angled"!!};1 2 3 4 10 2
-10;{Input: (0,1),(1,0),(0,0)},!!{Output: "Right Angled"!!};0 1 1 0 0 0
-10;{Input: (56,23),(99,65),(35,69)},!!{Output: "Acute Angled"!!};56 23 99 65 35 69

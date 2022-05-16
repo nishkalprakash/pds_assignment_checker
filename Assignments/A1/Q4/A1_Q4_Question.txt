@@ -1,5 +1,0 @@
-Write a C program that take three coordinates as input. Next, it checks if the triangle is acute-angled, right-angled, or obtuse-angled.  Your code should do the following: - first compute the lengths of three sides of the triangle; - check whether the input satisfies the triangle inequality property, i.e., max side length is less than the sum of the other two sides; - do necessary checking and print the type of the triangle in the terminal.
-Sample input:
-Enter the three coordinates: (2, 4), (6, 9), (-2, 7)
-This is a valid/invalid triangle
-This is a XX (acute-angled/right-angled/obtuse-angled) triangle

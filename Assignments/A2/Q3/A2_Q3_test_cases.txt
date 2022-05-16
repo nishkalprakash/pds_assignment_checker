@@ -1,3 +1,0 @@
-15;{(Input:!!m1 -> 8200, 8300, 6900, 9200!!m2 -> 7700, 3700, 4900, 9200!!m3 -> 1100, 6900, 500, 8600!!m4 -> 800, 900, 9800, 2300), !!(Output:!!Total cost = 14000!!Machine1 - Vendor3!!Machine2 - Vendor2!!Machine3 - Vendor1!!Machine4 - Vendor4)!!}!!;8200 8300 6900 9200 7700 3700 4900 9200 1100 6900 500 8600 800 900 9800 2300
-15;{(Input:!!m1 -> 1 2 3 4!!m2 -> 1 2 3 4!!m3 -> 1 2 3 4!!m4 -> 1 2 3 4!!(Output:!!Total cost = 10!!Machine1 - Vendor1!!Machine2 - Vendor2!!Machine3 - Vendor3!!Machine4 - Vendor4)!!}!!;1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4
-15;{(Input:!!m1 -> 1 2 3 4!!m2 -> 4 1 2 3!!m3 -> 3 4 1 2!!m4 -> 2 3 4 1!!(Output:!!Total cost = 4!!Machine1 - Vendor1!!Machine2 - Vendor2!!Machine3 - Vendor3!!Machine4 - Vendor4)!!}!!;1 2 3 4 4 1 2 3 3 4 1 2 2 3 4 1

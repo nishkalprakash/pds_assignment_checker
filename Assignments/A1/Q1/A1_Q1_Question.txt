@@ -1,9 +1,0 @@
-A particle starts from a point A(a,0) on x-axis with an initial speed u and moves along +x-axis with an acceleration alpha. Let d be its distance from the origin (0,0) after t seconds. Write a program to compute the value of d and print it on the terminal. The values of a, u, alpha, and t are real and supplied by the user during execution of your program.
-
-Enter the values of a, u, alpha in order: 5 2 3  
-Enter the time: 3
-Distance = 24.500000
-
-Enter the values of a, u, alpha in order: -5 6 7
-Enter the time: 9.23
-Distance = 348.555115

@@ -8,7 +8,7 @@ from pathlib import Path
 HOME = "Assignments"
 
 BASE = "LT" # Base is the assignment type
-# BASE = "A"
+BASE = "A"
 Q_BASE="Q"
 
 A_=BASE+"{a}"

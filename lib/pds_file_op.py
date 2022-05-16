@@ -1,12 +1,10 @@
 ## FILE READ WRITE Operations
-from genericpath import exists
 from pathlib import Path
 from re import findall, sub
+from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BASE,HOME, Q_BASE,VAR
+
+
 from time import strftime
-
-from lib.pds_globals import (A_, A_PATH_, A_Q_, A_Q_PATH_, BASE, CODE_PATH_,
-                             HOME, Q_, Q_BASE, TEST_, TEST_PATH_, VAR)
-
 
 def dprint(func):
     def wrapped_func(*args,**kwargs):
@@ -29,7 +27,7 @@ def run_command(command):
     Yields:
         str: the output line wise
     """
-    from subprocess import PIPE, Popen
+    from subprocess import Popen,PIPE
     from time import sleep
     p = Popen(command,stdout=PIPE,stderr=PIPE,shell=True,text=True)
     # Read stdout from subprocess until the buffer is empty !
@@ -154,12 +152,11 @@ def get_code_questions(a,q):
     return pull(CODE_.format(a=a,q=q))
 
 def get_q_list_from_a(a):
-    # return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()] 
-    return [i.name.replace(Q_BASE,'') for i in Path(A_PATH_.format(a=a)).iterdir() if i.is_dir()] 
+    return [i.name.split('_')[-1]for i in Path(f"{HOME}/{BASE}_{a}").iterdir() if i.is_dir()] 
 
 def get_map_roll_to_name(rev=None,moodle=None):
     """Returns a dict {
-        Roll : Name
+        Name : Roll
     }
     If rev=True then return Roll : Name
     0 -> Name
@@ -185,12 +182,11 @@ def unzip(a_base,q):
     try:
         a_base=Path(a_base)
         fname=next(a_base.glob("*.zip"))
-        target=a_base/f'{Q_.format(q=q)}'/fname.name
+        target=a_base/f'Question_{q}'/fname.name
         fname=fname.replace(target)
     except StopIteration:
         print("ZIP FILE NOT FOUND")
-        return 0
-        # raise
+        raise
 
     ## then extract the zip
     from zipfile import ZipFile
@@ -209,41 +205,36 @@ def unzip(a_base,q):
     remove(fname)
     return 0
 
-def create_base_folders(a,q):
+def create_base_folders(a,q=None):
     ## Support for creating Questions folder added
-    ## Removing support for misisng q
-    base = Path(A_Q_PATH_.format(a=a,q=q))
-    # else:
-        # base = Path(A_PATH_.format(a=a))
-        # if q is not None else Path(f"{HOME}/{BASE}_{a}")
+    base = Path(f"{HOME}/{BASE}_{a}/Question_{q}") if q is not None else Path(f"{HOME}/{BASE}_{a}")
     if base.exists():
         print(f"{base} folder already exists.")
         # exit()
-        # return 1
-    Path.mkdir(base,parents=True,exist_ok=True)
-    code_questions = CODE_PATH_.format(a=a,q=q)
-    # Path.touch(code_questions)
+        return 1
+    Path.mkdir(base,parents=True)
+    code_questions = base / "code_questions.txt"
+    Path.touch(code_questions)
     ## HACK FOR SEM 6 start ##
     Path(code_questions).write_text("""
 30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
+25;Efficient and Optimal steps used to get to output
 -5;Comments missing, logic hard to understand
 -5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
 """.strip())
     ## HACK FOR SEM 6 END ##
     
-    test_cases =TEST_PATH_.format(a=a,q=q)
-    # Path.touch(test_cases) 
-    ## HACK FOR SEM 6 start ##
+    test_cases = base / "test_cases.txt"
+    Path.touch(test_cases)
+ ## HACK FOR SEM 6 start ##
     Path(test_cases).write_text("""
 # Format: `{marks};{label};{test_case}`
 # * For Example:
 #
 # ```csv
-# 10;!!{INPUT: 123}!!{OUTPUT: 321}!!;123
-# 10;!!{INPUT: 101}!!{OUTPUT: 101}!!;101
-# 10;!!{INPUT: 993}!!{OUTPUT: 399}!!;993
-# 10;!!{INPUT: 100}!!{OUTPUT: 1}!!;100
+# 10;Inside Rectangle (should print inside);0 0 7 7 2 3
+# 10;Outside Rectangle (should print Outside);0 0 7 7 9 2
+# 10;On Rectange (should print Outside);0 0 7 7 7 2
 # ```
 """.strip())
     ## HACK FOR SEM 6 END ##
