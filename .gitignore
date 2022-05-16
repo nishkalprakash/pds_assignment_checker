@@ -18,28 +18,28 @@ Thumbs.db
 *.war
 
 # Program files
-*/PDSA20S15*
-Assignment*/*
-Lab_Test*/*
-Lab-test*/*
+PDS*
+# Assignment*/*
+# Lab_Test*/*
+# Lab-test*/*
 
 # Files to track
 # !*/*.txt
-!*/*.txt
+# !*/*.txt
 # !res/chromedriver.exe
 
 Assignment*/done_intermediate.txt
 
 # Reports
-*.csv
+# *.csv
 
 # .vscode
 .vscode
 
 
 # PDF files
-pdf*
-*.pdf
+# pdf*
+# *.pdf
 
 # Credentials
 creds*
