@@ -1,0 +1,27 @@
+Test Case 1:
+Input: 
+Enter Monthly income, House loan, Life Inurance, Medical Insurance: 85000 0 130000 40000
+Output: 
+Tax = 52500.00
+
+
+Test Case 2:
+Input: 
+Enter Monthly income, House loan, Life Inurance, Medical Insurance: 130000 275000 95000 0
+Output: 
+Tax = 118000.00
+
+
+Test Case 3:
+Input: 
+Enter Monthly income, House loan, Life Inurance, Medical Insurance: 10000 0 0 0
+Output: 
+Tax = 0.00
+
+Test Case 4:
+Input: 
+Enter Monthly income, House loan, Life Inurance, Medical Insurance: 50000 50000 50000 50000
+Output: 
+Tax = 22500.00
+
+

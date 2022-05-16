@@ -1,5 +1,6 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
+from posixpath import split
 from re import findall, sub
 from time import strftime
 
@@ -95,14 +96,14 @@ def get_a_q_from_user(q=True):
 
 def pull(path):
     return [
-        x
+        x.split(';') if ";" in x else x
         for i in Path(path).read_text().strip().split("\n")
         if (x := i.strip()) and not x.startswith("#")
     ]
 
 
-def push(path, text):
-    with Path(path).open("a+") as f:
+def push(path, text,attr="a+"):
+    with Path(path).open(attr) as f:
         f.write(text + "\n")
 
 
@@ -178,11 +179,11 @@ def get_students():
     return pull(f"{VAR}/my_students.txt")
 
 
-def get_test_cases(a, q):
+def get_test_cases(a, q,cwd=True):
     """Returns the Test Cases"""
     from lib.pds_globals import TEST_
 
-    return pull(TEST_.format(a=a, q=q))
+    return pull(TEST_.format(a=a, q=q) if cwd else TEST_PATH_.format(a=a,q=q))
 
 
 def get_code_questions(a, q):
