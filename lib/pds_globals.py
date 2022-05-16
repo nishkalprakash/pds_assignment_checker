@@ -8,7 +8,7 @@ from pathlib import Path
 HOME = "Assignments"
 
 BASE = "LT" # Base is the assignment type
-BASE = "A"
+# BASE = "A"
 Q_BASE="Q"
 
 A_=BASE+"{a}"
@@ -28,7 +28,7 @@ CODE_PATH_=A_Q_PATH_+"/"+CODE_
 MOODLE_COURSE_ID=475
 VAR = "var"
 LIB = "lib"
-
+TMP = "tmp"
 ## 2021 - Spring - Pattern
 # ASSIGN_NAME_PATTERN="{BASE} {a} problem"
 # ASSIGN_Q_NAME_PATTERN="{BASE} {a} problem {q}"
@@ -41,3 +41,21 @@ MOODLE_A_NAME_="Assignment {a} - Question "
 MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
 # MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
 # ASSIGN_Q_NAME_PATTERN_=ASSIGN_NAME_PATTERN+"{q})"
+
+TEST_DEMO="""
+# Format: `{marks};{label};{test_case}`
+# * For Example:
+# ```csv
+# 10;{INPUT:!!123}!!{OUTPUT:!!321}!!!!;123
+# 10;{INPUT:!!101}!!{OUTPUT:!!101}!!!!;101
+# 10;{INPUT:!!993}!!{OUTPUT:!!399}!!!!;993
+# 10;{INPUT:!!100}!!{OUTPUT:!!1}!!!!;100
+# ```
+""".strip()
+
+CODE_DEMO="""
+30;Logic is correct and gives expected output
+30;Efficient and Optimal steps used to get to output
+-5;Comments missing, logic hard to understand
+-5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+""".strip()

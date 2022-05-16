@@ -70,12 +70,12 @@ def pds_checker():
     home, report_path,test_cases,code_questions = init_checker()
 
     ## TODO: HACK FOR binary marking system
-    test_marks_list = [float(i.split(";")[0]) for i in test_cases]
+    test_marks_list = [float(i[0]) for i in test_cases]
 
     ## Here there is a change for %age negative markings, keeping the % sign to signify
     # code_questions = pull("code_questions.txt")  # pull only once throughout the program
     code_marks_list = [
-        x if "%" in (x := i.split(";")[0]) else float(x) for i in code_questions
+        x if "%" in (x := i[0]) else float(x) for i in code_questions
     ]
 
     ## Max marks are calculated ignoring the -ve mark conditions
@@ -149,7 +149,7 @@ def pds_checker():
                             )
                         ## End
 
-                        mark, test_comment, test = line.split(";")
+                        mark, test_comment, test = line
                         mark = float(mark)
                         print(f"Test_Case_{i+1}:".center(50, "-"))
                         print(f"Input: {test}")
@@ -253,7 +253,7 @@ def pds_checker():
                 comments.append(" CODE CASES ".center(30, "="))
                 comments.append("")
                 for i, q in enumerate(code_questions):
-                    mark, ques = q.split(";")
+                    mark, ques = q
                     if (
                         "%" in mark
                     ):  # This case is for % marking, defaults to zero, adds a comment if -ve marks given

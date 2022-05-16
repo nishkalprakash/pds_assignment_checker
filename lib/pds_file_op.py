@@ -1,7 +1,7 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
 from re import findall, sub
-from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BASE,HOME, Q_BASE,VAR
+from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BASE,HOME, Q_BASE, CODE_DEMO, TEST_DEMO, VAR
 
 
 from time import strftime
@@ -47,8 +47,8 @@ def run_command(command):
 def def_input(text, default=""):
     x = input(f"{text} [{default}]: ").strip()
     if x:
-        if ' ' in x:
-            return(x.split(' '))
+        # if ' ' in x:
+        #     return(x.split(' '))
         # except:
         return x
     else:
@@ -73,11 +73,14 @@ def get_a_q_from_user(q=True):
         return a
 
 def pull(path):
-    return [x for i in Path(path).read_text().strip().split("\n") if (x:=i.strip()) and not x.startswith('#')]
+    return [x.split(';') if ';' in x else x for i in Path(path).read_text().strip().split("\n") if (x:=i.strip()) and not x.startswith('#')]
 
-def push(path, text):
-    with Path(path).open("a+") as f:
-        f.write(text + "\n")
+def push(path, text,attr="a+"):
+    with Path(path).open(attr) as f:
+        if type(text)==str:
+            f.write(text + "\n")
+        elif type(text)==list:
+            f.write("\n".join(text) + "\n")
 
 def re_sub_space(name):
     return sub(r'\s+',' ',name)
@@ -141,10 +144,13 @@ def get_students():
     from lib.pds_globals import VAR
     return pull(f"{VAR}/my_students.txt")
 
-def get_test_cases(a,q):
-    """ Returns the Test Cases """
-    from lib.pds_globals import TEST_
-    return pull(TEST_.format(a=a,q=q))
+def get_test_cases(a,q,cwd=True):
+    """ Returns the Test Cases as a list of lists [["{marks}","{label}","{INP}"],...]
+
+    """
+    from lib.pds_globals import TEST_,TEST_PATH_
+    p=TEST_.format(a=a,q=q) if cwd else TEST_PATH_.format(a=a,q=q)
+    return pull(p)
 
 def get_code_questions(a,q):
     """ Returns the code cases """
@@ -215,29 +221,10 @@ def create_base_folders(a,q=None):
     Path.mkdir(base,parents=True)
     code_questions = base / "code_questions.txt"
     Path.touch(code_questions)
-    ## HACK FOR SEM 6 start ##
-    Path(code_questions).write_text("""
-30;Logic is correct and gives expected output
-25;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
-""".strip())
-    ## HACK FOR SEM 6 END ##
-    
+    Path(code_questions).write_text(CODE_DEMO)
     test_cases = base / "test_cases.txt"
     Path.touch(test_cases)
- ## HACK FOR SEM 6 start ##
-    Path(test_cases).write_text("""
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-#
-# ```csv
-# 10;Inside Rectangle (should print inside);0 0 7 7 2 3
-# 10;Outside Rectangle (should print Outside);0 0 7 7 9 2
-# 10;On Rectange (should print Outside);0 0 7 7 7 2
-# ```
-""".strip())
-    ## HACK FOR SEM 6 END ##
+    Path(test_cases).write_text(TEST_DEMO)
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
     # print(f"Please edit the following:\n{test_cases}\n{code_questions}")
     return 0
