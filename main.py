@@ -64,7 +64,6 @@ def init_checker():
 def pds_checker():
     """ This is the main method for checking assignments"""
     ## Pull students list before entering the BASE folder
-    students = get_students()
     n=get_map_roll_to_name()
     ## Getting the BASE number details from user and switching working dir to BASE_a
     home, report_path,test_cases,code_questions = init_checker()
@@ -110,8 +109,11 @@ def pds_checker():
 
     print(f" Working for {report_path} ".center(100, "*"))
     ctr=0
+
+    students = get_students()
+    
     for std_roll,std_name in students:
-        std_name=n[std_roll]
+        # std_name=n[std_roll]
         ctr+=1
         if std_roll in done:
             continue

@@ -225,7 +225,7 @@ def get_map_roll_to_name(rev=None, moodle=None):
         key, val = val, key
 
         # n_index=1
-    return {(x := i.split(","))[key]: x[val] for i in pull(f"{VAR}/mapping.txt")}
+    return {x[key]: x[val] for x in pull(f"{VAR}/mapping.txt")}
 
 
 def unzip(a_base, q):

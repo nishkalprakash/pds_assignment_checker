@@ -45,7 +45,7 @@ for i in range(n):
 # s={i:[val for key, val in maps.items() if " ".join(i.strip().split()).lower() == key.lower()][0] for i in stds}
 # maps={i.split(',')[0]:i.split(',')[1] for i in Path('var/mapping.txt').read_text().split('\n')}
 
-Path(f"{VAR}/mapping.txt").write_text("\n".join(map(",".join, sorted(((i[0],i[1]['id'],i[1]['roll']) for i in std_id_roll_dict.items())))))
+Path(f"{VAR}/mapping.txt").write_text("\n".join(map(";".join, sorted(((i[0],i[1]['id'],i[1]['roll']) for i in std_id_roll_dict.items())))))
 
 Path("students.txt").write_text("\n".join(sorted(std_id_roll_dict.keys())))
 

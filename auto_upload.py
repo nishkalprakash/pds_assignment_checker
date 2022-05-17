@@ -33,15 +33,15 @@ if __name__ == "__main__":
         #     (x := i.split(","))[0].strip(): x[1].strip()
         #     for i in pull(f"{VAR}/mapping.txt")
         # }
-        mapping=get_map_roll_to_name(moodle=True)
+        m=get_map_roll_to_name(moodle=True)
         ## Upload data to moodle
         for std in std_dict:
             insert(
-                driver, f"quickgrade_{mapping[std.strip()]}", f"{std_dict[std]['m']}"
+                driver, f"quickgrade_{m[std.strip()]}", f"{std_dict[std]['m']}"
             )
             insert(
                 driver,
-                f"quickgrade_comments_{mapping[std.strip()]}",
+                f"quickgrade_comments_{m[std.strip()]}",
                 std_dict[std]["c"],
             )
             print(f"Done for {std}")

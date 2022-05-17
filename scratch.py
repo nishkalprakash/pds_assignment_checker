@@ -32,7 +32,7 @@ def format_test_cases():
 def format_mystudents():
     std=get_students()
     n=get_map_roll_to_name()
-    push("var\my_students.txt",[f"{i},{n[i]}" for i in std])
+    push("var\my_students.txt",[f"{i},{n[i]}" for i in std],attr="w")
     
 if __name__ =="__main__":
     # reset_test_code()
