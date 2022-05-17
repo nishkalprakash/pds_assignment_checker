@@ -153,7 +153,7 @@ def pds_checker():
                         mark = float(mark)
                         print(f"Test_Case_{i+1}:".center(50, "-"))
                         print(f"Input: {test}")
-                        print(f"Desired Output: {test_comment}")
+                        print(f"Desired Output: \n{test_comment}")
                         print(f"Program Output:")
                         system(f"echo {test} | a.exe")
 
