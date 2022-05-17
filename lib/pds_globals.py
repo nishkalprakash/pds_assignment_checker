@@ -7,6 +7,12 @@ if a variable is suffixed by a '_' its a placeholder and VARIABLE_.format(x=,y=)
 from pathlib import Path
 HOME = "Assignments"
 
+
+MOODLE_A_NAME_="Lab Test {a} - Question "
+# MOODLE_A_NAME_="Assignment {a} - Question "
+MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
+
+
 BASE = "LT" # Base is the assignment type
 # BASE = "A"
 Q_BASE="Q"
@@ -36,9 +42,7 @@ TMP = "tmp"
 # A_PATH_=f"{BASE}_"+"{a}"
 # A_Q_PATH_=A_PATH_+"/Question_{q}"
 # ASSIGN_NAME_PATTERN_="{BASE} {a}("
-MOODLE_A_NAME_="Assignment {a} - Question "
 # MOODLE_A_NAME_="Assignment {a}("
-MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
 # MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
 # ASSIGN_Q_NAME_PATTERN_=ASSIGN_NAME_PATTERN+"{q})"
 

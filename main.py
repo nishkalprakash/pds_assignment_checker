@@ -110,7 +110,7 @@ def pds_checker():
 
     print(f" Working for {report_path} ".center(100, "*"))
     ctr=0
-    for std_roll in students:
+    for std_roll,std_name in students:
         std_name=n[std_roll]
         ctr+=1
         if std_roll in done:

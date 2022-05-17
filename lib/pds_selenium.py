@@ -8,7 +8,7 @@ from lib.pds_globals import A_Q_PATH_, Q_, VAR, LIB, HOME, MOODLE_A_NAME_, MOODL
 ## SELENIUM FUNCTIONS
 
 def driver_get_from_topic(driver,topic_id,action='grading'):
-    driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id={topic_id}&action={action}")
+    driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id={topic_id}&action={action}&tsort=idnumber")
     if 'login' in driver.current_url:
         print("Aw Snap! Crome session expired X_X ")
         moodle_login(driver)
@@ -80,7 +80,7 @@ def init_selenium(def_dwnld_dir = None):
     options.headless=True
     options.add_argument('--disable-gpu')
     options.add_argument('--window-size=1366,768')
-    options.add_experimental_option("useAutomationExtension", False)
+    # options.add_experimental_option("useAutomationExtension", False)
     options.add_argument("--disable-dev-shm-usage") 
     options.add_argument('--hide-scrollbars')
     options.add_argument('--disable-extensions')

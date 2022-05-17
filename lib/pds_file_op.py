@@ -104,8 +104,11 @@ def pull(path):
 
 def push(path, text,attr="a+"):
     with Path(path).open(attr) as f:
-        f.write(text + "\n")
-
+        # if type(text)
+        try:
+            f.write(text + "\n")
+        except TypeError:
+            f.write("\n".join(text) + "\n")
 
 def re_sub_space(name):
     return sub(r"\s+", " ", name)
@@ -166,7 +169,7 @@ def get_std_roll_to_m_c_dict(a, q=None):
         l = line.split(",")
         d[l[0].strip('"')] = {
             "m": l[index].strip(),
-            "c": "".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip(),
+            "c": sub(r"\n+","\n","".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip()),
         }
     ## d (dict) = { std_roll : { m:marks, c: comments}}
     return d

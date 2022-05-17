@@ -51,9 +51,6 @@ if __name__ == "__main__":
         print(f'{f"Done for {A_Q_.format(a=a,q=q)}":*^50}')
         return 0
 
-    a, q = get_a_q_from_user()
-    if type(q)==list:
-        for _q in q:
-            upload_to_moodle(a, _q)
-    else:
+    a, ql = get_a_q_from_user()
+    for q in ql.split():
         upload_to_moodle(a, q)
