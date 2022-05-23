@@ -80,20 +80,27 @@ def def_input(text, default=""):
 
 
 ## Gets input from user
-def get_a_q_from_user(q=True):
+def get_a_ql_from_user():
+    """Accepts Assignment Number and Question Number
+    Support for checking multiple questions added.
+    It will return a ' ' separated string for multiple questions
+    USAGE for multi question:
+        in the calling function use -
+        a,ql=get_a_ql_from_user();for q in ql.split():<do something with a,q>;
+    Returns:
+        a [str]: assignment number, eg 1|4
+        ql [str]: question number, eq 1!1 2 3 4
+
+    """
     ll = list(Path(HOME).glob(f"{BASE}*"))
     latest_a = max(int(findall("\d+$", i.name)[0]) for i in ll) if ll else 0
     a = def_input(f"Please enter the {BASE} number", latest_a)
-    if q:
-        ## CURRENTLY supports one question check at a time
-        ## q stores the question number
-        ll = Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*")
-        all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
-        q = def_input(f"Please enter the {Q_BASE} number", all_q)
-        return a, q
-    else:
-
-        return a
+    ## CURRENTLY supports one question check at a time
+    ## q stores the question number
+    ll = Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*")
+    all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
+    ql = def_input(f"Please enter the {Q_BASE} number", all_q)
+    return a, ql
 
 
 def pull(path):

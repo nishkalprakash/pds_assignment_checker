@@ -6,18 +6,18 @@ from lib.pds_globals import A_, TEST_, TMP
 
 ## Reset the test cases and code questions default text
 def reset_test_code():
-    from lib.pds_file_op import create_base_folders as cbf, get_a_q_from_user
+    from lib.pds_file_op import create_base_folders as cbf, get_a_ql_from_user
 
-    a, q = get_a_q_from_user()
+    a, q = get_a_ql_from_user()
     for _ in q.split():
         cbf(a, _)
 
 
 ## To properly format test cases for sharing
 def format_test_cases():
-    from lib.pds_file_op import get_a_q_from_user
+    from lib.pds_file_op import get_a_ql_from_user
 
-    a, ql = get_a_q_from_user()
+    a, ql = get_a_ql_from_user()
     for q in ql.split():
         aq = {"a": a, "q": q}
         l = [

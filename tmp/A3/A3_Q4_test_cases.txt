@@ -28,7 +28,7 @@ Executing the binary search algorithm
 Successful search
 Element 18 has been found at the index 3
 
-Raw_Input: 5 8 4 12 18 21 4 9 12 18 21
+Raw_Input: 5 8 4 12 18 21 4 9 12 18 21 18 2
 --------------------
 
 

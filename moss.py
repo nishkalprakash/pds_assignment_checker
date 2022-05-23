@@ -3,7 +3,7 @@
 
 from lib.pds_selenium import get_assignments
 from lib.pds_globals import A_, A_PATH_, A_Q_, BASE, LIB, HOME, Q_
-from lib.pds_file_op import def_input, get_a_q_from_user, get_map_roll_to_name, re_sub_space, run_command, push
+from lib.pds_file_op import def_input, get_a_ql_from_user, get_map_roll_to_name, re_sub_space, run_command, push
 
 from os import chdir, mkdir
 from shutil import copyfile, rmtree
@@ -12,7 +12,7 @@ from itertools import chain
 
 m = (Path(LIB) / Path("moss.pl")).absolute()
 # base=Path.cwd()
-a = get_a_q_from_user(q=False)
+a = get_a_ql_from_user(q=False)
 
 mapping=get_map_roll_to_name()
 

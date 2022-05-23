@@ -6,8 +6,8 @@ Sequence2 - TAAGGTCA--
 
 OUTPUT:
 
-Penalty 1 0 1 1 0 0 1 0 2 2 
- Similarity score = 8
+Penalty 1 0 1 1 0 0 1 0 1 1 
+ Similarity score = 6
 
 
 Raw_Input: AACAGTTACC TAAGGTCA--
@@ -22,8 +22,8 @@ Sequence2 - TA-AGGT-CA
 
 OUTPUT:
 
-Penalty 1 0 2 0 0 1 0 2 0 1 
- Similarity score = 7
+Penalty 1 0 1 0 0 1 0 1 0 1 
+ Similarity score = 5
 
 
 Raw_Input: AACAGTTACC TA-AGGT-CA

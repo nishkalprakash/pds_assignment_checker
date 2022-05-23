@@ -7,15 +7,10 @@ from pathlib import Path
 
 from os import system, chdir
 
-from lib.pds_globals import (
-    A_Q_,
-    A_Q_PATH_,
-    HOME, 
-    BASE
-    )
+from lib.pds_globals import A_Q_, A_Q_PATH_, HOME, BASE
 from lib.pds_file_op import (
     base_missing,
-    get_a_q_from_user,
+    get_a_ql_from_user,
     get_code_questions,
     get_map_roll_to_name,
     get_test_cases,
@@ -27,13 +22,8 @@ from lib.pds_file_op import (
 )
 
 
-
-
-
-def init_checker():
-    a, q = get_a_q_from_user()
-    ## Set base to the required directory
-    base = Path(A_Q_PATH_.format(a=a,q=q))
+def init_checker(a, q):
+    base = Path(A_Q_PATH_.format(a=a, q=q))
 
     if base.exists():
         ## Change to the base directory for the rest of the program
@@ -42,7 +32,6 @@ def init_checker():
         ## The BASE_a directory was not found
         ## try to fetch assignments after confirmation from the user
         base_missing(a)
-        
 
     ## Check if PDS folder exists in the current directory
     ## Current Dir = {HOME}/{BASE}{a}/{Q_BASE}{q}
@@ -51,31 +40,35 @@ def init_checker():
     ## IF PDS Folder not found then call get assignments
     except StopIteration as si:
         print("PDS Directory not found,")
-        print(f"Please download from moodle and place in the folder, {A_Q_PATH_.format(a=a,q=q)}")
+        print(
+            f"Please download from moodle and place in the folder, {A_Q_PATH_.format(a=a,q=q)}"
+        )
         base_missing(a)
         home = next(Path.cwd().glob("PDS*/"))
     report_path = f"{A_Q_.format(a=a,q=q)}_report.csv"
-    test_cases = get_test_cases(a,q) # pull only once throughout the program
-    code_questions = get_code_questions(a,q)
+    test_cases = get_test_cases(a, q)  # pull only once throughout the program
+    code_questions = get_code_questions(a, q)
 
-    return home, report_path,test_cases, code_questions
+    return home, report_path, test_cases, code_questions
 
 
-def pds_checker():
-    """ This is the main method for checking assignments"""
+def pds_checker(a, q):
+    """This is the main method for checking assignments"""
     ## Pull students list before entering the BASE folder
-    n=get_map_roll_to_name()
+    n = get_map_roll_to_name()
+
+    students = get_students()
+
     ## Getting the BASE number details from user and switching working dir to BASE_a
-    home, report_path,test_cases,code_questions = init_checker()
+
+    home, report_path, test_cases, code_questions = init_checker(a, q)
 
     ## TODO: HACK FOR binary marking system
     test_marks_list = [float(i[0]) for i in test_cases]
 
     ## Here there is a change for %age negative markings, keeping the % sign to signify
     # code_questions = pull("code_questions.txt")  # pull only once throughout the program
-    code_marks_list = [
-        x if "%" in (x := i[0]) else float(x) for i in code_questions
-    ]
+    code_marks_list = [x if "%" in (x := i[0]) else float(x) for i in code_questions]
 
     ## Max marks are calculated ignoring the -ve mark conditions
     max_marks = sum(
@@ -93,7 +86,7 @@ def pds_checker():
         for i, cm in enumerate(code_marks_list, 1)
     ]
 
-    if not Path(report_path).exists(): 
+    if not Path(report_path).exists():
         push(
             report_path,
             f"\"Student_Name\",{','.join(test_marks_header)},{','.join(code_marks_header)},\"Total_Marks ({max_marks:g})\",\"Comments\"",
@@ -108,20 +101,20 @@ def pds_checker():
     ## End
 
     print(f" Working for {report_path} ".center(100, "*"))
-    ctr=0
+    ctr = 0
 
-    students = get_students()
-    
-    for std_roll,std_name in students:
+    for std_roll, std_name in students:
         # std_name=n[std_roll]
-        ctr+=1
+        ctr += 1
         if std_roll in done:
             continue
         total_marks = 0  # current student's marks
         test_marks = [0] * len(test_marks_list)  # Current student test case marks
         code_marks = [0] * len(code_marks_list)  # Current student code case marks
         comments = []  # String list for current students comments
-        print(f" {ctr} - Working for student - {std_roll} - {std_name} ".center(100,"*"))
+        print(
+            f" {ctr} - Working for student - {std_roll} - {std_name} ".center(100, "*")
+        )
         try:
             try:
                 file_exists = True
@@ -140,7 +133,7 @@ def pds_checker():
                     print("Code ran successfully")
                     # test = test_cases[0]  # TESTING
                     comments.append(" TEST CASES ".center(30, "="))
-                    comments.append("") ## Hack for new line
+                    comments.append("")  ## Hack for new line
                     for i, line in enumerate(test_cases):
                         ## RUN C FILE here with the test case
 
@@ -164,7 +157,6 @@ def pds_checker():
                             system("outfile.txt")
                         ## End
 
-                        
                         # This is for non-binary test marks
                         if mark > 0:
                             test_marks[i] = float(
@@ -193,7 +185,7 @@ def pds_checker():
                                 comments.append(
                                     f"!!Passed Negative Criteria: {test_comment}!!  Mark/s lost: {mark:g}"
                                 )
-                        
+
                         """
                         ## HACK: Start Support for Binary test marks
                         if mark > 0:
@@ -331,7 +323,10 @@ def pds_checker():
             if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
-                    0, def_input(f"\nPlease enter your final comment for {std_roll} - {std_name}:\n")
+                    0,
+                    def_input(
+                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n"
+                    ),
                 )
             elif total_marks == max_marks:
                 comments.insert(0, "")  # Hack for extra spacing
@@ -386,4 +381,9 @@ def pds_checker():
 
 
 if __name__ == "__main__":
-    pds_checker()
+    base_home = Path.cwd()
+    a, ql = get_a_ql_from_user()
+    ## Set base to the required directory
+    for q in ql.split():
+        pds_checker(a, q)
+        chdir(base_home)
