@@ -51,10 +51,10 @@ TEST_DEMO = """
 # Format: `{marks};{label};{test_case}`
 # * For Example:
 # ```csv
-# 10;{INPUT:!!123}!!{OUTPUT:!!321}!!!!;123
-# 10;{INPUT:!!101}!!{OUTPUT:!!101}!!!!;101
-# 10;{INPUT:!!993}!!{OUTPUT:!!399}!!!!;993
-# 10;{INPUT:!!100}!!{OUTPUT:!!1}!!!!;100
+# 10;!!INPUT:!!123!!!!OUTPUT:!!321!!!!;123
+# 10;!!INPUT:!!101!!!!OUTPUT:!!101!!!!;101
+# 10;!!INPUT:!!993!!!!OUTPUT:!!399!!!!;993
+# 10;!!INPUT:!!100!!!!OUTPUT:!!1!!!!;100
 # ```
 """.strip()
 

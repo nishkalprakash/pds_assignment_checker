@@ -21,14 +21,21 @@ def format_test_cases():
     for q in ql.split():
         aq = {"a": a, "q": q}
         l = [
-            (i[0], i[1].replace("!!", "\n").replace("{", "").replace("}", ""))
+            (i[0], i[1].replace("!!", "\n").replace("{", "").replace("}", ""), i[2])
             for i in get_test_cases(**aq, cwd=False)
         ]
         p = Path(f"{TMP}/{A_.format(**aq)}/{TEST_.format(**aq)}")
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text("")
         for i, s in enumerate(l):
-            push(p, f"Test Case {i+1} [{s[0]} marks]:\n{s[1]}", attr="a+")
+            out = [
+                f"Test_Case {i+1} [{s[0]}]:",
+                s[1],
+                f"Raw_Input: {s[2]}",
+                "-" * 20,
+                "\n",
+            ]
+            push(p, out, attr="a+")
 
     # for _ in q.split(): cbf(a,_)
 
@@ -40,7 +47,7 @@ def format_mystudents():
 
 
 if __name__ == "__main__":
-    reset_test_code()
-    # format_test_cases()
+    # reset_test_code()
+    format_test_cases()
     # format_mystudents()
     pass
