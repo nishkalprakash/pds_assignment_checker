@@ -5,33 +5,34 @@ if a variable is suffixed by a '_' its a placeholder and VARIABLE_.format(x=,y=)
 """
 
 from pathlib import Path
+
 HOME = "Assignments"
 
 
-MOODLE_A_NAME_="Lab Test {a} - Question "
-# MOODLE_A_NAME_="Assignment {a} - Question "
-MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
+MOODLE_A_NAME_ = "Lab Test {a} - Question "
+MOODLE_A_NAME_ = "Assignment {a} - Question "
+MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
 
-BASE = "LT" # Base is the assignment type
-# BASE = "A"
-Q_BASE="Q"
+BASE = "LT"  # Base is the assignment type
+BASE = "A"
+Q_BASE = "Q"
 
-A_=BASE+"{a}"
-A_PATH_=HOME+"/"+A_
+A_ = BASE + "{a}"
+A_PATH_ = HOME + "/" + A_
 
-Q_=Q_BASE+"{q}"
-A_Q_=A_+"_"+Q_
+Q_ = Q_BASE + "{q}"
+A_Q_ = A_ + "_" + Q_
 
-A_Q_PATH_=A_PATH_+"/"+Q_
+A_Q_PATH_ = A_PATH_ + "/" + Q_
 
-TEST_=A_Q_+"_test_cases.txt"
-TEST_PATH_=A_Q_PATH_+"/"+TEST_
-CODE_=A_Q_+"_code_questions.txt"
-CODE_PATH_=A_Q_PATH_+"/"+CODE_
+TEST_ = A_Q_ + "_test_cases.txt"
+TEST_PATH_ = A_Q_PATH_ + "/" + TEST_
+CODE_ = A_Q_ + "_code_questions.txt"
+CODE_PATH_ = A_Q_PATH_ + "/" + CODE_
 
 
-MOODLE_COURSE_ID=475
+MOODLE_COURSE_ID = 475
 VAR = "var"
 LIB = "lib"
 TMP = "tmp"
@@ -46,7 +47,7 @@ TMP = "tmp"
 # MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
 # ASSIGN_Q_NAME_PATTERN_=ASSIGN_NAME_PATTERN+"{q})"
 
-TEST_DEMO="""
+TEST_DEMO = """
 # Format: `{marks};{label};{test_case}`
 # * For Example:
 # ```csv
@@ -57,7 +58,7 @@ TEST_DEMO="""
 # ```
 """.strip()
 
-CODE_DEMO="""
+CODE_DEMO = """
 30;Logic is correct and gives expected output
 30;Efficient and Optimal steps used to get to output
 -5;Comments missing, logic hard to understand

@@ -87,28 +87,31 @@ def get_a_q_from_user(q=True):
     if q:
         ## CURRENTLY supports one question check at a time
         ## q stores the question number
-        q = def_input(f"Please enter the {Q_BASE} number", "2")
-
+        ll = Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*")
+        all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
+        q = def_input(f"Please enter the {Q_BASE} number", all_q)
         return a, q
     else:
+
         return a
 
 
 def pull(path):
     return [
-        x.split(';') if ";" in x else x
+        x.split(";") if ";" in x else x
         for i in Path(path).read_text().strip().split("\n")
         if (x := i.strip()) and not x.startswith("#")
     ]
 
 
-def push(path, text,attr="a+"):
+def push(path, text, attr="a+"):
     with Path(path).open(attr) as f:
         # if type(text)
         try:
             f.write(text + "\n")
         except TypeError:
             f.write("\n".join(text) + "\n")
+
 
 def re_sub_space(name):
     return sub(r"\s+", " ", name)
@@ -169,7 +172,11 @@ def get_std_roll_to_m_c_dict(a, q=None):
         l = line.split(",")
         d[l[0].strip('"')] = {
             "m": l[index].strip(),
-            "c": sub(r"\n+","\n","".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip()),
+            "c": sub(
+                r"\n+",
+                "\n",
+                "".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip(),
+            ),
         }
     ## d (dict) = { std_roll : { m:marks, c: comments}}
     return d
@@ -182,11 +189,11 @@ def get_students():
     return pull(f"{VAR}/my_students.txt")
 
 
-def get_test_cases(a, q,cwd=True):
+def get_test_cases(a, q, cwd=True):
     """Returns the Test Cases"""
     from lib.pds_globals import TEST_
 
-    return pull(TEST_.format(a=a, q=q) if cwd else TEST_PATH_.format(a=a,q=q))
+    return pull(TEST_.format(a=a, q=q) if cwd else TEST_PATH_.format(a=a, q=q))
 
 
 def get_code_questions(a, q):
@@ -271,8 +278,7 @@ def create_base_folders(a, q):
         # return 1
     Path.mkdir(base, parents=True, exist_ok=True)
     code_questions = CODE_PATH_.format(a=a, q=q)
-    Path(code_questions).write_text(CODE_DEMO
-    )
+    Path(code_questions).write_text(CODE_DEMO)
     test_cases = TEST_PATH_.format(a=a, q=q)
     Path(test_cases).write_text(TEST_DEMO)
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
