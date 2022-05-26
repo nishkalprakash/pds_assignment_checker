@@ -7,11 +7,21 @@ from time import strftime
 from lib.pds_globals import (
     A_,
     A_PATH_,
+    A_PLAG_EMAIL_,
+    A_PLAG_EMAIL_PATH_,
     A_Q_,
     A_Q_PATH_,
+    A_Q_PLAG_,
+    A_Q_PLAG_PATH_,
+    A_Q_REPORT_,
+    A_Q_REPORT_PATH_,
+    A_REPORT_,
+    A_REPORT_PATH_,
     BASE,
+    BR,
     CODE_DEMO,
     CODE_PATH_,
+    DELIM,
     HOME,
     Q_,
     Q_BASE,
@@ -25,7 +35,7 @@ def dprint(func):
     def wrapped_func(*args, **kwargs):
         return func(
             strftime("%H:%M:%S - "),
-            *map(lambda x: x.replace("!!", "\n"), args),
+            *map(lambda x: str(x).replace(BR, "\n"), args),
             **kwargs,
         )
 
@@ -86,7 +96,9 @@ def get_a_ql_from_user():
     It will return a ' ' separated string for multiple questions
     USAGE for multi question:
         in the calling function use -
-        a,ql=get_a_ql_from_user();for q in ql.split():<do something with a,q>;
+        a,ql=get_a_ql_from_user()
+        for q in ql.split()
+            <do something with a,q>
     Returns:
         a [str]: assignment number, eg 1|4
         ql [str]: question number, eq 1!1 2 3 4
@@ -103,25 +115,35 @@ def get_a_ql_from_user():
     return a, ql
 
 
-def pull(path):
+def pull(path, DELIM=DELIM):
     return [
-        x.split(";") if ";" in x else x
+        x.split(DELIM) if DELIM and DELIM in x else x
         for i in Path(path).read_text().strip().split("\n")
         if (x := i.strip()) and not x.startswith("#")
     ]
 
 
-def push(path, text, attr="a+"):
+def push(path, text, attr="a+", DELIM=DELIM):
     with Path(path).open(attr) as f:
         # if type(text)
         try:
             f.write(text + "\n")
         except TypeError:
-            f.write("\n".join(text) + "\n")
+            try:
+                f.write("\n".join(text) + "\n")
+            except TypeError:
+                if DELIM:
+                    f.write("\n".join(map(DELIM.join, text)) + "\n")
+                else:
+                    raise
 
 
 def re_sub_space(name):
     return sub(r"\s+", " ", name)
+
+
+def re_sub_multi_line(c):
+    return sub(r"\n+", "\n", c)
 
 
 def dict_to_csv(path, d):
@@ -159,41 +181,65 @@ def csv_to_dict(path, d):
     return d
 
 
-def get_std_roll_to_m_c_dict(a, q=None):
+def get_head_from_report(a, q=None, DELIM=DELIM):
     if q is not None:
-        report = Path(A_Q_PATH_.format(a=a, q=q)) / f"{A_Q_.format(a=a,q=q)}_report.csv"
+        report = Path(A_Q_REPORT_PATH_.format(a=a, q=q))
 
     else:
-        report = Path(A_PATH_.format(a)) / f"{A_.format(a)}_report.csv"
+        report = Path(A_REPORT_PATH_.format(a=a))
+    text_list = pull(report, DELIM=DELIM)
+    return text_list[0]
+
+
+def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False):
+    if q is not None:
+        if cwd:
+            report = Path(A_Q_REPORT_.format(a=a, q=q))
+        else:
+            report = Path(A_Q_REPORT_PATH_.format(a=a, q=q))
+
+    else:
+        if cwd:
+            report = Path(A_REPORT_.format(a=a))
+        else:
+            report = Path(A_REPORT_PATH_.format(a=a))
     # if not report.exists():
     #         report = report
 
-    text = report.read_text().strip()
-    text_list = text.split("\n")
-    head = text_list[0].split(",")
+    # text_list = pull(report, DELIM=",")
+    text_list = pull(report, DELIM=DELIM)
+    # text_list = text.split("\n")
+    head = text_list[0]
     index = [i for i, k in enumerate(head) if k.strip('"').startswith("Total")][0]
     lines = text_list[1:]
     d = dict()
     # Marks are taken directly from the total column, so if marks just deducted from there, its OK
-    for line in lines:
-        l = line.split(",")
-        d[l[0].strip('"')] = {
+    for l in lines:
+        # l = line.split(",")
+        std = l[0].strip('"')
+        d[std] = {
             "m": l[index].strip(),
             "c": sub(
                 r"\n+",
                 "\n",
-                "".join(l[index + 1 :]).strip('"').strip().replace("!!", "\n").strip(),
+                "".join(l[index + 1 :]).strip('"').strip().replace(BR, "\n").strip(),
             ),
         }
+        if ml:
+            d[std]["ml"] = l[1:index]
+            d[std]["head"] = head
+
     ## d (dict) = { std_roll : { m:marks, c: comments}}
     return d
 
 
-def get_students():
+def get_students(path=None):
     """Returns the students list"""
     from lib.pds_globals import VAR
 
-    return pull(f"{VAR}/my_students.txt")
+    if path is None:
+        return pull(f"{VAR}/my_students.txt")
+    return pull(path)
 
 
 def get_test_cases(a, q, cwd=True):
@@ -240,6 +286,34 @@ def get_map_roll_to_name(rev=None, moodle=None):
 
         # n_index=1
     return {x[key]: x[val] for x in pull(f"{VAR}/mapping.txt")}
+
+
+def set_plag_files():
+    a, ql = get_a_ql_from_user()
+    for q in ql.split():
+        a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))
+        ## HACK END
+        push(a_q_plag, sorted(get_students(), key=lambda i: i[1].lower()), attr="w+")
+        print(a_q_plag, " file created")
+    plag_email = Path(A_PLAG_EMAIL_PATH_.format(a=a))
+    plag_email.touch()
+    print(plag_email, " file set")
+
+
+def format_plag_email_file():
+    a, ql = get_a_ql_from_user()
+    plag_email = Path(A_PLAG_EMAIL_PATH_.format(a=a))
+    plag = plag_email.read_text()
+    import re
+
+    plag = re.sub(
+        r"((\n+.*?\.jpg\n*)|(\s+and\s+)|(^\d+.\s+))", "\n", plag, flags=re.MULTILINE
+    )
+    plag = re.sub(r"\n+", "\n", plag, flags=re.MULTILINE)
+
+    ## TODO: Sort names after every question
+    plag_email.write_text(plag)
+    print(plag_email, " Formatted")
 
 
 def unzip(a_base, q):
@@ -289,6 +363,10 @@ def create_base_folders(a, q):
     test_cases = TEST_PATH_.format(a=a, q=q)
     Path(test_cases).write_text(TEST_DEMO)
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
+
+    set_plag_files()
+    # format_plag_file()
+
     return 0
 
 

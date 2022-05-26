@@ -7,15 +7,21 @@ if a variable is suffixed by a '_' its a placeholder and VARIABLE_.format(x=,y=)
 from pathlib import Path
 
 HOME = "Assignments"
+## CORE Variables
+VAR = "var"
+LIB = "lib"
+TMP = "tmp"
 
+DELIM = ";"
+BR = "!!"
 
 MOODLE_A_NAME_ = "Lab Test {a} - Question "
-MOODLE_A_NAME_ = "Assignment {a} - Question "
+MOODLE_A_NAME_ = "Assignment {a} - Question "  # COMMENT THIS FOR LT
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
-
-BASE = "LT"  # Base is the assignment type
-BASE = "A"
+# Base is the assignment type
+BASE = "LT" 
+BASE = "A"  # COMMENT THIS FOR LT
 Q_BASE = "Q"
 
 A_ = BASE + "{a}"
@@ -26,16 +32,32 @@ A_Q_ = A_ + "_" + Q_
 
 A_Q_PATH_ = A_PATH_ + "/" + Q_
 
+
+## CHECKER FEATURE
 TEST_ = A_Q_ + "_test_cases.txt"
 TEST_PATH_ = A_Q_PATH_ + "/" + TEST_
 CODE_ = A_Q_ + "_code_questions.txt"
 CODE_PATH_ = A_Q_PATH_ + "/" + CODE_
 
 
+## PLAG FEATURE
+A_Q_PLAG_ = A_Q_ + "_plag.txt"
+A_Q_PLAG_PATH_ = A_Q_PATH_ + "/" + A_Q_ + "_plag.txt"
+A_PLAG_EMAIL_ = A_ + "_plag_email.txt"
+A_PLAG_EMAIL_PATH_ = A_PATH_ + "/" + A_ + "_plag_email.txt"
+PLAG_COMMENT = f"<PLAG DETECTED - AWARDED 0>{BR}{BR}If you have not copied from anywhere,{BR}Please do not panic.{BR}Plag is decided by a plag checking program.{BR}For now continue to do your best.{BR}"
+
+
+## REPROT FEATURE
+A_REPORT_ = A_ + "_report.csv"
+A_REPORT_PATH_ = A_ + "/" + A_REPORT_
+A_Q_REPORT_ = A_Q_ + "_report.csv"
+A_Q_REPORT_PATH_ = A_Q_PATH_ + "/" + A_Q_REPORT_
+
+
 MOODLE_COURSE_ID = 475
-VAR = "var"
-LIB = "lib"
-TMP = "tmp"
+
+
 ## 2021 - Spring - Pattern
 # ASSIGN_NAME_PATTERN="{BASE} {a} problem"
 # ASSIGN_Q_NAME_PATTERN="{BASE} {a} problem {q}"
@@ -47,14 +69,14 @@ TMP = "tmp"
 # MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
 # ASSIGN_Q_NAME_PATTERN_=ASSIGN_NAME_PATTERN+"{q})"
 
-TEST_DEMO = """
-# Format: `{marks};{label};{test_case}`
+TEST_DEMO = f"""
+# Format: `{{marks}};{{label}};{{test_case}}`
 # * For Example:
 # ```csv
-# 10;!!INPUT:!!123!!!!OUTPUT:!!321!!!!;123
-# 10;!!INPUT:!!101!!!!OUTPUT:!!101!!!!;101
-# 10;!!INPUT:!!993!!!!OUTPUT:!!399!!!!;993
-# 10;!!INPUT:!!100!!!!OUTPUT:!!1!!!!;100
+# 10;{BR}INPUT:{BR}123{BR}{BR}OUTPUT:{BR}321{BR}{BR};123
+# 10;{BR}INPUT:{BR}101{BR}{BR}OUTPUT:{BR}101{BR}{BR};101
+# 10;{BR}INPUT:{BR}993{BR}{BR}OUTPUT:{BR}399{BR}{BR};993
+# 10;{BR}INPUT:{BR}100{BR}{BR}OUTPUT:{BR}1{BR}{BR};100
 # ```
 """.strip()
 

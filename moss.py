@@ -2,7 +2,7 @@
 ## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
 
 from lib.pds_selenium import get_assignments
-from lib.pds_globals import A_, A_PATH_, A_Q_, BASE, LIB, HOME, Q_
+from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_REPORT_, BASE, LIB, HOME, Q_
 from lib.pds_file_op import def_input, get_a_ql_from_user, get_map_roll_to_name, re_sub_space, run_command, push
 
 from os import chdir, mkdir
@@ -59,7 +59,7 @@ for question in Path().glob("*/"):
     if moss_folder_name.exists():
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
-    moss_command = f'perl "{m}" -l c -c "{A_Q_.format(a=a,q=q)}_report" '
+    moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(a=a,q=q)}"'
     ## Only copy files that have the extensions .c, .C or .txt
     for f in chain(pds_folder_name.glob("*.[cC]"), pds_folder_name.glob("*.txt")):
         lf = f.name.split("_")
