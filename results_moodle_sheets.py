@@ -3,33 +3,36 @@
 
 #%% Imports
 from time import sleep
-from numpy import float64
+from lib.pds_file_op import def_input, get_map_roll_to_name, get_students, print
 
-from pandas.core import series
-from lib.pds_globals import MOODLE_COURSE_ID
-from lib.pds_selenium import init_selenium,Path
+from lib.pds_globals import MOODLE_COURSE_ID, TMP
+from lib.pds_selenium import init_selenium, Path
 
-# %% Get grades from moodle
-# driver = init_selenium("temp")
-# driver.get(
-#     f"https://moodlecse.iitkgp.ac.in/moodle/grade/export/txt/index.php?id={MOODLE_COURSE_ID}"
-# )
-# driver.find_element_by_id("id_submitbutton").click()
-# sleep(2)
-# driver.close()
+#%% Get grades from moodle
+fetch = def_input("Fetch Marks from moodle?", 0)
+if fetch:
+
+    driver = init_selenium(TMP)
+    driver.get(
+        f"https://moodlecse.iitkgp.ac.in/moodle/grade/export/txt/index.php?id={MOODLE_COURSE_ID}"
+    )
+    driver.find_element_by_id("id_submitbutton").click()
+    sleep(2)
+    driver.close()
 #%% Clean Grades (remove unnecessary or empty cols)
 ## Get the Path of the grade file
 gfpath = max(
-    [(i, i.lstat().st_mtime) for i in Path("temp").glob("*.csv")], key=lambda x: x[1]
+    [(i, i.lstat().st_mtime) for i in Path(TMP).glob("*.csv")], key=lambda x: x[1]
 )[0]
-
+print(f"Working with {gfpath.name}")
 #%% init pandas
 import pandas as pd
 
 gdf = pd.read_csv(gfpath)
-gdf["ID number"]=gdf["ID number"].str.strip()
-gdf.rename(columns={'ID number':'1_Roll'},inplace=True)
-gdf=gdf.set_index('1_Roll')
+print(f"Results loaded to DataFrame. Now Transforming")
+gdf["ID number"] = gdf["ID number"].str.strip()
+gdf.rename(columns={"ID number": "1_Roll"}, inplace=True)
+
 
 # %% drop cols
 remc = [
@@ -38,40 +41,54 @@ remc = [
     "Email address",
     "Assignment: Assignment 0 (Real)",
     "Last downloaded from this course",
+    "Course total (Real)",
     # "Assignment: Assignment 1 problem 2 submission (Real)",
 ]
 nan = float("NaN")
-gdf=gdf.drop(remc, axis=1)
-gdf=gdf.replace("-",nan)
-gdf=gdf.dropna(how='all', axis=1)
-# gdf=gdf.replace(nan,0.0)
-gdf.fillna(0,inplace=True)
-gdf=gdf.apply(pd.to_numeric,errors="ignore")
-n=['First name', 'Surname']
-gdf.insert(3,'Student',gdf[n].agg(' '.join, axis=1))
-gdf=gdf.drop(n,axis=1)
-gdf=gdf.apply(lambda x: x.str.strip() if type(x)=='str' else x)
-gdf=gdf.rename(columns=lambda x: x.strip())
-#%% For header cleaning
-hdf=pd.DataFrame([gdf.columns.values.tolist()])
-hdf=hdf.replace("Assignment\: ","",regex=True)
-hdf=hdf.replace("Assignment ","A",regex=True)
-hdf=hdf.replace(" problem ","_Q",regex=True)
-hdf=hdf.replace(" submission","",regex=True)
-hdf=hdf.replace("Lab\-test ","LT",regex=True)
-hdf=hdf.replace("Lab\-test\-","LT",regex=True)
-hdf=hdf.replace("Lab Test ","LT",regex=True)
-hdf=hdf.replace(" \(Real\)","",regex=True)
-hdf=hdf.replace("Course total","zTotal",regex=True)
-hdf=hdf.replace("ID number","1_Roll",regex=True)
-hdf=hdf.replace("Student","2_Student",regex=True)
+## Drop cols defined in remc
+gdf = gdf.drop(remc, axis=1)
 
-gdf.columns=hdf.values[0]
+## replace empty values with `nan`
+gdf = gdf.replace("-", nan)
+
+## Drop all cols that have na
+gdf = gdf.dropna(how="all", axis=1)
+
+## replace na with 0
+gdf.fillna(0, inplace=True)
+gdf = gdf.apply(pd.to_numeric, errors="ignore")
+n = ["First name", "Surname"]
+gdf.insert(3, "Student", gdf[n].agg(" ".join, axis=1))
+gdf = gdf.drop(n, axis=1)
+gdf = gdf.apply(lambda x: x.str.strip() if type(x) == "str" else x)
+gdf = gdf.rename(columns=lambda x: x.strip())
+
+#%% For header cleaning
+hdf = pd.DataFrame([gdf.columns.values.tolist()])
+hdf = hdf.replace("Assignment\: ", "", regex=True)
+hdf = hdf.replace("Assignment ", "A", regex=True)
+hdf = hdf.replace(" - Question ", "_Q", regex=True)
+hdf = hdf.replace(" submission", "", regex=True)
+hdf = hdf.replace("Lab\-test ", "LT", regex=True)
+hdf = hdf.replace("Lab\-test\-", "LT", regex=True)
+hdf = hdf.replace("Lab Test ", "LT", regex=True)
+hdf = hdf.replace(" \(Real\)", "", regex=True)
+# hdf = hdf.replace("Course total", "zTotal", regex=True)
+hdf = hdf.replace("ID number", "1_Roll", regex=True)
+hdf = hdf.replace("Student", "2_Student", regex=True)
+
+gdf.columns = hdf.values[0]
 del hdf
 
-#%% Auth
-from lib.pds_pygsheets import auth,get_worksheet,viva_marks_url,get_spreadsheet
-cauth=auth()
+
+#%% replace nan students with their actual roll numbers
+m = get_map_roll_to_name(rev=True)
+
+missing = gdf.loc[gdf["1_Roll"] == 0].index
+for i in missing:
+    gdf.loc[i, "1_Roll"] = m[gdf.loc[i, "2_Student"]]
+gdf = gdf.set_index("1_Roll")
+
 #%% Add Viva data here
 # viva=get_worksheet(cauth,sp=get_spreadsheet(cauth,url=viva_marks_url),title="Sheet1")
 # #%%
@@ -80,58 +97,71 @@ cauth=auth()
 # gdf['Viva_2']=pd.Series([i[0] for i in viva.get_values(start='J3',end='J94')],index=ids,dtype=float)
 
 #%% Average teh marks here
-agg_cols={}
+a_to_aq_dict = {}
 for i in gdf.columns:
     try:
-        agg_cols[i.split("_")[0]].append(i)
+        a_to_aq_dict[i.split("_")[0]].append(i)
     except:
-        agg_cols[i.split("_")[0]]=[i]
+        a_to_aq_dict[i.split("_")[0]] = [i]
+agg_cols = []
+drop_individual_aq = def_input("Drop A#_Q# cols? ", 0)
+for c in a_to_aq_dict:
+    if len(a_to_aq_dict[c]) > 1:
+        n = f"{c} ({','.join([i.split('_')[-1] for i in a_to_aq_dict[c]])})"
+        agg_cols.append(n)
+        gdf[n] = gdf[a_to_aq_dict[c]].mean(axis=1).round(2)
 
-for c in agg_cols:
-    if len(agg_cols[c])>1:
-        n=f"{c} ({','.join([i.split('_')[-1] for i in agg_cols[c]])})"
-        gdf[n]=gdf[agg_cols[c]].mean(axis=1)
-        gdf.drop(agg_cols[c],axis=1,inplace=True)
+        if drop_individual_aq:
+            gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 
-gdf=gdf.reindex(sorted(gdf.columns), axis=1)
-# %% 
-
-#%% 
-
-
+gdf = gdf.reindex(sorted(gdf.columns), axis=1)
 
 #%% compute total
-gdf.drop('zTotal',axis=1,inplace=True)
+# gdf.drop("zTotal", axis=1, inplace=True)
 #%%
-gdf["Total"]=gdf.mean(axis=1,numeric_only=True)
-gdf.sort_values(by='Total',ascending=False,inplace=True)
-# table= [gdf.columns.values.tolist()] + gdf.values.tolist()
-# del gdf
+gdf["Total"] = gdf[agg_cols].mean(axis=1, numeric_only=True).round(2)
+# gdf.sort_values(by="Total", ascending=False, inplace=True)
+gdf.sort_values(by="1_Roll", ascending=True, inplace=True)
 
 # %% pygsheets
-# from lib.pds_pygsheets import auth,get_worksheet
-# c=auth()
 
+## use to set ws_name as moodle provides
 # ws_name=gfpath.stem.replace("-comma_separated","")
-ws_name="PDS Lab Grades"
-ws=get_worksheet(c=cauth,title=ws_name,rows=1,cols=1)
-#%%
-ws.frozen_rows=0
-ws.frozen_cols=0
-ws.clear()
-ws.resize(1,1)
-#%%
-# ws.unlink()
-# ws.append_table(table,overwrite=True)
-ws.set_dataframe(gdf,start=(1,1),fit=True,copy_index=True)
-ws.cell((1,1)).value="1_Roll"
-ws.frozen_rows=1
-ws.frozen_cols=2
-# ws.adjust_column_width(start=0,end=cols,)
-rows,cols=gdf.shape
-ws.adjust_column_width(start=1,pixel_size=80)
-ws.adjust_column_width(start=cols,pixel_size=50)
-ws.adjust_column_width(start=3,end=cols)
-# cauth
-# ws.link()
+from lib.pds_pygsheets import auth, get_worksheet, viva_marks_url, get_spreadsheet
+
+
+def push_to_sheets(cauth, ws_name, gdf):
+    print("Pygsheets auth success")
+    ws = get_worksheet(c=cauth, title=ws_name, rows=1, cols=1)
+    # ws2 = get_worksheet(c=cauth, title=ws_name, rows=1, cols=1)
+    #%%
+    ws.frozen_rows = 0
+    ws.frozen_cols = 0
+    ws.clear()
+    ws.resize(1, 1)
+    #%%
+    # ws.unlink()
+    # ws.append_table(table,overwrite=True)
+    ws.set_dataframe(gdf, start=(1, 1), fit=True, copy_index=True)
+    ws.cell((1, 1)).value = "1_Roll"
+    ws.frozen_rows = 1
+    ws.frozen_cols = 2
+    # ws.adjust_column_width(start=0,end=cols,)
+    rows, cols = gdf.shape
+    ws.adjust_column_width(start=1, pixel_size=80)
+    ws.adjust_column_width(start=cols, pixel_size=50)
+    ws.adjust_column_width(start=3, end=cols)
+
+    print("Successfully pushed to ", ws_name)
+
+
 # %%
+ws_name = "PDS Lab Grades"
+ws2_name = "Nishkal - Student Grades"
+#%% Auth
+cauth = auth()
+my_students = get_students(only_roll=1)
+# push_to_sheets(cauth, ws_name, gdf.loc[:, ["2_Student"] + agg_cols + ["Total"]])
+gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
+gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
+push_to_sheets(cauth, ws2_name, gdf_my_students)

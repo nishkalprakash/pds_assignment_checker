@@ -11,7 +11,7 @@ from lib.pds_file_op import (
     push,
     set_plag_files,
 )
-from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BR, TEST_, TMP, DELIM
+from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BR, TEST_, TMP, DELIM, VAR
 
 ## Reset the test cases and code questions default text
 def reset_test_code():
@@ -107,14 +107,15 @@ def format_test_cases():
 
 
 def format_mystudents():
-    std = get_students()
+    # std = get_students(f"{VAR}/my_students.txt"path=only_roll=1)
     n = get_map_roll_to_name()
-    push("var\my_students.txt", [f"{i},{n[i]}" for i in std], attr="w")
+    std = pull(f"{VAR}/my_students_sorted.txt")
+    push(f"{VAR}/my_students.txt", [f"{i},{n[i]}" for i in std], attr="w")
 
 
 if __name__ == "__main__":
     # reset_test_code()
-    format_test_cases()
+    # format_test_cases()
     # format_mystudents()
     # set_plag_files()
     ## TODO: update assignment reports with plag from moodle

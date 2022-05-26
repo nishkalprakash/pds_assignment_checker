@@ -85,5 +85,6 @@ bimal gayali;14802;21MA10017
 hemanth gunnu;14790;21BT30006
 janak patel;15348;21AG30027
 pavan vankudoth;14807;21CH10075
+shiva kethavath;15353;21MI10029
 shivam ratne;15365;21PH10033
 subhash kumar ola;14727;21MT10055

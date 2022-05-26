@@ -56,6 +56,6 @@ Path(f"{VAR}/mapping.txt").write_text(
     )
 )
 
-Path("students.txt").write_text("\n".join(sorted(std_id_roll_dict.keys())))
+# Path("students.txt").write_text("\n".join(sorted(std_id_roll_dict.keys())))
 
-print(f"Done for mapping.txt & students.txt and added {n} students")
+print(f"Done for mapping.txt and added {n} students")

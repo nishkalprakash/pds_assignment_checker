@@ -233,12 +233,17 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False):
     return d
 
 
-def get_students(path=None):
+def get_students(path=None,only_roll=0,only_names=0):
     """Returns the students list"""
     from lib.pds_globals import VAR
-
+    std=[]
     if path is None:
-        return pull(f"{VAR}/my_students.txt")
+        std=pull(f"{VAR}/my_students.txt")
+        if only_roll:
+            return [i[0] for i in std]
+        if only_names:
+            return [i[1] for i in std]
+        return std
     return pull(path)
 
 
