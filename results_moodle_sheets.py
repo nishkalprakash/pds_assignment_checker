@@ -73,11 +73,11 @@ del hdf
 from lib.pds_pygsheets import auth,get_worksheet,viva_marks_url,get_spreadsheet
 cauth=auth()
 #%% Add Viva data here
-viva=get_worksheet(cauth,sp=get_spreadsheet(cauth,url=viva_marks_url),title="Sheet1")
-#%%
-ids=[i[0].strip() for i in viva.get_values(start='C3',end='C94')]
-gdf['Viva_1']=pd.Series([i[0] for i in viva.get_values(start='G3',end='G94')],index=ids,dtype=float)
-gdf['Viva_2']=pd.Series([i[0] for i in viva.get_values(start='J3',end='J94')],index=ids,dtype=float)
+# viva=get_worksheet(cauth,sp=get_spreadsheet(cauth,url=viva_marks_url),title="Sheet1")
+# #%%
+# ids=[i[0].strip() for i in viva.get_values(start='C3',end='C94')]
+# gdf['Viva_1']=pd.Series([i[0] for i in viva.get_values(start='G3',end='G94')],index=ids,dtype=float)
+# gdf['Viva_2']=pd.Series([i[0] for i in viva.get_values(start='J3',end='J94')],index=ids,dtype=float)
 
 #%% Average teh marks here
 agg_cols={}

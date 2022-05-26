@@ -11,7 +11,7 @@ from lib.pds_file_op import (
     push,
     set_plag_files,
 )
-from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BR, TEST_, TMP
+from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BR, TEST_, TMP, DELIM
 
 ## Reset the test cases and code questions default text
 def reset_test_code():
@@ -31,12 +31,15 @@ from lib.pds_file_op import (
 )
 from lib.pds_globals import A_Q_REPORT_PATH_, BR
 
-
+## REMOVE NEGATIVE MARKING AND CHANGE DELIMITER
 def results_edit():
     a, ql = get_a_ql_from_user()
     for q in ql.split():
         report = A_Q_REPORT_PATH_.format(a=a, q=q)
-        sd = get_std_roll_to_m_c_dict(a, q, ml=True, DELIM=",")
+        # DELIM=DELIM
+        DELIM = ","
+
+        sd = get_std_roll_to_m_c_dict(a, q, ml=True, DELIM=DELIM)
         ## Modify file here
         rl = []
         for s in sd:
@@ -70,7 +73,7 @@ def results_edit():
                 + [sd[s]["c"].replace("\n", BR).replace(BR + BR, BR)]
             )
         # push(report, [get_head_from_report(a, q, DELIM=",")], attr="w")
-        push(report, [get_head_from_report(a, q)], attr="w")
+        push(report, [get_head_from_report(a, q, DELIM=DELIM)], attr="w")
         push(report, rl)
 
         ## Recombine and push
@@ -111,11 +114,11 @@ def format_mystudents():
 
 if __name__ == "__main__":
     # reset_test_code()
-    # format_test_cases()
+    format_test_cases()
     # format_mystudents()
     # set_plag_files()
     ## TODO: update assignment reports with plag from moodle
     # format_plag_email_file()
 
-    results_edit()
+    # results_edit()
     pass
