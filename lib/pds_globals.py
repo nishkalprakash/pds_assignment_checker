@@ -13,14 +13,14 @@ LIB = "lib"
 TMP = "tmp"
 
 DELIM = ";"
-BR = "!!"
+BR = "~~"
 
 MOODLE_A_NAME_ = "Lab Test {a} - Question "
 MOODLE_A_NAME_ = "Assignment {a} - Question "  # COMMENT THIS FOR LT
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
 # Base is the assignment type
-BASE = "LT" 
+BASE = "LT"
 BASE = "A"  # COMMENT THIS FOR LT
 Q_BASE = "Q"
 
@@ -32,6 +32,9 @@ A_Q_ = A_ + "_" + Q_
 
 A_Q_PATH_ = A_PATH_ + "/" + Q_
 
+## Question in description feature
+PS_ = A_Q_ + "_problem_statement.txt"
+PS_PATH_ = A_Q_PATH_ + "/" + A_Q_ + "_problem_statement.txt"
 
 ## CHECKER FEATURE
 TEST_ = A_Q_ + "_test_cases.txt"
@@ -57,7 +60,11 @@ A_Q_REPORT_PATH_ = A_Q_PATH_ + "/" + A_Q_REPORT_
 
 MOODLE_COURSE_ID = 475
 
-
+## SUBMISSION FEAUTRE
+A_Q_SUB_ = A_Q_ + "_submissions.csv"
+A_Q_SUB_PATH_ = A_Q_PATH_ + "/" + A_Q_SUB_
+A_SUB_ = A_ + "_submissions.csv"
+A_SUB_PATH_ = A_PATH_ + "/" + A_SUB_
 ## 2021 - Spring - Pattern
 # ASSIGN_NAME_PATTERN="{BASE} {a} problem"
 # ASSIGN_Q_NAME_PATTERN="{BASE} {a} problem {q}"
@@ -70,19 +77,19 @@ MOODLE_COURSE_ID = 475
 # ASSIGN_Q_NAME_PATTERN_=ASSIGN_NAME_PATTERN+"{q})"
 
 TEST_DEMO = f"""
-# Format: `{{marks}};{{label}};{{test_case}}`
+# Format: `{{marks}}{DELIM}{{label}}{DELIM}{{test_case}}`
 # * For Example:
 # ```csv
-# 10;{BR}INPUT:{BR}123{BR}{BR}OUTPUT:{BR}321{BR}{BR};123
-# 10;{BR}INPUT:{BR}101{BR}{BR}OUTPUT:{BR}101{BR}{BR};101
-# 10;{BR}INPUT:{BR}993{BR}{BR}OUTPUT:{BR}399{BR}{BR};993
-# 10;{BR}INPUT:{BR}100{BR}{BR}OUTPUT:{BR}1{BR}{BR};100
+10{DELIM}{BR}INPUT:{BR}123{BR}{BR}OUTPUT:{BR}321{BR}{BR}{DELIM}123
+10{DELIM}{BR}INPUT:{BR}101{BR}{BR}OUTPUT:{BR}101{BR}{BR}{DELIM}101
+10{DELIM}{BR}INPUT:{BR}993{BR}{BR}OUTPUT:{BR}399{BR}{BR}{DELIM}993
+10{DELIM}{BR}INPUT:{BR}100{BR}{BR}OUTPUT:{BR}1{BR}{BR}{DELIM}100
 # ```
 """.strip()
 
 CODE_DEMO = """
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+30{DELIM}Logic is correct and gives expected output
+30{DELIM}Efficient and Optimal steps used to get to output
+-5{DELIM}Comments missing, logic hard to understand
+-5{DELIM}Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
 """.strip()

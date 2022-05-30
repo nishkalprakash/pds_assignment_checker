@@ -102,7 +102,7 @@ def format_test_cases():
                 "\n",
             ]
             push(p, out, attr="a+")
-
+        print("Done for ", p.name)
     # for _ in q.split(): cbf(a,_)
 
 
@@ -115,7 +115,7 @@ def format_mystudents():
 
 if __name__ == "__main__":
     # reset_test_code()
-    # format_test_cases()
+    format_test_cases()
     # format_mystudents()
     # set_plag_files()
     ## TODO: update assignment reports with plag from moodle

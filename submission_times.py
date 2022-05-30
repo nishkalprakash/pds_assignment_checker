@@ -8,7 +8,7 @@ from lib.pds_file_op import (
     dict_to_csv,
     csv_to_dict,
 )
-from lib.pds_globals import BASE, HOME, VAR
+from lib.pds_globals import A_PATH_, A_Q_SUB_PATH_, A_SUB_PATH_, BASE, HOME, VAR
 from lib.pds_selenium import (
     driver_get_from_topic,
     driver_get_topics_from_a,
@@ -19,14 +19,14 @@ from pathlib import Path
 
 a = get_a_ql_from_user(q=False)
 # a='4'
-out = Path(f"{HOME}/{BASE}_{a}/comb_submissions.csv")
+out = Path(A_SUB_PATH_.format(a=a))
+
 if not out.parent.exists():
     out.parent.mkdir(parents=True, exist_ok=True)
 
 # c=input("Enter the Column Letter: ").strip()
 # range = f"B3:{c.upper()}94"
-map_name_to_roll = get_map_roll_to_name()
-
+map_name_to_roll = get_map_roll_to_name(rev=True)
 if not out.exists():
     ## get q from the folders first and check if submissions file exists
     q_list = get_q_list_from_a(a)
@@ -36,7 +36,7 @@ if not out.exists():
     std_time_dict = {}
     driver = init_selenium()
     for q in q_list:
-        out_q = Path(f"{HOME}/{BASE}_{a}/Question_{q}/submissions.csv")
+        out_q = Path(A_Q_SUB_PATH_.format(a=a, q=q))
         if out_q.exists():
             std_time_dict = csv_to_dict(out_q, std_time_dict)
             continue
@@ -46,12 +46,13 @@ if not out.exists():
         ## Open the topic and fetch the submission time for the student
         driver_get_from_topic(driver, q_topic["topic_id"])
         ## TODO: fetch the submission times
-        t_elems = driver.find_elements_by_xpath(
-            "//table[contains(@class,'generaltable')]/tbody/tr[not(contains(@class,'emptyrow'))]"
+        t_elems = driver.find_elements(
+            by="xpath",
+            value="//table[contains(@class,'generaltable')]/tbody/tr[not(contains(@class,'emptyrow'))]",
         )
         # table.append([th.text for th in t_elem.find_elements_by_xpath('.//th')])
         for tr in t_elems:
-            row = [td.text.strip() for td in tr.find_elements_by_xpath(".//td")]
+            row = [td.text.strip() for td in tr.find_elements(by='xpath',value=".//td")]
             # table.append()
             if row[2]:
                 val = (
@@ -59,12 +60,15 @@ if not out.exists():
                     if row[8] and row[9]
                     else f"Question_{q_topic['q']} Not Submitted"
                 )
-                try:
-                    std_time_dict[map_name_to_roll[row[2]]].extend([val])
-                except:
-                    std_time_dict[map_name_to_roll[row[2]]] = [val]
 
-                q_sub_dict[map_name_to_roll[row[2]]] = val
+                if not row[3]:
+                    row[3] = map_name_to_roll[row[2]]
+                try:
+                    std_time_dict[row[3]].extend([val])
+                except KeyError:
+                    std_time_dict[row[3]] = [val]
+
+                q_sub_dict[row[3]] = val
         # tables.append(table)
         ## Save the data in a file and just pull if it exissts
         dict_to_csv(out_q, q_sub_dict)

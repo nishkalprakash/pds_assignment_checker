@@ -11,6 +11,7 @@ from lib.pds_globals import (
     A_PATH_,
     A_Q_,
     A_Q_PATH_,
+    A_Q_PLAG_,
     A_Q_PLAG_PATH_,
     A_Q_REPORT_,
     A_Q_REPORT_PATH_,
@@ -143,7 +144,9 @@ def pds_checker(a, q):
                 try:
                     file_exists = True
                     c = next(home.glob(f"*{std_name}*"))
-                    system(f'START /B "" "{c}"')  # Opens the file in the background
+                    system(
+                        f'START /MIN /B "" "{c}"'
+                    )  # Opens the file in the background
                 except StopIteration as si:
                     print(f"C File for  {std_roll} - {std_name} not found")
                     comments.append(
@@ -152,6 +155,12 @@ def pds_checker(a, q):
                     file_exists = False
                 ## Compile and run THE C FILE
                 if file_exists:
+                    ## Comment if no plag case exists
+                    if def_input("Is the code a Plag Case?", "0") != "0":
+                        t = f"\n{std_roll}{DELIM}{std_name}"
+                        push(A_Q_PLAG_.format(a=a, q=q), t)
+                        print(f"Added {t} to plag cases, Please RERUN the code")
+                        return "RERUN"
                     return_code = system(f'gcc "{c}"')
                     if return_code == 0:
                         print("Code ran successfully")
@@ -415,6 +424,7 @@ def pds_checker(a, q):
             # return
 
     print("Report has been generated.")
+    return 0
 
 
 if __name__ == "__main__":
@@ -422,5 +432,7 @@ if __name__ == "__main__":
     a, ql = get_a_ql_from_user()
     ## Set base to the required directory
     for q in ql.split():
-        pds_checker(a, q)
-        chdir(base_home)
+        x = "RERUN"
+        while x == "RERUN":
+            x = pds_checker(a, q)
+            chdir(base_home)

@@ -90,7 +90,7 @@ def def_input(text, default=""):
 
 
 ## Gets input from user
-def get_a_ql_from_user():
+def get_a_ql_from_user(q=True):
     """Accepts Assignment Number and Question Number
     Support for checking multiple questions added.
     It will return a ' ' separated string for multiple questions
@@ -109,6 +109,9 @@ def get_a_ql_from_user():
     a = def_input(f"Please enter the {BASE} number", latest_a)
     ## CURRENTLY supports one question check at a time
     ## q stores the question number
+    if not q:
+        return a
+
     ll = Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*")
     all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
     ql = def_input(f"Please enter the {Q_BASE} number", all_q)
@@ -233,18 +236,22 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False):
     return d
 
 
-def get_students(path=None,only_roll=0,only_names=0):
+def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False):
     """Returns the students list"""
     from lib.pds_globals import VAR
-    std=[]
+
+    std = []
     if path is None:
-        std=pull(f"{VAR}/my_students.txt")
-        if only_roll:
-            return [i[0] for i in std]
-        if only_names:
-            return [i[1] for i in std]
-        return std
-    return pull(path)
+        path = f"{VAR}/my_students.txt"
+    std = pull(path)
+    if sort_by_name:
+        std.sort(key=lambda x: x[1].lower())
+
+    if only_roll:
+        return [i[0] for i in std]
+    if only_names:
+        return [i[1] for i in std]
+    return std
 
 
 def get_test_cases(a, q, cwd=True):
@@ -293,30 +300,41 @@ def get_map_roll_to_name(rev=None, moodle=None):
     return {x[key]: x[val] for x in pull(f"{VAR}/mapping.txt")}
 
 
-def set_plag_files():
-    a, ql = get_a_ql_from_user()
+def set_plag_files(a=None, ql=None):
+    if not a or not ql:
+        a, ql = get_a_ql_from_user()
     for q in ql.split():
         a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))
         ## HACK END
-        push(a_q_plag, sorted(get_students(), key=lambda i: i[1].lower()), attr="w+")
+        push(a_q_plag, get_students(sort_by_name=1), attr="w+")
         print(a_q_plag, " file created")
     plag_email = Path(A_PLAG_EMAIL_PATH_.format(a=a))
-    plag_email.touch()
-    print(plag_email, " file set")
+    if not plag_email.exists():
+        plag_email.touch()
+        print(plag_email, " file set")
 
 
 def format_plag_email_file():
-    a, ql = get_a_ql_from_user()
+    a = get_a_ql_from_user(q=False)
     plag_email = Path(A_PLAG_EMAIL_PATH_.format(a=a))
     plag = plag_email.read_text()
     import re
 
-    plag = re.sub(
-        r"((\n+.*?\.jpg\n*)|(\s+and\s+)|(^\d+.\s+))", "\n", plag, flags=re.MULTILINE
-    )
-    plag = re.sub(r"\n+", "\n", plag, flags=re.MULTILINE)
-
+    exp_to_remove = [
+        r".*?\.(jpg|png)\n*",
+        r"\d+\.(\s+)?",
+        r"Hi.*$",
+        r"Please.*$",
+        "Thanks",
+        "Subham Jana",
+    ]
+    exp_to_replace_with_nl = [r"\s+and\s+", r"\n+"]
+    for exp in exp_to_remove:
+        plag = re.sub(exp, "", plag)
+    for exp in exp_to_replace_with_nl:
+        plag = re.sub(exp, "\n", plag, flags=re.MULTILINE)
     ## TODO: Sort names after every question
+    # std=re.findall(r'http://.*\n(.*)http://')
     plag_email.write_text(plag)
     print(plag_email, " Formatted")
 
@@ -369,8 +387,7 @@ def create_base_folders(a, q):
     Path(test_cases).write_text(TEST_DEMO)
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
 
-    set_plag_files()
-    # format_plag_file()
+    set_plag_files(a=a, ql=q)
 
     return 0
 

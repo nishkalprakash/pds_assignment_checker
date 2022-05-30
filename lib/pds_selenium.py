@@ -5,15 +5,14 @@ from re import findall
 
 from pathlib import Path
 from lib.pds_globals import (
-    A_Q_,
     A_Q_PATH_,
-    Q_,
+    PS_PATH_,
     VAR,
     LIB,
-    HOME,
     MOODLE_A_NAME_,
     MOODLE_A_Q_NAME_,
     A_PATH_,
+    print,
 )
 
 ## SELENIUM FUNCTIONS
@@ -180,17 +179,20 @@ def get_assignments(a):
 
     q_topic_list = driver_get_topics_from_a(driver, a)
     for q_topic in q_topic_list:
-        q_base = f"{A_Q_PATH_.format(a=a,q=q_topic['q'])}"
+        q = q_topic["q"]
+        q_base = Path(f"{A_Q_PATH_.format(a=a,q=q)}")
         if not next(q_base.glob("PDS*"), False):
-            create_base_folders(a, q_topic["q"])
+            create_base_folders(a, q)
             driver_get_from_topic(driver, q_topic["topic_id"], "downloadall")
-            unzip(a_base, q_topic["q"])
+            unzip(a_base, q)
         # ## HACK SEM 6: This is for a case where question is given in intro
-        # ques=f'{A_Q_PATH_.format(a=a,q=q_topic["q"])}_Question.txt'
-        # ## HACK END
-        # if not ques.exists():
-        #     ques.write_text(driver_get_from_topic(driver,q_topic['topic_id'],'question'))
-        #     print(ques.name," Fetched")
+        ps_path = Path(PS_PATH_.format(a=a, q=q))
+        ## HACK END
+        if not ps_path.exists():
+            ps_path.write_text(
+                driver_get_from_topic(driver, q_topic["topic_id"], "question")
+            )
+            print(ps_path.name, " Fetched")
         # HACK SEM 6: This is for a plag cases
         ## Support for plag checking,
         # initially all are conisdered plag case,
