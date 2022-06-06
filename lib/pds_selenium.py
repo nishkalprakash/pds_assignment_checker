@@ -2,6 +2,8 @@
 
 from lib.pds_file_op import get_students, printf, create_base_folders, push, unzip
 from re import findall
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 from pathlib import Path
 from lib.pds_globals import (
@@ -11,10 +13,9 @@ from lib.pds_globals import (
     LIB,
     MOODLE_A_NAME_,
     MOODLE_A_Q_NAME_,
-    A_PATH_,
-    print,
+    A_PATH_
 )
-
+from lib.pds_file_op import print
 ## SELENIUM FUNCTIONS
 
 
@@ -42,7 +43,9 @@ def driver_get_course(driver, course_id=None):
         from lib.pds_globals import MOODLE_COURSE_ID
 
         course_id = MOODLE_COURSE_ID
+    
     driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id={course_id}")
+    # input("Press any key to continue: ")
     if "login" in driver.current_url:
         print("Aw Snap! Crome session expired X_X ")
         moodle_login(driver)
@@ -82,6 +85,7 @@ def insert(driver, id, data):
 def moodle_login(driver):
     print("Trying to login to moodle")
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
+    # input("Press any key to continue: ")
     from lib.pds_file_op import pull
 
     username, password = pull(f"{VAR}/creds.txt")[0].split(":")
@@ -112,20 +116,24 @@ def init_selenium(def_dwnld_dir=None):
             "download.default_directory": f"{def_dwnld_dir.absolute()}",
             "download.prompt_for_download": False,
             "download.directory_upgrade": True,
-            # "safebrowsing_for_trusted_sources_enabled": False,
-            # "safebrowsing.enabled": False
+            "safebrowsing_for_trusted_sources_enabled": False,
+            "safebrowsing.enabled": False
         }
         options.add_experimental_option("prefs", prefs)
     # options.add_argument("--start-maximized")
     # options.add_argument(f"--user-data-dir={Path(VAR).absolute()/'moodle_chrome_data'}")
-    driver = webdriver.Chrome(
-        executable_path=f"{LIB}/chromedriver.exe", options=options
-    )
+    service = Service(executable_path=ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
+    # driver = webdriver.Chrome(
+        # executable_path=f"{LIB}/chromedriver.exe", options=options
+    # )
 
     # driver.implicitly_wait(2)
     # driver.maximize_window()
 
+    moodle_login(driver)
     driver_get_course(driver)
+
     print("Selenium Driver Successfully initialized")
     return driver
 

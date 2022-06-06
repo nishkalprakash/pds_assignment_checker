@@ -75,8 +75,8 @@ for question in Path().glob("*/"):
     print(moss_command)
     # system(moss_command)
     for line in run_command(moss_command):
-        print(line.strip())
-        push(mq, line.strip())
+        print(line)
+        push(mq, line)
     # print("Moss finished running - now sleeping for 10 secs")
     # sleep(10)
     chdir(assign_folder_name / question)

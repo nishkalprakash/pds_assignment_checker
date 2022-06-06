@@ -1,17 +1,16 @@
 ## FILE READ WRITE Operations
 from pathlib import Path
-from posixpath import split
 from re import findall, sub
 from time import strftime
+
+from subprocess import PIPE, Popen
+from time import sleep
 
 from lib.pds_globals import (
     A_,
     A_PATH_,
-    A_PLAG_EMAIL_,
     A_PLAG_EMAIL_PATH_,
-    A_Q_,
     A_Q_PATH_,
-    A_Q_PLAG_,
     A_Q_PLAG_PATH_,
     A_Q_REPORT_,
     A_Q_REPORT_PATH_,
@@ -59,14 +58,12 @@ def run_command(command):
     Yields:
         str: the output line wise
     """
-    from subprocess import PIPE, Popen
-    from time import sleep
 
     p = Popen(command, stdout=PIPE, stderr=PIPE, shell=True, text=True)
     # Read stdout from subprocess until the buffer is empty !
     for line in iter(p.stdout.readline, ""):
         if line:  # Don't print blank lines
-            yield line
+            yield line.strip()
     # This ensures the process has completed, AND sets the 'returncode' attr
     while p.poll() is None:
         sleep(0.1)  # Don't waste CPU-cycles

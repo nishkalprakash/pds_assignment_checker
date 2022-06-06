@@ -3,7 +3,7 @@
 
 #%% Imports
 from time import sleep
-from lib.pds_file_op import def_input, get_map_roll_to_name, get_students, print
+from lib.pds_file_op import def_input, get_map_roll_to_name, get_students, print, pull
 
 from lib.pds_globals import MOODLE_COURSE_ID, TMP
 from lib.pds_selenium import init_selenium, Path
@@ -16,7 +16,7 @@ if fetch:
     driver.get(
         f"https://moodlecse.iitkgp.ac.in/moodle/grade/export/txt/index.php?id={MOODLE_COURSE_ID}"
     )
-    driver.find_element_by_id("id_submitbutton").click()
+    driver.find_element(by='id',value="id_submitbutton").click()
     sleep(2)
     driver.close()
 #%% Clean Grades (remove unnecessary or empty cols)
@@ -43,6 +43,7 @@ remc = [
     "Last downloaded from this course",
     "Course total (Real)",
     # "Assignment: Assignment 1 problem 2 submission (Real)",
+    "Assignment: _Assignment_ 4 - Question 4 (Real)",
 ]
 nan = float("NaN")
 ## Drop cols defined in remc
@@ -103,6 +104,7 @@ for i in gdf.columns:
         a_to_aq_dict[i.split("_")[0]].append(i)
     except:
         a_to_aq_dict[i.split("_")[0]] = [i]
+## `agg_cols` list: ['A1 (Q1,...,Q5)','LT1 (Q1...)]
 agg_cols = []
 drop_individual_aq = def_input("Drop A#_Q# cols? ", 0)
 for c in a_to_aq_dict:
@@ -160,8 +162,13 @@ ws_name = "PDS Lab Grades"
 ws2_name = "Nishkal - Student Grades"
 #%% Auth
 cauth = auth()
+# my_students = pull(path=r'var\my_students_sorted.txt')
+# missing=['20AE30026', '20AG10035', '21HS10037']
+# my_students = [i for i in my_students if i not in missing]
+# push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
+
+##
 my_students = get_students(only_roll=1)
-# push_to_sheets(cauth, ws_name, gdf.loc[:, ["2_Student"] + agg_cols + ["Total"]])
 gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
 gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
 push_to_sheets(cauth, ws2_name, gdf_my_students)

@@ -16,12 +16,12 @@ DELIM = ";"
 BR = "~~"
 
 MOODLE_A_NAME_ = "Lab Test {a} - Question "
-MOODLE_A_NAME_ = "Assignment {a} - Question "  # COMMENT THIS FOR LT
+# MOODLE_A_NAME_ = "Assignment {a} - Question "  # COMMENT THIS FOR LT
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
 # Base is the assignment type
 BASE = "LT"
-BASE = "A"  # COMMENT THIS FOR LT
+# BASE = "A"  # COMMENT THIS FOR LT
 Q_BASE = "Q"
 
 A_ = BASE + "{a}"
