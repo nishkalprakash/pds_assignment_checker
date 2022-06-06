@@ -87,7 +87,7 @@ TEST_DEMO = f"""
 # ```
 """.strip()
 
-CODE_DEMO = """
+CODE_DEMO =f"""
 30{DELIM}Logic is correct and gives expected output
 30{DELIM}Efficient and Optimal steps used to get to output
 -5{DELIM}Comments missing, logic hard to understand

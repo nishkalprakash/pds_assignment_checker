@@ -156,11 +156,11 @@ def pds_checker(a, q):
                 ## Compile and run THE C FILE
                 if file_exists:
                     ## Comment if no plag case exists
-                    if def_input("Is the code a Plag Case?", "0") != "0":
-                        t = f"\n{std_roll}{DELIM}{std_name}"
-                        push(A_Q_PLAG_.format(a=a, q=q), t)
-                        print(f"Added {t} to plag cases, Please RERUN the code")
-                        return "RERUN"
+                    # if def_input("Is the code a Plag Case?", "0") != "0":
+                    #     t = f"\n{std_roll}{DELIM}{std_name}"
+                    #     push(A_Q_PLAG_.format(a=a, q=q), t)
+                    #     print(f"Added {t} to plag cases, Please RERUN the code")
+                    #     return "RERUN"
                     return_code = system(f'gcc "{c}"')
                     if return_code == 0:
                         print("Code ran successfully")
