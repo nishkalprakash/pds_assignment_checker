@@ -155,11 +155,11 @@ def dict_to_csv(path, d):
     """
     try:
         Path(path).write_text(
-            "\n".join(sorted(",".join([k] + v) for k, v in d.items()))
+            "\n".join(sorted(DELIM.join([k] + v) for k, v in d.items()))
         )
     except TypeError:
         Path(path).write_text(
-            "\n".join(sorted(",".join([k] + [v]) for k, v in d.items()))
+            "\n".join(sorted(DELIM.join([k] + [v]) for k, v in d.items()))
         )
 
 
@@ -172,12 +172,16 @@ def csv_to_dict(path, d):
 
     """
     ll = pull(path)
+    if DELIM not in ll[0]:
+        DELIM = ','
+
     for l in ll:
-        l = l.split(",")
+        l = l.split(DELIM)
         try:
             d[l[0]].extend(l[1:])
         except:
             d[l[0]] = l[1:]
+
     return d
 
 
@@ -206,7 +210,7 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False):
     # if not report.exists():
     #         report = report
 
-    # text_list = pull(report, DELIM=",")
+    # text_list = pull(report, DELIM=DELIM)
     text_list = pull(report, DELIM=DELIM)
     # text_list = text.split("\n")
     head = text_list[0]
@@ -215,7 +219,7 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False):
     d = dict()
     # Marks are taken directly from the total column, so if marks just deducted from there, its OK
     for l in lines:
-        # l = line.split(",")
+        # l = line.split(DELIM)
         std = l[0].strip('"')
         d[std] = {
             "m": l[index].strip(),

@@ -50,11 +50,13 @@ nan = float("NaN")
 gdf = gdf.drop(remc, axis=1)
 
 ## replace empty values with `nan`
-gdf = gdf.replace("-", nan)
+# gdf = gdf.replace("-", nan)
 
 ## Drop all cols that have na
 gdf = gdf.dropna(how="all", axis=1)
 
+# gdf = gdf.loc[:,gdf]
+# df.loc[:, (df.isnull().sum(axis=0) <= max_number_of_nas)]
 ## replace na with 0
 gdf.fillna(0, inplace=True)
 gdf = gdf.apply(pd.to_numeric, errors="ignore")
@@ -106,22 +108,22 @@ for i in gdf.columns:
         a_to_aq_dict[i.split("_")[0]] = [i]
 ## `agg_cols` list: ['A1 (Q1,...,Q5)','LT1 (Q1...)]
 agg_cols = []
-drop_individual_aq = def_input("Drop A#_Q# cols? ", 0)
+# drop_individual_aq = def_input("Drop A#_Q# cols? ", 0)
 for c in a_to_aq_dict:
     if len(a_to_aq_dict[c]) > 1:
         n = f"{c} ({','.join([i.split('_')[-1] for i in a_to_aq_dict[c]])})"
         agg_cols.append(n)
-        gdf[n] = gdf[a_to_aq_dict[c]].mean(axis=1).round(2)
+        gdf[n] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').mean(axis=1).round(2)
 
-        if drop_individual_aq:
-            gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
+        # if drop_individual_aq:
+        #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 
 gdf = gdf.reindex(sorted(gdf.columns), axis=1)
 
 #%% compute total
 # gdf.drop("zTotal", axis=1, inplace=True)
 #%%
-gdf["Total"] = gdf[agg_cols].mean(axis=1, numeric_only=True).round(2)
+gdf["Total"] = gdf[agg_cols].mean(axis=1).round(2)
 # gdf.sort_values(by="Total", ascending=False, inplace=True)
 gdf.sort_values(by="1_Roll", ascending=True, inplace=True)
 
@@ -162,13 +164,14 @@ ws_name = "PDS Lab Grades"
 ws2_name = "Nishkal - Student Grades"
 #%% Auth
 cauth = auth()
-# my_students = pull(path=r'var\my_students_sorted.txt')
-# missing=['20AE30026', '20AG10035', '21HS10037']
-# my_students = [i for i in my_students if i not in missing]
-# push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
+my_students = pull(path=r'var\my_students_sorted.txt')
+missing=['20AE30026', '20AG10035', '21HS10037']
+my_students = [i for i in my_students if i not in missing]
+push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
 
 ##
 my_students = get_students(only_roll=1)
-gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
+# gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
+gdf_my_students = gdf.loc[my_students,:]
 gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
 push_to_sheets(cauth, ws2_name, gdf_my_students)

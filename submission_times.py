@@ -1,4 +1,3 @@
-from time import sleep
 from lib.pds_file_op import (
     get_a_ql_from_user,
     get_q_list_from_a,
@@ -8,7 +7,7 @@ from lib.pds_file_op import (
     dict_to_csv,
     csv_to_dict,
 )
-from lib.pds_globals import A_PATH_, A_Q_SUB_PATH_, A_SUB_PATH_, BASE, HOME, VAR
+from lib.pds_globals import A_PATH_, A_Q_SUB_PATH_, A_SUB_PATH_, VAR
 from lib.pds_selenium import (
     driver_get_from_topic,
     driver_get_topics_from_a,
