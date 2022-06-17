@@ -1,4 +1,3 @@
-#!/usr/bin/perl
 #
 # Please read all the comments down to the line that says "TOP".
 # These comments are divided into three sections:
@@ -50,10 +49,10 @@
 # The -b option names a "base file".  Moss normally reports all code
 # that matches in pairs of files.  When a base file is supplied,
 # program code that also appears in the base file is not counted in matches.
-# A typical base file will include, for example, the instructor-supplied
-# code for an assignment.  Multiple -b options are allowed.  You should
-# use a base file if it is convenient; base files improve results, but
-# are not usually necessary for obtaining useful information.
+# A typical base file will include, for example, the instructor-supplied 
+# code for an assignment.  Multiple -b options are allowed.  You should 
+# use a base file if it is convenient; base files improve results, but 
+# are not usually necessary for obtaining useful information. 
 #
 # IMPORTANT: Unlike previous versions of moss, the -b option *always*
 # takes a single filename, even if the -d option is also used.
@@ -68,29 +67,29 @@
 #  Submit all of the ML programs in directories asn1.96/* and asn1.97/*, where
 #  asn1.97/instructor/example.ml and asn1.96/instructor/example.ml contain the base files.
 #
-#    moss -l ml -b asn1.97/instructor/example.ml -b asn1.96/instructor/example.ml -d asn1.97/*/*.ml asn1.96/*/*.ml
+#    moss -l ml -b asn1.97/instructor/example.ml -b asn1.96/instructor/example.ml -d asn1.97/*/*.ml asn1.96/*/*.ml 
 #
 # The -m option sets the maximum number of times a given passage may appear
 # before it is ignored.  A passage of code that appears in many programs
 # is probably legitimate sharing and not the result of plagiarism.  With -m N,
-# any passage appearing in more than N programs is treated as if it appeared in
+# any passage appearing in more than N programs is treated as if it appeared in 
 # a base file (i.e., it is never reported).  Option -m can be used to control
 # moss' sensitivity.  With -m 2, moss reports only passages that appear
 # in exactly two programs.  If one expects many very similar solutions
 # (e.g., the short first assignments typical of introductory programming
 # courses) then using -m 3 or -m 4 is a good way to eliminate all but
 # truly unusual matches between programs while still being able to detect
-# 3-way or 4-way plagiarism.  With -m 1000000 (or any very
-# large number), moss reports all matches, no matter how often they appear. 
-# The -m setting is most useful for large assignments where one also a base file
+# 3-way or 4-way plagiarism.  With -m 1000000 (or any very 
+# large number), moss reports all matches, no matter how often they appear.  
+# The -m setting is most useful for large assignments where one also a base file 
 # expected to hold all legitimately shared code.  The default for -m is 10.
 #
 # Examples:
 #
-#   moss -l pascal -m 2 *.pascal
+#   moss -l pascal -m 2 *.pascal 
 #   moss -l cc -m 1000000 -b mycode.cc asn1/*.cc
 #
-#
+# 
 # The -c option supplies a comment string that is attached to the generated
 # report.  This option facilitates matching queries submitted with replies
 # received, especially when several queries are submitted at once.
@@ -151,10 +150,10 @@
 use IO::Socket;
 
 #
-# As of the date this script was written, the following languages were supported.  This script will work with
+# As of the date this script was written, the following languages were supported.  This script will work with 
 # languages added later however.  Check the moss website for the full list of supported languages.
 #
-@languages = ("c", "cc", "java", "ml", "pascal", "ada", "lisp", "scheme", "haskell", "fortran", "ascii", "vhdl", "perl", "matlab", "python", "mips", "prolog", "spice", "vb", "csharp", "modula2", "a8086", "javascript", "plsql", "verilog");
+@languages = ("c", "cc", "java", "ml", "pascal", "ada", "lisp", "scheme", "haskell", "fortran", "ascii", "vhdl", "perl", "matlab", "python", "mips", "prolog", "spice", "vb", "csharp", "modula2", "a8086", "javascript", "plsql");
 
 $server = 'moss.stanford.edu';
 $port = '7690';
@@ -179,72 +178,72 @@ $opt_n = 250;
 $bindex = 0;    # this becomes non-zero if we have any base files
 
 while (@ARGV && ($_ = $ARGV[0]) =~ /^-(.)(.*)/) {
-    ($first,$rest) = ($1,$2);   
-
+    ($first,$rest) = ($1,$2);	
+    
     shift(@ARGV);
     if ($first eq "d") {
-        $opt_d = 1;
-        next;
+	$opt_d = 1;
+	next;
     }
     if ($first eq "b") {
-        if($rest eq '') {
-            die "No argument for option -b.\n" unless @ARGV;
-            $rest = shift(@ARGV);
-        }
-        $opt_b[$bindex++] = $rest;
-        next;
+	if($rest eq '') {
+	    die "No argument for option -b.\n" unless @ARGV;
+	    $rest = shift(@ARGV);
+	}
+	$opt_b[$bindex++] = $rest;
+	next;
     }
     if ($first eq "l") {
-        if ($rest eq '') {
-            die "No argument for option -l.\n" unless @ARGV;
-            $rest = shift(@ARGV);
-        }
-        $opt_l = $rest;
-        next;
+	if ($rest eq '') {
+	    die "No argument for option -l.\n" unless @ARGV;
+	    $rest = shift(@ARGV);
+	}
+	$opt_l = $rest;
+	next;
     }
     if ($first eq "m") {
-        if($rest eq '') {
-            die "No argument for option -m.\n" unless @ARGV;
-            $rest = shift(@ARGV);
-        }
-        $opt_m = $rest;
-        next;
+	if($rest eq '') {
+	    die "No argument for option -m.\n" unless @ARGV;
+	    $rest = shift(@ARGV);
+	}
+	$opt_m = $rest;
+	next;
     }
     if ($first eq "c") {
-        if($rest eq '') {
-            die "No argument for option -c.\n" unless @ARGV;
-            $rest = shift(@ARGV);
-        }
-        $opt_c = $rest;
-        next;
+	if($rest eq '') {
+	    die "No argument for option -c.\n" unless @ARGV;
+	    $rest = shift(@ARGV);
+	}
+	$opt_c = $rest;
+	next;
     }
     if ($first eq "n") {
-        if($rest eq '') {
-            die "No argument for option -n.\n" unless @ARGV;
-            $rest = shift(@ARGV);
-        }
-        $opt_n = $rest;
-        next;
+	if($rest eq '') {
+	    die "No argument for option -n.\n" unless @ARGV;
+	    $rest = shift(@ARGV);
+	}
+	$opt_n = $rest;
+	next;
     }
     if ($first eq "x") {
-        $opt_x = 1;
-        next;
+	$opt_x = 1;
+	next;
     }
     #
     # Override the name of the server.  This is used for testing this script.
     #
     if ($first eq "s") {
-        $server = shift(@ARGV);
-        next;
+	$server = shift(@ARGV);
+	next;
     }
     #
     # Override the port.  This is used for testing this script.
     #
     if ($first eq "p") {
-        $port = shift(@ARGV);
-        next;
+	$port = shift(@ARGV);
+	next;
     }
-    die "Unrecognized option -$first.  $usage\n";
+    die "Unrecognized option -$first.  $usage\n"; 
 }
 
 #
@@ -303,16 +302,15 @@ sub upload_file {
     open(F,$file);
     $size = 0;
     while (<F>) {
-        $size += length($_);
+	$size += length($_);
     }
     close(F);
 
     print "Uploading $file ...";
-    open(F,$file);
-    $file =~s/\s/\_/g;    # replace blanks in filename with underscores
     print $sock "file $id $lang $size $file\n";
+    open(F,$file);
     while (<F>) {
-        print $sock $_;
+	print $sock $_;
     }
     close(F);
     print "done.\n";
@@ -345,7 +343,7 @@ while($i < $bindex) {
 
 $setid = 1;
 foreach $file (@ARGV) {
-    &upload_file($file,$setid++,$opt_l);
+    &upload_file($file,$setid++,$opt_l); 
 }
 
 print $sock "query 0 $opt_c\n";
@@ -353,3 +351,7 @@ print "Query submitted.  Waiting for the server's response.\n";
 &read_from_server();
 print $sock "end\n";
 close($sock);
+
+
+
+
