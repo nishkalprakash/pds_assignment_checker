@@ -1,8 +1,2 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~OUTPUT:~~1~~~~;100
-# ```
+20;~~INPUT:~~Enter the image size: 6  5~~Enter the image:~~0 1 0 0 0~~0 1 1 1 0~~0 1 0 0 0~~0 0 0 0 0~~0 0 0 0 0~~1 0 0 1 1~~~~OUTPUT:~~Output image with labelled connected components:~~0 1 0 0 0~~0 1 1 1 0~~0 1 0 0 0~~0 0 0 0 0~~0 0 0 0 0~~2 0 0 3 3~~~~Number of connected components = 3~~;6 5 0 1 0 0 0 0 1 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1
+20;~~INPUT:~~Enter the image size: 9 10~~Enter the image:~~0 0 0 0 0 0 0 0 0 0~~0 0 1 1 0 0 1 1 0 0~~0 1 0 0 0 1 0 0 1 0~~0 0 1 1 0 0 1 1 0 0~~0 0 0 0 0 0 0 0 0 0~~0 0 0 0 0 0 0 0 0 0~~0 1 1 1 1 1 1 1 1 0~~0 1 1 1 1 1 1 1 1 0~~0 0 0 0 0 0 0 0 0 0~~~~OUTPUT:~~Output image with labelled connected components:~~0 0 0 0 0 0 0 0 0 0~~0 0 1 1 0 0 2 2 0 0~~0 1 0 0 0 2 0 0 2 0~~0 0 1 1 0 0 2 2 0 0~~0 0 0 0 0 0 0 0 0 0~~0 0 0 0 0 0 0 0 0 0~~0 3 3 3 3 3 3 3 3 0~~0 3 3 3 3 3 3 3 3 0~~0 0 0 0 0 0 0 0 0 0~~~~Number of connected components = 3~~;9 10 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 1 0 0 0 1 0 0 0 1 0 0 1 0 0 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0
