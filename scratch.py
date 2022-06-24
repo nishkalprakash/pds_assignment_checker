@@ -123,3 +123,24 @@ if __name__ == "__main__":
 
     # results_edit()
     pass
+
+
+
+
+"""
+#### Code to merge all marks, not needed as done in excel
+### ws=wks[0]
+### for ws in wks:
+###     if ws.title != master:
+###         q=re.findall(r'Q(\d)',ws.title)[0]
+###         m=f'Q{q} - Marks'
+###         c=f'Q{q} - Comments'
+###         records=ws.get_all_records()
+###         # r=records[0]
+###         # r
+###         for r in records:
+###             if r[m]:
+###                 roll_to_mark_comm[r['rollno']]['m'] += int(r[m])
+###             if r[c]:
+###                 roll_to_mark_comm[r['rollno']]['c'] += f"Q{q} -> {r[c]}\n"
+"""

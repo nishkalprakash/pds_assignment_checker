@@ -1,5 +1,7 @@
 ## FILE READ WRITE Operations
+from datetime import timedelta
 from pathlib import Path
+from random import randint
 from re import findall, sub
 from time import strftime
 
@@ -42,6 +44,20 @@ def dprint(func):
 
 
 print = dprint(print)
+
+
+def dsleep(func):
+    def wrapped_func(ctr):
+        if ctr > 20:
+            ctr = randint(ctr - 5, ctr + 5)
+        # print(f"SLEEP: {timedelta(seconds=ctr)}")
+        return func(ctr)
+
+    return wrapped_func
+
+
+sleep = dsleep(sleep)
+
 
 ## Print the variable with the name and value
 def printf(*args):
