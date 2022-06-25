@@ -88,7 +88,7 @@
 21IM10028;Saloni Kumari;1
 21EX10031;Shreya Kumari;1
 21CY10015;Gunupuru Lohitakshay;1
-21CS10078;Vishv Magarvadia;0
+21CS10078;Vishv Magarvadia;2
 21CH10034;Krish Mahendra Khant;1
 21EE10062;Samiran Majhi;1
 21EE10063;Sayan Majumder;1

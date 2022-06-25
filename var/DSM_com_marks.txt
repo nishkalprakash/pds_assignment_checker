@@ -1,0 +1,185 @@
+21AE10001;;Aditya Varshney;;14;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AE10002;;Allwin Johnjo Prince;;0;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AE10021;;Krishana Kumar Yadav;;-;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AE10022;;Kusumanchi Anudeep;;18;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> functions should be declared before the main function~~Q4 -> ~~Q5 -> 
+21AE10041;;Vishwas Jajpura;;-;;Q1 -> Not Submitted~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AE10042;;Yashpal Choudhary;;21;;Q1 -> ~~Q2 -> ~~Q3 -> incorrect logic~~Q4 -> Incorrect scopes and function~~Q5 -> 
+21AE30018;;Priti Saha;;35;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> Not attempted~~Q4 -> incorrect declaration of a~~Q5 -> no print statement is given
+21AE30019;;Rupapriya Naskar;;30;;Q1 -> Explanation is missing~~Q2 -> b)No submission~~Q3 -> ~~Q4 -> ~~Q5 -> no answer found
+21AG10012;;Divya;;2;;Q1 -> Not Attempt~~Q2 -> ~~Q3 -> includes unnecessary code; plagiarised 1~~Q4 -> Required function is missing~~Q5 -> 
+21AG10013;;Garima Bansal;;27;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AG10032;;Sanket Jagtap;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AG10033;;Sanyam Jhuria;;9;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AG30005;;Ayan Singha;;13;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AG30006;;Ayandeep Neogi;;16;;Q1 -> The answer is wrong ~~Q2 -> ~~Q3 -> ~~Q4 -> out of scope~~Q5 -> no answer found
+21AG30025;;Meenal Gupta;;26;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AG30026;;Nischay Gururani;;10;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21AG30045;;Vicky Besra;;13;;Q1 -> ~~Q2 -> ~~Q3 -> didn't answer the question~~Q4 -> Required function is incorrect~~Q5 -> 
+21BT10001;;Addepalli Manjusri;;41;;Q1 -> Explanation is missing~~Q2 -> b)No submission~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21BT10020;;Malothu Shyam Kumar;;0;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21BT10021;;Naveen Yadav;;6;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21BT30004;;Aruni Ankur;;26;;Q1 -> ~~Q2 -> ~~Q3 -> partially incorrect logic~~Q4 -> ~~Q5 -> 
+21BT30005;;Dhiya Mariam Thomas;;30;;Q1 -> The answer is wrong ~~Q2 -> a) sorting should be done by computing rank of the array elements, b) No submission~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21BT30024;;Shantanu Yadav;;7;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21BT30025;;Shatakkshi;;18;;Q1 -> ~~Q2 -> ~~Q3 -> includes unnecessary code; plagiarised 1~~Q4 -> ~~Q5 -> 
+21CE10010;;Anjana Jawahar;;4;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CE10011;;Aswin D Menon;;14;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> doesn't return zero for case 2 and didn't use functions~~Q4 -> ~~Q5 -> 
+21CE10030;;Jitendra Kumar Bunkar;;9;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CE10031;;Kolathuru Vishnu Vardhan;;16;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> no answer found
+21CE10050;;Rajnish Kumar;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CE10051;;Ram Saini;;25;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CE10070;;Srinath Sahu;;-;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CE10071;;Supriyo Halder;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CE30005;;Akshat Sharma;;37;;Q1 -> The answer is wrong~~Q2 -> ~~Q3 -> Not attempted~~Q4 -> ~~Q5 -> 
+21CE30006;;Anish Behuray;;26;;Q1 -> ~~Q2 -> ~~Q3 -> unnecessary usage of recursion; also, recursion doesn't have a base case~~Q4 -> ~~Q5 -> 
+21CE30025;;Rudra Sai Teja;;33;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CE30026;;Sachin Kumar Repswal;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CH10013;;Awnish Kumar;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CH10014;;Ayantik Barman;;8;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> incomplete answer~~Q4 -> ~~Q5 -> 
+21CH10033;;Koushik Santra;;-;;Q1 -> No answer found~~Q2 -> ~~Q3 -> No submission~~Q4 -> Not submitted~~Q5 -> no answer script found
+21CH10034;;Krish Mahendra Khant;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CH10053;;Rohini Mishra;;41;;Q1 -> Proper explanation is missing~~Q2 -> b)No submission~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CH10054;;Rupam  Saha;;22;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CH10073;;Upayan Chatterjee;;27;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CH10074;;Utkarsh Srivastava;;14;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CH30013;;Gosavi Anushka Anil;;18;;Q1 -> ~~Q2 -> ~~Q3 -> program is incorrect~~Q4 -> Incorrect scopes and function~~Q5 -> 
+21CH30014;;Harshit Raj;;34;;Q1 -> ~~Q2 -> ~~Q3 -> partially done~~Q4 -> ~~Q5 -> 
+21CH30033;;Sreevarsan.T.N;;-;;Q1 -> Not Submitted~~Q2 -> ~~Q3 -> no submission~~Q4 -> ~~Q5 -> 
+21CH30034;;Thummalapelli Jeevan Kumar;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CS10017;;Chappa Jayanth Naidu;;-;;Q1 -> No Submission~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CS10018;;Cherukuri Tapaswini;;15;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> syntax and logical error
+21CS10037;;Khimasia Krish;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CS10038;;Kotipalli Praneeth Raj;;18;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CS10057;;Sanskar Mittal;;39;;Q1 -> Explanation is missing~~Q2 -> Good~~Q3 -> ~~Q4 -> ~~Q5 -> recursion required
+21CS10058;;Sarika Bishnoi;;22;;Q1 -> ~~Q2 -> ~~Q3 -> incorrect logic~~Q4 -> ~~Q5 -> 
+21CS10077;;Vinayak Gupta;;17;;Q1 -> ~~Q2 -> ~~Q3 -> partially incorrect logic~~Q4 -> ~~Q5 -> 
+21CS10078;;Vishv Magarvadia;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CS30014;;Chepuri Naga Venkata Varsha;;-;;Q1 -> Answer script is missing~~Q2 -> No submission~~Q3 -> No Submission~~Q4 -> Not submitted~~Q5 -> no student 
+21CS30015;;Chinmay Bhusari;;28;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CS30034;;Parala Siva Sai Yeswanth;;15;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> syntax and logical error
+21CS30035;;Paramananda Bhaskar;;24;;Q1 -> ~~Q2 -> ~~Q3 -> incorrect logic~~Q4 -> ~~Q5 -> 
+21CS30054;;Tanishq Prasad;;35;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CS30055;;Telu Amruthavarshini;;25;;Q1 -> ~~Q2 -> ~~Q3 -> code is partially incorrect~~Q4 -> ~~Q5 -> 
+21CY10014;;Gundeti Manoj;;27;;Q1 -> ~~Q2 -> No submission~~Q3 -> ~~Q4 -> comparision is wrong~~Q5 -> not attempt
+21CY10015;;Gunupuru Lohitakshay;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21CY10034;;Sampriti Mayra;;26;;Q1 -> ~~Q2 -> a) sorting should be done by computing rank of the array elements, b) No submission~~Q3 -> partially done~~Q4 -> Plagarised from TB~~Q5 -> not attempt
+21CY10035;;Sankaresh Jawahar;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EC10009;;Ayush Nirankari;;31;;Q1 -> ~~Q2 -> ~~Q3 -> error in code~~Q4 -> no 'n' is passed or declared~~Q5 -> 
+21EC10010;;Banda Raj Kishore;;31;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> logical error
+21EC10029;;Goutam;;13;;Q1 -> Not Attempt~~Q2 -> ~~Q3 -> "i" is initialized to an undefined variable~~Q4 -> Incorrect scopes and function~~Q5 -> 
+21EC10030;;Gunigari Nihith;;18;;Q1 -> No answer found~~Q2 -> ~~Q3 -> Not attempted~~Q4 -> ~~Q5 -> 
+21EC10049;;Nakshatra Verma;;-;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EC10050;;Pawan Kumar;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EC10069;;Siddharth Champia;;22;;Q1 -> ~~Q2 -> ~~Q3 -> incorrect logic~~Q4 -> Syntax is incorrect~~Q5 -> 
+21EC10070;;Smarak Kanjilal;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EC30001;;Abhishek Kumar;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EC30002;;Abhradeep De;;28;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EC30021;;Gaurav Milind Kulkarni;;41;;Q1 -> ~~Q2 -> b)No submission~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EC30022;;Hardik Chauhan;;17;;Q1 -> ~~Q2 -> ~~Q3 -> didn't answer the question~~Q4 -> ~~Q5 -> 
+21EC30041;;Ranjay Singh;;13;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EC30042;;Rishabh Singla;;17;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> syntax error
+21EE10002;;Abhiram Veladineni;;14;;Q1 -> No answer found~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> no answer found
+21EE10003;;Abhishek Thakur;;14;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EE10022;;Atmajyoti Ghosh;;15;;Q1 -> ~~Q2 -> ~~Q3 -> plagiarised 3~~Q4 -> Required function is incorrect~~Q5 -> 
+21EE10023;;Balaraju Arshith Varma;;25;;Q1 -> ~~Q2 -> ~~Q3 -> didn't use a function and includes unnecessary code~~Q4 -> ~~Q5 -> 
+21EE10042;;Kunal Mangla;;36.5;;Q1 -> Explanation is missing~~Q2 -> a) sorting should be done by computing rank of the array elements~~Q3 -> ~~Q4 -> declarations are wrong and no scan for n~~Q5 -> 
+21EE10043;;Kusumanchi Janaki Ratna Lakshmi;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EE10062;;Samiran Majhi;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EE10063;;Sayan Majumder;;31;;Q1 -> The answer is wrong ~~Q2 -> No submission~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EE30003;;Akash Ganeriwal;;26;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EE30004;;Anirvan Krishna;;9;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EE30023;;Shengulwar Dishank Bhushan;;18;;Q1 -> ~~Q2 -> ~~Q3 -> incorrect program~~Q4 -> Required function is incorrect~~Q5 -> 
+21EE30024;;Shivansh Gandhi;;25;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> Required function is incorrect~~Q5 -> 
+21EX10010;;Devender;;26;;Q1 -> ~~Q2 -> ~~Q3 -> didn't use functions~~Q4 -> ~~Q5 -> 
+21EX10011;;Devendra Kumar Dubey;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EX10030;;Shivrudra;;28;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21EX10031;;Shreya Kumari;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21GG10008;;Ashutosh Anant Tiwari;;27;;Q1 -> ~~Q2 -> ~~Q3 -> didn't use functions~~Q4 -> ~~Q5 -> 
+21GG10009;;Begari Om Prakash;;33;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21GG10028;;Pidamarthi Anilkumar;;23;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> Incorrect use of conditional statement~~Q5 -> 
+21GG10029;;Pratyush Kumar Singh;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21GG10048;;Yuvraj Sah;;-;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21GG20001;;Kunal Vitthal Waghmare;;7;;Q1 -> The answer is wrong~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> else does not have two return statement
+21HS10016;;Astha;;29;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21HS10017;;Ayush Kumar;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21HS10035;;Pornima Gaikwad;;26;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21HS10036;;Prachi Sharma;;8;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21HS10054;;Vishvendra Pareek;;25;;Q1 -> The answer is wrong ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21HS10055;;Yashika;;3;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> program is incomplete~~Q4 -> ~~Q5 -> 
+21IE10015;;Eisha Singh;;25;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21IE10016;;Gaurav Kumar Mahto;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21IE10034;;Sarthak Singh;;14;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21IE10035;;Shriram Rajkumar Dhamdhere;;28;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> invalid for loop~~Q5 -> 
+21IM10009;;Arpit Bhardwaj;;17;;Q1 -> ~~Q2 -> ~~Q3 -> didn't answer the question~~Q4 -> ~~Q5 -> 
+21IM10010;;Bandari Shikhara;;25;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21IM10028;;Saloni Kumari;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21IM10029;;Sambit Stita Siri Sai Pradhan;;19;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21IM30005;;Ayushkumar Parmar;;36;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21IM30006;;Gohil Happy Kanaiyalal;;9;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21IM30024;;Suryansh Patsaria;;25;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> no answer found
+21IM30025;;Sushant Singh;;17;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MA10015;;Ayush Biswas;;27;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MA10016;;Bhanu Pratap;;33;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MA10034;;Mudavath Prajay;;34;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> not attempted~~Q4 -> ~~Q5 -> Answer not found
+21MA10035;;Neeraj Kumar;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MA10053;;Sevan Kumar;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MA10054;;Shah Dev Darshan;;26;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> Required function is incorrect~~Q5 -> 
+21ME10003;;Abhinav Singh Meena;;24;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> digit should be <=5
+21ME10004;;Abhinav Viju Pillai;;19;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21ME10022;;Bhuvan Suresh Jambhulkar;;15;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> dara type
+21ME10023;;Bibhukalyan Sahoo;;33;;Q1 -> No answer found~~Q2 -> ~~Q3 -> No submission~~Q4 -> Not submitted~~Q5 -> no answer found
+21ME10041;;Khushi Kasturiya;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21ME10042;;Kilari Shiva Prasad;;22;;Q1 -> No answer found~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> no answer script found
+21ME10060;;Rinita Samanta;;34;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21ME10061;;Ritwik Biswas;;19;;Q1 -> ~~Q2 -> ~~Q3 -> program is incomplete and uses incorrect variables; plagiarised 2~~Q4 -> ~~Q5 -> 
+21ME10079;;Somyajeet Gupta Chowdhury;;13;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> Required function is incorrect~~Q5 -> 
+21ME10080;;Soumyadeep Pradhan;;33;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> Recursion should return the value.
+21ME10098;;Viswanathan Gayatriamulya;;24;;Q1 -> ~~Q2 -> ~~Q3 -> partially incorrect logic~~Q4 -> ~~Q5 -> 
+21ME10099;;Vivek Mirani;;35.5;;Q1 -> ~~Q2 -> a) sorting should be done by computing rank of the array elements~~Q3 -> not attempted~~Q4 -> condition fails while comparision~~Q5 -> 
+21ME30013;;Anan Gupta;;15;;Q1 -> ~~Q2 -> ~~Q3 -> didn't answer~~Q4 -> ~~Q5 -> 
+21ME30014;;Ankit Dhaka;;-;;Q1 -> No Submission~~Q2 -> ~~Q3 -> not found~~Q4 -> ~~Q5 -> 
+21ME30032;;Ishika Modi;;31;;Q1 -> Explanation is missing~~Q2 -> No submission~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21ME30033;;Ivin Roy;;32;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21ME30051;;Pranjal Pratyush Khare;;35;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21ME30052;;Raj Sekhar Dey;;33;;Q1 -> The answer is wrong~~Q2 -> ~~Q3 -> ~~Q4 -> no main function~~Q5 -> 
+21ME30070;;Vechalapu Enosh;;16;;Q1 -> ~~Q2 -> ~~Q3 -> didn't use functions~~Q4 -> No solution~~Q5 -> 
+21ME30071;;Vemana Tarun Sai;;10;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MF10015;;Diptendu Sarkar;;-;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> as it is recursion, no need for loop
+21MF10016;;Divyansh Tripathi;;17;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MF10034;;Snehal Sanjay Katale;;35;;#REF!
+21MF10035;;Soubhik Shit;;16;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MF3IM10;;Patil Ruturaj Pravin;;38;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> no main function~~Q5 -> 
+21MF3IM11;;Priyanshu Singh;;14;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> as it is recursion, no need for loop
+21MI10008;;Animesh Pradhan;;32;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MI10009;;Anish Roy;;36;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MI10027;;Karanki Mohitha;;36;;Q1 -> Explanation is missing~~Q2 -> b)No submission~~Q3 -> ~~Q4 -> no main function written~~Q5 -> 
+21MI10028;;Keshavee Nandan;;39;;Q1 -> ~~Q2 -> Good~~Q3 -> Not attempted~~Q4 -> no main function~~Q5 -> 
+21MI10046;;Shristi Raushan;;37;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MI10047;;Subhasis Behera;;15;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> incorrect logic~~Q4 -> ~~Q5 -> 
+21MI31011;;Deepanjana Chakraborty;;25;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> Required function is incorrect~~Q5 -> 
+21MI31012;;Divyanshu Singh;;25;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MI33002;;Amardip Banerjee;;27;;Q1 -> ~~Q2 -> ~~Q3 -> didn't use functions~~Q4 -> ~~Q5 -> 
+21MI33003;;Amiya Kumar Tripathi;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MI33021;;Shreeya Mishra;;34.5;;Q1 -> ~~Q2 -> a) No submission~~Q3 -> ~~Q4 -> second loop logic is wrong~~Q5 -> no return ststement and syntax error
+21MI33022;;Subham Sarkar;;30;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> no input functions are declared~~Q5 -> 
+21MT10015;;Bodapati Bhandhavya;;12;;Q1 -> ~~Q2 -> ~~Q3 -> didn't answer the question~~Q4 -> Required function is incorrect~~Q5 -> 
+21MT10016;;Debarghya Joddar;;0;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MT10034;;Navneet Kumar;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MT10035;;Nenavath Nethaji;;36;;Q1 -> Explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MT10053;;Somen Kumar Mandal;;0;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MT10054;;Soumili Mukherjee;;47.5;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21MT30010;;Gugulothu Nagarun;;26;;Q1 -> Explanation is missing~~Q2 -> No submission~~Q3 -> Not attempted~~Q4 -> ~~Q5 -> 
+21MT30011;;Kanika Guleria;;21;;Q1 -> ~~Q2 -> ~~Q3 -> incorrect logic~~Q4 -> Incomplete~~Q5 -> 
+21MT30029;;Shivam Goel;;7;;Q1 -> Wrong Answer~~Q2 -> ~~Q3 -> plagiarised 3~~Q4 -> ~~Q5 -> 
+21NA10016;;Cheerla Teja Naga Sai;;15;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21NA10017;;Dev Kumar Gupta;;9;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21NA10035;;Soumyajit Mondal;;-;;Q1 -> Answer script is missing~~Q2 -> No submission~~Q3 -> No submission~~Q4 -> Not submitted~~Q5 -> no answer script found
+21NA10036;;Suryansh Patel;;39;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21NA30008;;Divyansh Sachan;;35;;Q1 -> No answer found~~Q2 -> ~~Q3 -> No Submission~~Q4 -> Not submitted~~Q5 -> no answer found
+21NA30009;;Ghadage Adesh Rajshekhar;;14;;Q1 -> ~~Q2 -> ~~Q3 -> program is incomplete and uses incorrect variables; plagiarised 2~~Q4 -> Required function is incorrect~~Q5 -> 
+21NA30027;;Salve Harshvardhan Vijaykumar;;8;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21NA30028;;Sayan Manna;;32.5;;Q1 -> ~~Q2 -> a) sorting should be done by computing rank of the array elements, b) No submission~~Q3 -> not attempted~~Q4 -> ~~Q5 -> 
+21PH10012;;Debayan Biswas;;20;;Q1 -> ~~Q2 -> ~~Q3 -> program is incorrect~~Q4 -> ~~Q5 -> 
+21PH10031;;Priyanshu Ranjan;;35;;Q1 -> ~~Q2 -> ~~Q3 -> ~~Q4 -> the pages are not in order~~Q5 -> 
+21PH10032;;Rahul Sunil;;19;;Q1 -> Proper explanation is missing~~Q2 -> ~~Q3 -> ~~Q4 -> ~~Q5 -> 
+21QD30001;;Vankudothu Rajeshwar;;32;;Q1 -> ~~Q2 -> ~~Q3 -> not attempted~~Q4 -> ~~Q5 -> 

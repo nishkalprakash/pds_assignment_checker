@@ -17,6 +17,23 @@ n='name'
 m=f'Marks'
 c=f'Comments'
 
+dest=Path(r'G:\My Drive\College\PhD\TA\Sem_6\TA\for_priya_da')
+# ctr=1
+def get_files():
+    stds_sorted=pull(std_sort_path)
+    base=Path(r"D:\Downloads\OneDrive_2022-06-24\Submitted files")
+    test='Long Test (Part-B)'
+    import shutil
+    ctr=1
+    for s in stds_sorted:
+        test_base=base/s[1]/test
+        if test_base.exists():
+            c=list(list(test_base.iterdir())[-1].glob('*.pdf'))[-1]
+            shutil.copy(c,dest/f'{ctr:03} - {s[1]} - {s[0]} - LT_1_B.pdf')
+        ctr+=1
+    
+# get_files()
+
 ## BEGIN: INIT SECTION ###
 
 def pull_mapping():
@@ -67,7 +84,7 @@ def gen_std_sort():
     from pprint import pprint
     pprint(pull('test.txt'))
 
-gen_std_sort()
+# gen_std_sort()
 ## END: INIT SECTION ###
 
 
@@ -96,14 +113,14 @@ def update_comm_marks():
         except KeyError:
             print(r['rollno']," is missing in TEAMS")
     def push_r_n_m_c(roll_to_mark_comm):
-        push(com_path,[[key,v[n],v[m],v[c].replace('\r',BR).replace('\n',BR)] for key,v in roll_to_mark_comm.items()],'w+')
+        push(com_path,[[key,v[n],v[m],v[c].replace('\r',BR).replace('\n',BR)] for key,v in roll_to_mark_comm.items()],'w+',DELIM=';;')
     push_r_n_m_c(roll_to_mark_comm)
 
 update_comm_marks()
 
 
 def pull_r_n_m_c():
-    return {k:{n:n1,m:m1,c:c1}for k,n1,m1,c1 in pull(com_path)}
+    return {k:{n:n1,m:m1,c:c1}for k,n1,m1,c1 in pull(com_path,DELIM=';;')}
 
 roll_to_mark_comm=pull_r_n_m_c()
 roll_to_mark_comm
@@ -139,11 +156,12 @@ for s in stds_sorted:
     copy(c1)
     if miss:
         ## FILE MISSING : GO DIRECTLY TO `FEEDBACK`
+        m1='0'
         sleep(1)
         pr('tab',presses=4)
         ## Leads to FEEDBACK
     elif not DO_ONCE:
-        sleep(4)
+        sleep(2)
         pc=13
         if fc[s]=='0': fc[s]='1'
         pr('tab',presses=pc+(int(fc[s])*2))
@@ -153,6 +171,7 @@ for s in stds_sorted:
     hk('ctrl','v')
     # sleep(1)
     pr('tab',presses=4)
+    ## Leads to marks
     # sleep(1)
     copy(m1)
     hk('ctrl','a')

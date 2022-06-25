@@ -53,7 +53,7 @@
 21CS10057;Sanskar Mittal;1
 21CS10058;Sarika Bishnoi;1
 21CS10077;Vinayak Gupta;1
-21CS10078;Vishv Magarvadia;0
+21CS10078;Vishv Magarvadia;2                        
 21CS30014;Chepuri Naga Venkata Varsha;0
 21CS30015;Chinmay Bhusari;1
 21CS30034;Parala Siva Sai Yeswanth;1
