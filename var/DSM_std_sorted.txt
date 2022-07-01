@@ -120,6 +120,7 @@
 21IM30005;Ayushkumar Parmar;1
 21NA10036;Suryansh Patel;1
 21IM30024;Suryansh Patsaria;1
+21CS72P03;Meghna Paul;0
 21MI10008;Animesh Pradhan;1
 21ME10080;Soumyadeep Pradhan;1
 21MA10034;Mudavath Prajay;1

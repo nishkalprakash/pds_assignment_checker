@@ -92,12 +92,13 @@ def run_command(command):
 
 ## Gives the user a default input option which can be inputted using enter
 def def_input(text, default=""):
+    default_type=type(default)
     x = input(f"{text} [{default}]: ").strip()
     if x:
         # if " " in x:
         #     return x.split(" ")
         # except:
-        return x
+        return default_type(x)
     else:
         return default
 
@@ -139,9 +140,16 @@ def pull(path, DELIM=DELIM):
     ]
 
 
-def push(path, text, attr="a+", DELIM=DELIM):
+def push(path, text, attr="r+", DELIM=DELIM):
     with Path(path).open(attr) as f:
         # if type(text)
+        x=f.read()
+        if x and x[-1]!='\n':
+            f.seek(0,2)
+            f.write('\n')
+
+        # if f.readline()!='\n':
+
         try:
             f.write(text + "\n")
         except TypeError:

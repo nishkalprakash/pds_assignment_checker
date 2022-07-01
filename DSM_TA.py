@@ -2,14 +2,14 @@ from pathlib import Path
 
 from lib.pds_globals import BR
 from lib.pds_pygsheets import auth, get_worksheet, get_spreadsheet
-from lib.pds_file_op import push,pull,sleep
+from lib.pds_file_op import def_input, push,pull,sleep
 
 
 master='Master'
 
 map_path=Path('var/DSM_mapping.txt')
 com_path = Path('var/DSM_com_marks.txt')
-fc_path=Path('var/DSM_file_count.txt')
+done_path=Path('var/DSM_done.txt')
 bug_path=Path('var/DSM_bug_student.txt')
 std_sort_path=Path('var/DSM_std_sorted.txt')
 rn='rollno'
@@ -17,9 +17,9 @@ n='name'
 m=f'Marks'
 c=f'Comments'
 
-dest=Path(r'G:\My Drive\College\PhD\TA\Sem_6\TA\for_priya_da')
 # ctr=1
 def get_files():
+    dest=Path(r'G:\My Drive\College\PhD\TA\Sem_6\TA\for_priya_da')
     stds_sorted=pull(std_sort_path)
     base=Path(r"D:\Downloads\OneDrive_2022-06-24\Submitted files")
     test='Long Test (Part-B)'
@@ -61,7 +61,7 @@ def pull_mapping():
 ## Do only once
 # pull_mapping()
 
-
+        
 def gen_std_sort():
     mapping=pull(map_path)
     # sorted_stds=[]
@@ -90,16 +90,21 @@ def gen_std_sort():
 
 def update_comm_marks():
     sp_url="https://docs.google.com/spreadsheets/d/1rM3ok0K--GBtW1QW9gbT5buLRL3FkIQbVMj4hI3iNpA/edit?usp=sharing"
+    # sp_url="https://docs.google.com/spreadsheets/d/14GVOrv_G7xz0QlFshWArlDvbABdW7QilEWNgUI6dE0g/edit"
     
     cauth=auth()
     sp=get_spreadsheet(cauth,sp_url)
-
+    
 
 
     # wks=sp.worksheets()
     mapping=pull(map_path)
     master_sp=get_worksheet(cauth,sp,master)
     master_sp.title
+
+
+    ## data=[[i,s[0],s[1]] for i,s in enumerate(stds_sorted,1)]
+    ## master_sp.insert_rows(0,len(data),data)
 
     rec=master_sp.get_all_records()
 
@@ -116,18 +121,18 @@ def update_comm_marks():
         push(com_path,[[key,v[n],v[m],v[c].replace('\r',BR).replace('\n',BR)] for key,v in roll_to_mark_comm.items()],'w+',DELIM=';;')
     push_r_n_m_c(roll_to_mark_comm)
 
-update_comm_marks()
+# update_comm_marks()
 
 
 def pull_r_n_m_c():
-    return {k:{n:n1,m:m1,c:c1}for k,n1,m1,c1 in pull(com_path,DELIM=';;')}
+    return {k:{n:n1,m:m1,c:c_new}for k,n1,m1,c_new in pull(com_path,DELIM=';;')}
 
 roll_to_mark_comm=pull_r_n_m_c()
 roll_to_mark_comm
 fc={r:c for r,n,c in pull(map_path)}
 
-from pyautogui import hotkey,press
-from pyperclip import copy
+from pyautogui import hotkey,press,moveTo
+from pyperclip import copy,paste
 
 delay=0.1
 
@@ -139,34 +144,45 @@ def pr(*args,**kargs):
     sleep(delay)
     press(*args,**kargs,interval=delay)
 
-stds_sorted=pull(std_sort_path)
-print("PLEASE CLICK ON THE FIRST STUDENT 'FEEDBACK' BOX")
-ctr=5
+if def_input("Restart Uploading marks from Beginning?",0):
+    done_path.write_text("")
+
+
+done_std=set(s[0] for s in pull(done_path)[:-1])
+stds_sorted=[s for s in pull(std_sort_path) if s[0] not in done_std]
+print(f"PLEASE CLICK ON {stds_sorted[0][1]}'s 'FEEDBACK' BOX")
+ctr=10
 print(f"SLEEPING FOR {ctr} seconds")
 sleep(ctr)
 DO_ONCE=True
-for s in stds_sorted:
+for std in stds_sorted:
     # write()
-    s=s[0]
+    s=std[0]
     r=roll_to_mark_comm[s]
-    print(f"WORKING FOR {s} - {r[n]}")
+    print(f"WORKING FOR {s} - {r[n]}",end='')
     m1=r[m]
-    c1=r[c].replace(BR,'\n')
+    c_new=r[c].replace(BR,'\n')
     miss= fc[s] == '0' and m1 == '-'
-    copy(c1)
-    if miss:
+    c_old=''
+    if not DO_ONCE and miss:
         ## FILE MISSING : GO DIRECTLY TO `FEEDBACK`
         m1='0'
         sleep(1)
         pr('tab',presses=4)
         ## Leads to FEEDBACK
     elif not DO_ONCE:
-        sleep(2)
+        sleep(4)
         pc=13
         if fc[s]=='0': fc[s]='1'
         pr('tab',presses=pc+(int(fc[s])*2))
+
         ## Leads to FEEDBACK
 
+    hk('ctrl','a')
+    hk('ctrl','c')
+    # sleep(1)
+    c_old=paste().replace('\r','')
+    copy(c_new)
     hk('ctrl','a')
     hk('ctrl','v')
     # sleep(1)
@@ -176,12 +192,34 @@ for s in stds_sorted:
     copy(m1)
     hk('ctrl','a')
     hk('ctrl','v')
+    comm_changed = c_old!=c_new
+    print(" - ",comm_changed)
+    offset=0
+    if comm_changed:
+        ## here we return the copy to the student
+        offset=-1
+        pr('tab')
+        pr('enter')
+        sleep(5)
     if miss:
-        pr('tab',presses=8)
+        if DO_ONCE:
+            pr('tab',presses=9+offset)
+            DO_ONCE=False
+        else:
+            pr('tab',presses=8+offset)
+
     elif DO_ONCE:
-        pr('tab',presses=16)
+        if comm_changed:
+            ## BUG: here the file resets so click is not considered if file 
+            ## is returned
+            offset=-7
+        pr('tab',presses=16+offset)
         DO_ONCE=False
     else:
-        pr('tab',presses=15)
+        if comm_changed:
+            ## a bug after returning, only press 9 times
+            offset=-6
+        pr('tab',presses=15+offset)
     pr('enter')
+    push(done_path,[std])
     # sleep(5)
