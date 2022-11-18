@@ -18,7 +18,7 @@ Thumbs.db
 *.war
 
 # Program files
-PDS*
+# PDS*
 # Assignment*/*
 # Lab_Test*/*
 # Lab-test*/*
