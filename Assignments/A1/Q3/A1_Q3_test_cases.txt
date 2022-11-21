@@ -1,3 +1,0 @@
-15;{Input: Machines=11, Day=1}!!{Output: Cars=11};11 1
-15;{Input: Machines=11, Day=3, Inspection=5}!!{Output: Cars=11};11 3 5
-15;{Input: Machines=11, Day=4, Boosting=0.33}!!{Output: Cars=15};11 4 0.33

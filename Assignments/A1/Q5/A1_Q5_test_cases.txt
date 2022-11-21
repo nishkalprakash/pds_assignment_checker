@@ -1,3 +1,0 @@
-15;{Input: wood_type='n',weight=7.25},!!{Output: Base Price=7975.00, GST=1595.00, Total=9570.00};n 7.25
-15;{Input: wood_type='n',weight=13.12},!!{Output: Base Price=14432.00, GST=2886.40, Total=17318.40};n 13.12
-15;{Input: wood_type='s',weight=1},!!{Output: Base Price=780.00, GST=117.00, Total=897.00};s 1

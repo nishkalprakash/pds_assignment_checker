@@ -1,10 +1,10 @@
-from lib.pds_selenium import init_selenium
+from lib.pds_selenium import get_sel_items, getqs, init_selenium
 from lib.pds_globals import DELIM, MOODLE_COURSE_ID, VAR
 from pathlib import Path
 
 driver = init_selenium()
 
-PAGE_ID = 10901
+# PAGE_ID = 10901
 
 # driver.get(f"https://moodlecse.iitkgp.ac.in/moodle/user/index.php?roleid=5&perpage=5000&id={MOODLE_COURSE_ID}")
 
@@ -15,27 +15,36 @@ PAGE_ID = 10901
 
 # print(f"Done for students.txt and added {len(students)} students")
 
+# driver.get(
+#     f"https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id={PAGE_ID}&action=grading"
+# )
 driver.get(
-    f"https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id={PAGE_ID}&action=grading"
+    f"https://moodlecse.iitkgp.ac.in/moodle/enrol/users.php?id={MOODLE_COURSE_ID}&role=5"
 )
 
-elements_name_id = driver.find_elements(
-    by="xpath",
-    value='//table[contains(concat(" ",normalize-space(@class)," ")," generaltable ")]//td[contains(concat(" ",normalize-space(@class)," ")," c2 ")]//a',
-)
-elements_roll = driver.find_elements(
-    by="xpath",
-    value='//table[contains(concat(" ",normalize-space(@class)," ")," generaltable ")]//td[contains(concat(" ",normalize-space(@class)," ")," c3 ")]',
-)
-n = len(elements_name_id)
+# def get_sel_items(val,a=''):
+#     return driver.find_elements(by="xpath",
+#         value=f'//table[contains(concat(" ",normalize-space(@class)," ")," userenrolment ")]//div[contains(concat(" ",normalize-space(@class)," ")," {val} ")]{a}'
+#         )
+
+elements_name = get_sel_items(driver,"subfield_firstname")
+elements_id = get_sel_items(driver,"subfield_picture",'//a')
+elements_roll = get_sel_items(driver,"subfield_idnumber")
+
+
+n = len(elements_name)
+# n = len(elements_id)
+# n = len(elements_roll)
 
 std_id_roll_dict = {}
 
 for i in range(n):
-    s = elements_name_id[i]
+    s = elements_name[i]
+    id = elements_id[i]
     r = elements_roll[i]
-    std_id_roll_dict[s.get_attribute("innerHTML").strip()] = {
-        "id": s.get_attribute("href").split("=")[1][:5].strip(),
+    # std_id_roll_dict[s.get_attribute("innerHTML").strip()] = {
+    std_id_roll_dict[getqs(id,'id')] = {
+        "name": s.text.strip(),
         "roll": r.text.strip(),
     }
     # if i==73:
@@ -50,7 +59,7 @@ Path(f"{VAR}/mapping.txt").write_text(
         map(
             DELIM.join,
             sorted(
-                ((i[0], i[1]["id"], i[1]["roll"]) for i in std_id_roll_dict.items())
+                ((i[0], i[1]["name"], i[1]["roll"]) for i in std_id_roll_dict.items())
             ),
         )
     )

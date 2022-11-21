@@ -69,7 +69,7 @@ def init_checker(a, q):
 def pds_checker(a, q):
     """This is the main method for checking assignments"""
     ## Pull students list before entering the BASE folder
-    n = get_map_roll_to_name()
+    # n = get_map_roll_to_name()
 
     students = get_students()
     plag_students_roll_set = {

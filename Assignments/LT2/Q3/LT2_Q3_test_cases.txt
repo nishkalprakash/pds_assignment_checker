@@ -1,4 +1,0 @@
-10;~~INPUT:~~Enter the value of n: 6~~Enter array n[]: 5 1 4 10 6 9~~Enter m: 2~~~~OUTPUT:~~Output: 1~~~~;6 5 1 4 10 6 9 2
-10;~~INPUT:~~Enter the value of n: 7~~Enter array n[]: 5 1 7 13 4 3 3~~Enter m: 3~~~~OUTPUT:~~Output: 2~~~~;7 5 1 7 13 4 3 3
-10;~~INPUT:~~Enter the value of n: 5~~Enter array n[]: 1 2 3 4 5~~Enter m: 5~~~~~~OUTPUT:~~Output: 4~~~~;5 1 2 3 4 5 5
-10;~~INPUT:~~Enter the value of n: 5~~Enter array n[]: 1 1 1 1 1~~Enter m: 5~~~~~~OUTPUT:~~Output: 0~~~~;5 1 1 1 1 1 5

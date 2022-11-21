@@ -1,7 +1,0 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-20;~~INPUT:~~n=4, k=15, m=6~~~~OUTPUT:~~All possible journeys: 140~~~~;4 15 6
-20;~~INPUT:~~n=3, k=10, m=5~~~~OUTPUT:~~All possible journeys: 18~~~~;3 10 5
-# ```
-

@@ -1,8 +1,0 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~Enter n: 5~~Enter elements: 12 -15 9 -2 5~~~~OUTPUT:~~Largest sum = 12~~Sub-arrays = 12 OR 9 -2 5~~~~;5 12 -15 9 -2 5
-10;~~INPUT:~~Enter n: 5~~Enter elements: 12 -5 9 -2 5~~~~OUTPUT:~~Largest sum = 19~~Sub-arrays = 12 -5 9 -2 5~~~~;5 12 -5 9 -2 5
-10;~~INPUT:~~Enter n: 8~~Enter elements: 1 -1 1 -1 -1 2 -1 2~~~~OUTPUT:~~Largest sum = 3~~Sub-arrays = 2 -1 2~~~~;8 1 -1 1 -1 -1 2 -1 2
-10;~~INPUT:~~Enter n: 5~~Enter elements: -1 -2 -3 -4 -5~~~~OUTPUT:~~Largest sum = -1~~Sub-arrays = -1~~~~;5 -1 -2 -3 -4 -5
-# ```

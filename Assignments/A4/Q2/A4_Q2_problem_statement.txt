@@ -1,7 +1,0 @@
-Suppose that you are changing your hostel room. So you have to carry all of your belongings from your current hostel to the new hostel. The institute has notified that you need to do the shifting within 'n' number of days and you can have only ONE single trip per day. Suppose that you don't have a big bag, and have to carry all of your belongings by hand, which you can't transfer all at a time and need multiple trips to complete this. Say you have a 'k' number of items in your room (we assume that k>n). As you don't have any bag, you can carry a maximum 'm' number of items per trip. The set of trips to complete the hostel transfer makes one 'journey'. Your task is to determine the number of ALL possible journeys to transfer all of your belongings for a given 'n', 'k', and 'm'. You have to write a recursive function myHostelChangingTrips(k, i ,n, m), where 'i' is the starting day (which is initially 1).
-
-Your program should take 'n', 'k', and 'm' from the user, and compute the ALL possible number of journeys in the recursive function myHostelChangingTrips(), and output the answer.
-
-Ex: n=4, k=15, m=6
-All possible Journeys : 140
-say, (6, 6, 3), (4, 4, 4, 3), (4, 5, 5, 1), ....................

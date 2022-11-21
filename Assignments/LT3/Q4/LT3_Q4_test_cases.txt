@@ -1,6 +1,0 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-20;~~INPUT:~~[()]{}{[()()]()}~~~~OUTPUT:~~Matched parenthesis~~~~;[()]{}{[()()]()}
-20;~~INPUT:~~[(])~~~~OUTPUT:~~Unmatched parenthesis~~~~;[(])
-# ```

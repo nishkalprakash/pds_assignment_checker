@@ -1,8 +1,0 @@
-Given an expression of string of parentheses from the set {,},(,),[,], write a program to examine whether the pairs and the orders of “{“,”}”,”(“,”)”,”[","]” are correct in the expression.
-[Hint: implement and use a stack]
- Example 1:
-Enter expression: [()]{}{[()()]()}
-Result: Matched parenthesis
-Example 2:
-Enter expression: [(])
-Result: Unmatched parenthesis

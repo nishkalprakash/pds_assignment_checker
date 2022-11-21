@@ -12,7 +12,9 @@ from lib.pds_globals import (
     A_,
     A_PATH_,
     A_PLAG_EMAIL_PATH_,
+    A_Q_,
     A_Q_PATH_,
+    A_Q_PDS_PATH_,
     A_Q_PLAG_PATH_,
     A_Q_REPORT_,
     A_Q_REPORT_PATH_,
@@ -267,7 +269,7 @@ def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False):
 
     std = []
     if path is None:
-        path = f"{VAR}/my_students.txt"
+        path = f"{VAR}/mapping.txt"
     std = pull(path)
     if sort_by_name:
         std.sort(key=lambda x: x[1].lower())
@@ -302,25 +304,26 @@ def get_q_list_from_a(a):
     ]
 
 
-def get_map_roll_to_name(rev=None, moodle=None):
+def get_map_roll_to_name(rev=None, moodle=None,name_as_value=None):
     """Returns a dict {
         Roll : Name
     }
     If rev=True then return Roll : Name
-    0 -> Name
-    1-> Moodle_ID
+    0 -> M_ID
+    1-> Name
     2-> Roll
     Returns:
         dict: {name : roll} # if rev=True
         dict: {roll : name}
     """
-    NAME, M_ID, ROLL = 0, 1, 2
+    M_ID, NAME, ROLL = 0, 1, 2
     key, val = ROLL, NAME
     if moodle:
         key, val = ROLL, M_ID
+    if name_as_value:
+        key, val = NAME, M_ID
     if rev:
         key, val = val, key
-
         # n_index=1
     return {x[key]: x[val] for x in pull(f"{VAR}/mapping.txt")}
 
@@ -412,7 +415,8 @@ def create_base_folders(a, q):
     Path(test_cases).write_text(TEST_DEMO)
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
 
-    set_plag_files(a=a, ql=q)
+    Path.mkdir(Path(A_Q_PDS_PATH_.format(a=a,q=q)),parents=True,exist_ok=True)
+    # set_plag_files(a=a, ql=q)
 
     return 0
 

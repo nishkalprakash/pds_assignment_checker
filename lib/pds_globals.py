@@ -6,6 +6,8 @@ if a variable is suffixed by a '_' its a placeholder and VARIABLE_.format(x=,y=)
 
 from pathlib import Path
 
+
+
 HOME = "Assignments"
 ## CORE Variables
 VAR = "var"
@@ -15,8 +17,8 @@ TMP = "tmp"
 DELIM = ";"
 BR = "~~"
 
-MOODLE_A_NAME_ = "Lab Test {a} - Question "
-MOODLE_A_NAME_ = "Assignment {a} - Question "  # COMMENT THIS FOR LT
+MOODLE_A_NAME_ = "Lab Test {a}:"
+MOODLE_A_NAME_ = "Lab {a}:"  # COMMENT THIS FOR LT
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
 # Base is the assignment type
@@ -57,6 +59,16 @@ A_MOSS_PATH_ =A_PATH_ + "/" +A_MOSS_
 A_Q_MOSS_ = A_Q_+"_moss.txt"
 A_Q_MOSS_PATH_ = A_Q_PATH_+"/"+A_Q_MOSS_
 
+## ATTEMPT FEATURE
+A_ATTEMPT_ = A_+"_attempt_map.txt"
+A_ATTEMPT_PATH_ = A_PATH_ + "/" + A_ATTEMPT_
+
+## PDS FEATURE
+
+A_Q_PDS_ = "PDS_"+A_Q_
+A_Q_PDS_PATH_ = A_Q_PATH_+ '/' + A_Q_PDS_
+A_Q_PDS_FILE_ = A_Q_ + '_{r}_{n}_{f}.c'
+A_Q_PDS_FILE_PATH_ = A_Q_PDS_PATH_ + '/' + A_Q_PDS_FILE_
 
 ## REPROT FEATURE
 A_REPORT_ = A_ + "_report.csv"
@@ -65,7 +77,7 @@ A_Q_REPORT_ = A_Q_ + "_report.csv"
 A_Q_REPORT_PATH_ = A_Q_PATH_ + "/" + A_Q_REPORT_
 
 
-MOODLE_COURSE_ID = 475
+MOODLE_COURSE_ID = 502
 
 ## SUBMISSION FEAUTRE
 A_Q_SUB_ = A_Q_ + "_submissions.csv"
@@ -100,3 +112,10 @@ CODE_DEMO =f"""
 -5{DELIM}Comments missing, logic hard to understand
 -5{DELIM}Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
 """.strip()
+
+
+## QUIZ URLS
+
+A_Q_PDS_QUIZ_ = "https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading&slot={q}&qid={qid}&page=0&includeauto=1&grade=all&pagesize=100&order=studentfirstname"
+
+# "https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=overview"
