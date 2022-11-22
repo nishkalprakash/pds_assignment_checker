@@ -142,7 +142,7 @@ def pull(path, DELIM=DELIM):
     ]
 
 
-def push(path, text, attr="w+", DELIM=DELIM):
+def push(path, text, attr="a+", DELIM=DELIM):
     with Path(path).open(attr) as f:
         # if type(text)
         x=f.read()
@@ -275,7 +275,7 @@ def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False):
         std.sort(key=lambda x: x[1].lower())
 
     if only_roll:
-        return [i[0] for i in std]
+        return [i[2] for i in std]
     if only_names:
         return [i[1] for i in std]
     return std
@@ -410,9 +410,11 @@ def create_base_folders(a, q):
         # return 1
     Path.mkdir(base, parents=True, exist_ok=True)
     code_questions = CODE_PATH_.format(a=a, q=q)
-    Path(code_questions).write_text(CODE_DEMO)
+    if not Path(code_questions).exists():
+        Path(code_questions).write_text(CODE_DEMO)
     test_cases = TEST_PATH_.format(a=a, q=q)
-    Path(test_cases).write_text(TEST_DEMO)
+    if not Path(test_cases).exists():
+        Path(test_cases).write_text(TEST_DEMO)
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
 
     Path.mkdir(Path(A_Q_PDS_PATH_.format(a=a,q=q)),parents=True,exist_ok=True)

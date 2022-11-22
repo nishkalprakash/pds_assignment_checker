@@ -99,7 +99,7 @@ if update_main_moss or recheck or not moss_out.exists():
         from re import findall
 
         addr = findall(r"http.*", text)
-        out.append(f"{BASE}_{a}_{moss_results.parent}:\n\t{addr[0]}")
+        out.append(f"{BASE}{a}_{moss_results.parent}:\n\t{addr[0]}")
 
     moss_results = "\n\n".join(out)
     moss_out.write_text(moss_results)

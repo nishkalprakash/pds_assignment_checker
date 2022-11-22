@@ -259,16 +259,16 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
                 # while not fp.exists():
                 #     print('PDS file not found. Downloading...')
                     sleep(.5)
-                print(fname+' downloaded')
+                print(fname.name+' downloaded')
                 fp.rename(fname)
                 # fl.
             elif c:
                 fname.write_text(c)
-                print('No FILE FOUND for {r} - {n}')
+                print(f'No FILE FOUND for {r} - {n}')
                 print('CODE CREATED FROM COMMENT BOX')
 
             else:
-                print('No Submission for {r} - {n}')
+                print(f'No Submission for {r} - {n}')
 
 
 

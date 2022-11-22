@@ -11,6 +11,7 @@ from lib.pds_globals import (
     A_PATH_,
     A_Q_,
     A_Q_PATH_,
+    A_Q_PDS_FILE_,
     A_Q_PLAG_,
     A_Q_PLAG_PATH_,
     A_Q_REPORT_,
@@ -72,9 +73,9 @@ def pds_checker(a, q):
     # n = get_map_roll_to_name()
 
     students = get_students()
-    plag_students_roll_set = {
-        i[0] for i in get_students(A_Q_PLAG_PATH_.format(a=a, q=q))
-    }
+    plag_students_roll_set = set(
+        get_students(A_Q_PLAG_PATH_.format(a=a, q=q), only_roll=True)
+    )
     ## Getting the BASE number details from user and switching working dir to BASE_a
 
     home, report_path, test_cases, code_questions = init_checker(a, q)
@@ -123,7 +124,7 @@ def pds_checker(a, q):
     print(f" Working for {report_path} ".center(100, "*"))
     ctr = 0
 
-    for std_roll, std_name in students:
+    for id,std_name,std_roll in students:
         # std_name=n[std_roll]
         ctr += 1
         if std_roll in done:
@@ -137,13 +138,19 @@ def pds_checker(a, q):
             f" {ctr} - Working for student - {std_roll} - {std_name} ".center(100, "*")
         )
         try:
-            if std_roll in plag_students_roll_set:
+            if std_roll not in plag_students_roll_set:
                 comments.append(PLAG_COMMENT)
                 print("<PLAG DETECTED>")
             else:
                 try:
                     file_exists = True
-                    c = next(home.glob(f"*{std_name}*"))
+                    c = next(
+                        home.glob(
+                            A_Q_PDS_FILE_.format(
+                                a=a, q=q, r=std_roll, n=std_name, f="*"
+                            )
+                        )
+                    )
                     system(
                         f'START /MIN /B "" "{c}"'
                     )  # Opens the file in the background
@@ -280,8 +287,8 @@ def pds_checker(a, q):
                     comments.append("")
                     comments.append(" CODE CASES ".center(30, "="))
                     comments.append("")
-                    for i, q in enumerate(code_questions):
-                        mark, ques = q
+                    for i, cq in enumerate(code_questions):
+                        mark, ques = cq
                         if (
                             "%" in mark
                         ):  # This case is for % marking, defaults to zero, adds a comment if -ve marks given
