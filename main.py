@@ -374,7 +374,7 @@ def pds_checker(a, q):
             raise
             # return
         try:
-            if def_input("\n\nGive any other comment? [0]/1: ", 0) == "1":
+            if def_input("\n\nGive any other comment? [0]/1: ", '0') == "1":
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
                     0,
