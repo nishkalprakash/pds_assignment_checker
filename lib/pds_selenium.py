@@ -88,15 +88,24 @@ def sem3_lt_hack():
     pass"""  ## END SEM 3 Hack
 
 
-def insert(driver, id, data):
-    elem = driver.find_element_by_id(id)
+def insert(driver, elem, data):
+    if type(elem) is str:
+        elem = driver.find_element_by_id(elem)
     elem.clear()
-    if len(data) > 128:
-        for i in range(0, len(data), 64):
-            elem.send_keys(data[i : i + 64])
+    if len(data) > 1024:
+        for i in range(0, len(data), 512):
+            elem.send_keys(data[i : i + 512])
     else:
         elem.send_keys(data)
 
+# def insert_elem(driver, elem, data):
+#     # elem = driver.find_element_by_id(id)
+#     elem.clear()
+#     if len(data) > 128:
+#         for i in range(0, len(data), 64):
+#             elem.send_keys(data[i : i + 64])
+#     else:
+#         elem.send_keys(data)
 
 def moodle_login(driver):
     print("Trying to login to moodle")
@@ -116,7 +125,7 @@ def init_selenium(def_dwnld_dir=TMP):
 
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
-    options.headless = True
+    # options.headless = True
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1366,768")
     # options.add_experimental_option("useAutomationExtension", False)
@@ -154,22 +163,28 @@ def init_selenium(def_dwnld_dir=TMP):
     return driver
 
 
-def driver_get_topics_from_a(driver, quiz_id, q=None):
+def driver_get_topics_from_a(driver, a, q=None):
     def get_q_and_topic_id(q_link):
         ## Extract id from the link
         return dict(
             # q=findall(MOODLE_A_Q_NAME_.format(a=a, q=r"([\d\w]+)"), q_link.text)[0],
             q=getqs(q_link,'slot'),
             qid=getqs(q_link,'qid'),
+            quiz_id=getqs(q_link,'id'),
             # topic_id=findall(r"id=(\d+)", q_link.get_attribute("href"))[0],
         )
 
+    ## This is the Home page of the course
+    driver_get_course(driver)
+    quiz_elem=driver.find_elements_by_partial_link_text(MOODLE_A_NAME_.format(a=a))[0]
+    quiz_id=getqs(quiz_elem,'id')
     print("inside driver_get_topics_from_a")
+    driver.get(f'https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading')
+    q_links = driver.find_elements_by_partial_link_text('grade all')
+
     if q is None:
         ## Get all the assignments links
         ## eg: here we get all the links that start with "Assignment {a} problem"
-        driver.get(f'https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading')
-        q_links = driver.find_elements_by_partial_link_text('grade all')
         ## this is to remove duplicate links with the same value
         # if BASE == 'LT':
             # q_link=map(str,range(1,4))
@@ -190,7 +205,7 @@ def driver_get_topics_from_a(driver, quiz_id, q=None):
         # q_link = driver.find_elements_by_partial_link_text(
             # MOODLE_A_Q_NAME_.format(a=a, q=q)
         # )[0]
-        q_topic = get_q_and_topic_id(q)
+        q_topic = get_q_and_topic_id(q_links[int(q)-1])
         return q_topic
 
 def get_sel_items(driver,val,a='',t='userenrolment',d='div'):
@@ -275,22 +290,19 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
 
 
 def get_assignments(a):
-    a_base = f"{A_PATH_.format(a=a)}"
+    # a_base =
     ## TODO Check if assignments need to be downloaded
 
-    driver = init_selenium(a_base)
+    driver = init_selenium(f"{A_PATH_.format(a=a)}")
+    
 
-    ## This is the Home page of the course
-    driver_get_course(driver)
-    quiz_elem=driver.find_elements_by_partial_link_text(MOODLE_A_NAME_.format(a=a))[0]
-    quiz_id=getqs(quiz_elem,'id')
-
-    q_topic_list = driver_get_topics_from_a(driver, quiz_id)
+    q_topic_list = driver_get_topics_from_a(driver,a)
     # quiz_id=findall(r"id=(\d+)", quiz_elem.get_attribute("href"))[0]
 
     for q_topic in q_topic_list:
         q = q_topic["q"]
         qid=q_topic['qid']
+        quiz_id=q_topic['quiz_id']
         q_base = Path(f"{A_Q_PATH_.format(a=a,q=q)}")
         a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))
         if not a_q_plag.exists():

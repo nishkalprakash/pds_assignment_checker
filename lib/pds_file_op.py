@@ -221,7 +221,7 @@ def get_head_from_report(a, q=None, DELIM=DELIM):
     return text_list[0]
 
 
-def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False):
+def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False,scale=0):
     if q is not None:
         if cwd:
             report = Path(A_Q_REPORT_.format(a=a, q=q))
@@ -247,8 +247,14 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False):
     for l in lines:
         # l = line.split(DELIM)
         std = l[0].strip('"')
+        m=l[index].strip()
+        if scale:
+            # try:
+            m=float(m)*scale/100
+            # except:
+
         d[std] = {
-            "m": l[index].strip(),
+            "m": m,
             "c": sub(
                 r"\n+",
                 "\n",
