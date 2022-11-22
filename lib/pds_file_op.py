@@ -142,7 +142,7 @@ def pull(path, DELIM=DELIM):
     ]
 
 
-def push(path, text, attr="r+", DELIM=DELIM):
+def push(path, text, attr="w+", DELIM=DELIM):
     with Path(path).open(attr) as f:
         # if type(text)
         x=f.read()

@@ -66,7 +66,8 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
         lf = f.name.split("_")
         # new_fname = lf[0].strip() + "_" + lf[-1].split(".")[-2].strip()[-9:] + ".c"
         # name=lf[0].strip().replace(" ", "_")
-        name=lf[0].strip()
+        # name=lf[0].strip()
+        name=lf[3].strip()
         new_fname = f"{mapping[name]} - {name} - {A_Q_.format(a=a,q=q)}.c".replace(' ','_')
         copyfile(f, moss_folder_name / new_fname)
         moss_command += f'"{new_fname}" '
