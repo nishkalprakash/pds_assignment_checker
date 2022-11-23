@@ -35,7 +35,7 @@ A_Q_ = A_ + "_" + Q_
 A_Q_PATH_ = A_PATH_ + "/" + Q_
 
 ## Question in description feature
-PS_ = A_Q_ + "_problem_statement.txt"
+PS_ = A_Q_ + "_problem_statement.png"
 PS_PATH_ = A_Q_PATH_ + "/" + PS_
 
 ## CHECKER FEATURE
@@ -99,10 +99,10 @@ TEST_DEMO = f"""
 # Format: `{{marks}}{DELIM}{{label}}{DELIM}{{test_case}}`
 # * For Example:
 # ```csv
-10{DELIM}{BR}INPUT:{BR}123{BR}{BR}OUTPUT:{BR}321{BR}{BR}{DELIM}123
-10{DELIM}{BR}INPUT:{BR}101{BR}{BR}OUTPUT:{BR}101{BR}{BR}{DELIM}101
-10{DELIM}{BR}INPUT:{BR}993{BR}{BR}OUTPUT:{BR}399{BR}{BR}{DELIM}993
-10{DELIM}{BR}INPUT:{BR}100{BR}{BR}OUTPUT:{BR}1{BR}{BR}{DELIM}100
+10{DELIM}{BR}INPUT:{BR}123{BR}{BR}Expected OUTPUT:{BR}321{BR}{BR}{DELIM}123
+10{DELIM}{BR}INPUT:{BR}101{BR}{BR}Expected OUTPUT:{BR}101{BR}{BR}{DELIM}101
+10{DELIM}{BR}INPUT:{BR}993{BR}{BR}Expected OUTPUT:{BR}399{BR}{BR}{DELIM}993
+10{DELIM}{BR}INPUT:{BR}100{BR}{BR}Expected OUTPUT:{BR}1{BR}{BR}{DELIM}100
 # ```
 """.strip()
 

@@ -1,0 +1,4 @@
+10;Input taken
+30;Calculated for First 100 KWH
+10;Calculated for rest
+10;Printed Output

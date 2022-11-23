@@ -1,0 +1,8 @@
+# Format: `{marks};{label};{test_case}`
+# * For Example:
+# ```csv
+10;~~IN:~~Enter day and month: 41 10~~~~Exp OUT:~~Invalid date~~~~;41 10
+10;~~IN:~~Enter day and month: 17 11~~~~Exp OUT:~~Thursday~~~~;17 11
+10;~~IN:~~Enter day and month: 1 1~~~~Exp OUT:~~Saturday~~~~;1 1
+10;~~IN:~~Enter day and month: 12 8~~~~Exp OUT:~~Friday~~~~;12 8
+# ```
