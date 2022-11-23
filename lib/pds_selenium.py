@@ -1,5 +1,6 @@
 ### TODO: make this a class
 
+import re
 from time import sleep
 from lib.pds_file_op import get_map_roll_to_name, printf, create_base_folders, set_plag_files
 from re import match
@@ -93,7 +94,7 @@ def init_selenium(def_dwnld_dir=TMP):
 
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
-    # options.headless = True
+    options.headless = True
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1366,768")
     options.add_argument("--disable-dev-shm-usage")
@@ -197,11 +198,13 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
         if not r:
             r=map_n_r[n]
         f=fl[i]
-        fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(f.text).stem))
+        fn=f.text
+        fn=re.sub(r'[\/:*?"<>|]',"_",fn)
+        fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fn).stem))
         c=ct[i].text
         if not fname.exists():
-            if f.text:
-                fp=Path(A_PATH_.format(a=a))/f.text
+            if fn:
+                fp=Path(A_PATH_.format(a=a))/fn
                 if not fp.exists():
                     f.find_element(By.TAG_NAME,'a').click()
                 # while not fp.exists():
