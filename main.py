@@ -4,10 +4,10 @@
 import random
 
 from pathlib import Path
-
+from sys import platform
 from os import system, chdir
 
-from lib.pds_globals import (
+from lib.pds_globals import(
     A_PATH_,
     A_Q_,
     A_Q_PATH_,
@@ -151,9 +151,12 @@ def pds_checker(a, q):
                             )
                         )
                     )
-                    system(
-                        f'START /MIN /B "" "{c}"'
-                    )  # Opens the file in the background
+                    if platform == 'win32':
+                        system(
+                            f'START /MIN /B "" "{c}"'
+                        )  # Opens the file in the background
+                    else:
+                        system(f'xdg-open "{c}"')
                 except StopIteration as si:
                     print(f"C File for  {std_roll} - {std_name} not found")
                     comments.append(
@@ -190,7 +193,12 @@ def pds_checker(a, q):
                             print(f"Input: {test}")
                             print(f"Desired Output: \n{test_comment}")
                             print(f"Program Output:")
-                            system(f"echo {test} | a.exe")
+
+                            if platform == 'win32':
+
+                                system(f"echo {test} | a.exe")
+                            else:
+                                system(f"echo {test} | ./a.out")
 
                             ## HACK: START: Support to open out file in case an external file is being created
                             if Path("outfile.txt").exists():
