@@ -130,7 +130,7 @@ def get_a_ql_from_user(q=True):
 
     ll = Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*")
     all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
-    ql = def_input(f"Please enter the {Q_BASE} number", all_q)
+    ql = def_input(f"Please enter the {Q_BASE} number", '1')
     return a, ql
 
 
@@ -255,11 +255,7 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False,scale=0
 
         d[std] = {
             "m": m,
-            "c": sub(
-                r"\n+",
-                "\n",
-                "".join(l[index + 1 :]).strip('"').strip().replace(BR, "\n").strip(),
-            ),
+            "c": "".join(l[index + 1 :]).strip('"').strip().replace(BR, "\n").strip(),
         }
         if ml:
             d[std]["ml"] = l[1:index]

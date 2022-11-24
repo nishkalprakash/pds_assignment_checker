@@ -161,17 +161,15 @@ def push_to_sheets(cauth, ws_name, gdf):
 
 # %%
 ws_name = "PDS Lab Grades"
-ws2_name = "Nishkal - Student Grades"
+# ws2_name = "Nishkal - Student Grades"
 #%% Auth
 cauth = auth()
-my_students = pull(path=r'var\my_students_sorted.txt')
-missing=['20AE30026', '20AG10035', '21HS10037']
-my_students = [i for i in my_students if i not in missing]
-push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
+# my_students = pull(path=r'var\my_students_sorted.txt')
+# push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
 
 ##
 my_students = get_students(only_roll=1)
 # gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
 gdf_my_students = gdf.loc[my_students,:]
 gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
-push_to_sheets(cauth, ws2_name, gdf_my_students)
+push_to_sheets(cauth, ws_name, gdf_my_students)

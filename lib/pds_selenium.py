@@ -70,9 +70,9 @@ def insert(driver, elem, data):
     if type(elem) is str:
         elem = driver.find_element_by_id(elem)
     elem.clear()
-    if len(data) > 1024:
-        for i in range(0, len(data), 512):
-            elem.send_keys(data[i : i + 512])
+    if len(data) > 128:
+        for i in range(0, len(data), 64):
+            elem.send_keys(data[i : i + 64])
     else:
         elem.send_keys(data)
 
@@ -94,7 +94,7 @@ def init_selenium(def_dwnld_dir=TMP):
 
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
-    options.headless = True
+    # options.headless = True
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1366,768")
     options.add_argument("--disable-dev-shm-usage")
