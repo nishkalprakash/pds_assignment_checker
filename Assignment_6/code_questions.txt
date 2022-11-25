@@ -1,4 +1,0 @@
-2;While loop for reading in the characters till '\n'
-2;Checking for lowercase alphabet and changing and printing
-2;Checking for uppercase alphabet and changing and printing
-2;Checking for digits and changing and printing

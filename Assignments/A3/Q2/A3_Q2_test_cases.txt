@@ -1,0 +1,8 @@
+# Format: `{marks};{label};{test_case}`
+# * For Example:
+# ```csv
+10;~~IN:~~21~~~~Exp OUT:~~Twenty One~~~~;21
+10;~~IN:~~34~~~~Exp OUT:~~Thirty Four~~~~;34
+10;~~INPUT:~~98~~~~Exp OUT:~~Ninety Eight~~~~;98
+10;~~INPUT:~~30~~~~Exp OUT:~~Thirty~~~~;30
+# ```

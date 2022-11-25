@@ -1,6 +1,0 @@
-1;Malloc
-1;Calling the function with proper parameters and printing the value
-3;Counting consecutive characters
-2;Keeping track of max and the character
-1;Proper return value
--1;Changed the function prototype in any way

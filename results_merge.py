@@ -3,9 +3,9 @@ from pathlib import Path
 # from init import BASE
 
 
-def push(path_str, text):
-    with Path(path_str).open("a+") as f:
-        f.write(text + "\n")
+# def push(path_str, text):
+#     with Path(path_str).open("a+") as f:
+#         f.write(text + "\n")
 
 
 def init2(BASE, WEIGHTAGE):
@@ -59,7 +59,7 @@ def init2(BASE, WEIGHTAGE):
         # get Top 8 (reverse sort them),
         # scale total out of 40 (2.5 each marks) or (sum(result)/((n/2)*20))*40
         # Here n/2 because there are half elements in the list now
-        TOP_ = 8
+        TOP_ = 4
         w8_total = sorted(
             map(lambda x: sum(x), zip(marks_list[::2], marks_list[1::2]))
         )[-TOP_:]

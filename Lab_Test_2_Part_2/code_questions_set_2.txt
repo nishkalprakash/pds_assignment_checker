@@ -1,7 +1,0 @@
--0.5;Did not submit Intermediate Code
-0.5;IsReversed():Base case
-1;IsReversed():Recursive call
-1;CheckStr():Nested loops to go over characters
-1;CheckStr():Checking for digit character and <
-1;CheckStr():Counting
-0.5;main():implemented properly

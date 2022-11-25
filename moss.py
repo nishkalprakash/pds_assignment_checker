@@ -1,49 +1,108 @@
 ## This file is to perfom a plag test among the submissions
 ## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
 
-import sys
-from os import listdir
-from os.path import isfile, join
-import os, shutil
-from shutil import copyfile
+from lib.pds_selenium import get_assignments
+from lib.pds_globals import A_, A_MOSS_, A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_PATH_, A_Q_REPORT_, BASE, LIB, Q_
+from lib.pds_file_op import def_input, get_a_ql_from_user, get_map_roll_to_name, re_sub_space, run_command, push
+
+from os import chdir, mkdir
+from shutil import copyfile, rmtree
 from pathlib import Path
+from itertools import chain
 
-from init import BASE
+m = (Path(LIB) / Path("moss.pl")).absolute()
+base=Path.cwd()
+a = get_a_ql_from_user(q=False)
 
-# from pathlib import Path
-a = input(f"Please enter the {BASE} number: ")
-folder_name = BASE + "_" + a
-new_name = folder_name + "_moss"
-if os.path.isdir(new_name):
-    shutil.rmtree(new_name)
-os.mkdir(new_name)
+mapping=get_map_roll_to_name(rev=True)
 
-# pds=Path(folder_name).
-try:
-    home = next(Path(folder_name).glob("PDS*/"))
-except StopIteration as si:
-    print("PDS Directory not found,")
-    print(f"Please download from moodle and place in the folder, {BASE}_{a}")
-    exit()
-moss_command = "perl moss.pl -l c -c " + folder_name + "_report "
-folder_name = str(home)
+assign_folder_name = Path(A_PATH_.format(a=a)).absolute()
+if not assign_folder_name.exists():
+    assign_folder_name.mkdir(parents=True, exist_ok=True)
 
-onlyfiles = [
-    f
-    for f in listdir(folder_name)
-    if isfile(join(folder_name, f))
-    if f.endswith("c") or f.endswith("cfile") or f.endswith("txt")
-]
+# from auto_upload import init_selenium
+# driver=init_selenium()
+if not len([i for i in assign_folder_name.iterdir() if i.is_dir()]):
+    ## if there are no folders then get the assignments from moodle
+    get_assignments(a)
 
-for f in onlyfiles:
-    ll = f.split("_")
-    roll_no = ll[0] + "_" + ll[-1].split(".")[0] + ".c"
-    # if len(roll_no)==11:
-    copyfile(os.path.join(folder_name, f), os.path.join(new_name, roll_no))
-    moss_command = moss_command + '"' + os.path.join(new_name, roll_no) + '"' + " "
-print(moss_command)
-os.system(moss_command)
-if os.path.isdir(new_name):
-    shutil.rmtree(new_name)
+chdir(assign_folder_name)
 
-input("Press any key to continue:....")
+recheck = False
+update_main_moss = False
+for question in (i for i in Path().glob("*/") if i.is_dir()):
+    q=question.name.replace(Q_.format(q=''),'')
+    mq = base/A_Q_MOSS_PATH_.format(a=a,q=q)
+    if mq.exists() and len(mq.read_text()):
+        print(f"\n\nMoss results for {question} exists.")
+        recheck = int(def_input("Do you want to re-generate the moss report? [0]/1", 0))
+        if not recheck:
+            continue
+        else:
+            update_main_moss=True
+            mq.write_text("")
+    if question.is_file():  # bug fix w
+        continue
+
+    chdir(question)
+
+    try:
+        ## Check if PDS Folder exists
+        ## TODO: Automate downloading of PDS folder using selenium
+        pds_folder_name = next(Path().glob("PDS*/"))
+    except StopIteration as si:
+        print("PDS Directory not found")
+        print("Please download from moodle and place in the folder:", Path().cwd())
+        exit()
+
+    ## IF the folder exists, delete and then recreate
+    moss_folder_name = Path(question.name + "_moss")
+    if moss_folder_name.exists():
+        rmtree(moss_folder_name)
+    mkdir(moss_folder_name)
+    moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(a=a,q=q)}" '
+    ## Only copy files that have the extensions .c, .C or .txt
+    for f in chain(pds_folder_name.glob("*.[cC]"), pds_folder_name.glob("*.txt")):
+        lf = f.name.split("_")
+        # new_fname = lf[0].strip() + "_" + lf[-1].split(".")[-2].strip()[-9:] + ".c"
+        # name=lf[0].strip().replace(" ", "_")
+        # name=lf[0].strip()
+        name=lf[3].strip()
+        new_fname = f"{mapping[name]} - {name} - {A_Q_.format(a=a,q=q)}.c".replace(' ','_')
+        copyfile(f, moss_folder_name / new_fname)
+        moss_command += f'"{new_fname}" '
+
+    chdir(moss_folder_name)
+    # moss_command += f' | tee "../moss_results.txt"'
+    print(moss_command)
+    # system(moss_command)
+    for line in run_command(moss_command):
+        print(line)
+        push(mq, line)
+    # print("Moss finished running - now sleeping for 10 secs")
+    # sleep(10)
+    chdir(assign_folder_name / question)
+    # chdir()
+    # Path("moss_results.txt").write_text(moss_out)
+    if moss_folder_name.is_dir():
+        rmtree(moss_folder_name)
+    chdir(assign_folder_name)
+
+
+moss_out = base/A_MOSS_PATH_.format(a=a)
+if not update_main_moss or moss_out.exists():
+    recheck = int(def_input("Combined moss results exists.\nDo you want to re-generate the combined moss report? [0]/1", 0))
+if update_main_moss or recheck or not moss_out.exists():
+    out = ["Hi,", "PFA the moss results."]
+    for moss_results in Path().rglob("*moss.txt"):
+        text = moss_results.read_text()
+        from re import findall
+
+        addr = findall(r"http.*", text)
+        out.append(f"{BASE}{a}_{moss_results.parent}:\n\t{addr[0]}")
+
+    moss_results = "\n\n".join(out)
+    moss_out.write_text(moss_results)
+
+print("Moss results have been genereated")
+print(moss_out.read_text())

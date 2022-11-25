@@ -1,2 +1,0 @@
-1;Test Case 1: S1 = AB2CDE, S2 = abcd, should print NO;AB2CDE abcd
-1;Test Case 2: S1 = AB2CD4EF, S2 = abcdef, should print Yes/found, as 2 + 4 = f;AB2CD4EF abcdef

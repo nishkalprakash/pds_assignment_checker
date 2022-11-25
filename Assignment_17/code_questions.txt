@@ -1,6 +1,0 @@
--1;Intermediate file not submitted
-2;SortMatrix():Copying to and from 1-d array correctly
-3;SortMatrix():Sorting
--2;SortMatrix():did not use merge in some form
-2;Main():Reading from file, including fopen error check
-1;Main():Writing into file

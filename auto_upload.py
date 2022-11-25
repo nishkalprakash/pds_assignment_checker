@@ -1,97 +1,64 @@
 """
 * Auto upload to moodle
 * Uses a file creds.txt as {Username}:{Password}
-* Current webdriver for code is chrome 87, change as needed in res/chromedriver.exe
-* Uses id of students found in grading page in moodle, change as needed in res/mapping.txt
+* Current webdriver for code is chrome 87, change as needed in lib/chromedriver.exe
+* Uses id of students found in grading page in moodle, change as needed in var/mapping.txt
 """
+from time import sleep
+from selenium.webdriver.common.by import By
 
-from pathlib import Path
-from selenium import webdriver
-from init import BASE
-
-
-def insert(driver, id, data):
-    driver.find_element_by_id(id).click()
-    driver.find_element_by_id(id).clear()
-    driver.find_element_by_id(id).send_keys(data)
-
-
-def selenium_auto_upload(driver, arr, a):
-    driver.get("https://moodlecse.iitkgp.ac.in/moodle/course/view.php?id=362")
-    try:
-        if "Test" in BASE:
-            driver.find_element_by_xpath(f"//div[./h3[contains(text(),\'Lab Test {BASE.strip('Lab_Test_Part')}\')]]").find_element_by_link_text(f"PART {a} Submission (Final)").click()
-        else:
-            driver.find_element_by_link_text(f"Assignment {a} Submission").click()
-
-    except:
-        driver.find_element_by_link_text(f"Assignment {a} Submission (Final)").click()
-
-    driver.find_element_by_link_text("View/grade all submissions").click()
-    mapping = {
-        i.split(",")[0]: i.split(",")[1]
-        for i in Path("res/mapping.txt").read_text().strip().split("\n")
-    }
-
-    # driver.find_element_by_link_text("ID number").click()
-    # input("Press Enter to continue...")
-    for std, m, c in arr:
-        insert(driver, f"quickgrade_{mapping[std]}", f"{m}")
-        insert(driver, f"quickgrade_comments_{mapping[std]}", c)
-
-    driver.find_element_by_id("id_savequickgrades").click()
-    # driver.close()
-
-
-def upload(a):
-    report = Path(f"{BASE}_{a}/{BASE}_{a}_report.csv")
-    text = report.read_text().strip()
-    text_list = text.split("\n")
-    head = text_list[0].split(",")
-    index = [i for i, k in enumerate(head) if k.strip('"').startswith("Total")][0]
-    # lines = [f'"{i}"' for i in text_list[1:]]  # padding with quotes
-    lines = text_list[1:]
-    arr = []
-    # Marks are taken directly from the total column, so if marks just deducted from there, its OK
-    for line in lines:
-        l = line.split(",")
-        student, marks, comments = (
-            l[0].strip('"').strip(),
-            l[index].strip(),
-            # float(l[index]) * 10,
-            "".join(l[index + 1 :]).strip('"').strip().replace(";;", "\n"),
-        )
-        # print(f"{student}\n\n{marks}\n\n{comments}")
-        arr.append([student.strip(), marks, comments])
-        # print("*" * 80)
-    ## TODO: SELENIUM MAGIC
-    return arr
-
-
-def init_selenium():
-    driver = webdriver.Chrome("res/chromedriver.exe")
-    driver.implicitly_wait(1)
-
-    driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
-    username, password = Path("res/creds.txt").read_text().strip().split(":")
-    insert(driver, "username", username)
-    insert(driver, "password", password)
-    driver.find_element_by_id("loginbtn").click()
-    return driver
-
+from lib.pds_file_op import (
+    get_a_ql_from_user,
+    get_map_roll_to_name,
+    get_std_roll_to_m_c_dict,
+    print,
+)
+from lib.pds_selenium import (
+    driver_get_course,
+    driver_get_topics_from_a,
+    extract_name_roll_tuple,
+    init_selenium,
+    insert,
+)
+from lib.pds_globals import A_Q_, A_Q_PDS_QUIZ_
 
 if __name__ == "__main__":
-    a_list = (
-        input(
-            f"Please enter the {BASE} numbers separated by space\nto upload report of: \nExample- 5 6 7 8\n"
-        )
-        .strip()
-        .split()
-    )
-    driver = init_selenium()
-    for a in a_list:
-        arr = upload(a)
-        # print(arr)
-        selenium_auto_upload(driver, arr, a)
-        print(f'{f"Done for {BASE}_{a}":*^50}')
-    driver.close()
+
+    def upload_to_moodle(a, q):
+        ## Initialize selenium
+        driver = init_selenium()
+        ## Go to course page
+        driver_get_course(driver)
+        ## Get the link to the assignemt_question
+
+        qq = driver_get_topics_from_a(driver,a,q)
+        driver.get(A_Q_PDS_QUIZ_.format(q=qq['q'],qid=qq['qid'],quiz_id=qq['quiz_id']))
+        # driver_get_from_topic(driver, topic_id)
+        ## Get each student marks and comments
+        map_n_r=get_map_roll_to_name(rev=True)
+        h4="//h4[contains(text(),'Attempt number 1 for ')]"
+        xp=h4+"/following-sibling::div//div[@class='comment']//%s[contains(concat(' ',normalize-space(@id),' '),'-%s')]"
+        nrt=driver.find_elements(by=By.XPATH,value=h4)
+        cm=driver.find_elements(by=By.XPATH,value=xp%('div','comment_ideditable'))
+        mks=driver.find_elements(by=By.XPATH,value=xp%('input','mark'))
+        max_m=float(driver.find_element(by=By.XPATH,value=xp.replace('@id','@name')%('input','maxmark')).get_attribute('value'))
+        s_m_c = get_std_roll_to_m_c_dict(a, q,scale=max_m)
+        
+        for i,elem in enumerate(nrt):
+            n,r=extract_name_roll_tuple(elem)
+            if not r:
+                r=map_n_r[n]
+            ## Upload data to moodle
+            insert(driver,mks[i], f"{s_m_c[r]['m']}")
+            insert(driver,cm[i], f"{s_m_c[r]['c']}")
+            print(f"Done for {r}")
+        ## Save changes
+        driver.find_element(By.XPATH, value="//input[@type='submit' and @value='Save and go to next page']").click()
+        sleep(2)
+        driver.close()
+        print(f'{f"Done for {A_Q_.format(a=a,q=q)}":*^50}')
+        return 0
+
+    a, ql = get_a_ql_from_user()
+    for q in ql.split():
+        upload_to_moodle(a, q)

@@ -1,8 +1,0 @@
-1;Defining the structures
-1;Declaring structure variables and reading in values in them
-1;Calling Intersects() correctly and printing the number of intersections
-1;Works for horizontal line segment fully above (and out of) rectangle and fully below and (out of)
-1;Works for vertical line segment fully to the left and fully to the right (and out) of rectangle
-1;Works for horizontal line segments with one end point inside and one endpoint outside (check for outside point both towards left and right))
-1;Works for Vertical line segments with one end point inside and one endpoint outside (check for outside point both towards left and right))
-1;Works for line segments with both points outside but cutting the rectangle (2 intersection points)

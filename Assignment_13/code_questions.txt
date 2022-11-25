@@ -1,8 +1,0 @@
-1;Correct setting of min at the beginning
-1;Nested loop to compare all pairs 
--0.5;Comapared with self
-3;Finding the difference, keeping track of minimum, and proper return
--1;Used any additional array(were told not to)
-1;Malloc of array
-1;Calling FindDiff with proper parameters
-1;Printing appropriate message based on return value

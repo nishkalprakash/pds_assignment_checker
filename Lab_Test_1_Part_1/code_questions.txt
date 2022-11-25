@@ -1,7 +1,0 @@
-1;Reading in the coordinates in X and Y arrays
-1;Printing the points (in a single line)
-1;Two nested loops to compare the points
-1;Non-dictated point Condition check
-1;Keeping track of non-dictated and printing
-1;Finding each non-dictated point
-2;Deleting and rearranging the array (Must delete from X and Y), Deleting means if there are K such points remaining, they should be in the first K positions in X and Y, and the number of elements n should be changed to K (or you can keep a separate count and use that to print, that is ok too). So you have to shift the array after each deletion and adjust the number of entries.

@@ -1,4 +1,0 @@
-0.5;Test Case 1: A = 'abc123', B = 'abc',Should say A is not a prefix of B;abc123 abc
-0.5;Test Case 2: A = 'abc', B = 'abc123', Should say A is a prefix of B;abc abc123
-0.5;Test Case 3: A = 'abcd12', B = 'abc123', Should say A is not a prefix of B;abcd12 abc123
-0.5;Test case 4: A = 'abcd', B = 'abcd', Should say A is a prefix of B;abcd abcd

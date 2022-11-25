@@ -1,3 +1,0 @@
-0.5;Reading in with %s
-1.5;Computing and printing the length correctly
-6;Checking for palindrome

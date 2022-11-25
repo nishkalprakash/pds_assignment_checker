@@ -1,2 +1,0 @@
-1;n wrong, x correct,Input: 0.5,5 (Output: 0.606771);0.5 5
-1;n correct, x wrong,Input: 0.7,7 (Output: 0.496600);.7 7

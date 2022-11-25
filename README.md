@@ -4,8 +4,9 @@
 
 ## Requirements:
 
-* Python >=3.7 (should exist in path)
-* Gcc >= 8.1 (should exist in path)
+* Python >=3.9 (should exist in path) (This code uses walrus/assignment_operator ( `:=` operator ))
+* Gcc >= 8.1 (should exist in path) (best to use code blocks compiler)
+* Perl >=5.24 (strawberry) (should exist in path)
 * Default editor for `.c` files should be set
 
 ## Features:
@@ -34,15 +35,12 @@
     * Edit the `code_qestions.txt` file (located inside the `Assignment_#` folder)
 * Finally run `main.py`
 
-### Editing `students.txt`:
+### Editing `students.txt` (NEW):
 
-* Put names of your students in each line (you have to do this only once)
-* Open the PDSA* folder to check their name
-* Use the same case as used in the PDSA* Folder:
-* For Example:
-    * If student file is: "Nishkal Prakash_1236957_assignsubmission_file_class.c"
-    * Put `Nishkal Prakash` inside the `students.txt`
-    * Then put the next student in the next line
+* Open get_students.py
+* Also open any assignment grading page and note the ID
+* Edit variable `PAGE_ID` as the noted ID
+* Run get_students.py
 
 ### Editing `test_cases.txt`:
 
@@ -75,9 +73,9 @@
 ### Features added:
 * (EXPERIMENTAL) Added support for Auto Upload to moodle, REQUIRED:'
     * Install selenium using `pip install selenium`
-    * Download and save the corresponding selenium `chromedirver` in `res\chromedriver.exe` 
-    * Save moodle credentials in `res\creds.txt` as `{USERNAME}:{PASSWORD}`
-    * Student ids that moodle uses in `res\mapping.txt`, For Example:
+    * Download and save the corresponding selenium `chromedirver` in `lib\chromedriver.exe` 
+    * Save moodle credentials in `var\creds.txt` as `{USERNAME}:{PASSWORD}`
+    * Student ids that moodle uses in `var\mapping.txt`, For Example:
     > {STUDENT_NAME_1},{ID_1}  
     > {STUDENT_NAME_2},{ID_2}  
     * To get ID for student:
@@ -93,10 +91,14 @@
 * Added support for negative marking in `test_cases.txt`:
     * An entry with negative marks can be given, For Example:
     > -0.5;Test Case 3: Skips repeated element;5 1 2 3 3 5
+* Added support for comemnts in `code_questions.txt` and `test_cases.txt` by starting a line with `#`
+* Added support for new line in `code_questions.txt` and `test_cases.txt` by using `!!`
+* Added support for predefined comemnts in `code_questions.txt` and `test_cases.txt`
+
 
 ## License:
 
-Copyright <2020> (Nishkal Prakash)
+Copyright <2020-22> (Nishkal Prakash)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

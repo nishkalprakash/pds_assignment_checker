@@ -1,0 +1,3 @@
+30;Time saved in correct order (scanf)
+20;`if` statement correctly implemented
+10;Time printed when valid

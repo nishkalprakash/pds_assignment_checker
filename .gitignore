@@ -18,27 +18,34 @@ Thumbs.db
 *.war
 
 # Program files
-*/PDSA20S15*
-Assignment*/*
-Lab_Test*/*
+# PDS*
+*_moss
+# Assignment*/*
+# Lab_Test*/*
+# Lab-test*/*
 
 # Files to track
 # !*/*.txt
-!*/*.txt
+# !*/*.txt
 # !res/chromedriver.exe
 
 Assignment*/done_intermediate.txt
 
 # Reports
-*.csv
+# *.csv
 
 # .vscode
 .vscode
 
 
 # PDF files
-pdf*
-*.pdf
+# pdf*
+# *.pdf
 
 # Credentials
 creds*
+client_secret*
+service_account*
+sheets.google*
+
+moodle_chrome_data*

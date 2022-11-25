@@ -1,2 +1,0 @@
-1;Test Case 1: 'aaaaaa', Should print 'a' and 6;6 aaaaaa
-1;Test Case 2: 'ababacacdd', Should print 'd' and 2;10 ababacacdd

@@ -1,0 +1,7 @@
+30;Int, Char, Float Correctly Stored
+10;%2d used for printing Integer Value
+10;%d used for printing Character Value
+10;%f or %lf or %e used for printing Float Value
+
+# -5;Comments missing, logic hard to understand
+# -5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed

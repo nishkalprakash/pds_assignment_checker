@@ -1,2 +1,0 @@
-1;Case 1: AGtest90, should print zfsdrs01;AGtest90\n
-1;case 2: 590PPchak09, should print 601oobgzj10;590PPchak09\n

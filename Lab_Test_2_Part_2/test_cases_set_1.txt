@@ -1,2 +1,0 @@
-1;N = '123$$248$$$$$', p = '$' - substrings = 2, max length = 5, Modified string = '123:248:';123$$248$$$$$ $
-1;N = '1231123111231', p = '1' - substrings = 4, max length = 3, Modified string = ':23:23:23:';1231123111231 1
