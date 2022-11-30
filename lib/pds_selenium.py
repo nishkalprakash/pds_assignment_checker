@@ -199,8 +199,8 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
             r=map_n_r[n]
         f=fl[i]
         fn=f.text
-        fn=re.sub(r'[\/:*?"<>|]',"_",fn)
-        fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fn).stem))
+        fnf=re.sub(r'[#\/:*?"<>|]',"_",fn.strip('_.'))
+        fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fnf).stem))
         c=ct[i].text
         if not fname.exists():
             if fn:
@@ -239,7 +239,7 @@ def get_assignments(a):
         q = q_topic["q"]
         qid=q_topic['qid']
         quiz_id=q_topic['quiz_id']
-        q_base = Path(f"{A_Q_PATH_.format(a=a,q=q)}")
+        # q_base = Path(f"{A_Q_PATH_.format(a=a,q=q)}")
         a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))
         if 1 or not a_q_plag.exists():
         # if True or not next(q_base.glob("PDS*"), False):

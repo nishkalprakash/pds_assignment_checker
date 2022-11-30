@@ -219,9 +219,9 @@ def pds_checker(a, q):
                                     )
                                 elif test_marks[i] >= mark:  # in case of typing errpr
                                     test_marks[i] = mark
-                                    comments.append(
-                                        f"{BR}PASSED: Test Case {i+1}: {BR}{test_comment}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
-                                    )
+                                    # comments.append(
+                                    #     f"{BR}PASSED: Test Case {i+1}: {BR}{test_comment}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
+                                    # )
                             else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
                                 test_marks[i] = float(
                                     def_input(
@@ -332,12 +332,10 @@ def pds_checker(a, q):
                                     )
                                 elif code_marks[i] >= mark:  # in case of typing err0r
                                     code_marks[i] = mark
-                                    comments.append(
-                                        f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
-                                    )
-                            elif (
-                                mark < 0
-                            ):  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
+                                    # comments.append(
+                                    #     f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
+                                    # )
+                            elif (mark < 0):  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
                                 code_marks[i] = float(
                                     def_input(
                                         f"\n\n{ques} - ({mark:g}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ",
