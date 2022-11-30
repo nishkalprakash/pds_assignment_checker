@@ -5,24 +5,22 @@
 #include <stdio.h>
 int main()
 {
-	float U;								// Units of electricity (User Defined)
-	float b=0;								// Stores calculated Bill
-	int s;									// Stores slab value for `switch`			
+	float U;	 // Units of electricity (User Defined)
 
 	printf("Enter units : ");
-	scanf("%f", &U);						// Assume to be valid unless specified otherwise
-	
-	// Calculating Slab
-	s = (int) U/100;						// U>300 		will have slab 3
-											// 200>U>300 	will have slab 2
-											// 100>U>200 	will have slab 1, slab 0 below
-	switch(s-1){							
-		default: if(!b) b+=(U-300)*1.5; b+=120;
-		case 1:  if(!b) b+=(U-200)*1.2; b+=75;
-		case 0:  if(!b) b+=(U-100)*.75; b+=50;
-	}
+	scanf("%f", &U); // Assume to be valid unless specified otherwise
 
-	printf("Rs. %.2f",b*1.2);				// 20% markup added
-	
+	// When U > 300 then all previous unit are added (50+75+120)
+	if (U > 300) 
+		printf("Rs. %.2f", 1.2 * (245 + 1.5 * (U - 300)));
+	// When U > 200 then all previous unit are added (50+75)
+	else if (U > 200)
+		printf("Rs. %.2f", 1.2 * (125 + 1.2 * (U - 200)));
+	// When U > 100 then 50 is added to bill
+	else if (U > 100)
+		printf("Rs. %.2f", 1.2 * (50 + .75 * (U - 100)));
+	// When U < 100 then bill is 50 + surcharge
+	else
+		printf("Rs. 60");
 	return 0;
 }

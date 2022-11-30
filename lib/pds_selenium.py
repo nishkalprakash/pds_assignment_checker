@@ -82,7 +82,7 @@ def moodle_login(driver):
     driver.get("https://moodlecse.iitkgp.ac.in/moodle/login/index.php")
     from lib.pds_file_op import pull
 
-    username, password = pull(f"{VAR}/creds.txt")[0].split(":")
+    username, password = pull(f"{VAR}/creds.txt",DELIM=':')[0]
     insert(driver, "username", username)
     insert(driver, "password", password)
     driver.find_element_by_id("loginbtn").click()
