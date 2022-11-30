@@ -43,7 +43,8 @@ TEST_ = A_Q_ + "_test_cases.txt"
 TEST_PATH_ = A_Q_PATH_ + "/" + TEST_
 CODE_ = A_Q_ + "_code_questions.txt"
 CODE_PATH_ = A_Q_PATH_ + "/" + CODE_
-
+SOL_ = A_Q_+"_solution"
+SOL_PATH_ = A_Q_PATH_+"/"+SOL_
 
 ## PLAG FEATURE
 A_Q_PLAG_ = A_Q_ + "_plag.txt"

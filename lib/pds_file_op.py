@@ -28,6 +28,7 @@ from lib.pds_globals import (
     HOME,
     Q_,
     Q_BASE,
+    SOL_PATH_,
     TEST_DEMO,
     TEST_PATH_,
     VAR,
@@ -417,6 +418,9 @@ def create_base_folders(a, q):
     test_cases = TEST_PATH_.format(a=a, q=q)
     if not Path(test_cases).exists():
         Path(test_cases).write_text(TEST_DEMO)
+    solution = SOL_PATH_.format(a=a, q=q)
+    if not Path(solution).exists():
+        Path(solution).write_text(TEST_DEMO)
     print(f"Created:\n\t{base}\n\t{test_cases}\n\t{code_questions}")
 
     Path.mkdir(Path(A_Q_PDS_PATH_.format(a=a,q=q)),parents=True,exist_ok=True)

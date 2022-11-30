@@ -138,7 +138,7 @@ def driver_get_topics_from_a(driver, a, q=None):
     quiz_elem=driver.find_elements_by_partial_link_text(MOODLE_A_NAME_.format(a=a))[0]
     quiz_id=getqs(quiz_elem,'id')
     print("inside driver_get_topics_from_a")
-    driver.get(f'https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading')
+    driver.get(f'https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading&includeauto=1')
     q_links = driver.find_elements_by_partial_link_text('grade all')
 
     if q is None:
