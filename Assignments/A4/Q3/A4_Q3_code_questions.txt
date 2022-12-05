@@ -1,4 +1,5 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;Read integer/long properly
+10;Used % to extract last digit
+10;Used / to get next last digit
+10;Printed the reverse number in words
+20;Used Long for stong the number
