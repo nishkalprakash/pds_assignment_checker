@@ -11,16 +11,14 @@ from lib.pds_file_op import (
     push,
     set_plag_files,
 )
-from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BR, TEST_, TMP, DELIM, VAR
+from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BR, TC_, TEST_, TEST_PATH_, TMP, DELIM, VAR
 
 ## Reset the test cases and code questions default text
 def reset_test_code():
     from lib.pds_file_op import create_base_folders as cbf, get_a_ql_from_user
-
     a, q = get_a_ql_from_user()
     for _ in q.split():
         cbf(a, _)
-
 
 import re
 from lib.pds_file_op import (
@@ -112,16 +110,38 @@ def format_mystudents():
     std = pull(f"{VAR}/my_students_sorted.txt")
     push(f"{VAR}/my_students.txt", [f"{i},{n[i]}" for i in std], attr="w")
 
+def generate_test_cases():
+    # def get_tcs:
+    a,ql=get_a_ql_from_user()
+    for q in ql:
+        t=TEST_PATH_.format(a=a,q=q)
+        txt=Path(t).read_text().split('\t')
+        
+        if txt[0].startswith('TEST'):
+        # if type(txt[0])==str:
+            txt=txt[3:]
+            txt=[i[:-2] if n%2 else i for n,i in enumerate(txt)]
+            txt=list(zip(txt[::2],txt[1::2]))
+        elif txt[0].startswith('#TC_GENERATED'):
+            continue
+        # txt=list(map(lambda x:['10']+x,txt))
+        # txt
+        
+        test_cases=['#TC_GENERATED']+[
+            TC_.format(m='10',ip=ip.replace('\n',BR),op=op.replace('\n',BR)) for ip,op in txt]
+        push(t,test_cases,attr="w+")
+
+
 
 if __name__ == "__main__":
     # reset_test_code()
-    format_test_cases()
+    # format_test_cases()
     # format_mystudents()
     # set_plag_files()
     ## TODO: update assignment reports with plag from moodle
     # format_plag_email_file()
-
     # results_edit()
+    generate_test_cases()
     pass
 
 
@@ -144,3 +164,5 @@ if __name__ == "__main__":
 ###             if r[c]:
 ###                 roll_to_mark_comm[r['rollno']]['c'] += f"Q{q} -> {r[c]}\n"
 """
+
+

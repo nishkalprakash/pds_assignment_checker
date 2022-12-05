@@ -96,6 +96,8 @@ A_SUB_PATH_ = A_PATH_ + "/" + A_SUB_
 # MOODLE_A_Q_NAME_=MOODLE_A_NAME_+"{q}"
 # ASSIGN_Q_NAME_PATTERN_=ASSIGN_NAME_PATTERN+"{q})"
 
+
+TC_=f"{{m}}{DELIM}IN:{BR}{{ip}}{BR}{BR}Exp OUT:{BR}{{op}}{BR}{BR}{DELIM}{{ip}}"
 TEST_DEMO = f"""
 # Format: `{{marks}}{DELIM}{{label}}{DELIM}{{test_case}}`
 # * For Example:
@@ -114,7 +116,9 @@ CODE_DEMO =f"""
 -5{DELIM}Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
 """.strip()
 
-
+MT_DEMO = """Checking files . . .
+OK
+"""
 ## QUIZ URLS
 
 A_Q_PDS_QUIZ_ = "https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading&slot={q}&qid={qid}&page=0&includeauto=1&grade=all&pagesize=100&order=studentfirstname"

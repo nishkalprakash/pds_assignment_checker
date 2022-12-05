@@ -132,7 +132,7 @@ def get_a_ql_from_user(q=True):
     ll = Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*")
     all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
     ql = def_input(f"Please enter the {Q_BASE} number", '1')
-    return a, ql
+    return a, ql.strip().split()
 
 
 def pull(path, DELIM=DELIM):

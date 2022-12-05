@@ -2,7 +2,7 @@
 ## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
 
 from lib.pds_selenium import get_assignments
-from lib.pds_globals import A_, A_MOSS_, A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_PATH_, A_Q_REPORT_, BASE, LIB, Q_
+from lib.pds_globals import A_, A_MOSS_, A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_PATH_, A_Q_REPORT_, BASE, LIB, MT_DEMO, Q_
 from lib.pds_file_op import def_input, get_a_ql_from_user, get_map_roll_to_name, re_sub_space, run_command, push
 
 from os import chdir, mkdir
@@ -33,7 +33,7 @@ update_main_moss = False
 for question in (i for i in Path().glob("*/") if i.is_dir()):
     q=question.name.replace(Q_.format(q=''),'')
     mq = base/A_Q_MOSS_PATH_.format(a=a,q=q)
-    if mq.exists() and len(mq.read_text()):
+    if mq.exists() and len(mq.read_text().replace(MT_DEMO,'')):
         print(f"\n\nMoss results for {question} exists.")
         recheck = int(def_input("Do you want to re-generate the moss report? [0]/1", 0))
         if not recheck:
