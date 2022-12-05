@@ -12,6 +12,7 @@ int main ()
   p=p/10;
   n=n+p;
   printf("The sum of digits is: ",n);
+  break;
 }
   return 0;
 }
