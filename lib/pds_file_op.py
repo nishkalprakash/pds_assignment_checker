@@ -129,10 +129,12 @@ def get_a_ql_from_user(q=True):
     if not q:
         return a
 
-    ll = Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*")
-    all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
-    ql = def_input(f"Please enter the {Q_BASE} number", '1')
-    return a, ql.strip().split()
+    ll = list(Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*"))
+    # all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
+    last_q = sorted(ll,key=lambda x:x.stat().st_mtime)[-1].name.removeprefix(Q_BASE) if ll else '1'
+    ql = def_input(f"Please enter the {Q_BASE} number", last_q)
+    # return a, ql.strip().split()
+    return a, ql.strip()
 
 
 def pull(path, DELIM=DELIM):

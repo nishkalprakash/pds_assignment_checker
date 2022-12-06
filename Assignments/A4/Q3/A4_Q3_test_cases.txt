@@ -1,9 +1,4 @@
 #TC_GENERATED
-10;IN:~~1000000~~~~Exp OUT:~~1~~~~;1000000
-10;IN:~~5641~~~~Exp OUT:~~16~~~~;5641
-10;IN:~~-5641~~~~Exp OUT:~~-16~~~~;-5641
-10;IN:~~0~~~~Exp OUT:~~0~~~~;0
-10;IN:~~INPUT~~~~Exp OUT:~~OUTPUT~~~~;INPUT
 10;IN:~~2345~~~~Exp OUT:~~Five Four Three Two~~~~;2345
 10;IN:~~0~~~~Exp OUT:~~Zero~~~~;0
 10;IN:~~2345432~~~~Exp OUT:~~Two Three Four Five Four Three Two~~~~;2345432
