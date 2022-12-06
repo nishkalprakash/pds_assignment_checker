@@ -6,7 +6,7 @@ int main (){
    if (n==0){
    printf("Zero");}
 
-while (n!=0);
+// while (n!=0);
 
  if (n==1){
 printf("One");}

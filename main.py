@@ -117,7 +117,8 @@ def pds_checker(a, q):
     ## START: DONE Support - pulls students details from report to mark them as done
     try:
         done = set(get_std_roll_to_m_c_dict(a, q, cwd=True).keys())
-    except:
+    except Exception as e:
+        print(str(e),"\nSomething wrong with Report FILE, please delete it.")
         done = set()
     ## End
 
@@ -181,7 +182,7 @@ def pds_checker(a, q):
                             ## RUN C FILE here with the test case
 
                             ## HACK START: SUPPORT For file input If test_case_input_file_# exists then copy it to infile.txt
-                            if Path(f"test_case_input_{i+1}.txt").exists():
+                            if Path(f"test_case_in+put_{i+1}.txt").exists():
                                 Path("infile.txt").write_text(
                                     Path(f"test_case_input_{i+1}.txt").read_text()
                                 )
@@ -198,7 +199,7 @@ def pds_checker(a, q):
 
                                 system(f"echo {test} | a.exe")
                             else:
-                                system(f"echo {test} | ./a.out")
+                                system(f"timeout 1s echo {test} | ./a.out")
 
                             ## HACK: START: Support to open out file in case an external file is being created
                             if Path("outfile.txt").exists():
@@ -443,6 +444,8 @@ def pds_checker(a, q):
 if __name__ == "__main__":
     base_home = Path.cwd()
     a, ql = get_a_ql_from_user()
+    # print(a)
+    # print(ql)
     ## Set base to the required directory
     for q in ql.split():
         x = "RERUN"

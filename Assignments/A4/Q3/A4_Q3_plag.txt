@@ -5,6 +5,7 @@
 15621;Abhisekh Mukherjee;22MA10002
 15626;admya maheshwari;22CH10004
 15598;Ajay Singh;22GG10004
+14366;Banavath Akash Banavath;21CS30010
 15559;Aman Antil;22CS30008
 15635;Aman Juneja;22BT30002
 15641;Aman Meena;22CE10005
