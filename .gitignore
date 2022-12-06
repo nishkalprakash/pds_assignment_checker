@@ -37,7 +37,8 @@ Assignment*/done_intermediate.txt
 # .vscode
 .vscode
 
-
+*lock*
+*.out
 # PDF files
 # pdf*
 # *.pdf

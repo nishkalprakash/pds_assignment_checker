@@ -9,6 +9,7 @@
 15635;Aman Juneja;22BT30002
 15641;Aman Meena;22CE10005
 15622;animesh mishra;22MI10013
+14366;Banavath Akash Banavath;21CS30010
 15583;anirudh wasnik;22ME10007
 15593;Anish Kerketta;22NA10003
 15560;Anisha Banerjee;22IE10007
