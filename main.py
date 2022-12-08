@@ -447,7 +447,7 @@ if __name__ == "__main__":
     # print(a)
     # print(ql)
     ## Set base to the required directory
-    for q in ql.split():
+    for q in ql:
         x = "RERUN"
         while x == "RERUN":
             x = pds_checker(a, q)
