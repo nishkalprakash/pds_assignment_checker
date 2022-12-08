@@ -1,6 +1,6 @@
 int main() {
 int A, B, temp;
-scanf (“%d %d”, &A, &B);
+scanf (%d %d, &A, &B);
 if (A > B) {
 temp = A; A = B; B = temp;
 }
@@ -9,6 +9,6 @@ temp = B % A;
 B = A;
 A = temp;
 }
-printf (“The GCD is %d”, A);
+printf (The GCD is %d, A);
 return 0;
 }

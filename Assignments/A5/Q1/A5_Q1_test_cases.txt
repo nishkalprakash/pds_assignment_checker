@@ -1,8 +1,5 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+#TC_GENERATED
+10;IN:~~10 1~~~~Exp OUT:~~1.0~~~~;10 1
+10;IN:~~0 10~~~~Exp OUT:~~1.0~~~~;0 10
+10;IN:~~1 10~~~~Exp OUT:~~2.7183~~~~;1 10
+10;IN:~~2 5~~~~Exp OUT:~~7.~~~~;2 5

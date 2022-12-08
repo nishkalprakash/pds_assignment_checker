@@ -117,13 +117,12 @@ def generate_test_cases():
         t=TEST_PATH_.format(a=a,q=q)
         txt=Path(t).read_text().split('\t')
         
-        if txt[0].startswith('TEST'):
-        # if type(txt[0])==str:
+        if txt[0].startswith('#TC_GENERATED'):
+            continue
+        elif txt[0] == '#':
             txt=txt[3:]
             txt=[i[:-2] if n%2 else i for n,i in enumerate(txt)]
             txt=list(zip(txt[::2],txt[1::2]))
-        elif txt[0].startswith('#TC_GENERATED'):
-            continue
         # txt=list(map(lambda x:['10']+x,txt))
         # txt
         

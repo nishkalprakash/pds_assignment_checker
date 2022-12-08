@@ -1,4 +1,5 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+20;generating the random number
+20;"winner declaration" part, 
+20;comparing numbers too less/too big, 
+20;five attempts loop
+20;loser declaration 

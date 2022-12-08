@@ -68,3 +68,5 @@ Uploading 22NA30030_-_SIDDHANT_CHASTA_-_A5_Q4.c ...done.
 Uploading 22PH10032_-_Kartik_Moradiya_-_A5_Q4.c ...done.
 Uploading 22PH10051_-_dusvanth_vadithya_-_A5_Q4.c ...done.
 Query submitted.  Waiting for the server's response.
+Query submitted.  Waiting for the server's response.
+http://moss.stanford.edu/results/4/9888260346810

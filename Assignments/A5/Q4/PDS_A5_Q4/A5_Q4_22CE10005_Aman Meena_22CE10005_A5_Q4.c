@@ -14,7 +14,6 @@ int main() {
 
                int a[],bins;
 
- 
 
                scanf("%d", &a[]);
 

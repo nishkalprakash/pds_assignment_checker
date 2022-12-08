@@ -25,7 +25,6 @@ scanf("%d",&a[i]);
  		if (a[j] < min) 
  			min = a[j];
  	} 
- 	//printf(“Minimum  is %d\n”, count); 
 
  	 max = a[0];
  for (k=1; k<n; k++)
@@ -33,7 +32,6 @@ scanf("%d",&a[i]);
  		if (a[k] > max) 
  			max = a[k];
  	} 
- 	//printf(“Max is %d\n”, count); 
   
   int sec=(max-min)/bin;
 i=0;

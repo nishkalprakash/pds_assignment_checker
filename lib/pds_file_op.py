@@ -134,7 +134,7 @@ def get_a_ql_from_user(q=True):
     last_q = sorted(ll,key=lambda x:x.stat().st_mtime)[-1].name.removeprefix(Q_BASE) if ll else '1'
     ql = def_input(f"Please enter the {Q_BASE} number", last_q)
     # return a, ql.strip().split()
-    return a, ql.strip()
+    return a, ql.strip().split()
 
 
 def pull(path, DELIM=DELIM):
