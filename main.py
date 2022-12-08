@@ -2,7 +2,7 @@
 
 ## Random is used to get the random compliments
 import random
-
+from subprocess import STDOUT, run, TimeoutExpired, CalledProcessError
 from pathlib import Path
 from sys import platform
 from os import system, chdir
@@ -191,13 +191,26 @@ def pds_checker(a, q):
                             mark, test_comment, test = line
                             mark = float(mark)
                             print(f"Test_Case_{i+1}:".center(50, "-"))
-                            print(f"Input: {test}")
+                            # print(f"Input: {test}")
                             print(f"Desired Output: \n{test_comment}")
                             print(f"Program Output:")
 
                             if platform == 'win32':
+                                cmd=f"a.exe"
+                                # system(cmd)
+                                # subprocess.check_output(cmd, shell=True, timeout=2)
+                                try:
+                                    out=run(cmd,input=test, capture_output=True, text=True,timeout=1).stdout
+                                except TimeoutExpired:
+                                    out='[Code goes into an Infinite Loop]'
+                                    # comments.append(f'{BR}Code goes into an Infinite Loop')
+                                except CalledProcessError as e:
+                                    print('CalledProcessError')
+                                    raise e
+                                print(out)
+                                out=out.replace('\n',BR)
+                                comments.append(f'{BR}Your output:{BR}{out}')
 
-                                system(f"echo {test} | a.exe")
                             else:
                                 system(f"timeout 1s echo {test} | ./a.out")
 

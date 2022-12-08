@@ -21,5 +21,5 @@ int main()
     }
     
     printf("\nThe Exponential Value of %f = %.4f", x, sum);
-    getch();
+    // getch();
 }

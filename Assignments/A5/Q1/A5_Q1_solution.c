@@ -23,6 +23,6 @@ int main()
 	printf("Enter X and N: ");
 	scanf("%d%d", &X, &N);
 	while (N--)
-		sum += (double(power(X, N)) / fact(N)); // Type casting to double/float to prevent integer division
+		sum += ((double)power(X, N)) / fact(N); // Type casting to double/float to prevent integer division
 	printf("%lf", sum);
 }
