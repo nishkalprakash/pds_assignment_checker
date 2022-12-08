@@ -1,9 +1,9 @@
-/*
-SECTION 14
-ROLL no. :22BT30022
-name:Rahul choudhary
-assignment:5
-Description:to find the prime and coprimes.
+
+// SECTION 14
+// ROLL no. :22BT30022
+// name:Rahul choudhary
+// assignment:5
+// Description:to find the prime and coprimes.
 #include<stdio.h>
 const int size=5;
 int t=0;

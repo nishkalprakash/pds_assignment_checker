@@ -18,7 +18,7 @@ int gcd(int a,int b)
 }
 
 int main()
-{
+{	
 	int x,y;
 	printf("Enter two numbers");
 	scanf("%d %d\n",&x,&y);
