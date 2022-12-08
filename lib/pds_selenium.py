@@ -199,12 +199,12 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
             r=map_n_r[n]
         f=fl[i]
         fn=f.text
-        fnf=re.sub(r'[#\/:*?"<>|]',"_",fn.strip('_.'))
+        fnf=re.sub(r'([#\/:*?"<>|]|\.$)',"_",fn)
         fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fnf).stem))
         c=ct[i].text
         if not fname.exists():
             if fn:
-                fp=Path(A_PATH_.format(a=a))/fn
+                fp=Path(A_PATH_.format(a=a))/fnf
                 if not fp.exists():
                     f.find_element(By.TAG_NAME,'a').click()
                 # while not fp.exists():
