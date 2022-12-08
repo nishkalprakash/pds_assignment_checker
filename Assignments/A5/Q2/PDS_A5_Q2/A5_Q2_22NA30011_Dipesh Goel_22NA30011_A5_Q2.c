@@ -45,16 +45,16 @@ int main()
 		i++;
 	}
 
-	for (int k=0;k<A_size;k++)
-	{
-		for (int j=0;j<A_size;j++)
-		{	
-			if (k!=j) 
-			{
-				CoPrime(A[k],A[j]);
-			}
-		}
-	}
+	// for (int k=0;k<A_size;k++)
+	// {
+	// 	for (int j=0;j<A_size;j++)
+	// 	{	
+	// 		if (k!=j) 
+	// 		{
+	// 			CoPrime(A[k],A[j]);
+	// 		}
+	// 	}
+	// }
 
 
 
