@@ -60,5 +60,5 @@ if __name__ == "__main__":
         return 0
 
     a, ql = get_a_ql_from_user()
-    for q in ql.split():
+    for q in ql:
         upload_to_moodle(a, q)
