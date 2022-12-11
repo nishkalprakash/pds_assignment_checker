@@ -4,7 +4,7 @@
 
 ## Requirements:
 
-* Python >=3.9 (should exist in path) (This code uses walrus/assignment_operator ( `:=` operator ))
+* Python >=3.9 (should exist in path) (This code uses removeprefix() and walrus/assignment_operator ( `:=` operator ))
 * Gcc >= 8.1 (should exist in path) (best to use code blocks compiler)
 * Perl >=5.24 (strawberry) (should exist in path)
 * Default editor for `.c` files should be set
@@ -23,13 +23,15 @@
 3. At the end, makes a composite `.csv` report file with the results (open with MS Excel or similar application to view)
 4. (EXPERIMENTAL) Auto upload the report to moodle (using selenium)
 
-## How to use:
-
-* Download the code anywhere
+## Instruction (For Head user) (usually NP):
 * Run `init.py` and enter the Assignment number to initialize
 * Download all the Assignments from moodle
-* Extract and place the "PDSA20S15-\*Assignment\*" folder inside the generated folder
+* Extract and place the "PDS\*Assignment\*" folder inside the generated folder
 * Edit the `students.txt` file
+
+
+## How to use (For all users):
+* Download the code anywhere
 * For each assignment:
     * Edit the `test_cases.txt` file (located inside the `Assignment_#` folder)
     * Edit the `code_qestions.txt` file (located inside the `Assignment_#` folder)
@@ -73,16 +75,9 @@
 ### Features added:
 * (EXPERIMENTAL) Added support for Auto Upload to moodle, REQUIRED:'
     * Install selenium using `pip install selenium`
-    * Download and save the corresponding selenium `chromedirver` in `lib\chromedriver.exe` 
+    * Install webdriver_manager using `pip install webdriver_manager`
     * Save moodle credentials in `var\creds.txt` as `{USERNAME}:{PASSWORD}`
-    * Student ids that moodle uses in `var\mapping.txt`, For Example:
-    > {STUDENT_NAME_1},{ID_1}  
-    > {STUDENT_NAME_2},{ID_2}  
-    * To get ID for student:
-        * open any assignment grading page
-        * Set to quick grade and display 100 students per page
-        * Inspect element using `ctrl+shift+c` and hover in any grade box of the student
-        * Note the number you see corresponding to each student in `res\mapping.txt`
+    
 * Added support for negative marking in `code_questions.txt`:
     * An entry with negative marks can be given, For Example:
     > -1;Intermediate is missing  
