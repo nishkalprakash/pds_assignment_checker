@@ -68,7 +68,7 @@ def driver_get_course(driver, course_id=None):
 
 def insert(driver, elem, data):
     if type(elem) is str:
-        elem = driver.find_element_by_id(elem)
+        elem = driver.find_element(by='id',value=elem)
     elem.clear()
     if len(data) > 128:
         for i in range(0, len(data), 64):
@@ -85,7 +85,7 @@ def moodle_login(driver):
     username, password = pull(f"{VAR}/creds.txt",DELIM=':')[0]
     insert(driver, "username", username)
     insert(driver, "password", password)
-    driver.find_element_by_id("loginbtn").click()
+    driver.find_element('id',"loginbtn").click()
 
 
 def init_selenium(def_dwnld_dir=TMP):
@@ -135,11 +135,11 @@ def driver_get_topics_from_a(driver, a, q=None):
 
     ## This is the Home page of the course
     driver_get_course(driver)
-    quiz_elem=driver.find_elements_by_partial_link_text(MOODLE_A_NAME_.format(a=a))[0]
+    quiz_elem=driver.find_elements(By.PARTIAL_LINK_TEXT,MOODLE_A_NAME_.format(a=a))[0]
     quiz_id=getqs(quiz_elem,'id')
     print("inside driver_get_topics_from_a")
     driver.get(f'https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading&includeauto=1')
-    q_links = driver.find_elements_by_partial_link_text('grade all')
+    q_links = driver.find_elements(By.PARTIAL_LINK_TEXT,'grade all')
 
     if q is None:
         ## Get all the assignments links
