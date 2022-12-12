@@ -2,6 +2,7 @@
 15600;Aayush Mohata;22CE10045
 15578;Abhijit Kumar;22IM10001
 15564;Abhirup Kumar Das;22ME30004
+14366;Banavath Akash Banavath;21CS30010
 15621;Abhisekh Mukherjee;22MA10002
 15626;admya maheshwari;22CH10004
 15598;Ajay Singh;22GG10004
