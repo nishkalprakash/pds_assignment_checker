@@ -14,7 +14,7 @@ m = (Path(LIB) / Path("moss.pl")).absolute()
 base=Path.cwd()
 a = get_a_ql_from_user(q=False)
 
-mapping=get_map_roll_to_name(rev=True)
+mapping=get_map_roll_to_name()
 
 assign_folder_name = Path(A_PATH_.format(a=a)).absolute()
 if not assign_folder_name.exists():
@@ -67,8 +67,8 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
         # new_fname = lf[0].strip() + "_" + lf[-1].split(".")[-2].strip()[-9:] + ".c"
         # name=lf[0].strip().replace(" ", "_")
         # name=lf[0].strip()
-        name=lf[3].strip()
-        new_fname = f"{mapping[name]} - {name} - {A_Q_.format(a=a,q=q)}.c".replace(' ','_')
+        roll=lf[2].strip()
+        new_fname = f"{mapping[roll]} - {roll} - {A_Q_.format(a=a,q=q)}.c".replace(' ','_')
         copyfile(f, moss_folder_name / new_fname)
         moss_command += f'"{new_fname}" '
 
