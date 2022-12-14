@@ -1,10 +1,13 @@
 // Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
-// Program to check whether 3 coordiates form a triangle
+// Program to check whether 3 coordiates form a triangle and classify its type
 
 #include<stdio.h>
 #include<math.h>
+float sq(x){
+    return x*x;
+}
 float dist(x1,x2,y1,y2){
-    return sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+    return sqrt(sq(x1-x2) + sq(y1-y2));
 }
 int main()
 {
@@ -18,10 +21,10 @@ int main()
     m = fmax(fmax(d1, d2), d3);
     if (m < (d1+d2+d3)-m){
         printf("This is a valid triangle\n");
-        sum = pow(d1, 2.0) + pow(d2, 2.0) + pow(d3, 2.0) - pow(m, 2.0);
-        if(fabs(pow(m, 2.0)- sum) < 0.01)
+        sum = sq(d1) + sq(d2) + sq(d3) - sq(m);
+        if(fabs(sq(m)- sum) < 0.01)
             printf("This is a right-angled triangle.\n");
-        else if(pow(m, 2.0) > sum)
+        else if(sq(m) > sum)
             printf("This is an obtuse-angled triangle.\n");
         else
             printf("This is an acute-angled triangle.\n");
