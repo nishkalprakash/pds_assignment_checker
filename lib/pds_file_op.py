@@ -258,7 +258,7 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False,scale=0
 
         d[std] = {
             "m": m,
-            "c": "".join(l[index + 1 :]).strip('"').strip().replace(BR, "\n").strip(),
+            "c": "".join(l[index + 1 :]).strip('"').strip().replace(BR, "\n").strip().replace('\t',' '),
         }
         if ml:
             d[std]["ml"] = l[1:index]
