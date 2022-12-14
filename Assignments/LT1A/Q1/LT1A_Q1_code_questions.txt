@@ -1,4 +1,6 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;Input Taken
+10;Loop for factor
+10;Sum of factors stored
+10;Checked for equality
+10;Loop till the input number
+10;Checked for invalid input
