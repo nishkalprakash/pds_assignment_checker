@@ -1,0 +1,5 @@
+#TC_GENERATED
+10;IN:~~Enter numbers: 1~~~~Exp OUT:~~Largest number: 1~~Second largest number: Value Not yet entered~~~~;1 -1
+10;IN:~~Enter numbers: 1 2 5 4 ~~~~Exp OUT:~~Largest number: 5~~Second largest number: 4~~~~;1 2 5 4 -1
+10;IN:~~Enter numbers: 1 2 5 4 8 2~~~~Exp OUT:~~Largest number: 8~~Second largest number: 5~~~~;1 2 5 4 8 2 -1
+10;IN:~~Enter numbers: 1 2 5 4 8 2 1 1 -10 ~~~~Exp OUT:~~<Program terminates~~~~;1 2 5 4 8 2 1 1 -10 
