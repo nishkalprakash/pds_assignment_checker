@@ -33,7 +33,7 @@ Assignment*/done_intermediate.txt
 
 # Reports
 # *.csv
-tmp/
+!tmp/*.c
 # .vscode
 .vscode
 
