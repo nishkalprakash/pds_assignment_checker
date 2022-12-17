@@ -16,7 +16,7 @@ int main()
 	}
 	else
 	{
-		for(k=1;k<=i;k++)?//For no of lines
+		for(k=1;k<=i;k++)//For no of lines
 		{
 			for(j=0;j<k;j++)
 			{

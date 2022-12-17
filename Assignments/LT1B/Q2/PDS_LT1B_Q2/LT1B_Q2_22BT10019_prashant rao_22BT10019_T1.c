@@ -17,7 +17,7 @@ for(i=1;i<=rows;i++){
 	for(k=1;k<=rows-2*abs(x-i);k++){
 		printf("%d", k);
 	}
-	printf("/n");
+	printf("\n");
 }
 return 0;
 }

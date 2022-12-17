@@ -1,11 +1,11 @@
-sec 14
+/*sec 14
 Name : sourabh kumar yadav
 Roll no : 22EE10068
 Question no :3
-
+*/
 
 #include <stdio.h>
-#include <maths.h>
+#include <math.h>
 int main ()
 {
   int i;j;m;n;
