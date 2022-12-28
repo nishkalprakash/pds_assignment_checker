@@ -209,6 +209,7 @@ def pds_checker(a, q):
                                     raise e
                                 print(out)
                                 out=out.replace('\n',BR)
+                                if len(out)>(lim:=500): out=out[:lim]+"..."
                                 comments.append(f'{BR}Your output:{BR}{out}')
 
                             else:
