@@ -174,11 +174,11 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
     map_n_r=get_map_roll_to_name(rev=True)
     # nrt=driver.find_elements(by=By.PARTIAL_LINK_TEXT,value='Attempt number 1 for ')
     xpath="//h4[contains(text(),'Attempt number 1 for ')]"
-    ps=Path(PS_PATH_.format(a=a,q=q))
-    if not ps.exists():
-        e=driver.find_element(By.XPATH,"//div[@class='qtext']//img")
-        e.location_once_scrolled_into_view
-        ps.write_bytes(e.screenshot_as_png)
+    # ps=Path(PS_PATH_.format(a=a,q=q))
+    # if not ps.exists():
+    #     e=driver.find_element(By.XPATH,"//div[@class='qtext']//img")
+    #     e.location_once_scrolled_into_view
+    #     ps.write_bytes(e.screenshot_as_png)
 
     nrt=driver.find_elements(
                 by=By.XPATH,

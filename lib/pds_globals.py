@@ -19,12 +19,12 @@ BR = "~~"
 
 MOODLE_A_NAME_ = "Lab Test {a}:"
 MOODLE_A_NAME_ = "Test-1: Set-{a}"
-# MOODLE_A_NAME_ = "Lab {a}:"  # COMMENT THIS FOR LT
+MOODLE_A_NAME_ = "Lab {a}:"  # COMMENT THIS FOR LT
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
 # Base is the assignment type
 BASE = "LT1"
-# BASE = "A"  # COMMENT THIS FOR LT
+BASE = "A"  # COMMENT THIS FOR LT
 Q_BASE = "Q"
 
 A_ = BASE + "{a}"
@@ -36,7 +36,7 @@ A_Q_ = A_ + "_" + Q_
 A_Q_PATH_ = A_PATH_ + "/" + Q_
 
 ## Question in description feature
-PS_ = A_Q_ + "_problem_statement.png"
+PS_ = A_Q_ + "_problem_statement"
 PS_PATH_ = A_Q_PATH_ + "/" + PS_
 
 ## CHECKER FEATURE
