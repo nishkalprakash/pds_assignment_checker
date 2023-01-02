@@ -3,6 +3,6 @@
 # ```csv
 10;IN:~~4~~~~Exp OUT:~~0 1 2 7~~~~;4
 10;IN:~~-1~~~~Exp OUT:~~Invalid Input~~~~;-1
-10;IN:~~0~~~~Exp OUT:~~Invalid Input~~~~;-1
+10;IN:~~0~~~~Exp OUT:~~Invalid Input~~~~;0
 10;IN:~~6~~~~Exp OUT:~~0 1 2 7 39 792 ~~~~;6
 # ```
