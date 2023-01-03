@@ -1,4 +1,4 @@
-#include<std.h>
+0#include<std.h>
 #include<lib.h>
 
 int main()
