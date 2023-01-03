@@ -1,8 +1,8 @@
 # Format: `{marks};{label};{test_case}`
 # * For Example:
 # ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
+10;IN:~~4~~~~Exp OUT:~~0 1 2 7~~~~;4
+10;IN:~~-1~~~~Exp OUT:~~Invalid Input~~~~;-1
+10;IN:~~0~~~~Exp OUT:~~Invalid Input~~~~;0
+10;IN:~~6~~~~Exp OUT:~~0 1 2 7 39 792 ~~~~;6
 # ```
