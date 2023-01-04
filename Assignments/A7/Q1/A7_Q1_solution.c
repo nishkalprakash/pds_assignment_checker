@@ -24,16 +24,17 @@ int main()
     print_A(A, N);
     printf("\nEnter M:");
     scanf("%d", &M);
-    for (i = N++; i > 0; i--)
+    for (i = N++; i > 0; i--)   // Reading array from reverse
     {
-        A[i] = A[i - 1];
+        A[i] = A[i - 1];    // Making a copy of the previous element
         if (A[i] < M)
         {
-            A[i] = M;
-            break;
+            A[i] = M;   // Setting in desired spot
+            break;  // Stopping after inserting
         }
     }
-    if(i==0) A[0]=M;
+    if(i==0) A[0]=M;    // This is a case when the input element is the smallest
     printf("\nAfter Insertion: ");
     print_A(A, N);
+    return 0;
 }
