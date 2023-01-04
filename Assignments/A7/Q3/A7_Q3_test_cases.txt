@@ -1,0 +1,5 @@
+#TC_GENERATED
+10;IN:~~mary~~army~~~~Exp OUT:~~Anagram~~~~;mary army
+10;IN:~~stop~~pots~~~~Exp OUT:~~Anagram~~~~;stop pots
+10;IN:~~PDSLAB~~PDSLAB~~~~Exp OUT:~~Anagram~~~~;PDSLAB PDSLAB
+10;IN:~~cat~~ate~~~~Exp OUT:~~NOT Anagra~~~~;cat ate
