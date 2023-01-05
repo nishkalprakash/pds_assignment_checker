@@ -64,12 +64,6 @@ int* helperBuildSet(int *arr, int n){
             set[k++] = arr[i];
         }
     }
-
-    // // debug
-    // for(int i=0; i<unique_count;i++){
-    //     printf("%d ",set[i]);
-    // }
-    // printf("\n");
     return set;
 }
 
