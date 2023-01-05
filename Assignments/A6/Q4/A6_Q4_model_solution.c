@@ -2,9 +2,14 @@
 #include<stdlib.h>
 
 #define MIN -1000000
+#define MAX 2147483647
 int sizeA; // size of set A
 int sizeB; // size of set B
-int curr_search_set; // set in which currently search is happening (1 - set A, 2 - set B)
+int union_size; // size of union of set A and B
+int intersection_size; // size of intersection of set A and B
+int difference_size; // size of difference of set A and B
+int curr_set; // current working set
+//(1 - set A, 2 - set B,3-union set)
 
 
 
@@ -18,33 +23,53 @@ int curr_search_set; // set in which currently search is happening (1 - set A, 2
  *****************************************************************************/
 int* helperBuildSet(int *arr, int n){
     // maximum size of the set can be n
-    int *set = (int*)malloc(sizeof(int)*n);
 
-    // find the maximum element in the array
-    int max_ele = MIN;
-    for(int i=0;i<n;i++){
-        if(max_ele<arr[i]){
-            max_ele = arr[i];
+    for(int i=0;i<n-1;i++)
+    {   
+        int curr_ele = arr[i];
+        for(int j=i+1;j<n;j++){
+            if(arr[j]==curr_ele){
+                arr[j] = MAX;
+            }
         }
     }
 
-    // allocate an array of size equal to that of maximum element
-    int *freq_map = (int*)calloc(max_ele,sizeof(int));
-
-    //traverse the original array and count the frequency of each element
+    // find the number of unique elements
+    int unique_count=0;
     for(int i=0; i<n; i++){
-        freq_map[arr[i]]++;
-    }
-
-    //only consider the elements having frequency 1
-    int k=0;
-    for(int i=0;i<max_ele;i++){
-        if(freq_map[i]==1){
-            set[k] = i;
-            k++;
+        if(arr[i]!=MAX){
+            unique_count++;
         }
     }
 
+    // to set the size of current working set
+    if (curr_set==1){
+        sizeA = unique_count;
+    }
+    else if(curr_set==2){
+        sizeB = unique_count;
+    }
+    else if(curr_set==3){
+        union_size = unique_count;
+    }
+
+
+    // allocate a memory equal to number of unique elements
+    int *set = (int*)malloc(sizeof(int)*unique_count);
+
+    // traverse the array and take all elements not equal to MAX
+    int k=0;
+    for(int i=0; i<n;i++){
+        if(arr[i]!=MAX){
+            set[k++] = arr[i];
+        }
+    }
+
+    // // debug
+    // for(int i=0; i<unique_count;i++){
+    //     printf("%d ",set[i]);
+    // }
+    // printf("\n");
     return set;
 }
 
@@ -80,7 +105,7 @@ int* BuildSet(int n){
  *****************************************************************************/
 int SearchSet(int *A, int x){
     int size;
-    if(curr_search_set==1){
+    if(curr_set==1){
         size = sizeA;
     }
     else{
@@ -108,7 +133,7 @@ int SearchSet(int *A, int x){
  *****************************************************************************/
 int* Union(int *A, int *B){
 
-    // size will be addition of sizes of set A and B
+    // size of union set will be addition of sizes of set A and B
     int* temp = (int*)malloc(sizeof(int)*(sizeA+sizeB));
 
     //put all the elemets of set A in union set
@@ -137,23 +162,112 @@ int* Union(int *A, int *B){
  *****************************************************************************/
 int* Intersection(int *A, int *B){
 
-    // maximum size of intersection will be the smaller of sizeA and sizeB
-    int* temp = (int*)malloc(sizeof(int)*(min(sizeA,sizeB)));
-
+    // first get the size of the intersection
+    int count=0;
     for(int i=0; i<sizeA; i++){
-        temp[i] = A[i];
+        int curr_ele = A[i];
+        for(int j=0; j<sizeB; j++){
+            if(curr_ele==B[j]){
+                count++;
+            }
+        }
     }
 
-    //put all the elemets of set B in union set
-    for(int i=0; i<sizeB; i++){
-        temp[i+sizeA] = B[i];
+    intersection_size = count;
+    // allocate memory equal to the size of intersection set
+    int *intersect_set = (int*) malloc(sizeof(int)*count);
+
+    int k=0;
+    for(int i=0; i<sizeA; i++){
+        int curr_ele = A[i];
+        for(int j=0; j<sizeB; j++){
+            if(curr_ele==B[j]){
+                intersect_set[k++] = A[i];
+            }
+        }
     }
 
-    // use function build set to return the union with no repeating elements
-    int *union_set = helperBuildSet(temp,sizeA+sizeB);
+    return intersect_set;
 
 }
 
+
+
+/******************************************************************************
+ * Finds Difference of two sets A and B.
+ * 
+ * @param A pointer to integer set A
+ * @param B pointer to integer set B
+ * 
+ * @return the pointer to difference of sets A and B.
+ *****************************************************************************/
+int* Difference(int* A,int* B){
+
+    // find the intersection of two sets
+    int *intersect = Intersection(A,B);
+
+    // get the size of the difference
+    int count=0;
+    for(int i=0; i<sizeA; i++){
+        int flag = 0;
+        for(int j=0; j<intersection_size;j++){
+            if(A[i]==intersect[j]){
+                flag = 1;
+                break;
+            }
+        }
+        if(flag==0){
+            count++;
+        }
+    }
+    for(int i=0; i<sizeB; i++){
+        int flag = 0;
+        for(int j=0; j<intersection_size;j++){
+            if(B[i]==intersect[j]){
+                flag = 1;
+                break;
+            }
+        }
+        if(flag==0){
+            count++;
+        }
+    }
+
+
+    difference_size = count;
+
+    // allocate memory equal to the size of intersection set
+    int *difference_set = (int*) malloc(sizeof(int)*count);
+
+    int k=0;
+    for(int i=0; i<sizeA; i++){
+        int flag = 0;
+        for(int j=0; j<intersection_size;j++){
+            if(A[i]==intersect[j]){
+                flag = 1;
+                break;
+            }
+        }
+        if(flag==0){
+            difference_set[k++] = A[i];
+        }
+    }
+
+    for(int i=0; i<sizeB; i++){
+        int flag = 0;
+        for(int j=0; j<intersection_size;j++){
+            if(B[i]==intersect[j]){
+                flag = 1;
+                break;
+            }
+        }
+        if(flag==0){
+            difference_set[k++] = B[i];
+        }
+    }
+
+    return difference_set;
+}
 
 
 
@@ -161,16 +275,21 @@ int* Intersection(int *A, int *B){
  * Main function.
  *****************************************************************************/
 int main(){
+    int size1;
     printf("Enter size of array A: ");
-    scanf("%d",&sizeA);
-    int* setA = BuildSet(sizeA);
+    scanf("%d",&size1);
+    curr_set = 1;
+    int* setA = BuildSet(size1);
 
+    int size2;
     printf("Enter size of array B: ");
-    scanf("%d",&sizeB);
-    int* setB = BuildSet(sizeB);
+    scanf("%d",&size2);
+    curr_set = 2;
+    int* setB = BuildSet(size2);
 
     while(1){
-        printf("======================================================\n");
+
+        printf("\n======================================================\n");
         printf("Press 1 to perform search in set A\n");
         printf("Press 2 to perform search in set B\n");
         printf("Press 3 to perform union of set A and set B\n");
@@ -184,10 +303,11 @@ int main(){
         scanf("%d",&input);
         int x;
         int res;
+        int flag=0;
         switch (input)
         {
         case 1:
-            curr_search_set = 1;
+            curr_set = 1;
             printf("Enter the element to be searched in set A: ");
             scanf("%d",&x);
             res = SearchSet(setA,x);
@@ -200,7 +320,7 @@ int main(){
             break;
 
         case 2:
-            curr_search_set = 2;
+            curr_set = 2;
             printf("Enter the element to be searched in set B: ");
             scanf("%d",&x);
             res = SearchSet(setB,x);
@@ -213,17 +333,40 @@ int main(){
             break;
 
         case 3: ;
+            curr_set = 3;
             int *union_set = Union(setA,setB);
             printf("Union: ");
-            for(int i=0; i<sizeA+sizeB;i++){
-                printf("%d",union_set[i]);
+            for(int i=0; i<union_size;i++){
+                printf("%d ",union_set[i]);
+            }
+            printf("\n");
+            break;
+
+        case 4: ;
+            int *intersection_set = Intersection(setA,setB);
+            printf("Intersection: ");
+            for(int i=0; i<intersection_size;i++){
+                printf("%d ",intersection_set[i]);
+            }
+            printf("\n");
+            break;
+
+        case 5: ;
+            int *difference_set = Difference(setA,setB);
+            printf("Difference: ");
+            for(int i=0; i<difference_size;i++){
+                printf("%d ",difference_set[i]);
             }
             printf("\n");
             break;
         
         default:
+            flag=1;
+            break;
+        }
+        if(flag==1){
+            printf("****  EXIT  ****\n");
             break;
         }
     }
-
 }
