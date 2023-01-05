@@ -28,7 +28,7 @@ int* helperBuildSet(int *arr, int n){
         }
     }
 
-    // allocate an array of size equal to maximum element
+    // allocate an array of size equal to that of maximum element
     int *freq_map = (int*)calloc(max_ele,sizeof(int));
 
     //traverse the original array and count the frequency of each element
@@ -112,6 +112,34 @@ int* Union(int *A, int *B){
     int* temp = (int*)malloc(sizeof(int)*(sizeA+sizeB));
 
     //put all the elemets of set A in union set
+    for(int i=0; i<sizeA; i++){
+        temp[i] = A[i];
+    }
+
+    //put all the elemets of set B in union set
+    for(int i=0; i<sizeB; i++){
+        temp[i+sizeA] = B[i];
+    }
+
+    // use function helperBuildSet to return the union with no repeating elements
+    int *union_set = helperBuildSet(temp,sizeA+sizeB);
+
+}
+
+
+/******************************************************************************
+ * Performs Intersection of two sets A and B.
+ * 
+ * @param A pointer to integer set A
+ * @param B pointer to integer set B
+ * 
+ * @return the pointer to the intersection of sets A and B.
+ *****************************************************************************/
+int* Intersection(int *A, int *B){
+
+    // maximum size of intersection will be the smaller of sizeA and sizeB
+    int* temp = (int*)malloc(sizeof(int)*(min(sizeA,sizeB)));
+
     for(int i=0; i<sizeA; i++){
         temp[i] = A[i];
     }
