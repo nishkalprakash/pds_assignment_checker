@@ -117,6 +117,7 @@ int SearchSet(int *A, int x){
 }
 
 
+
 /******************************************************************************
  * Performs union of two sets A and B
  * 
@@ -140,10 +141,12 @@ int* Union(int *A, int *B){
         temp[i+sizeA] = B[i];
     }
 
+    curr_set = 3;
     // use function helperBuildSet to return the union with no repeating elements
     int *union_set = helperBuildSet(temp,sizeA+sizeB);
 
 }
+
 
 
 /******************************************************************************
@@ -197,27 +200,18 @@ int* Intersection(int *A, int *B){
  *****************************************************************************/
 int* Difference(int* A,int* B){
 
-    // find the intersection of two sets
+    // get the intersection of two sets
     int *intersect = Intersection(A,B);
 
-    // get the size of the difference
+    // get the union of two sets
+    int *union_set = Union(A,B);
+
+    // get the size of the difference set
     int count=0;
-    for(int i=0; i<sizeA; i++){
+    for(int i=0;i<union_size;i++){
         int flag = 0;
-        for(int j=0; j<intersection_size;j++){
-            if(A[i]==intersect[j]){
-                flag = 1;
-                break;
-            }
-        }
-        if(flag==0){
-            count++;
-        }
-    }
-    for(int i=0; i<sizeB; i++){
-        int flag = 0;
-        for(int j=0; j<intersection_size;j++){
-            if(B[i]==intersect[j]){
+        for(int j=0;j<intersection_size;j++){
+            if(union_set[i]==intersect[j]){
                 flag = 1;
                 break;
             }
@@ -230,33 +224,20 @@ int* Difference(int* A,int* B){
 
     difference_size = count;
 
-    // allocate memory equal to the size of intersection set
+    // allocate memory equal to the size of difference set
     int *difference_set = (int*) malloc(sizeof(int)*count);
 
     int k=0;
-    for(int i=0; i<sizeA; i++){
+    for(int i=0;i<union_size;i++){
         int flag = 0;
-        for(int j=0; j<intersection_size;j++){
-            if(A[i]==intersect[j]){
+        for(int j=0;j<intersection_size;j++){
+            if(union_set[i]==intersect[j]){
                 flag = 1;
                 break;
             }
         }
         if(flag==0){
-            difference_set[k++] = A[i];
-        }
-    }
-
-    for(int i=0; i<sizeB; i++){
-        int flag = 0;
-        for(int j=0; j<intersection_size;j++){
-            if(B[i]==intersect[j]){
-                flag = 1;
-                break;
-            }
-        }
-        if(flag==0){
-            difference_set[k++] = B[i];
+            difference_set[k++] = union_set[i];
         }
     }
 
@@ -327,7 +308,6 @@ int main(){
             break;
 
         case 3: ;
-            curr_set = 3;
             int *union_set = Union(setA,setB);
             printf("Union: ");
             for(int i=0; i<union_size;i++){
