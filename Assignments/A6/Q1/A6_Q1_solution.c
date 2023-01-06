@@ -1,16 +1,17 @@
-// Code creator: Abhishek Topwal (topwalabhi1998@iitkgp.ac.in)
+// Code creator: Abhishek Topwal (topwalabhi1998@kgpian.iitkgp.ac.in)
 // Program to print the nth term of the sequence
 
 #include<stdio.h>
-//===================================================================
-// Function to print the nth term of the sequence
-// args - integer (nth term of the sequence)
-// return - integer (nth term of the sequence)
+
+
+/*****************************************************************************
+ * Find the nth term of a sequence (starting from zero)
+ * 
+ * @param n the nth term 
+ * 
+ * @return the nth term of the sequence
+******************************************************************************/
 int print_term(int n){
-    if(n<0){
-        // Invalid input case
-        return -1;
-    }
     if(n<3){
         // case when n = 0 or 1 or 2
         return n;
@@ -20,12 +21,16 @@ int print_term(int n){
     int n_minus_3th = print_term(n-3);
     return ((3*n_minus_1th*n_minus_2th)-(2*n_minus_2th*n_minus_3th)+1);
 }
-//===================================================================
+
+
+/******************************************************************************
+ * Main function.
+ *****************************************************************************/
 int main(){
+    printf("Enter the nuumber of terms: ");
     int n;
     scanf("%d",&n);
-    int k = print_term(n);
-    if(k<0){
+    if(n<=0){
         printf("Invalid Input\n");
     }
     else{
