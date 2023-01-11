@@ -1,8 +1,2 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+#TC_GENERATED
+10;IN:~~At the stroke of the midnight hour, when the world sleeps. India will awake to life and freedom.~~~~Exp OUT:~~"Length counted without using library: 96~~~~Length counted by strlen() : 96~~~~Number of words: 18~~~~Number of sentences: 2~~~~Number of vowels: 29~~~~Frequency count of each alphabet:~~~~'a' = 5, 't' = 7,'h' = 6,'e' = 11,'s' = 3,'r' = 4,'o' = 6,'k' = 2,'f' = 3,'m' = 2,'i' = 6,'d' = 5,'n' = 4, 'g' = 1 ,'u' = 1,'w' = 4,'l' = 5,'p' = 1~~~~;At the stroke of the midnight hour, when the world sleeps. India will awake to life and freedom.

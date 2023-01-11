@@ -1,8 +1,2 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+#TC_GENERATED
+10;IN:~~Shape of the 2D array: 3, 3~~~~1 2 3 4 5 6 7 8 9 ~~~~~~Exp OUT:~~~~The saddle point is 7~~~~;3 3 1 2 3 4 5 6 7 8 9
