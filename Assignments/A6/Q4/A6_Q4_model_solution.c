@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-#define MIN -1000000
+#define MIN -2147483646
 #define MAX 2147483647
 int sizeA; // size of set A
 int sizeB; // size of set B

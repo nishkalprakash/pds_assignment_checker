@@ -1,4 +1,4 @@
-// Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
+// Code creator: Abhishek Towal & Nishkal Prakash (nishkal@iitkgp.ac.in)
 // Program to find coprime
 
 #include <stdio.h>
@@ -14,12 +14,10 @@
 ******************************************************************************/
 int gcd(int x, int y) 
 {   
-    if(x>y){
-        return gcd(y,x);
-    }
-    if(y==0){
+    if(y==0)
         return x;
-    }
+    if(x<y)
+        return gcd(y,x);
     return gcd(y,x%y);
 }
 
@@ -42,11 +40,16 @@ void coprime(int a, int b) // prints all co-prime numbers in range a, b
  * 
  * @param  a array of integers
  * ******************************************************************************/
-void pair(int a[])  // Generates pairing and calls coprime() for each pair
+void pair(int a[],int n)  // Generates pairing and calls coprime() for each pair
 {
-    for (int i = 0; i < 5; i++)
-        for (int j = i + 1; j < 5; j++)
-            coprime(a[i], a[j]);
+    if (n==1)
+        return;
+    pair(a,n-1);
+    for(int i=1;i<n;i++){
+        coprime(a[n-1], a[n-1-i]);
+        // printf("\n\t(%d,%d)\n",n-1,n-i-1);
+    }
+    // return
 }
 
 
@@ -56,25 +59,29 @@ void pair(int a[])  // Generates pairing and calls coprime() for each pair
  *****************************************************************************/
 int main()
 {
-    int A[5];   // A = array of 5 integers
-    printf("Enter numbers : ");
-    for (int n = 0; n < 5; n++) // loop for storing input
-        scanf("%d", &A[n]);
+    int A[1000];   // A = array of 5 integers
+    int N;  // N = number of elements
+    int i; // Loop variables
+    float x; // temp variable to check for float
+    printf("Enter N: ");
+    scanf("%d", &N);
 
-    // first check for integer only entry
-    for (int i = 0; i < 5; i++){
-        printf("%d ",A[i]);
-        if(A[i]<=0){
-            printf("Invalid Entries: All should be positive numbers\n");
-            return 0;
-        }
+    printf("Enter %d numbers : ",N);
+    for (int i = 0; i < N; i++) // loop for storing input
+    {   
+        scanf("%f", &x);
+        if(x<=0)
+            return printf("Invalid Entries: All should be positive numbers\n");
+        if (x-(int)x > 0)
+            return printf("Invalid Entries: All should be integer numbers\n");
+        A[i]=(int)x;
     }
-
-    for (int i = 0; i < 5; i++){
-        for (int j = i + 1; j < 5; j++)
+    // first check for integer only entry
+    for (int i = N-1; i >= 0; i--){
+        for (int j = i - 1; j >= 0; j--)
             if (gcd(A[i], A[j]) == 1)   // checking if at least one coprime pair exists
             {
-                pair(A);
+                pair(A,N);
                 return 0;   // stopping after calling pair()
             }
     }
