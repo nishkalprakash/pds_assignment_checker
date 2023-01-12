@@ -1,4 +1,3 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+5;2 strings are taken as input
+25;Logic is correct and gives expected output for all test cases
+30;Efficient and Optimal steps used to get to output.
