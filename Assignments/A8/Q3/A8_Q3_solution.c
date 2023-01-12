@@ -5,26 +5,42 @@
 #include <string.h>
 int main()
 {
-    char S[100];    // S = String
-    int ctr;    // ctr = Counter variable 
+    char c, c1, S[100];                     // c=temp character variable, S = String
+    int A[29] = {}, v = 28, w = 26, s = 27; // A = [0-25:A-Z, 26:Words, 27:Sentences, 28:Vowels]
+    int i;                                  // ctr = Counter variable
     gets(S);
-    for (ctr = 0; S[ctr] != '\0'; ctr++){
-        if (S[ctr] == ' ')
-            space++;
-        if (S[ctr] == '.')
-            dot++;
-        if ((S[ctr] == 'a') || (S[ctr] == 'e') || (S[ctr] == 'e') || (S[ctr] == 'o') || (S[ctr] == 'u'))
-            vowel++;
-    }
-    printf("Length without library: %d\n", ctr);
-    printf("length using strlen:%d\n", strlen(S));
-    for (int i = 0; S[i] != '\0'; i++)
+    for (i = 0; S[i] != '\0'; i++)
     {
-        
+        c = S[i];
+        c1 = S[i + 1];
+        if (65 <= c && c >= 122)
+        {
+            if (c >= 97)
+                c -= 32;
+            if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U')
+                A[v]++;
+            if (c > 90 || c1 == ' ' || c1 == ',' || c1 == ';' || c1 == ':' || c1 == '-' || c1 == '(' || c1 == ')' || c1 == '[' || c1 == ']')
+            {
+                A[w]++;
+                // A[]++;
+                continue;
+            }
+            else if (c1 == '\0' || c1 == '.' || c1 == '!' || c1 == '?')
+            {
+                A[w]++;
+                A[s]++;
+                continue;
+            }
+            A[c - 65]++;
+        }
     }
-    printf("number of words:%d\n", space);
-    printf("number of sentences:%d\n", dot);
-    printf("number of vowels:%d\n", vowel);
-
+    printf("Length counted without using library: %d\n", i);
+    printf("Nength using by strlen(): %d\n", strlen(S));
+    printf("Number of words:%d\n", A[w]);
+    printf("Number of sentences:%d\n", A[s]);
+    printf("Number of vowels:%d\n", A[v]);
+    printf("Frequency Count of each alphabet: \n");
+    for (i = 0; i < 26; i++)
+        printf("'%c' - %d, ", i + 97, A[i]);
     return 0;
 }
