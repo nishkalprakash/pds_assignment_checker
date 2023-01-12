@@ -1,4 +1,4 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+5; two strings are taken as input
+30;Logic is correct and gives expected output for all test cases
+25;Efficient and Optimal steps used to get the output
+-20; Any string.h library function is used to get the output

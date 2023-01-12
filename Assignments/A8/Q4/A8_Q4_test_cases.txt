@@ -1,3 +1,6 @@
 #TC_GENERATED
 10;IN:~~S1: kgp~~S2: kharagpur~~~~~~Exp OUT:~~0~~~~;kgp kharagpur
 10;IN:~~S1: pgh~~S2: adpghyxtpghmnpgpgxhkke~~~~~~Exp OUT:~~2~~~~;pgh adpghyxtpghmnpgpgxhkke
+10;IN:~~S1: a~~S2: aaaaa~~~~~~Exp OUT:~~5~~~~;a aaaaa
+10;IN:~~S1: mary~~S2: mary~~~~~~Exp OUT:~~1~~~~;mary mary
+10;IN:~~S1: kepler~~S2: kharagpur~~~~~~Exp OUT:~~0~~~~;kepler kep
