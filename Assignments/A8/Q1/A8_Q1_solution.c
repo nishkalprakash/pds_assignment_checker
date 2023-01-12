@@ -1,8 +1,25 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+// Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
+// Program to Print elements in column major format
+
+#include <stdio.h>
+int main()
+{
+    int A[100][100];    // Initializing 2-D array
+    int N;  // Size of the row/column
+    int i, j;   // Loop Variables
+    
+    printf("Enter N: ");
+    scanf("%d", &N);
+    
+    printf("Enter Elements: ");
+    for (i = 0; i < N; i++)
+        for (j = 0; j < N; j++)
+            scanf("%d", &A[i][j]);
+
+    printf("Column Major: ");
+    for (i = 0; i < N; i++)
+        for (j = 0; j < N; j++)
+            printf("%d ", A[j][i]);
+
+    return 0;
+}
