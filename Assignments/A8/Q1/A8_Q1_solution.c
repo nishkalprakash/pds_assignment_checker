@@ -2,9 +2,10 @@
 // Program to Print elements in column major format
 
 #include <stdio.h>
+#define MAX 100
 int main()
 {
-    int A[100][100];    // Initializing 2-D array
+    int A[MAX][MAX];    // Initializing 2-D array
     int N;  // Size of the row/column
     int i, j;   // Loop Variables
     
