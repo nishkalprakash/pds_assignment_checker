@@ -1,3 +1,5 @@
 #TC_GENERATED
-10;IN:~~S1: kgp~~S2: kharagpur~~~~~~Exp OUT:~~0~~~~;kgp kharagpur
-10;IN:~~S1: pgh~~S2: adpghyxtpghmnpgpgxhkke~~~~~~Exp OUT:~~2~~~~;pgh adpghyxtpghmnpgpgxhkke
+10;IN:~~kgp Kharagpur~~~~Exp OUT:~~0~~~~;kgp Kharagpur
+10;IN:~~abc abcd~~~~Exp OUT:~~1~~~~;abc abcd
+10;IN:~~pgh adpghyxtpghmnpgpgxhkke~~~~Exp OUT:~~2~~~~;pgh adpghyxtpghmnpgpgxhkke
+10;IN:~~oo mood~~~~Exp OUT:~~~~~~;oo mood
