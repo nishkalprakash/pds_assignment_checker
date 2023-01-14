@@ -1,4 +1,5 @@
 #TC_GENERATED
-10;IN:~~aabbbaa~~~~Exp OUT:~~aa, bb, bbb, abbba, aabbbaa~~~~;aabbbaa
-10;IN:~~malayalam~~~~Exp OUT:~~malayalam, aya, layal, alayala,ala~~~~;malayalam
-10;IN:~~india~~~~Exp OUT:~~No palindrome substrings presen~~~~;india
+10;IN:~~aabbbaa~~~~Exp OUT:~~aa, bb, bbb, abbba, aabbbaa (repetitions are ok)~~~~;aabbbaa
+10;IN:~~malayalam~~~~Exp OUT:~~malayalam, aya, layal, alayala,ala  (repetitions are ok)~~~~;malayalam
+10;IN:~~india~~~~Exp OUT:~~No palindrome substrings present~~~~;india
+10;IN:~~aaaa~~~~Exp OUT:~~aa aaa aaaa~~~~;aaaa
