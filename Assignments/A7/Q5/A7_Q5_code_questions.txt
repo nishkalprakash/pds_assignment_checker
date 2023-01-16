@@ -1,4 +1,4 @@
+5;First an integer n and then n number of integers are taken as input
+5; Check is made to keep 0<n<=10
 30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+20;Efficient and Optimal steps used to get to output

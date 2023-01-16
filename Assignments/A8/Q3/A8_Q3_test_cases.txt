@@ -1,8 +1,5 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+#TC_GENERATED
+10;IN:~~At the stroke of the midnight hour, when the world sleeps. India will awake to life and freedom.~~~~Exp OUT:~~Length counted without using library: 96~~Nength using by strlen(): 96~~Number of words:18~~Number of sentences:2~~Number of vowels:29~~Frequency Count of each alphabet:~~'a' - 4, 'b' - 0, 'c' - 0, 'd' - 3, 'e' - 5, 'f' - 2, 'g' - 1, 'h' - 6, 'i' - 6, 'j' - 0, 'k' - 2, 'l' - 4, 'm' - 1, 'n' - 3, 'o' - 5, 'p' - 1, 'q' - 0, 'r' - 3, 's' - 2, 't' - 5, 'u' - 1, 'v' - 0, 'w' - 4, 'x' - 0, 'y' - 0, 'z' - 0,~~~~;At the stroke of the midnight hour, when the world sleeps. India will awake to life and freedom.
+10;IN:~~I will practice progamming to become better at it.~~~~Exp OUT:~~Length counted without using library: 50~~Length using by strlen(): 50  ~~Number of words:9~~Number of sentences:1~~Number of vowels:16~~Frequency Count of each alphabet:~~'a' - 3, 'b' - 2, 'c' - 3, 'd' - 0, 'e' - 5, 'f' - 0, 'g' - 2, 'h' - 0, 'i' - 5, 'j' - 0, 'k' - 0, 'l' - 2, 'm' - 3, 'n' - 1, 'o' - 3, 'p' - 2, 'q' - 0, 'r' - 3, 's' - 0, 't' - 6, 'u' - 0, 'v' - 0, 'w' - 1, 'x' - 0, 'y' - 0, 'z' - 0,~~~~;I will practice progamming to become better at it.
+10;IN:~~How about extra                spaces. Extra fullstops........ To be or not to be? Oh my god!~~~~Exp OUT:~~Length counted without using library: 93~~Length using by strlen(): 93~~Number of words:15~~Number of sentences:4~~Number of vowels:20~~Frequency Count of each alphabet:~~'a' - 4, 'b' - 3, 'c' - 1, 'd' - 1, 'e' - 5, 'f' - 1, 'g' - 1, 'h' - 2, 'i' - 0, 'j' - 0, 'k' - 0, 'l' - 2, 'm' - 1, 'n' - 1, 'o' - 9, 'p' - 2, 'q' - 0, 'r' - 3, 's' - 4, 't' - 7, 'u' - 2, 'v' - 0, 'w' - 1, 'x' - 2, 'y' - 1, 'z' - 0,~~~~;How about extra                spaces. Extra fullstops........ To be or not to be? Oh my god!
+10;IN:~~This is a tough one. . . . . . . . . . . . . . . . . . . Numbers 1234567 in a sentence.~~~~Exp OUT:~~Length counted without using library: 87~~Length using by strlen(): 87~~Number of words:9~~Number of sentences:2~~Number of vowels:14~~Frequency Count of each alphabet:~~'a' - 2, 'b' - 1, 'c' - 1, 'd' - 0, 'e' - 5, 'f' - 0, 'g' - 1, 'h' - 2, 'i' - 3, 'j' - 0, 'k' - 0, 'l' - 0, 'm' - 1, 'n' - 5, 'o' - 2, 'p' - 0, 'q' - 0, 'r' - 1, 's' - 4, 't' - 3, 'u' - 2, 'v' - 0, 'w' - 0, 'x' - 0, 'y' - 0, 'z' - 0~~~~;This is a tough one. . . . . . . . . . . . . . . . . . . Numbers 1234567 in a sentence.

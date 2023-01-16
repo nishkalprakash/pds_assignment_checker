@@ -1,4 +1,6 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;Input string taken
+10;Counted total length and compared with strlen()
+10;Counted Vowels
+10;Counted Words
+10;Counted Sentences
+10;All alphabet frequency computed
