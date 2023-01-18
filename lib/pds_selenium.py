@@ -194,32 +194,40 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
             value=xpath+'/following-sibling::div//div[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]'
             )
     for i in range(len(nrt)):
-        n,r=extract_name_roll_tuple(nrt[i])
-        if not r:
-            r=map_n_r[n]
-        f=fl[i]
-        fn=f.text
-        fnf=re.sub(r'([#\/:*?"<>|]|\.$)',"_",fn)
-        fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fnf).stem))
-        c=ct[i].text
-        if not fname.exists():
-            if fn:
-                fp=Path(A_PATH_.format(a=a))/fnf
-                if not fp.exists():
-                    f.find_element(By.TAG_NAME,'a').click()
-                # while not fp.exists():
-                #     print('PDS file not found. Downloading...')
-                    sleep(.5)
-                print(fname.name+' downloaded')
-                fp.rename(fname)
-                # fl.
-            elif c:
-                fname.write_text(c)
-                print(f'No FILE FOUND for {r} - {n}')
-                print('CODE CREATED FROM COMMENT BOX')
+        try:
+            n,r=extract_name_roll_tuple(nrt[i])
+            if not r:
+                r=map_n_r[n]
+            f=fl[i]
+            fn=f.text
+            fnf=re.sub(r'([#\/:*?"<>|]|\.$)',"_",fn)
+            fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fnf).stem))
+            c=ct[i].text
+            if not fname.exists():
+                if fn:
+                    fp=Path(A_PATH_.format(a=a))/fnf
+                    if not fp.exists():
+                        f.find_element(By.TAG_NAME,'a').click()
+                    # while not fp.exists():
+                    #     print('PDS file not found. Downloading...')
+                        sleep(.5)
+                    print(fname.name+' downloaded')
+                    try:
+                        fp.rename(fname)
+                    except Exception as e:
+                        print(str(e))
+                        
+                    
+                    # fl.
+                elif c:
+                    fname.write_text(c)
+                    print(f'No FILE FOUND for {r} - {n}')
+                    print('CODE CREATED FROM COMMENT BOX')
 
-            else:
-                print(f'No Submission for {r} - {n}')
+                else:
+                    print(f'No Submission for {r} - {n}')
+        except Exception as e:
+            print(str(e))
 
 
 

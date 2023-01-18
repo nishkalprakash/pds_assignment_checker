@@ -1,0 +1,7 @@
+#	INPUT	OUTPUT
+1	x y r
+0 0 5
+6 6 4	Circles Intersect
+2	x y r
+0 0 5
+9 9 2	Circles DON’T Intersect
