@@ -1,9 +1,5 @@
-#	INPUT	OUTPUT
-1	Z1: 1  1
-Z2: 2  2	Z = 3 + 3i
-2	Z1: 1  1
-Z2: -1 -1	Z = 0 + 0i
-3	Z1: 2.1 -2.3
-Z2: 5.6 23.2	Z m = 7.7 + 20.9i
-4	Z1: 2  2 
-Z2: -5 -5	Z = -3 - 3i
+#TC_GENERATED
+10;IN:~~Enter Z1: 1 + 1i~~Enter Z2: 2 + 2i ~~Exp OUT:~~Sum: 3 + 3i~~~~;1 1 2 2
+10;IN:~~Enter Z1: 1 + 1i~~Enter Z2: 1 - 1i ~~Exp OUT:~~Sum: 0 + 0i~~~~;1 1 -1 -1
+10;IN:~~Enter Z1: 2.1 -2.3i~~Enter Z2: 5.6 + 23.2i ~~Exp OUT:~~Sum: 7.7 + 20.9i~~~~;2.1 -2.3 5.6 23.2
+10;IN:~~Enter Z1: 2 + 2i~~Enter Z2: -5 - 5i ~~Exp OUT:~~Sum: -3 -3i~~~~;2 2 -5 -5
