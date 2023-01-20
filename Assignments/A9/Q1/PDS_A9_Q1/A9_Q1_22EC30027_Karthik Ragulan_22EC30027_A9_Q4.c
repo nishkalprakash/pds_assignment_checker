@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 typedef struct complex//structure with inputs of data types float
 {

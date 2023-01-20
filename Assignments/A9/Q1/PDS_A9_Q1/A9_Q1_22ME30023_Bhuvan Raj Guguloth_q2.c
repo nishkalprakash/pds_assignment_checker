@@ -16,9 +16,9 @@
  int main(){
   complex a,b,Z;
   printf("Z1= ");
-  scanf("%f %f,&a.real,&a.imag");
+  scanf("%f %f",&a.real,&a.imag);
   printf("Z2= ");
-  scanf("%f %f,&b.real,&b.imag");
+  scanf("%f %f",&b.real,&b.imag);
   Z=add(a,b);
   if (Z.imag>=0)printf("Z=%1f+%1fi",Z.real,Z.imag);
   else printf("Z=%1f%1fi",Z.real,Z.imag);

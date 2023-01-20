@@ -20,6 +20,7 @@ s.real =z1.real+z2.real;
 s.imag=z1.imag+z2.imag;
 
 return s;
+}
 
 int main()  {
 
