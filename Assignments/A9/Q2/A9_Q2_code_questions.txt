@@ -1,4 +1,4 @@
 20; input correctly taken
 20; measurments of circle correctly stored in the struct
 20; correct implementation of isIntersectingCircle function
--5;Comments missing, Improper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+# -5;Comments missing, Improper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
