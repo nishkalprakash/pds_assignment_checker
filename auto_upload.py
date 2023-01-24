@@ -26,18 +26,14 @@ if __name__ == "__main__":
 
     def upload_to_moodle(a, q):
         ## Initialize selenium
-        driver = init_selenium()
-        ## Go to course page
-        driver_get_course(driver)
+
         ## Get the link to the assignemt_question
 
         qq = driver_get_topics_from_a(driver,a,q)
         driver.get(A_Q_PDS_QUIZ_.format(q=qq['q'],qid=qq['qid'],quiz_id=qq['quiz_id']))
         # driver_get_from_topic(driver, topic_id)
         ## Get each student marks and comments
-        map_n_r=get_map_roll_to_name(rev=True)
-        h4="//h4[contains(text(),'Attempt number 1 for ')]"
-        xp=h4+"/following-sibling::div//div[@class='comment']//%s[contains(concat(' ',normalize-space(@id),' '),'-%s')]"
+        
         nrt=driver.find_elements(by=By.XPATH,value=h4)
         cm=driver.find_elements(by=By.XPATH,value=xp%('div','comment_ideditable'))
         mks=driver.find_elements(by=By.XPATH,value=xp%('input','mark'))
@@ -55,10 +51,17 @@ if __name__ == "__main__":
         ## Save changes
         driver.find_element(By.XPATH, value="//input[@type='submit' and @value='Save and go to next page']").click()
         sleep(2)
-        driver.close()
         print(f'{f"Done for {A_Q_.format(a=a,q=q)}":*^50}')
         return 0
 
     a, ql = get_a_ql_from_user()
+    driver = init_selenium()
+    ## Go to course page
+    driver_get_course(driver)
+    map_n_r=get_map_roll_to_name(rev=True)
+    h4="//h4[contains(text(),'Attempt number 1 for ')]"
+    xp=h4+"/following-sibling::div//div[@class='comment']//%s[contains(concat(' ',normalize-space(@id),' '),'-%s')]"
     for q in ql:
         upload_to_moodle(a, q)
+    driver.close()
+    
