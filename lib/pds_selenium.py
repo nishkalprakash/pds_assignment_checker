@@ -180,29 +180,30 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
     #     e.location_once_scrolled_into_view
     #     ps.write_bytes(e.screenshot_as_png)
 
+    ## nrt = name roll tuple (heading of the question)
     nrt=driver.find_elements(
                 by=By.XPATH,
                 value=xpath
                 )
-    fl=driver.find_elements(
-                by=By.XPATH,
-                # value=xpath+"/following-sibling::div//div[@class='attachments']//a"
-                value=xpath+"/following-sibling::div//div[@class='attachments']"
-                )
-    ct=driver.find_elements(
-            by=By.XPATH,
-            value=xpath+'/following-sibling::div//div[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]'
-            )
-    for i in range(len(nrt)):
+    # next_div=driver.find_elements(by=By.XPATH,value=xpath+'/following-sibling::div[1]')
+    ## inside heading find the next attachment
+    # fl=[x.find_element('xpath','//div[@class="attachments"]') for x in next_div]
+    
+    ## inside heading find the next code text
+    # ct=[x.find_element('xpath','//div[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]') for x in next_div]
+
+    
+    for attempt in nrt:
         try:
-            n,r=extract_name_roll_tuple(nrt[i])
+            n,r=extract_name_roll_tuple(attempt)
             if not r:
                 r=map_n_r[n]
-            f=fl[i]
+            next_div=attempt.find_element('xpath','following-sibling::div[1]')
+            f=next_div.find_element('xpath','descendant::div[@class="attachments"]')
             fn=f.text
             fnf=re.sub(r'([#\/:*?"<>|]|\.$)',"_",fn)
             fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fnf).stem))
-            c=ct[i].text
+            c=next_div.find_element('xpath','descendant::div[contains(concat(" ",normalize-space(@class)').text
             if not fname.exists():
                 if fn:
                     fp=Path(A_PATH_.format(a=a))/fnf
