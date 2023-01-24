@@ -203,7 +203,7 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
             fn=f.text
             fnf=re.sub(r'([#\/:*?"<>|]|\.$)',"_",fn)
             fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fnf).stem))
-            c=next_div.find_element('xpath','descendant::div[contains(concat(" ",normalize-space(@class)').text
+            c=next_div.find_element('xpath','descendant::div[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]').text.strip()
             if not fname.exists():
                 if fn:
                     fp=Path(A_PATH_.format(a=a))/fnf
