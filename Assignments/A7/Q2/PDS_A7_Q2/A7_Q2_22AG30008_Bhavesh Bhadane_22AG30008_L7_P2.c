@@ -14,6 +14,7 @@ int main(){
     ;
 
 	for(i=0;i<n;i++){
+        
 		int count=1;
           if(a[i]==a[i+1]){
               count=count+1;

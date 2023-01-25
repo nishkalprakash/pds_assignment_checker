@@ -1,4 +1,4 @@
-/* Name - Lucky Panwar
+0/* Name - Lucky Panwar
    Roll no. - 22CE30016
    Assignment no. - 6
    Question no. - 2 */
