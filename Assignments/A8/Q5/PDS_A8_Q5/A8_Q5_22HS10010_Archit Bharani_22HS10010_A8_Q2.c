@@ -1,4 +1,4 @@
-#include<stdio.h>
+0#include<stdio.h>
 int main()
 {
 char s[100];
