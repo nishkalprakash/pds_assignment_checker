@@ -165,15 +165,35 @@ def extract_name_roll_tuple(elem):
         return (m[1],m[2])
     # match(r'^(.+?)$',t)
     return (t,'')
-    
-def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
 
-    driver.get(A_Q_PDS_QUIZ_.format(q=q,qid=qid,quiz_id=quiz_id))
 
-    # stds={(n,r):{'id':i} for i,n,r in get_students()}
-    map_n_r=get_map_roll_to_name(rev=True)
-    # nrt=driver.find_elements(by=By.PARTIAL_LINK_TEXT,value='Attempt number 1 for ')
+def driver_get_heading_element_list(driver,q_topic):
+    driver.get(A_Q_PDS_QUIZ_.format(**q_topic))
     xpath="//h4[contains(text(),'Attempt number 1 for ')]"
+    map_n_r=get_map_roll_to_name(rev=True)
+    
+    nrt=driver.find_elements(
+                    by=By.XPATH,
+                    value=xpath
+                    )
+    nr_nxt=[]
+    for attempt in nrt:
+        n,r=extract_name_roll_tuple(attempt)
+        if not r:
+          r=map_n_r[n]
+        next_div=attempt.find_element('xpath','following-sibling::div[1]')
+        nr_nxt.append(dict(n=n,r=r,next_div=next_div))
+
+        
+
+    return nr_nxt
+
+def driver_get_pds_from_quiz(driver,a,q_topic):
+    # a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))
+
+    nr_nxt=driver_get_heading_element_list(driver,q_topic)
+    # stds={(n,r):{'id':i} for i,n,r in get_students()}
+    # nrt=driver.find_elements(by=By.PARTIAL_LINK_TEXT,value='Attempt number 1 for ')
     # ps=Path(PS_PATH_.format(a=a,q=q))
     # if not ps.exists():
     #     e=driver.find_element(By.XPATH,"//div[@class='qtext']//img")
@@ -181,10 +201,7 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
     #     ps.write_bytes(e.screenshot_as_png)
 
     ## nrt = name roll tuple (heading of the question)
-    nrt=driver.find_elements(
-                by=By.XPATH,
-                value=xpath
-                )
+    
     # next_div=driver.find_elements(by=By.XPATH,value=xpath+'/following-sibling::div[1]')
     ## inside heading find the next attachment
     # fl=[x.find_element('xpath','//div[@class="attachments"]') for x in next_div]
@@ -192,17 +209,14 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
     ## inside heading find the next code text
     # ct=[x.find_element('xpath','//div[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]') for x in next_div]
 
-    
-    for attempt in nrt:
+    q=q_topic['q']
+    for nrd in nr_nxt:
         try:
-            n,r=extract_name_roll_tuple(attempt)
-            if not r:
-                r=map_n_r[n]
-            next_div=attempt.find_element('xpath','following-sibling::div[1]')
+            next_div=nrd.pop('next_div')
             f=next_div.find_element('xpath','descendant::div[@class="attachments"]')
             fn=f.text
             fnf=re.sub(r'([#\/:*?"<>|]|\.$)',"_",fn)
-            fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,r=r,n=n,f=Path(fnf).stem))
+            fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,f=Path(fnf).stem,**nrd))
             c=next_div.find_element('xpath','descendant::div[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]').text.strip()
             if not fname.exists():
                 if fn:
@@ -222,11 +236,11 @@ def driver_get_pds_from_quiz(driver,a,q,qid,quiz_id):
                     # fl.
                 elif c:
                     fname.write_text(c)
-                    print(f'No FILE FOUND for {r} - {n}')
+                    print('No FILE FOUND for {r} - {n}'.format(**nrd))
                     print('CODE CREATED FROM COMMENT BOX')
 
                 else:
-                    print(f'No Submission for {r} - {n}')
+                    print('No Submission for {r} - {n}'.format(**nrd))
         except Exception as e:
             print(str(e))
 
@@ -245,19 +259,17 @@ def get_assignments(a):
     # quiz_id=findall(r"id=(\d+)", quiz_elem.get_attribute("href"))[0]
 
     for q_topic in q_topic_list:
-        q = q_topic["q"]
-        qid=q_topic['qid']
-        quiz_id=q_topic['quiz_id']
+        # q = q_topic["q"]
+        # qid=q_topic['qid']
+        # quiz_id=q_topic['quiz_id']
         # q_base = Path(f"{A_Q_PATH_.format(a=a,q=q)}")
-        a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))
-        if 1 or not a_q_plag.exists():
         # if True or not next(q_base.glob("PDS*"), False):
-            create_base_folders(a, q)
-            driver_get_pds_from_quiz(driver,a,q,qid,quiz_id)
-            set_plag_files(a=a, ql=q)
-            # set_plag_files# set_plag_files(a=a, ql=q)
-            # driver_get_from_topic(driver, q_topic["topic_id"], "downloadall")
-            # unzip(a_base, q)
+        create_base_folders(a, q_topic["q"])
+        driver_get_pds_from_quiz(driver,a,q_topic)
+        set_plag_files(a=a, ql=q_topic['q'])
+        # set_plag_files# set_plag_files(a=a, ql=q)
+        # driver_get_from_topic(driver, q_topic["topic_id"], "downloadall")
+        # unzip(a_base, q)
         # ## HACK SEM 6: This is for a case where question is given in intro
         # ps_path = Path(PS_PATH_.format(a=a, q=q))
         ## HACK END
