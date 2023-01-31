@@ -200,7 +200,7 @@ def pds_checker(a, q):
                                 # system(cmd)
                                 # subprocess.check_output(cmd, shell=True, timeout=2)
                                 try:
-                                    out=run(cmd,input=test, capture_output=True, text=True,timeout=1).stdout
+                                    out=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=1).stdout
                                 except TimeoutExpired:
                                     out='[Code goes into an Infinite Loop]'
                                     # comments.append(f'{BR}Code goes into an Infinite Loop')

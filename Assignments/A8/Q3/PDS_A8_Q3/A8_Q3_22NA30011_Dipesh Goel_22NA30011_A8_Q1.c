@@ -10,7 +10,7 @@
 
 /*
 Message = At the stroke of the midnight hour, when the world sleeps. India will awake to life and freedom."*/
-#define MAX_SIZE 100
+#define MAX_SIZE 105
 
 char Message[MAX_SIZE];
 
@@ -74,7 +74,7 @@ int main()
         char c;
         c= getchar();
         //printf(" %d ",i);
-        //if (i>90) printf("%c",c);
+        printf("%c",c);
         if (c=='\n') break;
         else Message[i]=c;
         if (c==' ') count_spaces++;
@@ -89,7 +89,7 @@ int main()
     }
 
 
-    fflush(stdin);
+    // fflush(stdin);
     printf("\nLength counted without using library = %d\n",i);
     printf("Length counted by strlen() = %d\n", (int)strlen(Message));
     printf("Number of words: %d\n", count_spaces+1); //Added 1 bcz last word is not counted due to absence of space ahead
