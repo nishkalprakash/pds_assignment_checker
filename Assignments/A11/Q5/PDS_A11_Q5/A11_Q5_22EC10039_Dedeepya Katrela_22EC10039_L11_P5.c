@@ -1,0 +1,8 @@
+//SEC:14
+//ROLL NUMBER:22EC10039
+//NAME:DEDEEPYA
+//ASSIGNMENT:11
+//DESCRIPTION:PROGRAM TO CHECK POINTS
+#include <stdio.h>
+#include <stdlib.h>
+typedef 
