@@ -1,4 +1,6 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;Matrix structure defined
+10;Dynamically memory allocated correctly
+10;Input taken correctly (getMat defined)
+10;Matrix print operation is correct
+10;Mulitply matrix operation is correct
+10;Correct logic and hence correct output for all test cases
