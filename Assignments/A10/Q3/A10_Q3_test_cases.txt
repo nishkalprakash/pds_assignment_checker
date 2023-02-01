@@ -1,8 +1,2 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+20;Input:~~L = {1, 2, 3, 9, 7, 7, 6, 5, 4, 3, 2, 1}~~Outpt:~~The input list contains duplicate numbers of: 1, 2, 3, 7.~~Minimum number is: 1~~Maximum number is: 9;12 1 2 3 9 7 7 6 5 4 3 2 1
+20;Input:~~L = {2, 4, 6, 8, 9, 7, 5, 3, 1}~~Output:~~The input list does not contain any duplicate~~number.~~Minimum number is: 1~~Maximum number is: 9;9 2 4 6 8 9 7 5 3 1
