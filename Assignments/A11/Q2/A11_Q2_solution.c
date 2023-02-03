@@ -1,8 +1,16 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+// Code creator: PRIYAM TARAFDER (slightly modified)
+// Program to check if a number exists in the Fibonacci seq
+#include <stdio.h>
+
+int fibo(int a,int b,int n){
+	if(a>n && b>n)
+		return 0;
+	if(a==n||b==n)
+		return 1;
+	return fibo(b,a+b,n);
+}
+int main(){
+	int n;
+	scanf("%d", &n);
+	fibo(0,1,n)?printf("Yes"):printf("No");
+}
