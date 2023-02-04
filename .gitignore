@@ -23,7 +23,7 @@ Thumbs.db
 # Assignment*/*
 # Lab_Test*/*
 # Lab-test*/*
-
+tmp/*
 # Files to track
 # !*/*.txt
 # !*/*.txt
@@ -33,7 +33,7 @@ Assignment*/done_intermediate.txt
 
 # Reports
 # *.csv
-!tmp/*.c
+# !tmp/*.c
 # .vscode
 .vscode
 
