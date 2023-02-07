@@ -13,7 +13,7 @@ int* Union (int *A, int a, int *B, int b, int *union_size);// To return the unio
        int* Intersection (int *A, int a, int *B, int b, int *inter_size);// To return the intersection of two sets A and B.
 
      int* Difference (int *A, int a, int *B, int b, int *diff_size);// To return the difference of two sets A and B. 
-void Print(int *A, int n);// to print set a
+void Print(int *A, int n);// to print set
 int main(){
 printf("Enter size of A");
 int n ;
