@@ -164,6 +164,7 @@ def pds_checker(a, q):
                         f"{BASE} file was not submitted properly {BR}Mark/s lost: {max_marks:g} out of {max_marks:g}{BR}"
                     )
                     file_exists = False
+                    short = True
                 ## Compile and run THE C FILE
                 if file_exists:
                     ## Comment if no plag case exists
@@ -321,9 +322,13 @@ def pds_checker(a, q):
                         comments.append(
                             f"{BR}FAILED: Code didn't compile successfully{BR}  Mark/s obtained: {0:g} out of {max_test_marks:g}{BR}"
                         )
+                    max_test_marks = sum(i for i in test_marks_list if i > 0)
+                    short=max_test_marks == sum(test_marks)
+
                     comments.append("")
                     comments.append(" CODE CASES ".center(30, "="))
                     comments.append("")
+
                     for i, cq in enumerate(code_questions):
                         mark, ques = cq
                         if (
@@ -333,6 +338,7 @@ def pds_checker(a, q):
                                 def_input(
                                     f"\n\n{ques} - ({mark}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ",
                                     0,
+                                    short
                                 )
                             )  # defaults to 0
                             ## This is to deal with the case where code marks entered is less than max negtive marks
@@ -352,7 +358,7 @@ def pds_checker(a, q):
                             if mark >= 0:
                                 code_marks[i] = float(
                                     def_input(
-                                        f"\n\n{ques} - [{mark:g}] Mark/s : ", mark
+                                        f"\n\n{ques} - [{mark:g}] Mark/s : ", mark, short
                                     )
                                 )
                                 if code_marks[i] < mark:
@@ -368,7 +374,7 @@ def pds_checker(a, q):
                                 code_marks[i] = float(
                                     def_input(
                                         f"\n\n{ques} - ({mark:g}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ",
-                                        0,
+                                        0,short
                                     )
                                 )  # defaults to 0
                                 ## This is to deal with the case where code marks entered is less than max negtive marks
@@ -409,14 +415,13 @@ def pds_checker(a, q):
             raise
             # return
         try:
-            # other_comment=def_input("\n\nGive any other comment? [0]/1: ", '0')
-            other_comment=0
+            other_comment=def_input("\n\nGive any other comment? [0]/1: ", '0',short)
             if other_comment=='1':
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
                     0,
                     def_input(
-                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n"
+                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",short
                     ),
                 )
             elif total_marks == max_marks:

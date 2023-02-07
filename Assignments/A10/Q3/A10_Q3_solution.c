@@ -1,5 +1,5 @@
 // Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
-// Program to delete odd number from linked list
+// Program to Delete duplicates from a linked list
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,5 +1,5 @@
 // Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
-// Program to Recursively find
+// Program to Recursively calculate the sum of harmonic series upto n
 
 #include <stdio.h>
 

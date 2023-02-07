@@ -94,8 +94,10 @@ def run_command(command):
 
 
 ## Gives the user a default input option which can be inputted using enter
-def def_input(text, default=""):
+def def_input(text, default="",short=False):
     default_type=type(default)
+    if short:
+        return default
     x = input(f"{text} [{default}]: ").strip()
     if x:
         # if " " in x:

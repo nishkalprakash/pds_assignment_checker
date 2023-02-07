@@ -1,3 +1,5 @@
+// Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
+// Program to delete odd number from linked list
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 100

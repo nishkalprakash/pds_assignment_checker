@@ -1,71 +1,64 @@
+// Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
+// Program to check the order of a linked list
+
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 100
 
-typedef struct node{
+typedef struct node
+{
 	int data;
 	node *next;
-}node;
+} node;
 
-node *createlist(int n, int A[])
-{	
-	node *head,*ptr;
-	head=(node*)malloc(sizeof(node));
-	ptr=head;
-	for(int i=0;i<n-1;i++)
-	{
-		ptr->data=A[i];
-		ptr->next=(node*)malloc(sizeof(node));
-		ptr=ptr->next;
-	}
-	ptr->data=A[n-1];
-	ptr->next=NULL;
+node *create_new_node(int data=NULL)
+{
+	node *new_node = (node *)malloc(sizeof(node));
+
+	new_node->next = NULL;
+	if (data==NULL) scanf("%d", &(new_node->data));
+	else  new_node->data = data;
+
+	return new_node;
+}
+
+node *createlist(int n)
+{
+	if (n<=0) return NULL;
+	node *head=NULL, *ptr;
+	head = ptr = create_new_node();
+	for (int i = 1; i < n ;i++)
+		ptr = ptr->next = create_new_node();
 	return head;
 }
 
-void printlist(node * I)
+
+int check_order(node *ptr, int asc = 1)
 {
-	if(I==NULL){
-		printf("\nEMPTY LIST\n");
-	}
-	while(I!=NULL){
-		printf("%d ",I->data);
-		I=I->next;
-	}
-	printf("\n");
+	// len(list) = 0 or 1
+	if (ptr == NULL || ptr->next == NULL)
+		return 1;
+	if (asc && ptr->data >= ptr->next->data)
+		return 0;
+	if (!asc && ptr->data <= ptr->next->data)
+		return 0;
+
+	return check_order(ptr->next, asc);
 }
 
-void even(node * I)
+int main()
 {
-	node *ptr=I,*n;
-
-	// Jump to first even node
-	// Remove all odd nodes from beginning
-	while(ptr!=NULL && ptr->data%2!=0)
-		ptr=ptr->next;
-	I=ptr;
-	
-	while(ptr!=NULL){
-		n=ptr->next;
-		if(n!=NULL && n->data%2!=0)
-			ptr->next=n->next;
-		ptr=ptr->next;
-	}
-
-	printlist(I);
-}
-
-int main(){
 	int N;
-	int A[MAX];
 	node *head;
 	printf("Enter N: ");
-	scanf("%d",&N);
-	for(int i=0;i<N;i++)
-		scanf("%d",&A[i]);
-	head=createlist(N,A);
-	printf("List w/o odd: ");
-	even(head);
-	return 0;
+	scanf("%d", &N);
+	head = createlist(N);
+	printf("The input list L is ");
+	if (check_order(head))
+		printf("in ascending order.");
+	else if (check_order(head, 0))
+		printf("in descending order.");
+	else
+		printf("not in sorted order.");
 
+	return 0;
 }
