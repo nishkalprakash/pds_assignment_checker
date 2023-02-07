@@ -27,6 +27,7 @@ struct list*createlist(int n,int a[])
 	ptr=(struct list*)malloc(sizeof(struct list));
 	ptr->data=a[0];
 	ptr->next=NULL;
+	0
 	temp->next=ptr;
 	temp=ptr;
 	}
