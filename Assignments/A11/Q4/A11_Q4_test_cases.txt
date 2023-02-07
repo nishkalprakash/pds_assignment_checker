@@ -1,5 +1,6 @@
 #TC_GENERATED
-10;IN:~~n=5~~LL[n]=5 10 15 20 25 ~~m=15~~~~Exp OUT:~~Output after deleting 15: ~~5 10 20 25~~~~;n=5~~LL[n]=5 10 15 20 25 ~~m=15
-10;IN:~~n=5~~LL[n]=5 10 15 20 25 ~~m=30~~~~Exp OUT:~~30 does not exist~~~~;n=5~~LL[n]=5 10 15 20 25 ~~m=30
-10;IN:~~n=5~~LL[n]=5 4 3 2 1~~m=5~~~~Exp OUT:~~Output after deleting 5: ~~4 3 2 1~~~~;n=5~~LL[n]=5 4 3 2 1~~m=5
-10;IN:~~n=5~~LL[n]=2 4 6 8 10~~m=10~~~~Exp OUT:~~Output after deleting 10: ~~2 4 6 ~~~~;n=5~~LL[n]=2 4 6 8 10~~m=10
+10;IN:~~n=5~~LL[n]=5 10 15 20 25 ~~m=15~~~~Exp OUT:~~Output after deleting 15: ~~5 10 20 25~~~~;5 5 10 15 20 25 15
+10;IN:~~n=5~~LL[n]=5 10 15 20 25 ~~m=30~~~~Exp OUT:~~30 does not exist~~~~;5 5 10 15 20 25 30
+10;IN:~~n=5~~LL[n]=5 4 3 2 1~~m=5~~~~Exp OUT:~~Output after deleting 5: ~~4 3 2 1~~~~;5 5 4 3 2 1 5
+10;IN:~~n=5~~LL[n]=2 4 6 8 10~~m=10~~~~Exp OUT:~~Output after deleting 10: ~~2 4 6 ~~~~;5 2 4 6 8 10 10
+10;IN:~~n=1~~LL[n]=2~~m=2~~~~Exp OUT:~~Output after deleting 2: ~~ ~~~~;1 2 2
