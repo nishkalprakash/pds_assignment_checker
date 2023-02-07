@@ -20,14 +20,14 @@ node *create_new_node()
 
 node *createlist(int n)
 {
-	if (n<=0) return NULL;
-	node *head=NULL, *ptr;
+	if (n <= 0)
+		return NULL;
+	node *head = NULL, *ptr;
 	head = ptr = create_new_node();
-	for (int i = 1; i < n ;i++)
+	for (int i = 1; i < n; i++)
 		ptr = ptr->next = create_new_node();
 	return head;
 }
-
 
 int check_order(node *ptr, int asc = 1)
 {
