@@ -2,7 +2,7 @@
 
 ## Random is used to get the random compliments
 import random
-from subprocess import STDOUT, run, TimeoutExpired, CalledProcessError
+from subprocess import PIPE, STDOUT, run, TimeoutExpired, CalledProcessError
 from pathlib import Path
 from sys import platform
 from os import system, chdir
@@ -200,18 +200,32 @@ def pds_checker(a, q):
                                 # system(cmd)
                                 # subprocess.check_output(cmd, shell=True, timeout=2)
                                 try:
-                                    out=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=1).stdout
+                                    proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=1)
+                                    out=proc.stdout
+                                   
                                 except TimeoutExpired:
                                     out='[Code goes into an Infinite Loop]'
                                     # comments.append(f'{BR}Code goes into an Infinite Loop')
-                                except CalledProcessError as e:
-                                    print('CalledProcessError')
+                                    # raise e
+                                try:
+                                    proc.kill()
+                                except (AttributeError,UnboundLocalError):
+                                    pass
+                                except Exception as e:
+                                    print(str(e))
                                     raise e
+                                    pass
                                 print(out)
                                 out=out.replace('\n',BR)
                                 if len(out)>(lim:=500): out=out[:lim]+"..."
                                 comments.append(f'{BR}Your output:{BR}{out}')
-
+                                # try:
+                                    ## Try to Kill the process after execution
+                                    # cmd_kill=f"taskkill -im {cmd} -f"
+                                    # cmd_kill=f"""wmic process where "name='{cmd}'" delete"""
+                                    # run(cmd_kill,text=True)
+                                # except Exception as e:
+                                    # print(str(e))
                             else:
                                 system(f"timeout 1s echo {test} | ./a.out")
 
@@ -395,7 +409,9 @@ def pds_checker(a, q):
             raise
             # return
         try:
-            if def_input("\n\nGive any other comment? [0]/1: ", '0') == "1":
+            # other_comment=def_input("\n\nGive any other comment? [0]/1: ", '0')
+            other_comment=0
+            if other_comment=='1':
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
                     0,

@@ -122,7 +122,8 @@ def get_a_ql_from_user(q=True):
 
     """
     ll = list(Path(HOME).glob(f"{BASE}*"))
-    latest_a = max(ll,key=lambda x:x.stat().st_mtime).name.removeprefix(BASE) if ll else '1'
+    a_tup=[(a,max(a.rglob('*'),key=lambda x:x.stat().st_mtime).stat().st_mtime) for a in ll]
+    latest_a = max(a_tup,key=lambda x:x[1])[0].name.removeprefix(BASE) if ll else '1'
     a = def_input(f"Please enter the {BASE} number", str(latest_a))
     ## CURRENTLY supports one question check at a time
     ## q stores the question number
