@@ -2,34 +2,28 @@
 
 ## Random is used to get the random compliments
 import random
-from subprocess import PIPE, STDOUT, run, TimeoutExpired, CalledProcessError
 from pathlib import Path
 from sys import platform
 from os import system, chdir
 
-from lib.pds_globals import(
-    A_PATH_,
-    A_Q_,
+from lib.pds_globals import (
     A_Q_PATH_,
     A_Q_PDS_FILE_,
-    A_Q_PLAG_,
     A_Q_PLAG_PATH_,
     A_Q_REPORT_,
-    A_Q_REPORT_PATH_,
     BR,
+    CHEAT_CODES,
     DELIM,
-    HOME,
     BASE,
     PLAG_COMMENT,
 )
 from lib.pds_file_op import (
     base_missing,
+    undo_redo_result,
     get_a_ql_from_user,
     get_code_questions,
-    get_map_roll_to_name,
     get_std_roll_to_m_c_dict,
     get_test_cases,
-    pull,
     push,
     def_input,
     get_students,
@@ -71,11 +65,9 @@ def pds_checker(a, q):
     """This is the main method for checking assignments"""
     ## Pull students list before entering the BASE folder
     # n = get_map_roll_to_name()
-
     students = get_students()
     plag_students_roll_set = set(
-        get_students(A_Q_PLAG_PATH_.format(a=a, q=q), only_roll=True)
-    )
+        get_students(A_Q_PLAG_PATH_.format(a=a, q=q), only_roll=True))
     ## Getting the BASE number details from user and switching working dir to BASE_a
 
     home, report_path, test_cases, code_questions = init_checker(a, q)
@@ -85,12 +77,13 @@ def pds_checker(a, q):
 
     ## Here there is a change for %age negative markings, keeping the % sign to signify
     # code_questions = pull("code_questions.txt")  # pull only once throughout the program
-    code_marks_list = [x if "%" in (x := i[0]) else float(x) for i in code_questions]
+    code_marks_list = [
+        x if "%" in (x := i[0]) else float(x) for i in code_questions
+    ]
 
     ## Max marks are calculated ignoring the -ve mark conditions
-    max_marks = sum(
-        (i for i in (test_marks_list + code_marks_list) if "%" not in str(i) and i > 0)
-    )
+    max_marks = sum((i for i in (test_marks_list + code_marks_list)
+                     if "%" not in str(i) and i > 0))
 
     ## START: Set header
     test_marks_header = [
@@ -118,26 +111,29 @@ def pds_checker(a, q):
     try:
         done = set(get_std_roll_to_m_c_dict(a, q, cwd=True).keys())
     except Exception as e:
-        print(str(e),"\nSomething wrong with Report FILE, please delete it.")
+        print(str(e), "\nSomething wrong with Report FILE, please delete it.")
         done = set()
     ## End
 
     print(f" Working for {report_path} ".center(100, "*"))
     ctr = 0
 
-    for id,std_name,std_roll in students:
+    for id, std_name, std_roll in students:
         # std_name=n[std_roll]
+        short=False
         ctr += 1
         if std_roll in done:
             continue
 
         total_marks = 0  # current student's marks
-        test_marks = [0] * len(test_marks_list)  # Current student test case marks
-        code_marks = [0] * len(code_marks_list)  # Current student code case marks
+        test_marks = [0] * len(
+            test_marks_list)  # Current student test case marks
+        code_marks = [0] * len(
+            code_marks_list)  # Current student code case marks
         comments = []  # String list for current students comments
         print(
-            f" {ctr} - Working for student - {std_roll} - {std_name} ".center(100, "*")
-        )
+            f" {ctr} - Working for student - {std_roll} - {std_name} ".center(
+                100, "*"))
         try:
             if std_roll not in plag_students_roll_set:
                 comments.append(PLAG_COMMENT)
@@ -147,15 +143,14 @@ def pds_checker(a, q):
                     file_exists = True
                     c = next(
                         home.glob(
-                            A_Q_PDS_FILE_.format(
-                                a=a, q=q, r=std_roll, n=std_name, f="*"
-                            )
-                        )
-                    )
+                            A_Q_PDS_FILE_.format(a=a,
+                                                 q=q,
+                                                 r=std_roll,
+                                                 n=std_name,
+                                                 f="*")))
                     if platform == 'win32':
-                        system(
-                            f'START /MIN /B "" "{c}"'
-                        )  # Opens the file in the background
+                        system(f'START /MIN /B "" "{c}"'
+                               )  # Opens the file in the background
                     else:
                         system(f'xdg-open "{c}"')
                 except StopIteration as si:
@@ -185,8 +180,8 @@ def pds_checker(a, q):
                             ## HACK START: SUPPORT For file input If test_case_input_file_# exists then copy it to infile.txt
                             if Path(f"test_case_in+put_{i+1}.txt").exists():
                                 Path("infile.txt").write_text(
-                                    Path(f"test_case_input_{i+1}.txt").read_text()
-                                )
+                                    Path(f"test_case_input_{i+1}.txt").
+                                    read_text())
                             ## End
 
                             mark, test_comment, test = line
@@ -197,10 +192,12 @@ def pds_checker(a, q):
                             print(f"Program Output:")
 
                             if platform == 'win32':
-                                cmd=f"a.exe"
-                                # system(cmd)
+                                cmd = f"a.exe"
                                 # subprocess.check_output(cmd, shell=True, timeout=2)
-                                try:
+                                ### HACK: MANUAL CHECKING
+                                system(cmd)
+                                ### END HACK
+                                """try:
                                     proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=0.5)
                                     out=proc.stdout
                                    
@@ -220,13 +217,14 @@ def pds_checker(a, q):
                                 out=out.replace('\n',BR)
                                 if len(out)>(lim:=500): out=out[:lim]+"..."
                                 comments.append(f'{BR}Your output:{BR}{out}')
+                                """
                                 # try:
-                                    ## Try to Kill the process after execution
-                                    # cmd_kill=f"taskkill -im {cmd} -f"
-                                    # cmd_kill=f"""wmic process where "name='{cmd}'" delete"""
-                                    # run(cmd_kill,text=True)
+                                ## Try to Kill the process after execution
+                                # cmd_kill=f"taskkill -im {cmd} -f"
+                                # cmd_kill=f"""wmic process where "name='{cmd}'" delete"""
+                                # run(cmd_kill,text=True)
                                 # except Exception as e:
-                                    # print(str(e))
+                                # print(str(e))
                             else:
                                 system(f"timeout 1s echo {test} | ./a.out")
 
@@ -237,17 +235,23 @@ def pds_checker(a, q):
 
                             # This is for non-binary test marks
                             if mark > 0:
-                                test_marks[i] = float(
-                                    def_input(
+                                inp=def_input(
                                         f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ",
-                                        mark,
-                                    )
-                                )
+                                        mark, short)
+                                if inp == 'ss':
+                                    short='ss'
+                                    inp = mark
+                                elif inp == '000':
+                                    short='000'
+                                    
+                                elif inp == 'RERUN': return "RERUN"
+                                test_marks[i] = float(inp)
                                 if test_marks[i] < mark:
                                     comments.append(
                                         f"{BR}FAILED: Test Case {i+1}: {BR}{test_comment} {BR}  Mark/s obtained: {test_marks[i]:g} out of {mark:g}{BR}"
                                     )
-                                elif test_marks[i] >= mark:  # in case of typing errpr
+                                elif test_marks[
+                                        i] >= mark:  # in case of typing errpr
                                     test_marks[i] = mark
                                     # comments.append(
                                     #     f"{BR}PASSED: Test Case {i+1}: {BR}{test_comment}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
@@ -257,14 +261,12 @@ def pds_checker(a, q):
                                     def_input(
                                         f"\n\nTest_Case_{i+1} - ({mark:g}) Mark/s - Def: [0]: ",
                                         0,
-                                    )
-                                )  # defaults to 0
+                                    ))  # defaults to 0
                                 if test_marks[i] == mark:
                                     # if -ve marks are given then add comment
                                     comments.append(
                                         f"{BR}Passed Negative Criteria: {test_comment}{BR}  Mark/s lost: {mark:g}"
                                     )
-
                             """
                             ## HACK: Start Support for Binary test marks
                             if mark > 0:
@@ -296,8 +298,8 @@ def pds_checker(a, q):
                                     )
                             ## End
                             """
+                        ## HACK: END Support for Binary test marks (complete)
                         """
-                        ## HACK: START Support for Binary test marks (complete)
                         max_test_marks = sum(i for i in test_marks_list if i > 0)
                         if sum(test_marks) < max_test_marks:
                             comments.append("")
@@ -316,14 +318,16 @@ def pds_checker(a, q):
                     else:
                         print("The code didn't compile")
                         ## HACK: Start Support for Binary test marks
-                        max_test_marks = sum(i for i in test_marks_list if i > 0)
+                        max_test_marks = sum(i for i in test_marks_list
+                                             if i > 0)
                         comments.append(" TEST CASES ".center(30, "="))
                         comments.append("")
                         comments.append(
                             f"{BR}FAILED: Code didn't compile successfully{BR}  Mark/s obtained: {0:g} out of {max_test_marks:g}{BR}"
                         )
                     max_test_marks = sum(i for i in test_marks_list if i > 0)
-                    short=max_test_marks == sum(test_marks)
+                    if max_test_marks == sum(test_marks):
+                        short = 'ss'
 
                     comments.append("")
                     comments.append(" CODE CASES ".center(30, "="))
@@ -331,23 +335,16 @@ def pds_checker(a, q):
 
                     for i, cq in enumerate(code_questions):
                         mark, ques = cq
-                        if (
-                            "%" in mark
-                        ):  # This case is for % marking, defaults to zero, adds a comment if -ve marks given
+                        if ("%" in mark):  # This case is for % marking, defaults to zero, adds a comment if -ve marks given
                             code_marks[i] = float(
                                 def_input(
                                     f"\n\n{ques} - ({mark}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ",
-                                    0,
-                                    short
-                                )
-                            )  # defaults to 0
+                                    0, short))  # defaults to 0
                             ## This is to deal with the case where code marks entered is less than max negtive marks
                             max_neg_mark = float(mark.strip("%"))
-                            code_marks[i] = (
-                                code_marks[i]
-                                if max_neg_mark < code_marks[i] <= 0
-                                else max_neg_mark
-                            )
+                            code_marks[i] = (code_marks[i] if
+                                             max_neg_mark < code_marks[i] <= 0
+                                             else max_neg_mark)
                             if code_marks[i] < 0:
                                 comments.append(
                                     f"{BR}FAILED: Negative % Code Case {i+1}:{BR}{ques} {BR}  Mark/s lost: {code_marks[i]:g}% out of Total Marks Obtained"
@@ -356,97 +353,94 @@ def pds_checker(a, q):
                         else:
                             mark = float(mark)
                             if mark >= 0:
-                                code_marks[i] = float(
-                                    def_input(
-                                        f"\n\n{ques} - [{mark:g}] Mark/s : ", mark, short
-                                    )
-                                )
+                                inp=def_input(
+                                        f"\n\n{ques} - [{mark:g}] Mark/s : ",
+                                        mark, short)
+                                if inp == 'ss':
+                                    short='ss'
+                                    inp = mark
+                                elif inp == '000':
+                                    short='000'
+                                    
+                                elif inp == 'RERUN': return "RERUN"
+                                # elif 'z' in inp or 'r' in inp: return undo_redo_result(report_path,inp)
+                                code_marks[i] = float(inp)
                                 if code_marks[i] < mark:
                                     comments.append(
                                         f"{BR}FAILED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {code_marks[i]:g} out of {mark:g}{BR}"
                                     )
-                                elif code_marks[i] >= mark:  # in case of typing err0r
+                                elif code_marks[
+                                        i] >= mark:  # in case of typing err0r
                                     code_marks[i] = mark
                                     comments.append(
                                         f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
                                     )
-                            elif (mark < 0):  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
+                            elif (
+                                    mark < 0
+                            ):  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
                                 code_marks[i] = float(
                                     def_input(
                                         f"\n\n{ques} - ({mark:g}) Mark/s - [0] / +ve (full negative) / -ve (partial negative): ",
-                                        0,short
-                                    )
-                                )  # defaults to 0
+                                        0, short))  # defaults to 0
                                 ## This is to deal with the case where code marks entered is less than max negtive marks
-                                code_marks[i] = (
-                                    code_marks[i]
-                                    if mark <= code_marks[i] <= 0
-                                    else mark
-                                )
+                                code_marks[i] = (code_marks[i]
+                                                 if mark <= code_marks[i] <= 0
+                                                 else mark)
                                 if code_marks[i] < 0:
                                     comments.append(
                                         f"{BR}FAILED: Negative Code Case {i+1}:{BR}{ques}{BR}  Mark/s lost: {code_marks[i]:g} out of {mark:g}{BR}"
                                     )
-                    total_marks = sum(
-                        (i for i in (test_marks + code_marks) if "%" not in str(i))
-                    )
+                    total_marks = sum((i for i in (test_marks + code_marks)
+                                       if "%" not in str(i)))
                     ## TODO: Here we will deduct the negative percentage sums and round to nearest b=0.5 using formula n=b*round(a/b)
                     rounding_base = 0.5
                     total_marks = rounding_base * round(
-                        (
-                            total_marks
-                            + total_marks
-                            * sum(
-                                float(i.strip("%")) for i in code_marks if "%" in str(i)
-                            )
-                            / 100
-                        )
-                        / rounding_base
-                    )
+                        (total_marks + total_marks * sum(
+                            float(i.strip("%"))
+                            for i in code_marks if "%" in str(i)) / 100) /
+                        rounding_base)
                 comments.append("")
                 comments.append("".center(30, "="))
                 comments.append("")
                 comments.append(
-                    f" TOTAL MARKS OBTAINED = {total_marks:g} ".center(50, "#")
-                )
+                    f" TOTAL MARKS OBTAINED = {total_marks:g} ".center(
+                        50, "#"))
 
         except Exception as e:
             print("Something went wrong during test/code checking: ", str(e))
             raise
             # return
         try:
-            other_comment=def_input("\n\nGive any other comment? [0]/1: ", '0',short)
-            if other_comment=='1':
+            other_comment = def_input("\n\nGive any other comment? [0]/1: ",
+                                      '0', short)
+            if other_comment == '1':
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
                     0,
                     def_input(
-                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",'',short
-                    ),
+                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",
+                        '', short),
                 )
             elif total_marks == max_marks:
                 comments.insert(0, "")  # Hack for extra spacing
                 # comments.append("")  # Hack for extra spacing
                 comments.insert(
                     0,
-                    random.choice(
-                        """Good work
+                    random.choice("""Good work
                         Keep it up
                         Keep up the good work
                         Great Job
                         Clean Code
                         Perfect
                         Good
-                        Nice work""".split(
-                            "\n"
-                        )
-                    ).strip(),
+                        Nice work""".split("\n")).strip(),
                 )
             comm = f"{BR}".join(comments).strip(f"{BR}")
             report_entry = [
                 std_roll,
                 DELIM.join(f"{i:g}" for i in test_marks),
-                DELIM.join(f"{i:g}" if type(i) != str else i for i in code_marks),
+                DELIM.join(f"{i:g}" if type(i) != str else i
+                           for i in code_marks),
                 f"{total_marks:g}",
                 comm,
             ]
@@ -456,17 +450,17 @@ def pds_checker(a, q):
                     push(report_path, [report_entry])
                     break
                 except PermissionError:
-                    print("The report file is open, please close it to proceed")
-                    if (
-                        def_input("Press 1 to Try again, or 0 to Quit [1]/0: ", "1")
-                        != "1"
-                    ):
+                    print(
+                        "The report file is open, please close it to proceed")
+                    if (def_input("Press 1 to Try again, or 0 to Quit [1]/0: ",
+                                  "1") != "1"):
                         print(f"EXITING. {std_roll}'s record not saved")
                         return
             done.add(std_roll)
             print("The comments given for student:\n")
             print("\n".join(comments))
-            print(f" {ctr} - Done for {std_roll} - {std_name} ".center(100, "#"))
+            print(f" {ctr} - Done for {std_roll} - {std_name} ".center(
+                100, "#"))
         except Exception as e:
             print("ERROR: Could not record student details: ", e, str(e))
             raise

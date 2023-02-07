@@ -22,6 +22,7 @@ from lib.pds_globals import (
     A_REPORT_PATH_,
     BASE,
     BR,
+    CHEAT_CODES,
     CODE_DEMO,
     CODE_PATH_,
     DELIM,
@@ -31,6 +32,7 @@ from lib.pds_globals import (
     SOL_PATH_,
     TEST_DEMO,
     TEST_PATH_,
+    UNDO_REDO_CHEAT_CODES,
     VAR,
 )
 
@@ -92,18 +94,30 @@ def run_command(command):
         # The run_command() function is responsible for logging STDERR
         print("Error: " + str(err))
 
+def get_last_edited_file_path(path,pattern="*"):
+    return max(Path(path).rglob(pattern),key=lambda x:x.stat().st_mtime)
 
 ## Gives the user a default input option which can be inputted using enter
-def def_input(text, default="",short=False):
-    default_type=type(default)
-    if short:
+def def_input(text, default="",short=False,**kwargs):
+    if short=='ss':
         return default
-    x = input(f"{text} [{default}]: ").strip()
-    if x:
-        # if " " in x:
-        #     return x.split(" ")
+    default_type=type(default)
+    if short=='000':
+        return default_type(0)
+    
+    inp = input(f"{text} [{default}]: ").strip()
+    if inp:
+        if inp in CHEAT_CODES:
+            return inp
+        if inp in UNDO_REDO_CHEAT_CODES: 
+            return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="A*_Q*_report.csv")),inp)
+        # if inp=='ss': return 'ss'
+        # if 'z' in inp: return undo_result(globals()['report_path'],inp.count('z')-1)
+        # if 'r' in inp: return redo_result(globals()['report_path'],inp.count('z')-1)
+        # if " " in inp:
+        #     return inp.split(" ")
         # except:
-        return default_type(x)
+        return default_type(inp)
     else:
         return default
 
@@ -124,7 +138,7 @@ def get_a_ql_from_user(q=True):
 
     """
     ll = list(Path(HOME).glob(f"{BASE}*"))
-    a_tup=[(a,max(a.rglob('*'),key=lambda x:x.stat().st_mtime).stat().st_mtime) for a in ll]
+    a_tup=[(a,get_last_edited_file_path(a,'*').stat().st_mtime) for a in ll]
     latest_a = max(a_tup,key=lambda x:x[1])[0].name.removeprefix(BASE) if ll else '1'
     a = def_input(f"Please enter the {BASE} number", str(latest_a))
     ## CURRENTLY supports one question check at a time
@@ -134,7 +148,9 @@ def get_a_ql_from_user(q=True):
 
     ll = list(Path(A_PATH_.format(a=a)).glob(f"{Q_BASE}*"))
     # all_q = " ".join([i.name.removeprefix(Q_BASE) for i in ll] if ll else 0)
-    last_q = sorted(ll,key=lambda x:x.stat().st_mtime)[-1].name.removeprefix(Q_BASE) if ll else '1'
+    q_tup=[(q,get_last_edited_file_path(q,'*').stat().st_mtime) for q in ll]
+
+    last_q = max(q_tup,key=lambda x:x[1])[0].name.removeprefix(Q_BASE) if ll else '1'
     ql = def_input(f"Please enter the {Q_BASE} number", last_q)
     # return a, ql.strip().split()
     return a, ql.strip().split()
@@ -169,6 +185,26 @@ def push(path, text, attr="a+", DELIM=DELIM):
                 else:
                     raise
 
+def pop(path, DELIM=DELIM):
+    data=pull(path,DELIM)
+    if len(data)==0: return False
+    push(path,data[:-1],'w+',DELIM)
+    return data[-1]
+
+   
+def undo_redo_result(report_path,code):
+    """code is the number of times to undo or redo"""
+    if code=='': return 'RERUN'
+    hist=Path(report_path).parent/'.report_history.txt'
+    pop_path=report_path
+    push_path=hist
+    if code[0]=='r':
+        pop_path,push_path=push_path,pop_path
+    data=pop(pop_path)
+    if data == False:
+        return "RERUN"
+    push(push_path,[data])
+    return undo_redo_result(report_path,code[1:])
 
 def re_sub_space(name):
     return sub(r"\s+", " ", name)

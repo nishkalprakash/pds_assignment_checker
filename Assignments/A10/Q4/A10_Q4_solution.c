@@ -1,5 +1,5 @@
 // Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
-// Program to check the order of a linked list
+// Program to print customer banking data
 
 #include <stdio.h>
 #include <stdlib.h>

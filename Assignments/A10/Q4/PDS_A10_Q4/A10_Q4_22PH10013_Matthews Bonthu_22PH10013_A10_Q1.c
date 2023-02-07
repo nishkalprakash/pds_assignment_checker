@@ -70,6 +70,7 @@ int main ( )
 	head=crnode(-1,"N",-1);
 	while(1)
 	{
+		break;
 		printf("Menu \nPress any key to proceed\n enter e to break ");
 		char ch;
 		scanf("%c",&ch);
