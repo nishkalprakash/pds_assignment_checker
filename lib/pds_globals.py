@@ -125,3 +125,18 @@ OK
 A_Q_PDS_QUIZ_ = "https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading&slot={q}&qid={qid}&page=0&includeauto=1&grade=all&pagesize=100&order=studentfirstname"
 
 # "https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=overview"
+
+UNDO_REDO_CHEAT_CODES= [
+    'z',    # To undo the last result (repeatable)
+    'zz',   # To undo the last result (repeatable)
+    'zzz',  # To undo the last result (repeatable)
+    'r',    # To redo the last undo (repeatable)
+    'rr',   # To redo the last undo (repeatable)
+    'rrr',  # To redo the last undo (repeatable)
+]
+
+CHEAT_CODES = [
+    'ss',   # To short 's'ircuit the prograg
+    'RERUN',# To rerun the program
+    '000'   # To short circuit the program with 0
+]
