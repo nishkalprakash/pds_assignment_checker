@@ -25,7 +25,7 @@ void Union(struct node* l1,struct node* l2,int n1,int n2){
 	l11=l1; l22=l2;
 	int i1,i2;
 	for (int i1=0,i2=0;i1<n1,i2<n2;){
-		if (l11->n<l22->n) {printf("%d,",l11->n); l11=l11->next; i1++;}
+		if (l11->n<l22->n) {printf("%d,",l11->n); l11=l11->5next; i1++;}
 		else {printf("%d,",l22->n); l22=l22->next; i2++;}
 	}
 	if (i1==n1) {
