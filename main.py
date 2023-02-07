@@ -421,7 +421,7 @@ def pds_checker(a, q):
                 comments.insert(
                     0,
                     def_input(
-                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",short
+                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",'',short
                     ),
                 )
             elif total_marks == max_marks:
