@@ -3,6 +3,7 @@
 ## Random is used to get the random compliments
 import random
 from pathlib import Path
+from subprocess import TimeoutExpired,run
 from sys import platform
 from os import system, chdir
 
@@ -195,9 +196,10 @@ def pds_checker(a, q):
                                 cmd = f"a.exe"
                                 # subprocess.check_output(cmd, shell=True, timeout=2)
                                 ### HACK: MANUAL CHECKING
-                                system(cmd)
+                                # system(cmd)
                                 ### END HACK
-                                """try:
+                                #"""
+                                try:
                                     proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=0.5)
                                     out=proc.stdout
                                    
@@ -217,7 +219,7 @@ def pds_checker(a, q):
                                 out=out.replace('\n',BR)
                                 if len(out)>(lim:=500): out=out[:lim]+"..."
                                 comments.append(f'{BR}Your output:{BR}{out}')
-                                """
+                                #"""
                                 # try:
                                 ## Try to Kill the process after execution
                                 # cmd_kill=f"taskkill -im {cmd} -f"
