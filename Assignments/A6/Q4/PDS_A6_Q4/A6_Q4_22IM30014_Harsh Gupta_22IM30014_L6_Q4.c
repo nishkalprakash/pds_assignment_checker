@@ -43,7 +43,7 @@ int main() {
 	buildset(arrB,m);                     // building array  b
 	int p;	
 	int x; 
-		printf(" Press ‘1’ to perform search in Set A\n");
+		printf(" Press ‘1’ to5 perform search in Set A\n");
 		printf(" Press ‘1’ to perform search in Set A\n");
 		printf(" Press ‘2’ to perform search in Set B\n");
 		printf(" Press ‘3’ to perform Union of Set A and Set B\n");
