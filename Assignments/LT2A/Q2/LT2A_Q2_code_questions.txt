@@ -1,0 +1,5 @@
+10;created structure
+10;taken input
+10;checked for duplicate
+20;tried to perform set addition
+10;printed the resultant set

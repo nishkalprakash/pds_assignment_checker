@@ -159,34 +159,49 @@ def get_sel_items(driver,val,a='',t='userenrolment',d='div'):
 
 def extract_name_roll_tuple(elem):
     """Returns tuple (name,roll)"""
+    a2=False
     t=elem.text.replace('Attempt number 1 for ','').strip()
+    if "Attempt number 2 for " in t:
+        t=elem.text.replace('Attempt number 2 for ','').strip()
+        a2=True
     m=match(r'^(.+?) \((\w+)\)$',t)
+    
     if m:
-        return (m[1],m[2])
-    # match(r'^(.+?)$',t)
-    return (t,'')
+        n,r=m[1],m[2]
+    else:
+        n,r=t,''
+
+    if a2:
+        n+='_attempt2'
+    return (n,r)
 
 
 def driver_get_heading_element_list(driver,q_topic):
     driver.get(A_Q_PDS_QUIZ_.format(**q_topic))
     xpath="//h4[contains(text(),'Attempt number 1 for ')]"
+    xpath2="//h4[contains(text(),'Attempt number 2 for ')]"
     map_n_r=get_map_roll_to_name(rev=True)
     
+    nrt2=driver.find_elements(
+                    by=By.XPATH,
+                    value=xpath2
+                    )
     nrt=driver.find_elements(
                     by=By.XPATH,
                     value=xpath
                     )
-    nr_nxt=[]
-    for attempt in nrt:
+    
+    nr_nxt={}
+    for attempt in nrt+nrt2:
         n,r=extract_name_roll_tuple(attempt)
         if not r:
           r=map_n_r[n]
         next_div=attempt.find_element('xpath','following-sibling::div[1]')
-        nr_nxt.append(dict(n=n,r=r,next_div=next_div))
+        nr_nxt[r]=(dict(n=n,r=r,next_div=next_div))
 
         
 
-    return nr_nxt
+    return nr_nxt.values()
 
 def driver_get_pds_from_quiz(driver,a,q_topic):
     # a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))

@@ -1,0 +1,6 @@
+10;Taken Row and Column as Input
+10;Initialized Matrix
+10;Used malloc to Initialize
+10;printed the output Matrix in reverse
+10;Tried to use recursion
+10;Printed the matrix while taking an input

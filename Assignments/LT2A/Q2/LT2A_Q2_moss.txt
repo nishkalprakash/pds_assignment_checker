@@ -1,0 +1,49 @@
+Checking files . . .
+OK
+Uploading Devanshi_Dadoo_-_22AE30007_-_LT2A_Q2.c ...done.
+Uploading Aarushi_Mahajan_-_22AG10001_-_LT2A_Q2.c ...done.
+Uploading Mahin_Hussain_-_22AG10021_-_LT2A_Q2.c ...done.
+Uploading prashant_rao_-_22BT10019_-_LT2A_Q2.c ...done.
+Uploading Aman_Juneja_-_22BT30002_-_LT2A_Q2.c ...done.
+Uploading Gaurav_Meena_-_22CE10025_-_LT2A_Q2.c ...done.
+Uploading Aayush_Mohata_-_22CE10045_-_LT2A_Q2.c ...done.
+Uploading Saloni_Shaw_-_22CE10065_-_LT2A_Q2.c ...done.
+Uploading tiyas_choudhury_-_22CE10085_-_LT2A_Q2.c ...done.
+Uploading Nitin_Madaan_-_22CH10044_-_LT2A_Q2.c ...done.
+Uploading Rajdeep_Lahiri_-_22CH30025_-_LT2A_Q2.c ...done.
+Uploading Dhanunjay_Gurram_-_22CS10029_-_LT2A_Q2.c ...done.
+Uploading Nived_Shah_-_22CS10049_-_LT2A_Q2.c ...done.
+Uploading Sayandeep_Bhowmick_-_22CS10069_-_LT2A_Q2.c ...done.
+Uploading udaykiarn_ajmeera_-_22CY10008_-_LT2A_Q2.c ...done.
+Uploading Krishna_S_-_22CY10028_-_LT2A_Q2.c ...done.
+Uploading Dedeepya_Katrela_-_22EC10039_-_LT2A_Q2.c ...done.
+Uploading PRIYAM_TARAFDER_-_22EC10059_-_LT2A_Q2.c ...done.
+Uploading Sai_Aditya_Tallam_-_22EC10079_-_LT2A_Q2.c ...done.
+Uploading Karthik_Ragulan_-_22EC30027_-_LT2A_Q2.c ...done.
+Uploading Sarthak_Arora_-_22EC30047_-_LT2A_Q2.c ...done.
+Uploading Brij_Patel_-_22EE10048_-_LT2A_Q2.c ...done.
+Uploading sourabh_yadav_-_22EE10068_-_LT2A_Q2.c ...done.
+Uploading Ajay_Singh_-_22GG10004_-_LT2A_Q2.c ...done.
+Uploading Archit_Bharani_-_22HS10010_-_LT2A_Q2.c ...done.
+Uploading Siddharth_Boadh_-_22HS10050_-_LT2A_Q2.c ...done.
+Uploading Krishna_Thakur_-_22IE10027_-_LT2A_Q2.c ...done.
+Uploading sumanta_kumar_behera_-_22IM10039_-_LT2A_Q2.c ...done.
+Uploading Harsh_Gupta_-_22IM30014_-_LT2A_Q2.c ...done.
+Uploading DEBJIT_MONDAL_-_22MA10021_-_LT2A_Q2.c ...done.
+Uploading Srijan_Ranjan_-_22MA10059_-_LT2A_Q2.c ...done.
+Uploading surabhi_dhavale_-_22ME10026_-_LT2A_Q2.c ...done.
+Uploading Krishnendu_Nayek_-_22ME10045_-_LT2A_Q2.c ...done.
+Uploading Pranshu_Dasgupta_-_22ME10064_-_LT2A_Q2.c ...done.
+Uploading Souvik_Sarkar_-_22ME10083_-_LT2A_Q2.c ...done.
+Uploading Abhirup_Kumar_Das_-_22ME30004_-_LT2A_Q2.c ...done.
+Uploading Muskan_Muskan_-_22ME30042_-_LT2A_Q2.c ...done.
+Uploading Varun_Huchchannavar_-_22MF10045_-_LT2A_Q2.c ...done.
+Uploading HEET_PATEL_-_22MI10032_-_LT2A_Q2.c ...done.
+Uploading Siddharth_Raj_-_22MI31025_-_LT2A_Q2.c ...done.
+Uploading Harsh_Gupta_-_22MT10023_-_LT2A_Q2.c ...done.
+Uploading Rathin_Ghosh_-_22MT10042_-_LT2A_Q2.c ...done.
+Uploading ujjwal_kumar_-_22MT10061_-_LT2A_Q2.c ...done.
+Uploading Anish_Kerketta_-_22NA10003_-_LT2A_Q2.c ...done.
+Uploading Matthews_Bonthu_-_22PH10013_-_LT2A_Q2.c ...done.
+Query submitted.  Waiting for the server's response.
+http://moss.stanford.edu/results/7/6360839175499
