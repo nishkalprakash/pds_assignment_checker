@@ -243,8 +243,8 @@ def pds_checker(a, q):
                                 if inp == 'ss':
                                     short='ss'
                                     inp = mark
-                                elif inp == '000':
-                                    short='000'
+                                elif inp == '00':
+                                    short='00'
                                     
                                 elif inp == 'RERUN': return "RERUN"
                                 test_marks[i] = float(inp)
@@ -361,8 +361,8 @@ def pds_checker(a, q):
                                 if inp == 'ss':
                                     short='ss'
                                     inp = mark
-                                elif inp == '000':
-                                    short='000'
+                                elif inp == '00':
+                                    short='00'
                                     
                                 elif inp == 'RERUN': return "RERUN"
                                 # elif 'z' in inp or 'r' in inp: return undo_redo_result(report_path,inp)
@@ -413,6 +413,7 @@ def pds_checker(a, q):
             raise
             # return
         try:
+            short='00'
             other_comment = def_input("\n\nGive any other comment? [0]/1: ",
                                       '0', short)
             if other_comment == '1':

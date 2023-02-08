@@ -139,5 +139,5 @@ UNDO_REDO_CHEAT_CODES= [
 CHEAT_CODES = [
     'ss',   # To short 's'ircuit the prograg
     'RERUN',# To rerun the program
-    '000'   # To short circuit the program with 0
+    '00'   # To short circuit the program with 0
 ]

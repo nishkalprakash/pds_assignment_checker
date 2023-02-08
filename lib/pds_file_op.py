@@ -102,7 +102,7 @@ def def_input(text, default="",short=False,**kwargs):
     if short=='ss':
         return default
     default_type=type(default)
-    if short=='000':
+    if short=='00':
         return default_type(0)
     
     inp = input(f"{text} [{default}]: ").strip()
