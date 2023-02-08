@@ -11,8 +11,8 @@ typedef struct Customer
 	char name[MAX_NAME]; // Name of the Customer
 	long bal;			 // Balance of the customer
 
-	Customer *next;		// Next node based on Account Number
-	Customer *next_bal; // Next node based on Balance
+	struct Customer *next;		// Next node based on Account Number
+	struct Customer *next_bal; // Next node based on Balance
 } Customer;
 
 Customer *create_new_node()
