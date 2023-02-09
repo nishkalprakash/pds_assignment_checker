@@ -9,7 +9,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 int m, n, i=0, j=0, z;
-int arr[m][n];
+int arr[100][100];
 int main()
 {
   scanf("%d", &m);

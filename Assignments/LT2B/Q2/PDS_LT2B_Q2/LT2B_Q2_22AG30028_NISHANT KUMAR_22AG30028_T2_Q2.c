@@ -9,7 +9,8 @@
 #include <stdlib.h>
  int *p;
 
-void matrix {
+void matrix()
+ {
 
  int r,c,product;
 printf("ENTER NUMBER OF ROW and column");
@@ -21,13 +22,12 @@ product=r*c;
 
 p=(int*)malloc(product*sizeof(int));
 
-if(p<=product)   scanf()
+if(p<=product)   scanf();
 
 
 }  
-
-
-  void text  {
+void text ()
+ {
 
 	int R,C;
 printf("ENTER NUMBER OF ROW");
