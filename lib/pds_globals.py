@@ -131,9 +131,10 @@ UNDO_REDO_CHEAT_CODES= [
     'z',    # To undo the last result (repeatable)
     'zz',   # To undo the last result (repeatable)
     'zzz',  # To undo the last result (repeatable)
-    'r',    # To redo the last undo (repeatable)
-    'rr',   # To redo the last undo (repeatable)
-    'rrr',  # To redo the last undo (repeatable)
+    'r',    # To rerun the program
+    # 'r',    # To redo the last undo (repeatable)
+    # 'rr',   # To redo the last undo (repeatable)
+    # 'rrr',  # To redo the last undo (repeatable)
 ]
 
 CHEAT_CODES = [

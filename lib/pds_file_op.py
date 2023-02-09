@@ -110,7 +110,7 @@ def def_input(text, default="",short=False,**kwargs):
         if inp in CHEAT_CODES:
             return inp
         if inp in UNDO_REDO_CHEAT_CODES: 
-            return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="A*_Q*_report.csv")),inp)
+            return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="*_report.csv")),inp)
         # if inp=='ss': return 'ss'
         # if 'z' in inp: return undo_result(globals()['report_path'],inp.count('z')-1)
         # if 'r' in inp: return redo_result(globals()['report_path'],inp.count('z')-1)
@@ -199,7 +199,9 @@ def undo_redo_result(report_path,code):
     pop_path=report_path
     push_path=hist
     if code[0]=='r':
-        pop_path,push_path=push_path,pop_path
+        # Changing redo task to rerun
+        # pop_path,push_path=push_path,pop_path
+        return "RERUN"
     data=pop(pop_path)
     if data == False:
         return "RERUN"

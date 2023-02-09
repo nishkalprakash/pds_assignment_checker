@@ -1,64 +1,91 @@
 #include<stdio.h>
 #include<stdlib.h>
-
-
-
-
-
-
-
-
-
-
-
-
-
- int main()
+ 
+struct node
 {
-  int m,n;
-  printf("Enter the no. of rows: ");
-  scanf("%d",&m);
-  printf("Enter the no. of column: ");
-  scanf("%d",&n);
-   
-  int a[m][n];
+    int data;
+    struct node *next;
+};
+
+typedef struct node node;
 
 
 
- for(int i=0;i<m;i++)
-   
-  {      
-      
-       for(int j=0;j<n;j++)
-       {
-          printf("enter the value of (%d,%d): ",i,j) ;
-         scanf("%d",&a[i][j]);
-        }
-   }
+  node *create_node()
+{
+    node *new_node = (node *)malloc(sizeof(node));
+    new_node->next = NULL;
+    return new_node;
+}
 
-  printf("printing the 2d array before change : \n");
- for(int i=0;i<m;i++)
-  {
-       for(int j=0;j<m;j++)
-       { 
-         printf("%d",a[i][j]);
-        }
-     printf("\n");
-   }
+int check(node *str, int data)
+{
+    if (str == NULL)
+        return 0;
+    if (str->data == data)
+        return 1;
+    return check(str->next, data);
+}
 
-  printf("printing the 2d array after change : \n");
+node *create_l(char *s)
+{
+    printf("\n#### %s ####\n", s);
+    int temp,n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    if (n<= 0)
+        return NULL;
+    printf("Enter %d Numbers: ",n);
+    node *head = NULL, *ptr;
+    ptr = head = create_node();
+    scanf("%d", &(ptr->data));
+    for (int i = 1; i < n; i++)
+    {
+        scanf("%d", &temp);
+        if (check(head, temp))
+            continue;
+        ptr = ptr->next = create_node();
+        ptr->data = temp;
+    }
+    return head;
+}
 
- for(int i=m-1;i>=0;i--)
-  {
-       for(int j=n-1;j>=0;j--)
-       { 
-         printf("%d",a[i][j]);
-        }
-     printf("\n");
-   }
+void add(node* L1,node* L2)
+{
+    
+ 
+    
+  int sum;
+  sum=L1->data+L2->data;
+    printf("%d",sum);
+}
 
-   
-  
+void printlist(node *HEAD, char *s)
+{
+    printf("%s = {", s);
+    if (HEAD == NULL)
+    {
+        printf("}\n");
+        return;
+    }
+    node *ptr = HEAD;
+    for (; ptr->next != NULL; ptr = ptr->next)
+        printf("%d, ", ptr->data);
+    printf("%d}\n", ptr->data);
+}
+
+
+int main()
+{
+  node *L1,*L2;
+    L1 = create_l("L1");
+    L2 = create_l("L2");
+    printlist(L1, "L1");
+      printf("\n");
+       printf("+");
+     printlist(L2, "L2");
+      add(L1,L2);
+    
 
 
    return 0;
