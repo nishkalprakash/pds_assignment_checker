@@ -109,10 +109,10 @@ def def_input(text, default="",short=False,**kwargs):
     if inp:
         if inp in CHEAT_CODES:
             return inp
-        if inp in UNDO_REDO_CHEAT_CODES: 
-            return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="*_report.csv")),inp)
+        # if inp in UNDO_REDO_CHEAT_CODES: 
+            # return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="*_report.csv")),inp)
         # if inp=='ss': return 'ss'
-        # if 'z' in inp: return undo_result(globals()['report_path'],inp.count('z')-1)
+        if 'z' in inp or 'r' in inp: return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="*_report.csv")),inp)
         # if 'r' in inp: return redo_result(globals()['report_path'],inp.count('z')-1)
         # if " " in inp:
         #     return inp.split(" ")
