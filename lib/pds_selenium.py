@@ -201,7 +201,7 @@ def driver_get_heading_element_list(driver,q_topic):
 
         
 
-    return nr_nxt.values()
+    return list(nr_nxt.values())
 
 def driver_get_pds_from_quiz(driver,a,q_topic):
     # a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))
