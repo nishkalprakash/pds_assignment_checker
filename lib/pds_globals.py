@@ -20,12 +20,12 @@ BR = "~~"
 MOODLE_A_NAME_ = "Lab Test {a}:"
 MOODLE_A_NAME_ = "Test-1: Set-{a}"
 MOODLE_A_NAME_ = "Test-2: Set-{a}"
-MOODLE_A_NAME_ = "Lab {a}:"  # COMMENT THIS FOR LT
+# MOODLE_A_NAME_ = "Lab {a}:"  # COMMENT THIS FOR LT
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
 # Base is the assignment type
 BASE = "LT2"
-BASE = "A"  # COMMENT THIS FOR LT
+# BASE = "A"  # COMMENT THIS FOR LT
 Q_BASE = "Q"
 
 A_ = BASE + "{a}"
