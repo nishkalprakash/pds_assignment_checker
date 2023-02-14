@@ -6,97 +6,43 @@ Roll No:22EE10048
 
 Name: Brij
 
-Assignment NO: 9
+Assignment NO: 11
 
-Description-
+Description- Recursive function to check whether a number n belongs to the fibonacci sequence or not
 */
 #include<stdio.h>//INCLUDING PACKAGE
-#include <stdlib.h>
-struct node //DEFINING STRUCTURE VARIABLE
+int fib(int n)
 {
-	int d;
-	struct node* next;
-};
-typedef struct node ELEMENT;
-typedef ELEMENT* LINK;
-struct node* createlist(int n,int A[])
-{
-LINK head,tail;
-head=(LINK)malloc(sizeof(ELEMENT));
-head->d=A[0];
-tail=head;
-for(int i=1;i<n;i++)
-{
-tail->next=(LINK)malloc(sizeof(ELEMENT));
-tail=tail->next;
-tail->d=A[i];
+int sum=0;
+if(n==0)sum=0;//base condition 1
+else if(n==1)sum=1;//base condition 2
+else sum=fib(n-1)+fib(n-2);//generating sequence
+return sum;
 }
-tail=NULL;
-return head;
+int main()//MAIN METHOD
+{
+
+int n,temp;
+printf("Enter n: ");
+scanf("%d",&n);//gets n from user
+for(int i=0;i<=(1+n);i++)
+{
+if(fib(i)==n)//checking if number is in the fibonacci sequence
+{
+temp=1;
+break;
 }
-void printlist(struct node* l)
+else if(fib(i)>n)
 {
-do
-{
-printf("%d ",l->d);
-l=l->next;
-}while(l!=NULL);
-}
-// delete the item from ascending list
-LINK delete_item(int val, LINK ptr)
-  {
- LINK prev, first;
-first = ptr;
-if (ptr== NULL)  return  NULL;
-else  if (val== ptr-> d)
-{
-ptr= ptr-> next;
-first->next = NULL;
-free(first);
-return ptr; 
+temp=0;
+break;
 }
 else
-{     prev= ptr;ptr= ptr-> next;
-while (ptr!= NULL && val> ptr->d)
- {
-prev= ptr;
-ptr= ptr-> next;
+temp=0;
 }
-if (ptr== NULL || val!= ptr->d) 
- {
-return first;
-}
+if(temp)
+printf("YES\n");
 else
- {
-prev-> next = ptr-> next;
-ptr->next = NULL;
-free(ptr);
-return first;
-}}}
-void even(struct node* l)
-{
-LINK prev=NULL,travel=l;
-int n1=1;
-while(travel!=NULL)
-{
-if(n1%2==1)
-prev->next=travel->next;
-prev=travel;
-travel=travel->next;
-}
-printlist(prev);
-}
-int main()
-{
-int n;
-printf("Enter number of elements: ");
-scanf("%d",&n);
-printf("Enter Array Elements: "); 
-int a[n];
-for(int i=0;i<n;i++)
-scanf("%d",&a[i]);
-LINK head=createlist(n,a);
-even(head);
+printf("NO\n");
 return 0;
 }
-
