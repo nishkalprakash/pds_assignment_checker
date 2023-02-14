@@ -200,7 +200,7 @@ def pds_checker(a, q):
                                 ### END HACK
                                 #"""
                                 try:
-                                    proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=0.5)
+                                    proc=run(cmd,input=test, capture_output=True, text=True,timeout=1)
                                     out=proc.stdout
                                    
                                 except TimeoutExpired:
@@ -329,7 +329,8 @@ def pds_checker(a, q):
                         )
                     max_test_marks = sum(i for i in test_marks_list if i > 0)
                     if max_test_marks == sum(test_marks):
-                        short = 'ss'
+                        # short = 'ss'
+                        pass
 
                     comments.append("")
                     comments.append(" CODE CASES ".center(30, "="))

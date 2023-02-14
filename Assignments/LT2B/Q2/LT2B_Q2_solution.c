@@ -1,8 +1,9 @@
 // Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
-// Program to print matrix in reverse using recursion
-
+// Program to print matrix in order using recursion
 #include <stdio.h>
 #include<stdlib.h>
+
+
 void init_mat(int ***A,int *M,int *N)
 {
 	printf("Enter M: ");
@@ -15,21 +16,17 @@ void init_mat(int ***A,int *M,int *N)
 	printf("Enter %d elements: ",*M * *N);
 }
 
-
-int print_mat(int **A,int m, int n,int N)
+void print_mat(int **A,int m, int n, int N)
 {
 	if(n==0){
-		print_mat(A,m-1,N,N);
 		printf("\n");
-		return 0;
+		return print_mat(A,m-1,N,N);
 	}
 	if(m==0)
-		return 0;
+		return;
 	scanf("%d",&A[m-1][n-1]);
-	print_mat(A,m,n-1,N);
-	printf("%d ",A[m-1][n-1],N);
-	return 0;
-
+	printf("%d ",A[m-1][n-1]);
+	return print_mat(A,m,n-1,N);
 }
 
 int main()

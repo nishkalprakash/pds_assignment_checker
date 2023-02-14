@@ -10,12 +10,13 @@ void printarray(int *ptr){
 	int m,n;
 	int i,j;
 
-	ptr=(int*)malloc(m*n*sizeof(int));
 	printf("Enter the value of m :");
 	scanf("%d",&m);
 	printf("Enter the value of n :");
 	scanf("%d",&n);
 	printf("Enter %d elements ",m*n);
+	ptr=(int*)malloc(m*n*sizeof(int));
+
 	for(i=0;i<m*n;i++){
 		scanf("%d",ptr+i);
 	}
