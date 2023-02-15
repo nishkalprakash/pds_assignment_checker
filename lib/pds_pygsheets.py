@@ -1,7 +1,7 @@
 from lib.pds_globals import VAR
 
 import pygsheets
-progress_monitor_url="https://docs.google.com/spreadsheets/d/1N6Ms52hA4LYrbWxg-13Ct0nGFXDf_WtQu3tgpuUTz-k/edit#gid=0"
+progress_monitor_url="https://docs.google.com/spreadsheets/d/1Sl_v0iwNDjcqqaq31gARLXKsl7WRmXiOr-KEFbKyp7A"
 # viva_marks_url="https://docs.google.com/spreadsheets/d/1JmXAW0GQzfDOA87-emeyXMLj1IFFFWdyNvx7wQS4JlI/"
 
 def auth(service_account=f"{VAR}/service_account.json"):

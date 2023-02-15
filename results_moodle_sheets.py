@@ -39,11 +39,11 @@ remc = [
     "Institution",
     "Department",
     "Email address",
-    "Assignment: Assignment 0 (Real)",
+    # "Assignment: Assignment 0 (Real)",
     "Last downloaded from this course",
     "Course total (Real)",
     # "Assignment: Assignment 1 problem 2 submission (Real)",
-    "Assignment: _Assignment_ 4 - Question 4 (Real)",
+    # "Assignment: _Assignment_ 4 - Question 4 (Real)",
 ]
 nan = float("NaN")
 ## Drop cols defined in remc
@@ -80,10 +80,26 @@ hdf = hdf.replace(" \(Real\)", "", regex=True)
 hdf = hdf.replace("ID number", "1_Roll", regex=True)
 hdf = hdf.replace("Student", "2_Student", regex=True)
 
-gdf.columns = hdf.values[0]
+#%%
+cols=[]
+for col in hdf.values[0]:
+    col=col.replace('Quiz: ','')
+    if 'Lab' in col:
+        cols.append(col.split(':')[0].replace('Lab ','A_').replace('010','10').replace('011','11'))
+    elif 'Test' in col:
+        cols.append(col.replace(': Set-','').replace('Test-','LT_'))
+    else:
+        cols.append(col)
+cols
+#%%
+gdf.columns = cols
 del hdf
-
-
+#%%
+gdf['LT_1']=gdf[['LT_1A','LT_1B']].max(axis=1)
+gdf['LT_2']=gdf[['LT_2A','LT_2B']].max(axis=1)
+#%%
+remc=['LT_1A','LT_1B','LT_2A','LT_2B']
+gdf = gdf.drop(remc, axis=1)
 #%% replace nan students with their actual roll numbers
 m = get_map_roll_to_name(rev=True)
 
@@ -100,50 +116,64 @@ gdf = gdf.set_index("1_Roll")
 # gdf['Viva_2']=pd.Series([i[0] for i in viva.get_values(start='J3',end='J94')],index=ids,dtype=float)
 
 #%% Average teh marks here
-a_to_aq_dict = {}
+a_to_aq_dict = {'A': [], 'LT': []}
 for i in gdf.columns:
-    try:
-        a_to_aq_dict[i.split("_")[0]].append(i)
-    except:
-        a_to_aq_dict[i.split("_")[0]] = [i]
+    if i.startswith("A"):
+        a_to_aq_dict["A"].append(i)
+    elif i.startswith("LT"):
+        a_to_aq_dict["LT"].append(i)
+
+        # a_to_aq_dict[i.split("_")[0]] = [i]
 ## `agg_cols` list: ['A1 (Q1,...,Q5)','LT1 (Q1...)]
 agg_cols = []
+#%%
 # drop_individual_aq = def_input("Drop A#_Q# cols? ", 0)
-for c in a_to_aq_dict:
-    if len(a_to_aq_dict[c]) > 1:
-        n = f"{c} ({','.join([i.split('_')[-1] for i in a_to_aq_dict[c]])})"
-        agg_cols.append(n)
-        gdf[n] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').mean(axis=1).round(2)
+# for c in a_to_aq_dict:
+    # if len(a_to_aq_dict[c]) > 1:
+        # aq=[int(i.strip('ALT_')) for i in a_to_aq_dict[c]]
+        # n = f"{c} ({','.join([i.split('_')[-1] for i in a_to_aq_dict[c]])})"
+        # agg_cols.append(n)
+        # gdf[n] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').mean(axis=1).round(2)
 
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
+c='A'
+top8 = f"Top 8 Assignments"
+agg_cols.append(top8)
+gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:8].mean(),axis=1)
+# c='LT'
+# top8 = f"LT1 & 2"
+# agg_cols.append(top8)
+# gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float')
+
+# .mean(axis=1)
 
 gdf = gdf.reindex(sorted(gdf.columns), axis=1)
 
 #%% compute total
 # gdf.drop("zTotal", axis=1, inplace=True)
 #%%
-gdf["Total"] = gdf[agg_cols].mean(axis=1).round(2)
-# gdf.sort_values(by="Total", ascending=False, inplace=True)
-gdf.sort_values(by="1_Roll", ascending=True, inplace=True)
+gdf["Total"] = .4*gdf[top8].replace('-',0).astype('float') + .3*gdf["LT_1"].replace('-',0).astype('float') + .3*gdf["LT_2"].replace('-',0).astype('float')
+gdf.sort_values(by="Total", ascending=False, inplace=True)
+# gdf.sort_values(by="1_Roll", ascending=True, inplace=True)
 
 # %% pygsheets
 
 ## use to set ws_name as moodle provides
 # ws_name=gfpath.stem.replace("-comma_separated","")
-from lib.pds_pygsheets import auth, get_worksheet, viva_marks_url, get_spreadsheet
+from lib.pds_pygsheets import auth, get_worksheet
 
 
 def push_to_sheets(cauth, ws_name, gdf):
     print("Pygsheets auth success")
     ws = get_worksheet(c=cauth, title=ws_name, rows=1, cols=1)
     # ws2 = get_worksheet(c=cauth, title=ws_name, rows=1, cols=1)
-    #%%
+    #%
     ws.frozen_rows = 0
     ws.frozen_cols = 0
     ws.clear()
     ws.resize(1, 1)
-    #%%
+    #%
     # ws.unlink()
     # ws.append_table(table,overwrite=True)
     ws.set_dataframe(gdf, start=(1, 1), fit=True, copy_index=True)
@@ -159,10 +189,9 @@ def push_to_sheets(cauth, ws_name, gdf):
     print("Successfully pushed to ", ws_name)
 
 
-# %%
-ws_name = "PDS Lab Grades"
-# ws2_name = "Nishkal - Student Grades"
 #%% Auth
+# ws2_name = "Nishkal - Student Grades"
+ws_name = "PDS Lab Grades"
 cauth = auth()
 # my_students = pull(path=r'var\my_students_sorted.txt')
 # push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
@@ -173,3 +202,5 @@ my_students = get_students(only_roll=1)
 gdf_my_students = gdf.loc[my_students,:]
 gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
 push_to_sheets(cauth, ws_name, gdf_my_students)
+
+# %%

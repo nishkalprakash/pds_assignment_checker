@@ -32,7 +32,7 @@ int min_in_row(int *array, int row, int cols){				// calculate the min in a row
 int main() {
 	int row, col, flag = 0;									// flag is 0 if no saddle point is found
 	printf("Shape of 2D array int format row, col: ");
-	scanf("%d, %d", &row, &col);
+	scanf("%d %d", &row, &col);
 
 	int *matrix;
 	matrix = (int *) malloc (row*col*sizeof(int));			// matrix size will be row*col*sizeof(int) bytes
