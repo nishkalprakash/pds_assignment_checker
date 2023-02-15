@@ -200,7 +200,7 @@ def pds_checker(a, q):
                                 ### END HACK
                                 #"""
                                 try:
-                                    proc=run(cmd,input=test, capture_output=True, text=True,timeout=1)
+                                    proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=1)
                                     out=proc.stdout
                                    
                                 except TimeoutExpired:
