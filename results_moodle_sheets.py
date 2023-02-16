@@ -85,7 +85,7 @@ cols=[]
 for col in hdf.values[0]:
     col=col.replace('Quiz: ','')
     if 'Lab' in col:
-        cols.append(col.split(':')[0].replace('Lab ','A_').replace('010','10').replace('011','11'))
+        cols.append(col.split(':')[0].replace('Lab ','A_0').replace('010','10').replace('011','11'))
     elif 'Test' in col:
         cols.append(col.replace(': Set-','').replace('Test-','LT_'))
     else:
@@ -95,8 +95,8 @@ cols
 gdf.columns = cols
 del hdf
 #%%
-gdf['LT_1']=gdf[['LT_1A','LT_1B']].max(axis=1)
-gdf['LT_2']=gdf[['LT_2A','LT_2B']].max(axis=1)
+gdf['LT_01']=gdf[['LT_1A','LT_1B']].max(axis=1)
+gdf['LT_02']=gdf[['LT_2A','LT_2B']].max(axis=1)
 #%%
 remc=['LT_1A','LT_1B','LT_2A','LT_2B']
 gdf = gdf.drop(remc, axis=1)
@@ -138,7 +138,7 @@ agg_cols = []
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
-top8 = f"Top 8 Assignments"
+top8 = f"Top 8A"
 agg_cols.append(top8)
 gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:8].mean(),axis=1)
 # c='LT'
@@ -153,9 +153,14 @@ gdf = gdf.reindex(sorted(gdf.columns), axis=1)
 #%% compute total
 # gdf.drop("zTotal", axis=1, inplace=True)
 #%%
-gdf["Total"] = .4*gdf[top8].replace('-',0).astype('float') + .3*gdf["LT_1"].replace('-',0).astype('float') + .3*gdf["LT_2"].replace('-',0).astype('float')
-gdf.sort_values(by="Total", ascending=False, inplace=True)
-# gdf.sort_values(by="1_Roll", ascending=True, inplace=True)
+fl=lambda x,y:x[y].replace('-',0).astype('float')
+gdf["Total"] = .2*fl(gdf,top8) + .3*fl(gdf,"LT_01") + .3*fl(gdf,"LT_02")+20
+gdf.drop(top8, axis=1, inplace=True)
+# if inital total was 0 then set the value to 0
+gdf["Total"]=gdf["Total"].apply(lambda x:0 if x==20 else x) 
+# gdf["Total"]=gdf["Total"].apply(lambda x:x/2 if x<40 else x)
+# gdf.sort_values(by="Total", ascending=False, inplace=True)
+gdf.sort_values(by="1_Roll", ascending=True, inplace=True)
 
 # %% pygsheets
 
@@ -197,10 +202,10 @@ cauth = auth()
 # push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
 
 ##
-my_students = get_students(only_roll=1)
-# gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
+my_students = get_students(only_roll=1,path=r'var/map_default.txt')
+gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
 gdf_my_students = gdf.loc[my_students,:]
-gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
+# gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
 push_to_sheets(cauth, ws_name, gdf_my_students)
 
 # %%
