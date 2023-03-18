@@ -80,7 +80,7 @@ A_Q_REPORT_ = A_Q_ + "_report.csv"
 A_Q_REPORT_PATH_ = A_Q_PATH_ + "/" + A_Q_REPORT_
 
 
-MOODLE_COURSE_ID = 502
+MOODLE_COURSE_ID = 529
 
 ## SUBMISSION FEAUTRE
 A_Q_SUB_ = A_Q_ + "_submissions.csv"

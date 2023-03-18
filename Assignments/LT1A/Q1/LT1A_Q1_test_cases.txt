@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~1~~~~Exp OUT:~~Invalid Input~~~~;1
-10;IN:~~300~~~~Exp OUT:~~6 28~~~~;300
-10;IN:~~-100~~~~Exp OUT:~~Invalid input~~~~;-100
-10;IN:~~500~~~~Exp OUT:~~6 28 49~~~~;500

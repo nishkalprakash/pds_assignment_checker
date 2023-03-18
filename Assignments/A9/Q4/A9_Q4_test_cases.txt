@@ -1,3 +1,0 @@
-#TC_GENERATED
-20;IN:~~1~~Name wage days:~~abc 150 21~~~~Exp OUT:~~Name: abc~~Netpay: 4095.00~~~~;1 abc 150 21
-20;IN:~~2~~Name wage days:~~abc 150 21~~xyz 50 10~~~~Exp OUT:~~Name: abc~~Netpay: 4095.00~~~~Name: xyz~~Netpay: 560.0~~~~;2 abc 150 21 xyz 50 10

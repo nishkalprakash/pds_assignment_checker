@@ -1,4 +1,0 @@
-10;Array stored
-10;Input element stored
-20;Inserted element in correct position
-20;Shifted array by one step

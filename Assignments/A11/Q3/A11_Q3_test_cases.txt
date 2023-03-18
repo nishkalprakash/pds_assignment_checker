@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~n=5~~LL[n]=5 10 15 20 25 ~~m=17~~~~Exp OUT:~~Output after inserting 17: ~~5 10 15 17 20 25~~~~;n=5~~LL[n]=5 10 15 20 25 ~~m=17
-10;IN:~~n=5~~LL[n]=5 10 15 20 25 ~~m=30~~~~Exp OUT:~~Output after inserting 30: ~~5 10 15 20 25 30~~~~;n=5~~LL[n]=5 10 15 20 25 ~~m=30
-10;IN:~~n=5~~LL[n]=2 4 6 8 10~~m=5~~~~Exp OUT:~~Output after inserting 5: ~~2 4 5 6 8 10~~~~;n=5~~LL[n]=2 4 6 8 10~~m=5
-10;IN:~~n=5~~LL[n]=2 4 6 8 10~~m=0~~~~Exp OUT:~~Output after inserting 0: ~~0 2 4 6 8 1~~~~;n=5~~LL[n]=2 4 6 8 10~~m=0

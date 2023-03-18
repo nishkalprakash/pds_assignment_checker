@@ -1,4 +1,0 @@
-5;First an integer n and then n number of integers are taken as input
-5;Check is made to keep n>=2
-30;Logic is correct and gives expected output for all test cases
-20;Efficient and Optimal steps used to get to output

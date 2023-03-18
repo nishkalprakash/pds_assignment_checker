@@ -1,5 +1,0 @@
-10;Stucture for node defined
-10;Linked List stored
-10;checked odd
-20;removed odd numbers
-10;printed list

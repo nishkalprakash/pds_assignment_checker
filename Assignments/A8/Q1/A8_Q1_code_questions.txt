@@ -1,3 +1,0 @@
-10;Input Length taken
-20;Array elements stored
-30;Printed in column major form

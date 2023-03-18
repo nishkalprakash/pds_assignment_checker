@@ -1,4 +1,0 @@
-10;taken user input
-10;fibonacci numbers generated
-30;used recursion to generate fibonacci
-10;checked number with generated number

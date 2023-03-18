@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~5 7 8 10~~~~Exp OUT:~~Out of order: 0~~~~;4 5 7 8 10
-10;IN:~~5 5 7 5~~~~Exp OUT:~~Out of order: 2~~~~;4 5 5 7 5
-10;IN:~~2 4 2 2 4 2 2~~~~Exp OUT:~~Out of order: 6~~~~~~;7 2 4 2 2 4 2 2
-10;IN:~~1 1 1 1 1 1 1 1 1 1~~~~Exp OUT:~~Out of order: ~~~~;10 1 1 1 1 1 1 1 1 1 1

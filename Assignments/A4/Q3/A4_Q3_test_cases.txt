@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~2345~~~~Exp OUT:~~Five Four Three Two~~~~;2345
-10;IN:~~0~~~~Exp OUT:~~Zero~~~~;0
-10;IN:~~2345432~~~~Exp OUT:~~Two Three Four Five Four Three Two~~~~;2345432
-10;IN:~~9999999999~~~~Exp OUT:~~Nine Nine Nine Nine Nine Nine Nine Nine Nine Nine~~~~;9999999999

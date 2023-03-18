@@ -1,2 +1,0 @@
-20;Input:~~L = {1, 2, 3, 9, 7, 7, 6, 5, 4, 3, 2, 1}~~Outpt:~~The input list contains duplicate numbers of: 1, 2, 3, 7.~~Minimum number is: 1~~Maximum number is: 9;12 1 2 3 9 7 7 6 5 4 3 2 1
-20;Input:~~L = {2, 4, 6, 8, 9, 7, 5, 3, 1}~~Output:~~The input list does not contain any duplicate~~number.~~Minimum number is: 1~~Maximum number is: 9;9 2 4 6 8 9 7 5 3 1

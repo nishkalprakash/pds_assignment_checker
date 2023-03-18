@@ -1,3 +1,0 @@
-10;Input taken
-20;Coded 2 loops
-30;Implemented correct pattern Logic
