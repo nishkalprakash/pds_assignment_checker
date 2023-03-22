@@ -1,6 +1,0 @@
-10;Input Taken
-10;Loop for digits
-10;sum of digits ^ d
-10;Checked for equality
-10;Loop till the input number
-10;Checked for invalid input

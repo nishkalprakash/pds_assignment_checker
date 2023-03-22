@@ -1,3 +1,0 @@
-20;reading the numbers and computing the bin limits
-20;creating and printing bins
-20;counting the number of elements in each bin

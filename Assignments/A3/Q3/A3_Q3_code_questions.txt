@@ -1,4 +1,0 @@
-10;Operator Stored
-20;2 Operands Stored
-20;Performed calculation
-10;Printed Output

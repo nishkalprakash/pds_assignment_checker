@@ -1,3 +1,0 @@
-20;gcd function is correctly implemented
-20;pair function is correctly implemented
-20;coprime function is correctly implemented

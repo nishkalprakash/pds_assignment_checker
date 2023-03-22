@@ -1,4 +1,0 @@
-10;Input taken
-20;Distance computed
-20;Checked for valid triangle
-10;Checked for correct triangle

@@ -1,4 +1,0 @@
-10;Number stored
-30;Digits extracted
-10;Printed Tens digit in word
-10;Printed Ones digit in word

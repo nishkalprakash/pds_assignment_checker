@@ -1,6 +1,0 @@
-10;Input string taken
-10;Counted total length and compared with strlen()
-10;Counted Vowels
-10;Counted Words
-10;Counted Sentences
-10;All alphabet frequency computed

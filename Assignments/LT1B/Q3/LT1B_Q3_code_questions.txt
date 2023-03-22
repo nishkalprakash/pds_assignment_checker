@@ -1,4 +1,0 @@
-10;Input taken
-10;Program terminates on negetive input
-20;Checked for Largest
-20;Checked for 2nd Largest

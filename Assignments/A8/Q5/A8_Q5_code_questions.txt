@@ -1,4 +1,0 @@
-10;Input String taken
-10;Calculated length of String
-20;Palindrome logic is correct
-20;Found all possible palindromes

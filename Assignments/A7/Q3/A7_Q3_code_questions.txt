@@ -1,3 +1,0 @@
-5;2 strings are taken as input
-25;Logic is correct and gives expected output for all test cases
-30;Efficient and Optimal steps used to get to output.

@@ -1,5 +1,0 @@
-10;Input taken
-20;Calculated for Invalid Date
-10;Calculated for Valid Date
-10;Printed the correct Day
-10;Printed Output

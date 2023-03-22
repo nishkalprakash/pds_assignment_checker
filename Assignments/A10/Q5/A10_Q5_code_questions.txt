@@ -1,4 +1,0 @@
-10;Stucture for node defined
-10;Linked List stored
-20;Checked Union
-20;Checked Intersection

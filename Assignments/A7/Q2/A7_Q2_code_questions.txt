@@ -1,4 +1,0 @@
-10;Array stored
-10;Input element stored
-20;Implemented counter to count occourances
-20;Handled case for no occourances

@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~3~~~~Exp OUT:~~Yes~~~~;3
-10;IN:~~10~~~~Exp OUT:~~No~~~~;10
-10;IN:~~13~~~~Exp OUT:~~Yes~~~~;13
-10;IN:~~0~~~~Exp OUT:~~Ye~~~~;0

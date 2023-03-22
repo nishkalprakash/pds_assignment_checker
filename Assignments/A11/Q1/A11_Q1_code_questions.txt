@@ -1,4 +1,0 @@
-10;taken user input
-20;harmonic function created
-20;used recursion to calculate sum
-10;printed the output

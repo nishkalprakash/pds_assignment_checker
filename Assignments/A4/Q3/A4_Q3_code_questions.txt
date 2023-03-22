@@ -1,5 +1,0 @@
-10;Read integer/long properly
-10;Used % to extract last digit
-10;Used / to get next last digit
-10;Printed the reverse number in words
-20;Used Long for stong the number

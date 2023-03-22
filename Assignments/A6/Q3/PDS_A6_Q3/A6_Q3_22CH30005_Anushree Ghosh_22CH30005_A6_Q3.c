@@ -1,8 +1,0 @@
-/*
-ANUSHREE GHOSH
-22CH30005
-ASSIGNMENT NO 7
-SEC 14
-*/
-
-#include<stdio.h>

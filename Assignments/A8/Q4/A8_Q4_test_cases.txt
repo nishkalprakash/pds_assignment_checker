@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~kgp Kharagpur~~~~Exp OUT:~~0~~~~;kgp Kharagpur
-10;IN:~~abc abcd~~~~Exp OUT:~~1~~~~;abc abcd
-10;IN:~~pgh adpghyxtpghmnpgpgxhkke~~~~Exp OUT:~~2~~~~;pgh adpghyxtpghmnpgpgxhkke
-10;IN:~~a aaaaa~~~~Exp OUT:~~5~~~~;a aaaaa

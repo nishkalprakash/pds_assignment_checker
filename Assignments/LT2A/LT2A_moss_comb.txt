@@ -1,9 +1,0 @@
-Hi,
-
-PFA the moss results.
-
-LT2A_Q1:
-	http://moss.stanford.edu/results/4/8994517979185
-
-LT2A_Q2:
-	http://moss.stanford.edu/results/7/6360839175499

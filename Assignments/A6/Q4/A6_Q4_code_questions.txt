@@ -1,6 +1,0 @@
-10;input taken
-10;menu shown
-10;tried to implement build set
-10;tried to search
-10;tried union and intersection and difference
-10;infinite loop created

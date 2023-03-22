@@ -1,6 +1,0 @@
-10;Input Taken
-10;Loop for factor
-10;Sum of factors stored
-10;Checked for equality
-10;Loop till the input number
-10;Checked for invalid input

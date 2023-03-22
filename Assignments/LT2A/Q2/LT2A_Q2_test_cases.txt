@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~#### L1 ####~~Enter N: 2~~Enter 2 Numbers: 1 2~~#### L2 ####~~Enter N: 3~~Enter 3 Numbers: 1 2 4~~~~Exp OUT:~~L1 = {1, 2}~~ +~~L2 = {1, 2, 4}~~ =~~L = {2, 3, 5, 4, 6}~~~~;2 1 2 3 1 2 4
-10;IN:~~#### L1 ####~~Enter N: 5~~Enter 5 Numbers: 1 2 3 4 5~~#### L2 ####~~Enter N: 5~~Enter 5 Numbers: 1 2 3 4 5~~~~Exp OUT:~~L1 = {1, 2, 3, 4, 5}~~ +~~L2 = {1, 2, 3, 4, 5}~~ =~~L = {2, 3, 4, 5, 6, 7, 8, 9, 10}~~~~;5 1 2 3 4 5 5 1 2 3 4 5
-10;IN:~~#### L1 ####~~Enter N: 5~~Enter 5 Numbers: 1 1 1 1 1~~#### L2 ####~~Enter N: 5~~Enter 5 Numbers: 1 1 1 1 1~~~~Exp OUT:~~L1 = {1}~~ +~~L2 = {1}~~ =~~L = {2}~~~~;5 1 1 1 1 1 5 1 1 1 1 1
-10;IN:~~#### L1 ####~~Enter N: 1~~Enter 1 Numbers: 0~~#### L2 ####~~Enter N: 1~~Enter 1 Numbers: 0~~~~Exp OUT:~~L1 = {0}~~ +~~L2 = {0}~~ =~~L = {0}~~~~;1 0 1 0

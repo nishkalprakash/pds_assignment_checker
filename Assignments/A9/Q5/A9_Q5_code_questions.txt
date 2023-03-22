@@ -1,5 +1,0 @@
-20;Defined structure
-10;Taken input
-10;void PrintDate declared
-10;void FindDays declared
-10;Printed the final answer correctly

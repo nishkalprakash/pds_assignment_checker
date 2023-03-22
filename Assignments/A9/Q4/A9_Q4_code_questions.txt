@@ -1,4 +1,0 @@
-20;Defined structure
-10;Taken input
-20;Written an external function to compute netPay
-10;Printed the final answer

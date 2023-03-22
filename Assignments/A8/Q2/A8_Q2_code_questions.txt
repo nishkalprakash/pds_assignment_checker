@@ -1,5 +1,0 @@
-10;Input Length taken
-20;Array elements stored
-10;Found row min
-10;Found col max
-10;Printed Saddle point

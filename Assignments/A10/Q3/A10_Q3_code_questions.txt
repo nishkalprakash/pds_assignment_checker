@@ -1,5 +1,0 @@
-10;Stucture for node defined
-10;Linked List stored
-10;checked min
-10;checked max
-20;Checked for duplicates

@@ -1,4 +1,0 @@
-20;Input stored
-20;Last digit extracted using %
-10;Number divided using /
-10;Used loop correctly

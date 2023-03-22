@@ -1,5 +1,0 @@
-10;created structure
-10;taken input
-10;checked for duplicate
-20;tried to perform set difference
-10;printed the resultant set

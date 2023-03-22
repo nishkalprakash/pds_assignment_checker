@@ -1,5 +1,0 @@
-10;created structure
-10;inserted data
-10;inifite data insert possible
-10;stored in ascending order of account number
-20;printed in descending order of balance

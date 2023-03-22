@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~#### L1 ####~~Enter string: ab~~#### L2 ####~~Enter string: bcd~~~~Exp OUT:~~L1 = {a, b}~~ -~~L2 = {b, c, d}~~ =~~L = {a}~~~~;ab~~bcd~~
-10;IN:~~#### L1 ####~~Enter string: ab~~#### L2 ####~~Enter string: abc~~~~Exp OUT:~~L1 = {a, b}~~ -~~L2 = {a, b, c}~~ =~~L = {}~~~~;ab~~abc~~
-10;IN:~~#### L1 ####~~Enter string: abc~~#### L2 ####~~Enter string: def~~~~Exp OUT:~~L1 = {a, b, c}~~ -~~L2 = {d, e, f}~~ =~~L = {a, b, c}~~~~;abc~~def~~
-10;IN:~~#### L1 ####~~Enter string: aabb     ~~#### L2 ####~~Enter string: bbcc~~~~Exp OUT:~~L1 = {a, b}~~ -~~L2 = {b, c}~~ =~~L = {a}~~~~;aabb~~bbcc~~

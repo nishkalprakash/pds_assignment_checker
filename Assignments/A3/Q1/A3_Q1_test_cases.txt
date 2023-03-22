@@ -1,8 +1,0 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~30 56 21~~~~Expected OUTPUT:~~Valid Time - 21:56:30 ~~~~;30 56 21
-10;~~INPUT:~~59 59 25~~~~Expected OUTPUT:~~Invalid time~~~~;59 59 25
-10;~~INPUT:~~30 56 22~~~~Expected OUTPUT:~~Valid Time - 22:56:30 ~~~~;30 56 22
-10;~~INPUT:~~60 59 22~~~~Expected OUTPUT:~~Invalid time~~~~;60 59 22
-# ```

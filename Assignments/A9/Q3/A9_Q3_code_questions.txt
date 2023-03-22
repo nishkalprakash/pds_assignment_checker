@@ -1,4 +1,0 @@
-20;Defined structure
-10;Taken input
-20;Written an external function to compute the area by passing structure
-10;Printed the area
