@@ -1,96 +1,90 @@
-15580;Aarushi Mahajan;22AG10001
-15600;Aayush Mohata;22CE10045
-15578;Abhijit Kumar;22IM10001
-15564;Abhirup Kumar Das;22ME30004
-15621;Abhisekh Mukherjee;22MA10002
-15626;admya maheshwari;22CH10004
-15598;Ajay Singh;22GG10004
-15559;Aman Antil;22CS30008
-15635;Aman Juneja;22BT30002
-15641;Aman Meena;22CE10005
-15622;animesh mishra;22MI10013
-15583;anirudh wasnik;22ME10007
-15593;Anish Kerketta;22NA10003
-15560;Anisha Banerjee;22IE10007
-15558;Ankan Saha;22EE10008
-15591;Anubhav Mitra;22EC30007
-15570;Anushree Ghosh;22CH30005
-15625;Archit Bharani;22HS10010
-15629;Arya Choudhuri;22EC10019
-15592;Asis Layek;22MF10007
-15571;Asmit Srivastava;22MI31006
-15549;Bhavesh Bhadane;22AG30008
-15614;Bhuvan Raj Guguloth;22ME30023
-15606;Bibhor Patra;22EX10014
-15608;Brij Patel;22EE10048
-15562;Debarpita Saha;22EE30007
-15561;DEBJIT MONDAL;22MA10021
-15618;Dedeepya Katrela;22EC10039
-15604;Devanshi Dadoo;22AE30007
-15620;Dhanunjay Gurram;22CS10029
-15588;Dipesh Goel;22NA30011
-15632;dusvanth vadithya;22PH10051
-15574;Garvit Bharti;22EE10028
-15611;Gaurav Meena;22CE10025
-16342;Govind Jaiswal;22CH10024
-15599;Harsh Chattar;22CS30028
-15554;Harsh Gupta;22IM30014
-15594;Harsh Gupta;22MT10023
-15636;harsh swami;22MT30016
-15643;Harsha vardhan palla;22MA10040
-15557;HEET PATEL;22MI10032
-15616;Ishan Kanodia;22AE10014
-15639;Karthik Ragulan;22EC30027
-15602;Kartik Moradiya;22PH10032
-15582;Krishna Gupta;22GG10024
-15615;Krishna S;22CY10028
-15601;Krishna Thakur;22IE10027
-15595;Krishnendu Nayek;22ME10045
-15569;Krithanya Radhakrishnan;22HS10030
-15575;Lucky Panwar;22CE30016
-15627;mahim dungarwal;22MI33013
-15550;Mahin Hussain;22AG10021
-15585;Makrawat Singh;22NA10022
-15603;Matthews Bonthu;22PH10013
-15630;Mowneesh ss;22MF10026
-15587;Muskan Muskan;22ME30042
-15556;NISHANT KUMAR;22AG30028
-15613;Nitin Madaan;22CH10044
-15551;Nived Shah;22CS10049
-15577;Pranshu Dasgupta;22ME10064
-15649;prashant rao;22BT10019
-15568;PRIYAM TARAFDER;22EC10059
-15567;Priyanshu Verma;22EX10034
-15610;Rahul Choudhary;22BT30022
-15579;Rajdeep Lahiri;22CH30025
-15552;Rathin Ghosh;22MT10042
-15581;Ruchita Umate;22MI10051
-15573;Sai Aditya Tallam;22EC10079
-15566;Saloni Shaw;22CE10065
-15605;Sanika Kadam;22IM10020
-15607;saransh attri;22MF3IM17
-15638;Saras Wagh;22CS30048
-15590;Sarthak Arora;22EC30047
-15563;Satya Prakash Nanda;22AG10041
-15631;Sayandeep Bhowmick;22CS10069
-15619;Shambo Haldar;22ME30061
-15596;SHAON MALIK;22AE10034
-15555;Shibhaditya Dohare;22EE30027
-15609;shivam gumladu;22NA10041
-15624;Shreya Bharti;22CH10064
-15576;SIDDHANT CHASTA;22NA30030
-15617;Siddharth Boadh;22HS10050
-15572;Siddharth Raj;22MI31025
-15646;sourabh yadav;22EE10068
-15637;Souvik Sarkar;22ME10083
-15565;Srijan Ranjan;22MA10059
-15633;sumanta kumar behera;22IM10039
-15640;surabhi dhavale;22ME10026
-15553;Tejasree Sai Angalakuduru;22CS10009
-15597;tiyas choudhury;22CE10085
-15645;udaykiarn ajmeera;22CY10008
-15584;ujjwal kumar;22MT10061
-15612;Vaibhav Chakole;22CY10048
-15647;vaishnavi singireddy;22AG30048
-15589;Varun Huchchannavar;22MF10045
-14896;VISHV MAGARVADIA;21CS10078
+17230;Abhimanyu Dev Upadhyay;22ph10002
+16771;Abhiraj Ranjan;22MI10002
+16776;Aditya Akolkar;22EX10002
+16746;Aditya Kr. Singh;22MT30005
+16749;Aditya Raj Shit;22AE10002
+17233;Akash Kumar;
+16775;akhil nagara;
+16806;Anirudh Srivastava;
+16812;ansh kakkar;
+16721;Arman Barik;22ME30012
+16793;Arunima Patra;22IE10015
+16739;ashank kushwaha;22AG10009
+17229;Ashish Ranjan kumar;
+16766;Ashutosh Malik;
+16811;Ashwini Raj;
+16750;Atul Choudhary;22MA10010
+16769;Avinash Pandey;22CE10013
+17232;Ayush Chanderia;
+16777;Bikram Mallik;
+16805;Chandrabali Biswas;
+16762;Dibya Ranjan Samal;
+16813;Dilip Rewar;22HS10018
+16754;HARSH PATIDAR;22MF10015
+16797;Hindvee Vispute;
+16740;Hrishikesh Tiwari;22CH30013
+16372;Ishita Pathunda;22ex10022
+16729;Jaydeep Parmar;22AG30016
+16761;Jigyanshu Pati;22ME30031
+17236;kanak prabhanshu;
+16748;Kavita Thakur;22NA30019
+16773;Keshav Prajapati;22EE30015
+16804;Krish Debroy;22MA10029
+16758;Krishna Chaudhari;22MT10012
+16767;Krishna Paikine;22EE10036
+16801;Lakshya Agrawal;22CS30036
+16782;mahesh bhukya;
+16745;Meet Modi;22ME10053
+16798;Megha Singhal;
+16799;mohana priya nandini katta;
+16741;MOHIT PANT;
+16794;Mohul Dutta;22EC30035
+16785;Mrinmoy Dey;22MI10040
+17227;Nain Aditya;
+17231;naresh ramavth;
+16757;Navaneeth Surla;22CS10077
+16763;Nayan Chauhan;22HS10038
+16720;Neeraj;22CY10036
+16808;Nivedita Pal;
+16788;Omkar Bhandare;22CS30016
+16723;Omkar Desai;22MF3IM06
+17240;pawan yadav;22na10030
+16774;PIYUSH KUMAR BURNWAL;
+16786;Priyangshu Barman;
+16772;RAHUL KUMAR;22gg10032
+16755;Raj Gupta;22ME30050
+16728;Rajpriya Rani;22CS10057
+16778;Ratan Kumar;22EC10067
+16787;Ratna kumari Thurimella;
+16795;Rishabh Jain;22MA10048
+16759;rishith kumar kondi;
+16732;Roctotpal Sandilya;22IE10035
+16738;RUSHIKESH JADHAV;
+16789;Sagarneel Ghoshal;22PH10040
+16796;SAMARES MALIK;22ME10072
+16783;Sandesh Patil;
+17241;Satyarth kumar keshri;
+17235;Shashank sah;
+16736;SHASHANK SHEKHAR;22BT10027
+15653;Shikhar Gautam;22CE10073
+16752;Shivee Gupta;22MT10050
+16792;Shreya Vadhavkar;22ME10091
+17228;Shubham Mishra;
+17234;Soutik Naskar;
+16751;Sri sai Kanneganti;
+16756;Srija Biswas;22ME30069
+16791;Subha Moneesh Kasireddi;
+16760;Subhransu Sahu;
+16742;Sumit Kumar;22CS30056
+17239;Supratim Sarkar;
+16726;Tejashwi Kumar Jha;22CH30033
+16722;Ujjawal Jain;22HS10058
+16784;Ullash Chandra Modi;
+16765;Utkarsh;
+17225;Varun Ahari;22EE10076
+16800;Vedant Katole;22EC10087
+16768;Vedant Thakare;22gg10052
+16779;venkata nikhil reddy chinta;
+16770;yash agarwal;22NA10049
+16790;Yash Kakade;22PH10021
+16764;Yashaswini Enuganti;

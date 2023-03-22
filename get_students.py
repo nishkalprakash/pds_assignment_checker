@@ -28,7 +28,7 @@ driver.get(
 #         )
 
 elements_name = get_sel_items(driver,"subfield_firstname")
-elements_id = get_sel_items(driver,"subfield_picture",'//a')
+elements_id = get_sel_items(driver,"subfield_picture",'/descendant::a')
 elements_roll = get_sel_items(driver,"subfield_idnumber")
 
 

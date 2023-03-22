@@ -153,8 +153,8 @@ def driver_get_topics_from_a(driver, a, q=None):
         return q_topic
 
 def get_sel_items(driver,val,a='',t='userenrolment',d='div'):
-    return driver.find_elements(by=By.PARTIAL_LINK_TEXT,
-        value=f'//table[contains(concat(" ",normalize-space(@class)," ")," {t} ")]//{d}[contains(concat(" ",normalize-space(@class)," ")," {val} ")]{a}'
+    return driver.find_elements(by=By.XPATH,
+        value=f'//table[contains(concat(" ",normalize-space(@class)," ")," {t} ")]/descendant::{d}[contains(concat(" ",normalize-space(@class)," ")," {val} ")]{a}'
         )
 
 def extract_name_roll_tuple(elem):
