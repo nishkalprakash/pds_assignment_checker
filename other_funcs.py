@@ -115,7 +115,7 @@ def generate_test_cases():
     a,ql=get_a_ql_from_user()
     for q in ql:
         t=TEST_PATH_.format(a=a,q=q)
-        txt=Path(t).read_text().split('\t')
+        txt=Path(t).read_text().strip().split('\t')
         
         if txt[0].startswith('#TC_GENERATED'):
             continue
