@@ -1,7 +1,8 @@
 # Format: `{marks};{label};{test_case}`
 # * For Example:
 # ```csv
-10;~~INPUT:~~123a 6.023e23~~~~EXPECTED OUTPUT:~~integer value is 123~~charachter is 97~~floating point is 602299993035875120000000.000000~~~~;123a 6.023e23
-15;~~INPUT:~~150Z 1.9e-2~~~~EXPECTED OUTPUT:~~integer value is 150~~charachter is 90~~floating point is 0.019000~~~~;150Z 1.9e-2
-15;~~INPUT:~~999A 2.5e4~~~~EXPECTED OUTPUT:~~integer value is 999~~charachter is 65~~floating point is 25000.000000~~~~;999A 2.5e4
+10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
+10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
+10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
+10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
 # ```

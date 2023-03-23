@@ -1,13 +1,8 @@
-// A2_Q1_Solution
-// Code creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
-
-/* This program reads two characters using scanf and prints the characters on the screen */
-
-#include <stdio.h>
-int main()
-{
-	char c1, c2;	            //Two variables to store any character
-	scanf("%c %c", &c1, &c2);	//Read any two characters
-	printf("%c %c", c1, c2);	//Prints the characters
-	return 0;
-}
+# Format: `{marks};{label};{test_case}`
+# * For Example:
+# ```csv
+10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
+10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
+10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
+10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
+# ```
