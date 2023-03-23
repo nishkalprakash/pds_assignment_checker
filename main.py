@@ -152,8 +152,11 @@ def pds_checker(a, q):
                     if platform == 'win32':
                         system(f'START /MIN /B "" "{c}"'
                                )  # Opens the file in the background
+                    elif platform == 'darwin':
+                        system(f'open "{c}"')
                     else:
                         system(f'xdg-open "{c}"')
+
                 except StopIteration as si:
                     print(f"C File for  {std_roll} - {std_name} not found")
                     comments.append(
