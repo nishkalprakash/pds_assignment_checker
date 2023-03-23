@@ -39,6 +39,8 @@ Assignment*/done_intermediate.txt
 
 *lock*
 *.out
+*.o
+
 # PDF files
 # pdf*
 # *.pdf
