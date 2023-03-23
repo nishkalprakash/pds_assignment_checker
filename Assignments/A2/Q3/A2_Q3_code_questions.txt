@@ -1,4 +1,6 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;Input Taken correctly
+10;Converted to degree from radian
+10;Computed distance
+10;Computed Xt
+10;Computed Yt
+10;Printed output

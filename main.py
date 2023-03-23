@@ -218,7 +218,7 @@ def pds_checker(a, q):
                                 print(out)
                                 out=out.replace('\n',BR)
                                 if len(out)>(lim:=500): out=out[:lim]+"..."
-                                comments.append(f'{BR}Your output:{BR}{out}')
+                                
                                 #"""
                                 # try:
                                 ## Try to Kill the process after execution
@@ -252,6 +252,7 @@ def pds_checker(a, q):
                                     comments.append(
                                         f"{BR}FAILED: Test Case {i+1}: {BR}{test_comment} {BR}  Mark/s obtained: {test_marks[i]:g} out of {mark:g}{BR}"
                                     )
+                                    comments.append(f'{BR}Your output:{BR}{out}')
                                 elif test_marks[
                                         i] >= mark:  # in case of typing errpr
                                     test_marks[i] = mark
