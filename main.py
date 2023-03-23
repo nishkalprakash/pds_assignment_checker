@@ -255,7 +255,7 @@ def pds_checker(a, q):
                                     comments.append(
                                         f"{BR}FAILED: Test Case {i+1}: {BR}{test_comment} {BR}  Mark/s obtained: {test_marks[i]:g} out of {mark:g}{BR}"
                                     )
-                                    if platform == "win32":
+                                    if platform == 'win32':
                                         comments.append(f'{BR}Your output:{BR}{out}')
                                 elif test_marks[
                                         i] >= mark:  # in case of typing errpr
