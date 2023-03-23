@@ -6,7 +6,7 @@ from pathlib import Path
 from subprocess import TimeoutExpired,run
 from sys import platform
 from os import system, chdir
-
+ 
 from lib.pds_globals import (
     A_Q_PATH_,
     A_Q_PDS_FILE_,
@@ -152,8 +152,11 @@ def pds_checker(a, q):
                     if platform == 'win32':
                         system(f'START /MIN /B "" "{c}"'
                                )  # Opens the file in the background
+                    elif platform == 'darwin':
+                        system(f'open "{c}"')
                     else:
                         system(f'xdg-open "{c}"')
+
                 except StopIteration as si:
                     print(f"C File for  {std_roll} - {std_name} not found")
                     comments.append(
