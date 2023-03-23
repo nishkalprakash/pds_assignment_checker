@@ -172,7 +172,7 @@ def pds_checker(a, q):
                     #     push(A_Q_PLAG_.format(a=a, q=q), t)
                     #     print(f"Added {t} to plag cases, Please RERUN the code")
                     #     return "RERUN"
-                    return_code = system(f'gcc "{c}"')
+                    return_code = system(f'gcc "{c}" -lm')
                     if return_code == 0:
                         print("Code ran successfully")
                         # test = test_cases[0]  # TESTING
