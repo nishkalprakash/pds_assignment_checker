@@ -235,7 +235,7 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
             fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,f=Path(fnf).stem,**nrd))
             c=next_div.find_element('xpath','descendant::textarea[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]').text.strip()
             if not fname.exists():
-                if fn:
+                if fn and Path(fn).suffix.lower()=='.c':
                     fp=Path(A_PATH_.format(a=a))/fnf
                     if not fp.exists():
                         f.find_element(By.TAG_NAME,'a').click()
