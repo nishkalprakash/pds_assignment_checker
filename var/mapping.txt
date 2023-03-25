@@ -88,3 +88,4 @@
 17230;Abhimanyu Dev Upadhyay;22PH10002
 16790;Yash Kakade;22PH10021
 16789;Sagarneel Ghoshal;22PH10040
+17260;md hasib reza;22EC10047
