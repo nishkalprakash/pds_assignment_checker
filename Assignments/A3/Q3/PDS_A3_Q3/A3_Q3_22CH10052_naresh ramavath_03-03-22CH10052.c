@@ -1,0 +1,26 @@
+# include<stdio.h>
+# include<math.h>
+int main() {
+float x1,y1,z1,x2,y2,z2,x3,y3,z3,l1,l2,l3;
+
+printf(" A(x1,y1,z1)\n" ,x1,y1,z1);
+scanf("%f %f %f",&x1,&y1,&z1);
+
+printf("B(x2,y2,z2)\n",x2,y2,z2);
+scanf("%f %f %f",&x2,&y2,&z2);
+
+printf("C(x3,y3,z3)\n",x3,y3,z3);
+scanf("%f %f %f",&x3,&y3,z3);
+
+l1=sqrt(pow(x1-x2,2)+pow(y1-y2,2)+pow(z1-z2,2));
+l2=sqrt(pow((x2-x3,2)+pow(y2-y3,2)+pow(z2-z3,2));
+l3=sqrt(pow((x1-x3,2)+pow(y21-y3,2)+pow(z1-z3,2));
+
+if (l1+l2==l3 || l1+l3 = = l2  || l2+l3 ==l1) {
+    printf("Given three points are collinear");
+}
+return 0;
+}
+
+
+

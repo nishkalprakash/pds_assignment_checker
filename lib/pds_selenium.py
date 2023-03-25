@@ -195,7 +195,7 @@ def driver_get_heading_element_list(driver,q_topic):
     for attempt in nrt+nrt2:
         n,r=extract_name_roll_tuple(attempt)
         if not r:
-          r=map_n_r[n]
+          r=map_n_r[n.replace('_attempt2','')]
         r=r.upper()
         next_div=attempt.find_element('xpath','following-sibling::div[1]')
         nr_nxt[r]=(dict(n=n,r=r,next_div=next_div))
@@ -233,7 +233,10 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
             fn=f.text
             fnf=re.sub(r'([#\/:*?"<>|]|\.$)',"_",fn)
             fname=Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,f=Path(fnf).stem,**nrd))
-            c=next_div.find_element('xpath','descendant::textarea[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]').text.strip()
+            try:
+                c=next_div.find_element('xpath','descendant::textarea[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]').text.strip()
+            except:
+                c=next_div.find_element('xpath','descendant::div[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]').text.strip()
             if not fname.exists():
                 if fn and Path(fn).suffix.lower()=='.c':
                     fp=Path(A_PATH_.format(a=a))/fnf
