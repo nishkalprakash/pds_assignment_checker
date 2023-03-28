@@ -8,7 +8,7 @@
 
     Print the three points A, B and C in their collating sequence (i.e. if A<B<C etc.)
 */
-// Code creator: Abhishek Topwal
+// Code creator: Abhishek Topwal and Nishkal Prakash
 #include <stdio.h>
 #include <limits.h>
 int main()
@@ -37,6 +37,8 @@ int main()
     (iv) Using equation method (x1(y2-y3)+x2(y3-y1)+x3(y1-y2)=0)
     (v) Using cross product method (AB X AC = 0)
     */
+
+   
     // if the given three points (A,B,C) are collinear
     // then cross product of vector AB and vector AC is zero
 
@@ -58,54 +60,53 @@ int main()
         printf("\nThe given three points are not collinear.\n\n");
 
     // print the points in collating sequence
-    double l1=-DBL_MAX,l2=-DBL_MAX ,l3 =-DBL_MAX ;
-
-      
-
-
-
-    if (x1 < x2 && x2 < x3)
-        printf("A(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x2, y2, z2, x3, y3, z3);
-    else if (x1 < x3 && x3 < x2)
-        printf("A(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x3, y3, z3, x2, y2, z2);
-    else if (x2 < x1 && x1 < x3)
-        printf("B(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf)\n", x2, y2, z2, x1, y1, z1, x3, y3, z3);
-    else if (x2 < x3 && x3 < x1)
-        printf("B(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf)\n", x2, y2, z2, x3, y3, z3, x1, y1, z1);
-    else if (x3 < x1 && x1 < x2)
-        printf("C(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x2, y2, z2, x3, y3, z3);
-    else if (x3 < x2 && x2 < x1)
-        printf("C(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf)\n", x3, y3, z3, x2, y2, z2, x1, y1, z1);
-    else
+    char r1 = 'A', r2 = 'B', r3 = 'C';
+    double temp;
+    // bubble sort by x axis
+    if ((x1 > x2) || ((x1 == x2) && ((y1 > y2) || ((y1 == y2) && (z1 > z2)))))
     {
-        if (y1 < y2 && y2 < y3)
-            printf("A(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x2, y2, z2, x3, y3, z3);
-        else if (y1 < y3 && y3 < y2)
-            printf("A(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x3, y3, z3, x2, y2, z2);
-        else if (y2 < y1 && y1 < y3)
-            printf("B(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf)\n", x2, y2, z2, x1, y1, z1, x3, y3, z3);
-        else if (y2 < y3 && y3 < y1)
-            printf("B(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf)\n", x2, y2, z2, x3, y3, z3, x1, y1, z1);
-        else if (y3 < y1 && y1 < y2)
-            printf("C(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf)\n", x3, y3, z3, x1, y1, z1, x2, y2, z2);
-        else if (y3 < y2 && y2 < y1)
-            printf("C(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf)\n", x3, y3, z3, x2, y2, z2, x1, y1, z1);
-        else
-        {
-            if (z1 < z2 && z2 < z3)
-                printf("A(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x2, y2, z2, x3, y3, z3);
-            else if (z1 < z3 && z3 < z2)
-                printf("A(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x3, y3, z3, x2, y2, z2);
-            else if (z2 < z1 && z1 < z3)
-                printf("B(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf)\n", x2, y2, z2, x1, y1, z1, x3, y3, z3);
-            else if (z2 < z3 && z3 < z1)
-                printf("B(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf)\n", x2, y2, z2, x3, y3, z3, x1, y1, z1);
-            else if (z3 < z1 && z1 < z2)
-                printf("C(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x2, y2, z2, x3, y3, z3);
-            else if (z3 < z2 && z2 < z1)
-                printf("C(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf) < A(%.2lf,%.2lf,%.2lf)\n", x3, y3, z3, x2, y2, z2, x1, y1, z1);
-            else
-                printf("A(%.2lf,%.2lf,%.2lf) < B(%.2lf,%.2lf,%.2lf) < C(%.2lf,%.2lf,%.2lf)\n", x1, y1, z1, x2, y2, z2, x3, y3, z3);
-        }
+        temp = x1;
+        x1 = x2;
+        x2 = temp;
+        temp = y1;
+        y1 = y2;
+        y2 = temp;
+        temp = z1;
+        z1 = z2;
+        z2 = temp;
+        temp = r1;
+        r1 = r2;
+        r2 = temp;
     }
+    if ((x2 > x3) || ((x2 == x3) && ((y2 > y3) || ((y2 == y3) && (z2 > z3)))))
+    {
+        temp = x2;
+        x2 = x3;
+        x3 = temp;
+        temp = y2;
+        y2 = y3;
+        y3 = temp;
+        temp = z2;
+        z2 = z3;
+        z3 = temp;
+        temp = r2;
+        r2 = r3;
+        r3 = temp;
+    }
+    if ((x1 > x2) || ((x1 == x2) && ((y1 > y2) || ((y1 == y2) && (z1 > z2)))))
+    {
+        temp = x1;
+        x1 = x2;
+        x2 = temp;
+        temp = y1;
+        y1 = y2;
+        y2 = temp;
+        temp = z1;
+        z1 = z2;
+        z2 = temp;
+        temp = r1;
+        r1 = r2;
+        r2 = temp;
+    }
+    printf("The collating sequence of the points is : %c(%lf,%lf,%lf) < %c(%lf,%lf,%lf) < %c(%lf,%lf,%lf)",r1,x1,y1,z1,r2,x2,y2,z2,r3,x3,y3,z3);
 }
