@@ -123,7 +123,7 @@ OK
 """
 ## QUIZ URLS
 
-A_Q_PDS_QUIZ_ = "https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading&slot={q}&qid={qid}&page=0&includeauto=1&grade=all&pagesize=100&order=studentfirstname"
+A_Q_PDS_QUIZ_ = "https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=grading&slot={q}&qid={qid}&page=0&includeauto=1&grade=all&pagesize=200&order=studentfirstname"
 
 # "https://moodlecse.iitkgp.ac.in/moodle/mod/quiz/report.php?id={quiz_id}&mode=overview"
 

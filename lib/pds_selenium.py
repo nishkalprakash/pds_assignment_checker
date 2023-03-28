@@ -237,7 +237,7 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
                 c=next_div.find_element('xpath','descendant::textarea[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]').text.strip()
             except:
                 c=next_div.find_element('xpath','descendant::div[contains(concat(" ",normalize-space(@class)," ")," qtype_essay_response ")]').text.strip()
-            if not fname.exists():
+            if 1 or not fname.exists():
                 if fn and Path(fn).suffix.lower()=='.c':
                     fp=Path(A_PATH_.format(a=a))/fnf
                     if not fp.exists():
@@ -247,17 +247,17 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
                         sleep(.5)
                     print(fname.name+' downloaded')
                     try:
-                        fp.rename(fname)
+                        if Path(fp).read_text().strip() != "":
+                            if not fname.exists():
+                                fp.rename(fname)
+                        else:
+                            fname.write_text(c)
+                            print('Empty FILE FOUND for {r} - {n} - CODE CREATED FROM COMMENT BOX'.format(**nrd))
                     except Exception as e:
                         print(str(e))
-                        
-                    
-                    # fl.
                 elif c:
                     fname.write_text(c)
-                    print('No FILE FOUND for {r} - {n}'.format(**nrd))
-                    print('CODE CREATED FROM COMMENT BOX')
-
+                    print('No FILE FOUND for {r} - {n} - CODE CREATED FROM COMMENT BOX'.format(**nrd))
                 else:
                     print('No Submission for {r} - {n}'.format(**nrd))
         except Exception as e:

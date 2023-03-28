@@ -203,13 +203,16 @@ def pds_checker(a, q):
                                 ### END HACK
                                 #"""
                                 try:
-                                    proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=1)
+                                    proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=4)
                                     out=proc.stdout
                                    
                                 except TimeoutExpired:
                                     out='[Code goes into an Infinite Loop]'
                                     # comments.append(f'{BR}Code goes into an Infinite Loop')
                                     # raise e
+                                except Exception as e:
+                                    print(str(e))
+                                    raise e
                                 try:
                                     proc.kill()
                                 except (AttributeError,UnboundLocalError):
