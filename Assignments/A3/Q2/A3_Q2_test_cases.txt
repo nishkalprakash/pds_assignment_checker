@@ -1,8 +1,5 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+#TC_GENERATED
+10;IN:~~ 21   123~~~~Exp OUT:~~Wrong Input~~~~; 21   123
+10;IN:~~-659  956~~~~Exp OUT:~~Not a Perfect Pair~~~~;-659  956
+10;IN:~~-563 -365~~~~Exp OUT:~~Perfect Pair~~~~;-563 -365
+10;IN:~~ 24    42~~~~Exp OUT:~~Perfect Pair~~~~; 24    42

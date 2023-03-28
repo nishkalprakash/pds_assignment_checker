@@ -1,4 +1,4 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;9 points taken as input
+10;points printed on the screen
+20;checked for collinear
+20;printed in collated sequence
