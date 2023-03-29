@@ -203,11 +203,11 @@ def pds_checker(a, q):
                                 ### END HACK
                                 #"""
                                 try:
-                                    proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=4)
+                                    proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=.5)
                                     out=proc.stdout
                                    
                                 except TimeoutExpired:
-                                    out='[Code goes into an Infinite Loop]'
+                                    out='[Code throws a math exception during runtime]'
                                     # comments.append(f'{BR}Code goes into an Infinite Loop')
                                     # raise e
                                 except Exception as e:
@@ -424,14 +424,14 @@ def pds_checker(a, q):
         try:
             short='00'
             other_comment = def_input("\n\nGive any other comment? [0]/1: ",
-                                      '0', short)
+                                      '0')
             if other_comment == '1':
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
                     0,
                     def_input(
                         f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",
-                        '', short),
+                        ''),
                 )
             elif total_marks == max_marks:
                 comments.insert(0, "")  # Hack for extra spacing

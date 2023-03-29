@@ -26,7 +26,7 @@
 16372;Ishita Pathunda;22EX10022
 16729;Jaydeep Parmar;22AG30016
 16761;Jigyanshu Pati;22ME30031
-17236;kanak prabhanshu;22CE10033
+# 17236;kanak prabhanshu;22CE10033
 16748;Kavita Thakur;22NA30019
 16773;Keshav Prajapati;22EE30015
 16804;Krish Debroy;22MA10029
@@ -64,7 +64,7 @@
 16789;Sagarneel Ghoshal;22PH10040
 16796;SAMARES MALIK;22ME10072
 16783;Sandesh Patil;22MF10034
-17241;Satyarth kumar keshri;22CE30024
+# 17241;Satyarth kumar keshri;22CE30024
 17235;Shashank sah;22MI33021
 16736;SHASHANK SHEKHAR;22BT10027
 15653;Shikhar Gautam;22CE10073
