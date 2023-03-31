@@ -1,0 +1,7 @@
+#TC_GENERATED
+10;IN:~~Enter a password: password~~~~Exp OUT:~~Invalid Password:~~Password must start with an upper case letter.~~~~;password
+10;IN:~~Enter a password: IITkgpsec22023~~~~Exp OUT:~~Invalid Password:~~Password must be between 8 and 12 characters long.~~~~;IITkgpsec22023
+10;IN:~~Enter a password: IITkgp sec2~~~~Exp OUT:~~Invalid Password:~~Spaces are not allowed in password.~~~~;IITkgp sec2
+10;IN:~~Enter a password: IITKGPsec2~~~~Exp OUT:~~Invalid Password:~~Password must have at least one special character.~~~~;IITKGPsec2
+10;IN:~~Enter a password: IITKGPpds#~~~~Exp OUT:~~Invalid Password:~~Password must have at least one digit.~~~~;IITKGPpds#
+10;IN:~~Enter a password: IITKGP#pds2~~~~Exp OUT:~~Password is valid~~~~;IITKGP#pds2

@@ -1,0 +1,6 @@
+-10;Header Comment Missing
+10;Loop used for n times
+10;Input marks for each student correctly
+10;Computed Total Marks
+20;Grade awarded
+10;Printed output

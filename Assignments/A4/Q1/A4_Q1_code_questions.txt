@@ -1,0 +1,8 @@
+-10;Header Comment Missing
+10;Input Taken as character
+-10;Input taken as array
+10;Checked for first upper case
+10;Checked for digit and special character
+10;Checked for Min and Max Length
+10;Checked for space
+10;Checked for valid password
