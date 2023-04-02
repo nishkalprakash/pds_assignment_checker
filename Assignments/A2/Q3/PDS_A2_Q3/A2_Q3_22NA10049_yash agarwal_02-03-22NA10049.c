@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<math.h>
 int main()
 {
      float xi,yi,a,u,theta,t;//initializing all the variables

@@ -12,11 +12,12 @@
     printf("Enter value of Y0: \n");
     scanf("%lf" , &Y0);
 
+    printf("Enter value of theta: \n");
+    scanf("%lf" , &theta);
+    
     printf("Enter value of u: \n");
     scanf("%lf", &u);
 
-    printf("Enter value of theta: \n");
-    scanf("%lf" , &theta);
 
     printf("Enter value of alpha: \n");
     scanf("%lf" , &alpha);

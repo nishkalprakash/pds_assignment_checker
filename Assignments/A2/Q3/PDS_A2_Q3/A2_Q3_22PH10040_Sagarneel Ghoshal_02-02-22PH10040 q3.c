@@ -3,14 +3,14 @@
 
 int main(){
     float u,theta,alpha,t,x0,y0;   //declaring all the variables to be used
-    printf("Enter the value of u:");     //prompting the user to enter the variables
-    scanf("%f",&u);                         //scanning the values
-    printf("\nEnter the value of theta:");
-    scanf("%f",&theta);
-    printf("\nEnter the value of accelaration:");
-    scanf("%f",&alpha);
     printf("\nEnter the coordinates of the starting position(x0,y0):");
     scanf("%f %f",&x0,&y0);
+    printf("\nEnter the value of theta:");
+    scanf("%f",&theta);
+    printf("Enter the value of u:");     //prompting the user to enter the variables
+    scanf("%f",&u);                         //scanning the values
+    printf("\nEnter the value of accelaration:");
+    scanf("%f",&alpha);
     printf("\nEnter time taken:");
     scanf("%f",&t);
 
