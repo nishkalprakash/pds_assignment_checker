@@ -195,9 +195,9 @@ def pop(path, DELIM=DELIM):
 def undo_redo_result(report_path,code):
     """code is the number of times to undo or redo"""
     if code=='': return 'RERUN'
-    hist=Path(report_path).parent/'.report_history.txt'
+    # hist=Path(report_path).parent/'.report_history.txt'
     pop_path=report_path
-    push_path=hist
+    # push_path=hist
     if code[0]=='r':
         # Changing redo task to rerun
         # pop_path,push_path=push_path,pop_path
@@ -205,7 +205,7 @@ def undo_redo_result(report_path,code):
     data=pop(pop_path)
     if data == False:
         return "RERUN"
-    push(push_path,[data])
+    # push(push_path,[data])
     return undo_redo_result(report_path,code[1:])
 
 def re_sub_space(name):

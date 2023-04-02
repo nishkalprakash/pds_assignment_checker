@@ -341,7 +341,7 @@ def pds_checker(a, q):
                         )
                     max_test_marks = sum(i for i in test_marks_list if i > 0)
                     if max_test_marks == sum(test_marks):
-                        # short = 'ss'
+                        short = 'ss'
                         pass
 
                     comments.append("")
