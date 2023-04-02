@@ -7,10 +7,10 @@ int main()
     scanf("%lf",&Xo);
     printf("enter the value of Yo\n");//initial position of y coordinate
     scanf("%lf",&Yo);
-    printf("enter the value of u\n");//initial velocity
-    scanf("%lf",&u);
     printf("enter the value of theta\n");//inclined angle
     scanf("%lf",&theta);
+    printf("enter the value of u\n");//initial velocity
+    scanf("%lf",&u);
     printf("enter the value of alpha\n");//accelaration
     scanf("%lf",&alpha);
     printf("enter the value of time\n");//time
