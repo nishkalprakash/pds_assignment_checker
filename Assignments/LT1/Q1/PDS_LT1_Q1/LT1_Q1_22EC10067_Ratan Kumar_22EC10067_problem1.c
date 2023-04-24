@@ -1,0 +1,94 @@
+// Name: Ratan Kumar//
+//Roll no. 22EC10067//
+//Section-2//
+//Description-problem-1//
+
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int x1,y1,x2,y2,x3,y3,x4,y4;
+    printf("(x1,y1) = ");
+    scanf("%d,%d",&x1,&y1);
+    printf("\n");
+    printf("(x2,y2) = ");
+    scanf("%d,%d",&x2,&y2);
+    printf("\n");
+    printf("(x3,y3) = ");
+    scanf("%d,%d",&x3,&y3);
+    printf("\n");
+    printf("(x4,y4) = ");
+    scanf("%d,%d",&x4,&y4);
+    float A1=(x1*(y2-y3) - y1*(x2-x3) + (x2*y3 - x3*y2))/2;
+    if(A1<=0)
+    {
+        A1=-1*(A1);
+    }
+    float A2=(x2*(y3-y4) - y2*(x3-x4) + (x3*y4 - x4*y3))/2;
+    if(A2<=0)
+    {
+        A2=-1*(A2);
+    }
+    float A3=(x1*(y3-y4) - y1*(x3-x4) + (x3*y4 - x4*y3))/2;
+    if(A1<=0)
+    {
+        A3=-1*(A3);
+    }
+    float A4=(x1*(y2-y4) - y1*(x2-x4) + (x2*y4 - x4*y2))/2;
+    if(A4<=0)
+    {
+        A4=-1*(A4);
+    }
+    float P1=sqrt((x1-x2)*(x1-x2)+ (y1-y2)*(y1-y2)) + sqrt((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2)) + sqrt((x1-x3)*(x1-x3)+(y1-y3)*(y1-y3));
+    float P2=sqrt((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2)) + sqrt((x4-x2)*(x4-x2)+(y4-y2)*(y4-y2)) + sqrt((x4-x3)*(x4-x3)+ (y4-y3)*(y4-y3));
+    float P3=sqrt((x1-x3)*(x1-x3)+(y1-y3)*(y1-y3)) + sqrt((x3-x4)*(x3-x4)+(y3-y4)*(y3-y4))+ sqrt((x1-x4)*(x1-x4)+ (y1-y4)*(y1-y4));
+    float P4=sqrt((x1-x2)*(x1-x2))+(y1-y2)*(y1-y2) + sqrt((x4-x2)*(x4-x2)+ (y4-y2)*(y4-y2)) + sqrt((x1-x4)*(x1-x4)+(y4-y3)*(y4-y3));
+    if((y2-y1)/(x2-x1)==(y3-y2)/(x3-x2))
+    {
+        printf("Perimeter = 0");
+    }
+    if(A1>=A2&&A1>=A3&&A1>=A4)
+    {
+        printf("Points having the maximum area: (%d,%d),(%d,%d),(%d,%d)",x1,y1,x2,y2,x3,y3);
+        printf("\n");
+        printf("\n");
+        printf("Perimeter = %0.2f",P1);
+    }
+    else if(A2>A1&&A2>A3&&A2>A4)
+    {
+        printf("Points having the maximum area: (%d,%d),(%d,%d),(%d,%d)",x2,y2,x3,y3,x4,y4);
+        printf("\n");
+        printf("\n");
+        printf("Perimeter = %0.2f",P2);
+    }
+    else if(A3>A1&&A3>A2&&A3>A4)
+    {
+        printf("Points having the maximum area: (%d,%d),(%d,%d),(%d,%d)",x1,y1,x3,y3,x4,y4);
+        printf("\n");
+        printf("\n");
+        printf("Perimeter = %0.2f",P3);
+    }
+    else if(A4>A1&&A4>A2&&A4>A3)
+    {
+        printf("Points having the maximum area: (%d,%d),(%d,%d),(%d,%d)",x1,y1,x2,y2,x4,y4);
+        printf("\n");
+        printf("\n");
+        printf("Perimeter = %0.2f",P4);
+    }
+
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
