@@ -78,6 +78,7 @@
     * Install webdriver_manager using `pip install webdriver_manager`
     * Save moodle credentials in `var\creds.txt` as `{USERNAME}:{PASSWORD}`
     
+    
 * Added support for negative marking in `code_questions.txt`:
     * An entry with negative marks can be given, For Example:
     > -1;Intermediate is missing  

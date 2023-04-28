@@ -61,6 +61,8 @@ A_MOSS_ = A_+"_moss_comb.txt"
 A_MOSS_PATH_ =A_PATH_ + "/" +A_MOSS_
 A_Q_MOSS_ = A_Q_+"_moss.txt"
 A_Q_MOSS_PATH_ = A_Q_PATH_+"/"+A_Q_MOSS_
+A_Q_MOSS_HTML_ = A_Q_+"_moss.html"
+A_Q_MOSS_HTML_PATH_ = A_Q_PATH_+"/"+A_Q_MOSS_HTML_
 
 ## ATTEMPT FEATURE
 A_ATTEMPT_ = A_+"_attempt_map.txt"
