@@ -22,6 +22,13 @@
         * Adds comments automatically according to Failed criteria and marks lost
 3. At the end, makes a composite `.csv` report file with the results (open with MS Excel or similar application to view)
 4. (EXPERIMENTAL) Auto upload the report to moodle (using selenium)
+5. (EXPERIMENTAL) Added support for cheat codes during checking:
+    ```
+    ss - short 's'ircuit from this point
+    00 - give 0 from this point
+    r - reset and rerun from the beginning for this student
+    z - reset and rerun for the last student
+    ```
 
 ## Instruction (For Head user) (usually NP):
 * Run `init.py` and enter the Assignment number to initialize
@@ -88,7 +95,7 @@
     * An entry with negative marks can be given, For Example:
     > -0.5;Test Case 3: Skips repeated element;5 1 2 3 3 5
 * Added support for comemnts in `code_questions.txt` and `test_cases.txt` by starting a line with `#`
-* Added support for new line in `code_questions.txt` and `test_cases.txt` by using `!!`
+* Added support for new line in `code_questions.txt` and `test_cases.txt` by using `~~`
 * Added support for predefined comemnts in `code_questions.txt` and `test_cases.txt`
 
 

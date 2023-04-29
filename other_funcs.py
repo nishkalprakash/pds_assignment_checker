@@ -126,6 +126,7 @@ def generate_test_cases():
         
         if txt[0].startswith('#TC_GENERATED'):
             continue
+        #TODO: DEBUG THIS PART
         elif txt[0]==('#'):
             txt=txt[3:]
             txt=[i[:-2] if n%2 else i for n,i in enumerate(txt)]

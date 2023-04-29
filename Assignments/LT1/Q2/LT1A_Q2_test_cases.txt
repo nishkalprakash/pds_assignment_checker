@@ -3,4 +3,4 @@
 10;IN:~~Enter the Integer:5677~~~~~~~~Exp OUT:~~Most significant digits to least significant digits:~~ 5, 56, 567, 5677~~~~Reverse number = 7765~~Difference between Reverse and original number = 2088~~~~;5677
 10;IN:~~Enter the Integer:9~~~~~~Exp OUT:~~Most significant digits to least significant digits:~~ 9~~Reverse number = 9~~Difference between Reverse and original number = 0~~~~;9
 10;IN:~~Enter the Integer:-38~~~~~~Exp OUT:~~Least significant digits to most significant digits:~~ 38, 8~~Reverse number = -83~~Difference between Reverse and original number = 45~~~~;-38
-10;IN:~~Enter the Integer: 90040~~~~~~Exp OUT:~~Least significant digits to most significant digits:~~ 90040, 40, 40, 40, 0~~~~Reverse number = 4009~~Difference between Reverse and original number = 860~~~~;90040
+10;IN:~~Enter the Integer: 90040~~~~~~Exp OUT:~~Least significant digits to most significant digits:~~ 90040, 40, 40, 40, 0~~~~Reverse number = 4009~~Difference between Reverse and original number = 86031~~~~;90040
