@@ -1,0 +1,5 @@
+10;Read four coordinates
+10;Area of the triangle formula applied
+20;Computed all possible Areas
+10;Computed the max area
+10;Printed the perimiter of the largest triangle
