@@ -1,5 +1,5 @@
 ## This file is to perfom a plag test among the submissions
-## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
+## Code Creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
 
 from lib.pds_selenium import get_assignments
 from lib.pds_globals import A_, A_MOSS_, A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_PATH_, A_Q_REPORT_, BASE, LIB, MT_DEMO, Q_
