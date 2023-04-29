@@ -17,14 +17,14 @@ TMP = "tmp"
 DELIM = ";"
 BR = "~~"
 
-MOODLE_A_NAME_ = "Lab Test {a}:"
-MOODLE_A_NAME_ = "Test-1: Set-{a}"
-MOODLE_A_NAME_ = "Test-2: Set-{a}"
+MOODLE_A_NAME_ = "LT-{a}:"
+# MOODLE_A_NAME_ = "Test-1: Set-{a}"
+# MOODLE_A_NAME_ = "Test-2: Set-{a}"
 MOODLE_A_NAME_ = "Lab-{a}:"  # COMMENT THIS FOR LT
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
 # Base is the assignment type
-BASE = "LT2"
+BASE = "LT"
 BASE = "A"  # COMMENT THIS FOR LT
 Q_BASE = "Q"
 
@@ -61,6 +61,8 @@ A_MOSS_ = A_+"_moss_comb.txt"
 A_MOSS_PATH_ =A_PATH_ + "/" +A_MOSS_
 A_Q_MOSS_ = A_Q_+"_moss.txt"
 A_Q_MOSS_PATH_ = A_Q_PATH_+"/"+A_Q_MOSS_
+A_Q_MOSS_HTML_ = A_Q_+"_moss.html"
+A_Q_MOSS_HTML_PATH_ = A_Q_PATH_+"/"+A_Q_MOSS_HTML_
 
 ## ATTEMPT FEATURE
 A_ATTEMPT_ = A_+"_attempt_map.txt"
