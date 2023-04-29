@@ -286,6 +286,12 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False,scale=0
     head = text_list[0]
     index = [i for i, k in enumerate(head) if k.strip('"').startswith("Total")][0]
     lines = text_list[1:]
+    try:
+        total_marks=findall(r"Total_Marks \((\d+)\)",head[index])[0]
+        total_marks=int(total_marks)
+    except:
+        total_marks=100
+
     d = dict()
     # Marks are taken directly from the total column, so if marks just deducted from there, its OK
     for l in lines:
@@ -294,7 +300,7 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False,scale=0
         m=l[index].strip()
         if scale:
             # try:
-            m=float(m)*scale/100
+            m=float(m)*scale/total_marks
             # except:
 
         d[std] = {
