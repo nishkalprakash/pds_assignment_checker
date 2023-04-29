@@ -327,18 +327,33 @@ def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False):
     return std
 
 
-def get_test_cases(a, q, cwd=True):
+def get_test_cases(a, q, cwd=True, s=None):
     """Returns the Test Cases"""
     from lib.pds_globals import TEST_
+    # return pull(CODE_.format(a=a, q=q))
+    aq={"a":a,"q":q}
+    t= TEST_PATH_
+    if cwd:
+        t=TEST_
+    t=Path(t.format(**aq))
+    if s:
+        t=t.parent/t.name.replace(x:=A_.format(**aq),x+s)
+    return pull(t)
 
-    return pull(TEST_.format(a=a, q=q) if cwd else TEST_PATH_.format(a=a, q=q))
-
-
-def get_code_questions(a, q):
+def get_code_questions(a, q, cwd=True, s=None):
     """Returns the code cases"""
     from lib.pds_globals import CODE_
 
-    return pull(CODE_.format(a=a, q=q))
+    # return pull(CODE_.format(a=a, q=q))
+
+    aq={"a":a,"q":q}
+    c= CODE_PATH_
+    if cwd:
+        c=CODE_
+    c=Path(c.format(**aq))
+    if s:
+        c=c.parent/c.name.replace(x:=A_.format(**aq),x+s)
+    return pull(c)
 
 
 def get_q_list_from_a(a):

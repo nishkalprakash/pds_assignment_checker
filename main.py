@@ -22,6 +22,7 @@ from lib.pds_globals import (
 
 from lib.pds_file_op import (
     base_missing,
+    pull,
     undo_redo_result,
     get_a_ql_from_user,
     get_code_questions,
@@ -36,7 +37,7 @@ from lib.pds_file_op import (
 )
 
 
-def init_checker(a, q):
+def init_checker(a, q, s=None):
     base = Path(A_Q_PATH_.format(a=a, q=q))
 
     if base.exists():
@@ -60,8 +61,8 @@ def init_checker(a, q):
         base_missing(a)
         home = next(Path.cwd().glob("PDS*/"))
     report_path = f"{A_Q_REPORT_.format(a=a,q=q)}"
-    test_cases = get_test_cases(a, q)  # pull only once throughout the program
-    code_questions = get_code_questions(a, q)
+    test_cases = get_test_cases(a, q, s=s)  # pull only once throughout the program
+    code_questions = get_code_questions(a, q, s=s)
 
     return home, report_path, test_cases, code_questions
 
@@ -70,12 +71,24 @@ def pds_checker(a, q):
     """This is the main method for checking assignments"""
     ## Pull students list before entering the BASE folder
     # n = get_map_roll_to_name()
+    lt=BASE == "LT"
+    if lt:
+        s=def_input("Enter the Set","A")
+        # assert that s is A or B
+        assert s in ["A","B"], "Set can only be A or B"
+        # get the mapping for roll;set from var/LT{a}.txt
+        x = pull(f"var/LT{a}.txt")
+        # get a dict {set_attempt:set(roll_no)}
+        std_dict_set = {
+            'A':{i[0] for i in x if i[1]=="A"},
+            'B':{i[0] for i in x if i[1]=="B"}
+        }
     students = get_students()
     plag_students_roll_set = set(
         get_students(A_Q_PLAG_PATH_.format(a=a, q=q), only_roll=True))
     ## Getting the BASE number details from user and switching working dir to BASE_a
 
-    home, report_path, test_cases, code_questions = init_checker(a, q)
+    home, report_path, test_cases, code_questions = init_checker(a, q,s=s)
 
     ## TODO: HACK FOR binary marking system
     test_marks_list = [float(i[0]) for i in test_cases]
@@ -127,6 +140,9 @@ def pds_checker(a, q):
         # std_name=n[std_roll]
         short=False
         ctr += 1
+        
+        if lt and std_roll not in std_dict_set[s]:
+            continue
         if std_roll in done:
             continue
 
