@@ -163,8 +163,10 @@ $usage = "usage: moss [-x] [-l language] [-d] [-b basefile1] ... [-b basefilen] 
 #
 # The userid is used to authenticate your queries to the server; don't change it!
 #
-$userid=47991031;
-
+$userid=515577103;
+# $userid=47991031; # NP's
+# $userid=469567657; # from https://github.com/alishir/ezmoss/blob/master/moss.pl
+# $userid=306435351; # from https://www.cse.chalmers.se/~rjmh/Wash/moss
 #
 # Process the command line options.  This is done in a non-standard
 # way to allow multiple -b's.

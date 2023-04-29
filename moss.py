@@ -1,8 +1,8 @@
 ## This file is to perfom a plag test among the submissions
-## Code Creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
-
+## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
+import requests
 from lib.pds_selenium import get_assignments
-from lib.pds_globals import A_, A_MOSS_, A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_PATH_, A_Q_REPORT_, BASE, LIB, MT_DEMO, Q_
+from lib.pds_globals import A_, A_MOSS_, A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_HTML_PATH_, A_Q_MOSS_PATH_, A_Q_REPORT_, BASE, LIB, MT_DEMO, Q_
 from lib.pds_file_op import def_input, get_a_ql_from_user, get_map_roll_to_name, re_sub_space, run_command, push
 
 from os import chdir, mkdir
@@ -32,7 +32,8 @@ recheck = False
 update_main_moss = False
 for question in (i for i in Path().glob("*/") if i.is_dir()):
     q=question.name.replace(Q_.format(q=''),'')
-    mq = base/A_Q_MOSS_PATH_.format(a=a,q=q)
+    aq={'a':a,'q':q}
+    mq = base/A_Q_MOSS_PATH_.format(**aq)
     if mq.exists() and len(mq.read_text().replace(MT_DEMO,'')):
         print(f"\n\nMoss results for {question} exists.")
         recheck = int(def_input("Do you want to re-generate the moss report? [0]/1", 0))
@@ -60,7 +61,7 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
     if moss_folder_name.exists():
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
-    moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(a=a,q=q)}" '
+    moss_command = f'perl "{m}" -c "{A_Q_REPORT_.format(**aq)}" *.c'
     ## Only copy files that have the extensions .c, .C or .txt
     for f in chain(pds_folder_name.glob("*.[cC]"), pds_folder_name.glob("*.txt")):
         lf = f.name.split("_")
@@ -68,9 +69,9 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
         # name=lf[0].strip().replace(" ", "_")
         # name=lf[0].strip()
         roll=lf[2].strip()
-        new_fname = f"{mapping[roll]} - {roll} - {A_Q_.format(a=a,q=q)}.c".replace(' ','_')
+        new_fname = f"{mapping[roll]} - {roll} - {A_Q_.format(**aq)}.c".replace(' ','_')
         copyfile(f, moss_folder_name / new_fname)
-        moss_command += f'"{new_fname}" '
+        # moss_command += f'"{new_fname}" '
 
     chdir(moss_folder_name)
     # moss_command += f' | tee "../moss_results.txt"'
@@ -99,7 +100,12 @@ if update_main_moss or recheck or not moss_out.exists():
         from re import findall
 
         addr = findall(r"http.*", text)
-        out.append(f"{BASE}{a}_{moss_results.parent}:\n\t{addr[0]}")
+        aq={'a':a,'q':moss_results.parent.name.replace(Q_.format(q=''),'')}
+        out.append(f"{A_Q_.format(**aq)}:\n\t{addr[0]}")
+        ## Downloading the moss results in a file using requests
+        r = requests.get(addr[0])
+        Path(base/A_Q_MOSS_HTML_PATH_.format(**aq)).write_bytes(r.content)
+
 
     moss_results = "\n\n".join(out)
     moss_out.write_text(moss_results)
