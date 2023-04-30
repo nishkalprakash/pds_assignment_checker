@@ -1,0 +1,7 @@
+5;Used macro for defining array limit
+5;Input n taken and checked for error
+10;Read n elements into array
+10;if condtion to check for negative elements
+20;for or while loop to shift negative elements
+10;Printed the final array
+-10;Ordering of the numbers changed in array

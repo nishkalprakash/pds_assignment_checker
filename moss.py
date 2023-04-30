@@ -1,9 +1,11 @@
 ## This file is to perfom a plag test among the submissions
-## Orignal code by Ishwarkar Rohan Shankar - rohan7066@iitkgp.ac.in
+
+## Code Creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
 import requests
 from lib.pds_selenium import get_assignments
-from lib.pds_globals import A_, A_MOSS_, A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_HTML_PATH_, A_Q_MOSS_PATH_, A_Q_REPORT_, BASE, LIB, MT_DEMO, Q_
-from lib.pds_file_op import def_input, get_a_ql_from_user, get_map_roll_to_name, re_sub_space, run_command, push
+from lib.pds_globals import A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_HTML_PATH_, A_Q_MOSS_PATH_, A_Q_REPORT_, LIB, MT_DEMO, Q_
+from lib.pds_file_op import def_input, get_a_ql_from_user, get_map_roll_to_name, run_command, push
+
 
 from os import chdir, mkdir
 from shutil import copyfile, rmtree
@@ -61,7 +63,9 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
     if moss_folder_name.exists():
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
-    moss_command = f'perl "{m}" -c "{A_Q_REPORT_.format(**aq)}" *.c'
+
+    moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(**aq)}" '
+
     ## Only copy files that have the extensions .c, .C or .txt
     for f in chain(pds_folder_name.glob("*.[cC]"), pds_folder_name.glob("*.txt")):
         lf = f.name.split("_")
