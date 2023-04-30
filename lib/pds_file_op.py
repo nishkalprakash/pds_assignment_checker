@@ -286,6 +286,12 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False,scale=0
     head = text_list[0]
     index = [i for i, k in enumerate(head) if k.strip('"').startswith("Total")][0]
     lines = text_list[1:]
+    try:
+        total_marks=findall(r"Total_Marks \((\d+)\)",head[index])[0]
+        total_marks=int(total_marks)
+    except:
+        total_marks=100
+
     d = dict()
     # Marks are taken directly from the total column, so if marks just deducted from there, its OK
     for l in lines:
@@ -294,7 +300,7 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False,scale=0
         m=l[index].strip()
         if scale:
             # try:
-            m=float(m)*scale/100
+            m=float(m)*scale/total_marks
             # except:
 
         d[std] = {
@@ -327,18 +333,33 @@ def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False):
     return std
 
 
-def get_test_cases(a, q, cwd=True):
+def get_test_cases(a, q, cwd=True, s=None):
     """Returns the Test Cases"""
     from lib.pds_globals import TEST_
+    # return pull(CODE_.format(a=a, q=q))
+    aq={"a":a,"q":q}
+    t= TEST_PATH_
+    if cwd:
+        t=TEST_
+    t=Path(t.format(**aq))
+    if s:
+        t=t.parent/t.name.replace(x:=A_.format(**aq),x+s)
+    return pull(t)
 
-    return pull(TEST_.format(a=a, q=q) if cwd else TEST_PATH_.format(a=a, q=q))
-
-
-def get_code_questions(a, q):
+def get_code_questions(a, q, cwd=True, s=None):
     """Returns the code cases"""
     from lib.pds_globals import CODE_
 
-    return pull(CODE_.format(a=a, q=q))
+    # return pull(CODE_.format(a=a, q=q))
+
+    aq={"a":a,"q":q}
+    c= CODE_PATH_
+    if cwd:
+        c=CODE_
+    c=Path(c.format(**aq))
+    if s:
+        c=c.parent/c.name.replace(x:=A_.format(**aq),x+s)
+    return pull(c)
 
 
 def get_q_list_from_a(a):

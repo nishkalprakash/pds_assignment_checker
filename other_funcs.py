@@ -2,6 +2,7 @@
 
 from pathlib import Path
 from lib.pds_file_op import (
+    def_input,
     format_plag_email_file,
     get_a_ql_from_user,
     get_map_roll_to_name,
@@ -11,7 +12,7 @@ from lib.pds_file_op import (
     push,
     set_plag_files,
 )
-from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BR, TC_, TEST_, TEST_PATH_, TMP, DELIM, VAR
+from lib.pds_globals import A_, A_PATH_, A_Q_, A_Q_PATH_, BASE, BR, TC_, TEST_, TEST_PATH_, TMP, DELIM, VAR
 
 ## Reset the test cases and code questions default text
 def reset_test_code():
@@ -113,12 +114,19 @@ def format_mystudents():
 def generate_test_cases():
     # def get_tcs:
     a,ql=get_a_ql_from_user()
+    lt=BASE == "LT"
+    if lt:
+        s=def_input("Enter the Set","A")
     for q in ql:
-        t=TEST_PATH_.format(a=a,q=q)
+        aq={"a":a,"q":q}
+        t=Path(TEST_PATH_.format(**aq))
+        if lt:
+            t=t.parent/t.name.replace(x:=A_.format(**aq),x+s)
         txt=Path(t).read_text().strip().split('\t')
         
         if txt[0].startswith('#TC_GENERATED'):
             continue
+        #TODO: DEBUG THIS PART
         elif txt[0]==('#'):
             txt=txt[3:]
             txt=[i[:-2] if n%2 else i for n,i in enumerate(txt)]

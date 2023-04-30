@@ -22,6 +22,7 @@ from lib.pds_globals import (
 
 from lib.pds_file_op import (
     base_missing,
+    pull,
     undo_redo_result,
     get_a_ql_from_user,
     get_code_questions,
@@ -36,7 +37,7 @@ from lib.pds_file_op import (
 )
 
 
-def init_checker(a, q):
+def init_checker(a, q, s=None):
     base = Path(A_Q_PATH_.format(a=a, q=q))
 
     if base.exists():
@@ -60,22 +61,30 @@ def init_checker(a, q):
         base_missing(a)
         home = next(Path.cwd().glob("PDS*/"))
     report_path = f"{A_Q_REPORT_.format(a=a,q=q)}"
-    test_cases = get_test_cases(a, q)  # pull only once throughout the program
-    code_questions = get_code_questions(a, q)
+    test_cases = get_test_cases(a, q, s=s)  # pull only once throughout the program
+    code_questions = get_code_questions(a, q, s=s)
 
     return home, report_path, test_cases, code_questions
 
 
-def pds_checker(a, q):
+def pds_checker(a, q, s=None):
     """This is the main method for checking assignments"""
     ## Pull students list before entering the BASE folder
     # n = get_map_roll_to_name()
+    if s:
+        # get the mapping for roll;set from var/LT{a}.txt
+        x = pull(f"var/LT{a}.txt")
+        # get a dict {set_attempt:set(roll_no)}
+        std_dict_set = {
+            'A':{i[0] for i in x if i[1]=="A"},
+            'B':{i[0] for i in x if i[1]=="B"}
+        }
     students = get_students()
     plag_students_roll_set = set(
         get_students(A_Q_PLAG_PATH_.format(a=a, q=q), only_roll=True))
     ## Getting the BASE number details from user and switching working dir to BASE_a
 
-    home, report_path, test_cases, code_questions = init_checker(a, q)
+    home, report_path, test_cases, code_questions = init_checker(a, q,s=s)
 
     ## TODO: HACK FOR binary marking system
     test_marks_list = [float(i[0]) for i in test_cases]
@@ -127,6 +136,9 @@ def pds_checker(a, q):
         # std_name=n[std_roll]
         short=False
         ctr += 1
+        
+        if s and std_roll not in std_dict_set[s]:
+            continue
         if std_roll in done:
             continue
 
@@ -342,7 +354,11 @@ def pds_checker(a, q):
                     max_test_marks = sum(i for i in test_marks_list if i > 0)
                     if max_test_marks == sum(test_marks):
                         short = 'ss'
-                        pass
+                        # comments.pop(" TEST CASES ".center(30, "="))
+                        comments.append(
+                                f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}"
+                            )
+                        # pass
 
                     comments.append("")
                     comments.append(" CODE CASES ".center(30, "="))
@@ -405,6 +421,12 @@ def pds_checker(a, q):
                                     comments.append(
                                         f"{BR}FAILED: Negative Code Case {i+1}:{BR}{ques}{BR}  Mark/s lost: {code_marks[i]:g} out of {mark:g}{BR}"
                                     )
+                    max_code_marks = sum(i for i in code_marks_list if i > 0)
+                    if  max_code_marks == sum(code_marks):
+                        
+                        comments.append(
+                                f"PASSED: All code cases - Marks : {max_code_marks:g} out of {max_code_marks:g}"
+                            )
                     total_marks = sum((i for i in (test_marks + code_marks)
                                        if "%" not in str(i)))
                     ## TODO: Here we will deduct the negative percentage sums and round to nearest b=0.5 using formula n=b*round(a/b)
@@ -427,8 +449,10 @@ def pds_checker(a, q):
             # return
         try:
             short='00'
+            # other_comment = def_input("\n\nGive any other comment? [0]/1: ",
+            #                           '0')
             other_comment = def_input("\n\nGive any other comment? [0]/1: ",
-                                      '0')
+                                      '0', short)
             if other_comment == '1':
                 comments.insert(0, "")  # Hack for extra spacing
                 comments.insert(
@@ -489,11 +513,15 @@ def pds_checker(a, q):
 if __name__ == "__main__":
     base_home = Path.cwd()
     a, ql = get_a_ql_from_user()
+    if BASE == "LT":
+        s=def_input("Enter the Set","A")
+        # assert that s is A or B
+        assert s in ["A","B"], "Set can only be A or B"
     # print(a)
     # print(ql)
     ## Set base to the required directory
     for q in ql:
         x = "RERUN"
         while x == "RERUN":
-            x = pds_checker(a, q)
+            x = pds_checker(a, q, s)
             chdir(base_home)

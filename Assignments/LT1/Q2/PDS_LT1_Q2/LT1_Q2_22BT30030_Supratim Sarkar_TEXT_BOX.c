@@ -1,0 +1,1 @@
+#include #include int main() { int a; printf("enter any integer %d "); scanf("%d",&a); print("%d is an integer"); return 0; }
