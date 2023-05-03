@@ -513,6 +513,7 @@ def pds_checker(a, q, s=None):
 if __name__ == "__main__":
     base_home = Path.cwd()
     a, ql = get_a_ql_from_user()
+    s=None
     if BASE == "LT":
         s=def_input("Enter the Set","A")
         # assert that s is A or B
