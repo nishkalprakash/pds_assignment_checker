@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 /*atul choudhary
 22ma10010
