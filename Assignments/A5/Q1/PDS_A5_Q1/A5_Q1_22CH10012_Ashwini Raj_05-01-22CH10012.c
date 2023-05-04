@@ -1,4 +1,5 @@
 
+
 #include<stdio.h>
 #define N 100                               //used macro for the limit
 int main()
