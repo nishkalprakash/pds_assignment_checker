@@ -323,11 +323,13 @@ def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False):
     if path is None:
         path = f"{VAR}/mapping.txt"
     std = pull(path)
+    # 2nd column to upper
+    std = [[i[0], i[1], i[2].upper()] for i in std]
     if sort_by_name:
         std.sort(key=lambda x: x[1].lower())
 
     if only_roll:
-        return [i[2] for i in std]
+        return [i[2].upper() for i in std]
     if only_names:
         return [i[1] for i in std]
     return std

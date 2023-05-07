@@ -7,6 +7,7 @@ from lib.pds_file_op import def_input, get_map_roll_to_name, get_students, print
 
 from lib.pds_globals import MOODLE_COURSE_ID, TMP
 from lib.pds_selenium import init_selenium, Path
+import re
 
 #%% Get grades from moodle
 fetch = def_input("Fetch Marks from moodle?", 0)
@@ -85,27 +86,35 @@ cols=[]
 for col in hdf.values[0]:
     col=col.replace('Quiz: ','')
     if 'Lab' in col:
-        cols.append(col.split(':')[0].replace('Lab ','A_0').replace('010','10').replace('011','11'))
-    elif 'Test' in col:
-        cols.append(col.replace(': Set-','').replace('Test-','LT_'))
+        cols.append(col.split(':')[0].replace('Lab-','A_0').replace('010','10').replace('011','11'))
+    elif 'LT-' in col:
+        cols.append(col.replace(': Set-','').replace('LT-','LT_0'))
     else:
         cols.append(col)
 cols
 #%%
 gdf.columns = cols
 del hdf
-#%%
-gdf['LT_01']=gdf[['LT_1A','LT_1B']].max(axis=1)
-gdf['LT_02']=gdf[['LT_2A','LT_2B']].max(axis=1)
-#%%
-remc=['LT_1A','LT_1B','LT_2A','LT_2B']
+#%% Combine LT1A and LT1B
+# gdf['LT_01']=gdf[['LT_1A','LT_1B']].max(axis=1)
+# gdf['LT_02']=gdf[['LT_2A','LT_2B']].max(axis=1)
+#%% Drop LT1A and LT1B
+# remc=['LT_1A','LT_1B','LT_2A','LT_2B']
+# gdf = gdf.drop(remc, axis=1)
+#%% Drop A_01
+remc=['A_01']
 gdf = gdf.drop(remc, axis=1)
 #%% replace nan students with their actual roll numbers
 m = get_map_roll_to_name(rev=True)
 
 missing = gdf.loc[gdf["1_Roll"] == 0].index
 for i in missing:
-    gdf.loc[i, "1_Roll"] = m[gdf.loc[i, "2_Student"]]
+    name = gdf.loc[i, "2_Student"].strip()
+    # remove extra space using regex
+    name = re.sub(r" +", " ", name)
+    gdf.loc[i, "1_Roll"] = m[name]
+## Set column 1_Roll to upper case
+gdf["1_Roll"] = gdf["1_Roll"].str.upper()
 gdf = gdf.set_index("1_Roll")
 
 #%% Add Viva data here
@@ -138,9 +147,10 @@ agg_cols = []
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
-top8 = f"Top 8A"
+top=4
+top8 = f"Top {top}A"
 agg_cols.append(top8)
-gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:8].mean(),axis=1)
+gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1)
 # c='LT'
 # top8 = f"LT1 & 2"
 # agg_cols.append(top8)
@@ -154,13 +164,14 @@ gdf = gdf.reindex(sorted(gdf.columns), axis=1)
 # gdf.drop("zTotal", axis=1, inplace=True)
 #%%
 fl=lambda x,y:x[y].replace('-',0).astype('float')
-gdf["Total"] = .2*fl(gdf,top8) + .3*fl(gdf,"LT_01") + .3*fl(gdf,"LT_02")+20
-gdf.drop(top8, axis=1, inplace=True)
+total="Total (.5A+.25LT1+.25LT1)"
+gdf[total] = .5*fl(gdf,top8) + .25*fl(gdf,"LT_01") + .25*fl(gdf,"LT_01")
+# gdf.drop(top8, axis=1, inplace=True)
 # if inital total was 0 then set the value to 0
-gdf["Total"]=gdf["Total"].apply(lambda x:0 if x==20 else x) 
+# gdf[total]=gdf[total].apply(lambda x:0 if x==20 else x) 
 # gdf["Total"]=gdf["Total"].apply(lambda x:x/2 if x<40 else x)
 # gdf.sort_values(by="Total", ascending=False, inplace=True)
-gdf.sort_values(by="1_Roll", ascending=True, inplace=True)
+gdf.sort_values(by=total, ascending=False, inplace=True)
 
 # %% pygsheets
 
@@ -202,8 +213,8 @@ cauth = auth()
 # push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
 
 ##
-my_students = get_students(only_roll=1,path=r'var/map_default.txt')
-gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
+my_students = get_students(only_roll=1,path=r'var/mapping.txt')
+# gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
 gdf_my_students = gdf.loc[my_students,:]
 # gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
 push_to_sheets(cauth, ws_name, gdf_my_students)
