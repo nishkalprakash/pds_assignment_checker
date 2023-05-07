@@ -52,7 +52,6 @@ if __name__ == "__main__":
             insert(driver,cm, f"{s_m_c[r]['c']}")
             print(f"{i} - Done for {r}")
         ## Save changes
-        driver.find_element(By.XPATH, value="//input[@type='submit' and @value='Save and go to next page']").click()
         sleep(2)
         print(f'{f"Done for {A_Q_.format(a=a,q=q)}":*^50}')
         return 0
@@ -67,5 +66,7 @@ if __name__ == "__main__":
     q_topics = [i for i in driver_get_topics_from_a(driver,a) if i['q'] in ql]
     for q_topic in q_topics:
         upload_to_moodle(a, q_topic)
+        driver.find_element(By.XPATH, value="//input[@type='submit' and @value='Save and go to next page']").click()
+
     driver.close()
     
