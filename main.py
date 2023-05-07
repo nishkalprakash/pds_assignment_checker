@@ -427,6 +427,7 @@ def pds_checker(a, q, s=None):
                         comments.append(
                                 f"PASSED: All code cases - Marks : {max_code_marks:g} out of {max_code_marks:g}"
                             )
+                    
                     total_marks = sum((i for i in (test_marks + code_marks)
                                        if "%" not in str(i)))
                     ## TODO: Here we will deduct the negative percentage sums and round to nearest b=0.5 using formula n=b*round(a/b)
@@ -436,6 +437,10 @@ def pds_checker(a, q, s=None):
                             float(i.strip("%"))
                             for i in code_marks if "%" in str(i)) / 100) /
                         rounding_base)
+                    if total_marks > max_marks:
+                        total_marks = max_marks
+                    elif total_marks < 0:
+                        total_marks = 0
                 comments.append("")
                 comments.append("".center(30, "="))
                 comments.append("")
