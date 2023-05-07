@@ -440,7 +440,7 @@ def pds_checker(a, q, s=None):
                 comments.append("".center(30, "="))
                 comments.append("")
                 comments.append(
-                    f" TOTAL MARKS OBTAINED = {total_marks:g} ".center(
+                    f" TOTAL MARKS OBTAINED = {total_marks:g}/{max_marks:g} ".center(
                         50, "#"))
 
         except Exception as e:
@@ -509,11 +509,11 @@ def pds_checker(a, q, s=None):
     print("Report has been generated.")
     return 0
 
-
-if __name__ == "__main__":
+def pds_driver(a=None,ql=None):
     base_home = Path.cwd()
-    a, ql = get_a_ql_from_user()
     s=None
+    if a is None:
+        a, ql = get_a_ql_from_user()
     if BASE == "LT":
         s=def_input("Enter the Set","A")
         # assert that s is A or B
@@ -526,3 +526,6 @@ if __name__ == "__main__":
         while x == "RERUN":
             x = pds_checker(a, q, s)
             chdir(base_home)
+
+if __name__ == "__main__":
+    pds_driver()
