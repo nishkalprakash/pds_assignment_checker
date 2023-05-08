@@ -23,16 +23,18 @@ from lib.pds_selenium import (
 )
 from lib.pds_globals import A_Q_
 
-if __name__ == "__main__":
 
-    def upload_to_moodle(a, q_topic):
-        ## Initialize selenium
-
-        ## Get the link to the assignemt_question
-
-        # driver.get(A_Q_PDS_QUIZ_.format(q=qq['q'],qid=qq['qid'],quiz_id=qq['quiz_id']))
-        # driver_get_from_topic(driver, topic_id)
-        ## Get each student marks and comments
+def upload_to_moodle(a, ql,roll=None):
+    ## Initialize selenium
+    driver = init_selenium()
+    # sleep(2)
+    ## Go to course page
+    driver_get_course(driver)
+    # map_n_r=get_map_roll_to_name(rev=True)
+    # h4="//h4[contains(text(),'Attempt number 1 for ')]"
+    xp="descendant::div[@class='comment']//%s[contains(concat(' ',normalize-space(@id),' '),'-%s')]"
+    q_topics = [i for i in driver_get_topics_from_a(driver,a) if i['q'] in ql]
+    for q_topic in q_topics:
         q=q_topic['q']
         nr_nxt=driver_get_heading_element_list(driver,q_topic)
         m_elem=nr_nxt[0]['next_div'].find_element(by=By.XPATH,value=xp.replace('@id','@name')%('input','maxmark'))
@@ -42,6 +44,8 @@ if __name__ == "__main__":
         # try:
             next_div=nrd.pop('next_div')
             r=nrd['r']
+            if roll is not None and r!=roll:
+                continue
             cm=next_div.find_element(by=By.XPATH,value=xp%('div','comment_ideditable'))
             mks=next_div.find_element(by=By.XPATH,value=xp%('input','mark'))
         
@@ -51,22 +55,27 @@ if __name__ == "__main__":
             insert(driver,mks, f"{s_m_c[r]['m']}")
             insert(driver,cm, f"{s_m_c[r]['c']}")
             print(f"{i} - Done for {r}")
+            if r==roll:
+                break
         ## Save changes
         sleep(2)
         print(f'{f"Done for {A_Q_.format(a=a,q=q)}":*^50}')
-        return 0
-
-    a, ql = get_a_ql_from_user()
-    driver = init_selenium()
-    ## Go to course page
-    driver_get_course(driver)
-    map_n_r=get_map_roll_to_name(rev=True)
-    # h4="//h4[contains(text(),'Attempt number 1 for ')]"
-    xp="descendant::div[@class='comment']//%s[contains(concat(' ',normalize-space(@id),' '),'-%s')]"
-    q_topics = [i for i in driver_get_topics_from_a(driver,a) if i['q'] in ql]
-    for q_topic in q_topics:
-        upload_to_moodle(a, q_topic)
         driver.find_element(By.XPATH, value="//input[@type='submit' and @value='Save and go to next page']").click()
+        sleep(2)
 
+    ## Get the link to the assignemt_question
+
+    # driver.get(A_Q_PDS_QUIZ_.format(q=qq['q'],qid=qq['qid'],quiz_id=qq['quiz_id']))
+    # driver_get_from_topic(driver, topic_id)
+    ## Get each student marks and comments
     driver.close()
+    return 0
+
+# def upload_to_moodle_driver():
     
+
+ 
+    
+if __name__ == "__main__":
+    a, ql = get_a_ql_from_user()
+    upload_to_moodle(a,ql)

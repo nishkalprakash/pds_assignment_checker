@@ -126,15 +126,15 @@ def def_input(text, default="",short=False,**kwargs):
 def get_a_ql_from_user(q=True):
     """Accepts Assignment Number and Question Number
     Support for checking multiple questions added.
-    It will return a ' ' separated string for multiple questions
+    It will return a str for signle or a list for multiple questions
     USAGE for multi question:
         in the calling function use -
         a,ql=get_a_ql_from_user()
-        for q in ql.split()
+        for q in ql:
             <do something with a,q>
     Returns:
         a [str]: assignment number, eg 1|4
-        ql [str]: question number, eq 1!1 2 3 4
+        ql [str]: question number, eq 1|1 2 3 4
 
     """
     ll = list(Path(HOME).glob(f"{BASE}*"))
