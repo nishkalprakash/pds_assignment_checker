@@ -88,7 +88,7 @@ for col in hdf.values[0]:
     if 'Lab' in col:
         cols.append(col.split(':')[0].replace('Lab-','A_0').replace('010','10').replace('011','11'))
     elif 'LT-' in col:
-        cols.append(col.replace(': Set-','').replace('LT-','LT_0'))
+        cols.append(col.split(':')[0].replace(': Set-','').replace('LT-','LT_0'))
     else:
         cols.append(col)
 cols
@@ -158,13 +158,12 @@ gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: 
 
 # .mean(axis=1)
 
-gdf = gdf.reindex(sorted(gdf.columns), axis=1)
 
 #%% compute total
 # gdf.drop("zTotal", axis=1, inplace=True)
 #%%
 fl=lambda x,y:x[y].replace('-',0).astype('float')
-total="Total (.5A+.25LT1+.25LT1)"
+total="3_Total"
 gdf[total] = .5*fl(gdf,top8) + .25*fl(gdf,"LT_01") + .25*fl(gdf,"LT_01")
 # gdf.drop(top8, axis=1, inplace=True)
 # if inital total was 0 then set the value to 0
@@ -172,6 +171,7 @@ gdf[total] = .5*fl(gdf,top8) + .25*fl(gdf,"LT_01") + .25*fl(gdf,"LT_01")
 # gdf["Total"]=gdf["Total"].apply(lambda x:x/2 if x<40 else x)
 # gdf.sort_values(by="Total", ascending=False, inplace=True)
 gdf.sort_values(by=total, ascending=False, inplace=True)
+gdf = gdf.reindex(sorted(gdf.columns), axis=1)
 
 # %% pygsheets
 
