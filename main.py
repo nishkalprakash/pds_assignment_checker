@@ -223,7 +223,7 @@ def pds_checker(a, q, s=None):
                                     out=proc.stdout
                                    
                                 except TimeoutExpired:
-                                    out='[Code throws a math exception during runtime]'
+                                    out=f'[ERROR: RUNTIMEOUT, It may be due one of the following:{BR}Waits for more user input than expected/defined in the  or{BR}Code throws a math exception during runtime or{BR}Runs into an infinite loop or{BR}Waits for more user input than expected or{BR}or something else completely, we will never know...{BR}]'
                                     # comments.append(f'{BR}Code goes into an Infinite Loop')
                                     # raise e
                                 except Exception as e:
