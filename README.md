@@ -84,8 +84,9 @@
     * Install webdriver_manager using `pip install webdriver_manager`
     * Save moodle credentials in `var\creds.txt` as `{USERNAME}:{PASSWORD}`
 * Added support for automated moss checking
-    * Download moss from [here](https://theory.stanford.edu/~aiken/moss/)
-    * Extract and place the moss folder in `lib\moss.pl`
+    * [Requires] Perl >=5.24 (strawberry) (should exist in path)
+    * Download moss from [here](https://theory.stanford.edu/~aiken/moss/).
+    * Extract and place the moss folder in `lib\moss.pl`.
     * Edit `moss.pl` and change the `$userid=` to your userid.
     (To obtain a Moss account, send a mail message to mailto:moss@moss.stanford.edu. 
     The body of the message should appear exactly as follows:
@@ -95,10 +96,7 @@
         ```
         where username@domain is the email address of the user to register.)
     * Run `moss.py` to generate the moss report
-
-
-    
-    
+  
 * Added support for negative marking in `code_questions.txt`:
     * An entry with negative marks can be given, For Example:
     > -1;Intermediate is missing  
