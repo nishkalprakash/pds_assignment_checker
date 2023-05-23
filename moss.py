@@ -75,7 +75,7 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
         roll=lf[2].strip()
         new_fname = f"{mapping[roll]} - {roll} - {A_Q_.format(**aq)}.c".replace(' ','_')
         copyfile(f, moss_folder_name / new_fname)
-        # moss_command += f'"{new_fname}" '
+        moss_command += f'"{new_fname}" '
 
     chdir(moss_folder_name)
     # moss_command += f' | tee "../moss_results.txt"'
