@@ -1,8 +1,1 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+10;Degrees = 30.000000~~### Iterative Method ###~~sin(30.0000) = 0.500000000~~CPU time: 1.004000000 seconds~~~~### Recursive Method ###~~sin(30.0000) = 0.500000000~~CPU time: 1.002000000 seconds~~Recursive method is faster by 0.002000000 seconds~~;30

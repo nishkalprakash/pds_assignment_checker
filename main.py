@@ -272,7 +272,7 @@ def pds_checker(a, q, s=None):
                                 test_marks[i] = float(inp)
                                 if test_marks[i] < mark:
                                     comments.append(
-                                        f"{BR}FAILED: Test Case {i+1}: {BR}{test_comment} {BR}  Mark/s obtained: {test_marks[i]:g} out of {mark:g}{BR}"
+                                        f"{BR}FAILED: Test Case {i+1}: {BR}INPUT:{test}{BR}Desired Output:{BR}{test_comment} {BR}  Mark/s obtained: {test_marks[i]:g} out of {mark:g}{BR}"
                                     )
                                     if platform == 'win32':
                                         comments.append(f'{BR}Your output:{BR}{out}')
@@ -280,7 +280,7 @@ def pds_checker(a, q, s=None):
                                         i] >= mark:  # in case of typing errpr
                                     test_marks[i] = mark
                                     # comments.append(
-                                    #     f"{BR}PASSED: Test Case {i+1}: {BR}{test_comment}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
+                                    #     f"{BR}PASSED: Test Case {i+1}: {BR}INPUT:{test}{BR}Desired Output:{BR}{test_comment}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
                                     # )
                             else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
                                 test_marks[i] = float(
@@ -291,7 +291,7 @@ def pds_checker(a, q, s=None):
                                 if test_marks[i] == mark:
                                     # if -ve marks are given then add comment
                                     comments.append(
-                                        f"{BR}Passed Negative Criteria: {test_comment}{BR}  Mark/s lost: {mark:g}"
+                                        f"{BR}Passed Negative Criteria: {BR}INPUT:{test}{BR}Desired Output:{test_comment}{BR}  Mark/s lost: {mark:g}"
                                     )
                             """
                             ## HACK: Start Support for Binary test marks
