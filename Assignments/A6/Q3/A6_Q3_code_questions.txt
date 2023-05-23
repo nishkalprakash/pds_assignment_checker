@@ -1,4 +1,6 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+5;Choice presented to user
+10;(1) array elements reversed and printed
+10;(2) two input strings taken
+20;(2) checked for anagrams
+5;(3) input string taken
+10;(3) checked for palindrome

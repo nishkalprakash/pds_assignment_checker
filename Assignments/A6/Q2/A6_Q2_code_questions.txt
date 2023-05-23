@@ -1,4 +1,9 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;taken inputs
+10;(a) taken input for format specifier for eg: %d
+10;(a) taken input from user
+10;(a) printed output to user
+10;(b) taken input using %19s %29s
+10;(b) printed output to user
+10;(c) taken input using %[^\n]%*c or %[^\n]s
+20;(c) computed frequency of digits, special characters, vowels, consonants, sentences 
+10;(c) printed output

@@ -1,8 +1,7 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+#TC_GENERATED
+10;~~The reversed array is: 5 4 3 2 1;1 5 1 2 3 4 5
+10;~~The strings are anagrams.;2~~listen~~silent~~
+10;~~The strings are anagrams.;2~~debit card~~bad credit~~
+10;~~The strings are not anagrams.;2~~nishkal~~prakash~~
+10;~~The string is a palindrome.;3~~malayalam~~
+10;~~The string is not a palindrome.;3~~nishkal~~

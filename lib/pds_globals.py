@@ -105,7 +105,7 @@ A_SUB_PATH_ = A_PATH_ + "/" + A_SUB_
 # ASSIGN_Q_NAME_PATTERN_=ASSIGN_NAME_PATTERN+"{q})"
 
 
-TC_=f"{{m}}{DELIM}IN:{BR}{{ip}}{BR}{BR}Exp OUT:{BR}{{op}}{BR}{BR}{DELIM}{{ip}}"
+TC_=f"{{m}}{DELIM}{BR}{{op}}{DELIM}{{ip}}"
 TEST_DEMO = f"""
 # Format: `{{marks}}{DELIM}{{label}}{DELIM}{{test_case}}`
 # * For Example:
