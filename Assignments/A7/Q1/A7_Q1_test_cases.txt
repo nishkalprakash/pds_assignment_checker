@@ -1,5 +1,5 @@
 #TC_GENERATED
-10;~~5-random number array: 30 136 277 484 348~~No perfect number found;5
-10;~~5-random number array: 144 28 931 732 910~~28 is a perfect number.;5
-10;~~0-random number array:~~No perfect number found;0
-10;~~10-random number array: 732 496 218 752 758 138 6 276 138 352 ~~496, 6 are perfect numbers;10
+10;~~5 Random Number: <Random numbers>~~<The perfect numbers>;5
+10;~~5 Random Number: <Random numbers>~~<The perfect numbers>;5
+10;~~0 Random Number: <Random numbers>~~<The perfect numbers>;0
+10;~~10 Random Number: <Random numbers>~~<The perfect numbers>;10
