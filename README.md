@@ -53,7 +53,7 @@
 ### Editing `test_cases.txt`:
 
 * This file has to be edited for each Assignment
-* Test cases *NEED* to have marks and comments/label for each test case
+* Test cases *NEED* to have marks and comments/label (desired output) for each test case
 * Format: `{marks};{label};{test_case}`
 * For Example:
 
