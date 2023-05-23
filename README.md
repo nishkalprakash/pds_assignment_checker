@@ -6,7 +6,6 @@
 
 * Python >=3.9 (should exist in path) (This code uses removeprefix() and walrus/assignment_operator ( `:=` operator ))
 * Gcc >= 8.1 (should exist in path) (best to use code blocks compiler)
-* Perl >=5.24 (strawberry) (should exist in path)
 * Default editor for `.c` files should be set
 
 ## Features:
@@ -84,6 +83,20 @@
     * Install selenium using `pip install selenium`
     * Install webdriver_manager using `pip install webdriver_manager`
     * Save moodle credentials in `var\creds.txt` as `{USERNAME}:{PASSWORD}`
+* Added support for automated moss checking
+    * Download moss from [here](https://theory.stanford.edu/~aiken/moss/)
+    * Extract and place the moss folder in `lib\moss.pl`
+    * Edit `moss.pl` and change the `$userid=` to your userid.
+    (To obtain a Moss account, send a mail message to mailto:moss@moss.stanford.edu. 
+    The body of the message should appear exactly as follows:
+        ```
+        registeruser
+        mail username@domain
+        ```
+        where username@domain is the email address of the user to register.)
+    * Run `moss.py` to generate the moss report
+
+
     
     
 * Added support for negative marking in `code_questions.txt`:
@@ -101,7 +114,7 @@
 
 ## License:
 
-Copyright <2020-22> (Nishkal Prakash)
+Copyright <2020-23> (Nishkal Prakash)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
