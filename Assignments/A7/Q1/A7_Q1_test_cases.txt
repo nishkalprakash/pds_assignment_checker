@@ -1,8 +1,5 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+#TC_GENERATED
+10;~~5-random number array: 30 136 277 484 348~~No perfect number found;5
+10;~~5-random number array: 144 28 931 732 910~~28 is a perfect number.;5
+10;~~0-random number array:~~No perfect number found;0
+10;~~10-random number array: 732 496 218 752 758 138 6 276 138 352 ~~496, 6 are perfect numbers;10

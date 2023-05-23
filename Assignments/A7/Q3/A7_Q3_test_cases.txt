@@ -1,8 +1,3 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;~~INPUT:~~123~~~~Expected OUTPUT:~~321~~~~;123
-10;~~INPUT:~~101~~~~Expected OUTPUT:~~101~~~~;101
-10;~~INPUT:~~993~~~~Expected OUTPUT:~~399~~~~;993
-10;~~INPUT:~~100~~~~Expected OUTPUT:~~1~~~~;100
-# ```
+#TC_GENERATED
+10;~~## After reading X ##~~Printing 3 names (names stored in X):~~#       Name~~===========================~~1       Monkey D Luffy~~2       Gol D Roger~~3       Zoro~~~~## After reading Y ##~~Printing 3 names (names stored in Y):~~#       Name~~===========================~~1       Naruto Uzumaki~~2       Zoro~~3       Sasuke Uchiha~~~~## After sorting and deleting duplicates in Z ##~~Printing 5 names (names stored in Z):~~#       Name~~===========================~~1       Gol D Roger~~2       Monkey D Luffy~~3       Naruto Uzumaki~~4       Sasuke Uchiha~~5       Zoro;3~~Monkey D Luffy~~Gol D Roger~~Zoro~~~~3~~Naruto Uzumaki~~Zoro~~Sasuke Uchiha~~
+10;~~## After reading X ##~~Printing 3 names (names stored in X):~~#       Name~~===========================~~1       N P~~2       A R~~3       S S~~~~## After reading Y ##~~Printing 2 names (names stored in Y):~~#       Name~~===========================~~1       S J~~2       Y K S~~~~## After sorting and deleting duplicates in Z ##~~Printing 5 names(names stored in Z):~~#       Name~~===========================~~1       A R~~2       N P~~3       S J~~4       S S~~5       Y K S;3~~N P~~A R~~S S~~~~2~~S J~~Y K S~~
