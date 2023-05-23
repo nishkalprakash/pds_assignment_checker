@@ -353,7 +353,7 @@ def pds_checker(a, q, s=None):
                         )
                     max_test_marks = sum(i for i in test_marks_list if i > 0)
                     if max_test_marks == sum(test_marks):
-                        short = 'ss'
+                        # short = 'ss'
                         # comments.pop(" TEST CASES ".center(30, "="))
                         comments.append(
                                 f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}"
@@ -453,7 +453,7 @@ def pds_checker(a, q, s=None):
             raise
             # return
         try:
-            short='00'
+            # short='00'
             # other_comment = def_input("\n\nGive any other comment? [0]/1: ",
             #                           '0')
             other_comment = def_input("\n\nGive any other comment? [0]/1: ",
