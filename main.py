@@ -131,6 +131,7 @@ def pds_checker(a, q, s=None):
 
     print(f" Working for {report_path} ".center(100, "*"))
     ctr = 0
+    last_comment = ""
 
     for id, std_name, std_roll in students:
         # std_name=n[std_roll]
@@ -453,18 +454,19 @@ def pds_checker(a, q, s=None):
             raise
             # return
         try:
-            # short='00'
+            # short=False
             # other_comment = def_input("\n\nGive any other comment? [0]/1: ",
             #                           '0')
             other_comment = def_input("\n\nGive any other comment? [0]/1: ",
                                       '0', short)
             if other_comment == '1':
                 comments.insert(0, "")  # Hack for extra spacing
+                last_comment = def_input(
+                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",
+                        last_comment)
                 comments.insert(
                     0,
-                    def_input(
-                        f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",
-                        ''),
+                    last_comment,
                 )
             elif total_marks == max_marks:
                 comments.insert(0, "")  # Hack for extra spacing
