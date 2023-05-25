@@ -1,4 +1,4 @@
-#include <stdio.h>
+z#include <stdio.h>
 #include <time.h>
 
 void perfnumber(int n); // declaring function to calculate perfect number
