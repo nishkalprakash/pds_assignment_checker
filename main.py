@@ -180,7 +180,7 @@ def pds_checker(a, q, s=None):
                         f"{BASE} file was not submitted properly {BR}Mark/s lost: {max_marks:g} out of {max_marks:g}{BR}"
                     )
                     file_exists = False
-                    short = True
+                    short = '00'
                 ## Compile and run THE C FILE
                 if file_exists:
                     ## Comment if no plag case exists
@@ -224,7 +224,7 @@ def pds_checker(a, q, s=None):
                                     out=proc.stdout
                                    
                                 except TimeoutExpired:
-                                    out=f'[ERROR: RUNTIMEOUT, It may be due one of the following:{BR}Waits for more user input than expected/defined in the  or{BR}Code throws a math exception during runtime or{BR}Runs into an infinite loop or{BR}Waits for more user input than expected or{BR}or something else completely, we will never know...{BR}]'
+                                    out=f'[ERROR: SEGMENTATION_FAULT or RUNTIMEOUT.{BR}It may be due one of the following:{BR}+ Waits for more user input than expected/defined in the question or{BR}+ Code throws a math exception during runtime or{BR}+ Runs into an infinite loop or{BR}or something else completely, we will never know...{BR}]'
                                     # comments.append(f'{BR}Code goes into an Infinite Loop')
                                     # raise e
                                 except Exception as e:
@@ -262,14 +262,14 @@ def pds_checker(a, q, s=None):
                             if mark > 0:
                                 inp=def_input(
                                         f"\n\nTest_Case_{i+1} - [{mark:g}] Mark/s : ",
-                                        mark, short)
+                                        mark, short,report_path=report_path)
                                 if inp == 'ss':
                                     short='ss'
                                     inp = mark
                                 elif inp == '00':
                                     short='00'
                                     
-                                elif inp == 'RERUN': return "RERUN"
+                                elif inp == 'RERUN' or inp == 'r': return "RERUN"
                                 test_marks[i] = float(inp)
                                 if test_marks[i] < mark:
                                     comments.append(
@@ -283,6 +283,7 @@ def pds_checker(a, q, s=None):
                                     # comments.append(
                                     #     f"{BR}PASSED: Test Case {i+1}: {BR}INPUT:{test}{BR}Desired Output:{BR}{test_comment}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
                                     # )
+                            """
                             else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
                                 test_marks[i] = float(
                                     def_input(
@@ -294,6 +295,7 @@ def pds_checker(a, q, s=None):
                                     comments.append(
                                         f"{BR}Passed Negative Criteria: {BR}INPUT:{test}{BR}Desired Output:{test_comment}{BR}  Mark/s lost: {mark:g}"
                                     )
+                            """
                             """
                             ## HACK: Start Support for Binary test marks
                             if mark > 0:
@@ -387,14 +389,14 @@ def pds_checker(a, q, s=None):
                             if mark >= 0:
                                 inp=def_input(
                                         f"\n\n{ques} - [{mark:g}] Mark/s : ",
-                                        mark, short)
+                                        mark, short,report_path=report_path)
                                 if inp == 'ss':
                                     short='ss'
                                     inp = mark
                                 elif inp == '00':
                                     short='00'
                                     
-                                elif inp == 'RERUN': return "RERUN"
+                                elif inp == 'RERUN' or inp == 'r': return "RERUN"
                                 # elif 'z' in inp or 'r' in inp: return undo_redo_result(report_path,inp)
                                 code_marks[i] = float(inp)
                                 if code_marks[i] < mark:
@@ -451,15 +453,15 @@ def pds_checker(a, q, s=None):
 
         except Exception as e:
             print("Something went wrong during test/code checking: ", str(e))
-            raise
+            raise e
             # return
         try:
             # short=False
             # other_comment = def_input("\n\nGive any other comment? [0]/1: ",
             #                           '0')
             other_comment = def_input("\n\nGive any other comment? [0]/1: ",
-                                      '0', short)
-            if other_comment == '1':
+                                      0, short)
+            if other_comment == 1:
                 comments.insert(0, "")  # Hack for extra spacing
                 last_comment = def_input(
                         f"\nPlease enter your final comment for {std_roll} - {std_name}:\n",
