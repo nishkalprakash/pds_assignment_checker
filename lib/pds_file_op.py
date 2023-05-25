@@ -99,6 +99,8 @@ def get_last_edited_file_path(path,pattern="*"):
 
 ## Gives the user a default input option which can be inputted using enter
 def def_input(text, default="",short=False,**kwargs):
+    # if short=='r':
+        # return "RERUN"
     if short=='ss':
         return default
     default_type=type(default)
@@ -112,7 +114,8 @@ def def_input(text, default="",short=False,**kwargs):
         # if inp in UNDO_REDO_CHEAT_CODES: 
             # return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="*_report.csv")),inp)
         # if inp=='ss': return 'ss'
-        if 'z' in inp or 'r' in inp: return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="*_report.csv")),inp)
+        if inp.startswith('z'): 
+            return undo_redo_result(kwargs.get('report_path',get_last_edited_file_path(Path.cwd(),pattern="*_report.csv")),inp)
         # if 'r' in inp: return redo_result(globals()['report_path'],inp.count('z')-1)
         # if " " in inp:
         #     return inp.split(" ")
@@ -187,7 +190,11 @@ def push(path, text, attr="a+", DELIM=DELIM):
 
 def pop(path, DELIM=DELIM):
     data=pull(path,DELIM)
+    ## check if path is a csv file
+    if Path(path).suffix=='.csv':
+        if len(data)==1: return False
     if len(data)==0: return False
+
     push(path,data[:-1],'w+',DELIM)
     return data[-1]
 
@@ -198,10 +205,10 @@ def undo_redo_result(report_path,code):
     # hist=Path(report_path).parent/'.report_history.txt'
     pop_path=report_path
     # push_path=hist
-    if code[0]=='r':
+    # if code[0]=='r':
         # Changing redo task to rerun
         # pop_path,push_path=push_path,pop_path
-        return "RERUN"
+        # return "RERUN"
     data=pop(pop_path)
     if data == False:
         return "RERUN"
