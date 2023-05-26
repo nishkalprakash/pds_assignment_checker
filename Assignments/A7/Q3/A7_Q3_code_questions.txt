@@ -1,5 +1,5 @@
-5;(a) Declared a pointer array X to store n names.
-5;(b) Declared another pointer array Y to store m names. 
+10;(a) Declared a pointer array X to store n names.
+10;(b) Declared another pointer array Y to store m names. 
 10;(c)	Copy all the names in the array X and array Y in array Z.
 30;(d)	Sort the merged array Z and
 30;(e)	Delete all the duplicate entries, if any, except one.
