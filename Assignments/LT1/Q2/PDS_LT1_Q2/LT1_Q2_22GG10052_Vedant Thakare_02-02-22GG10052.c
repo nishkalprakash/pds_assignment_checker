@@ -1,22 +1,59 @@
+/*
+Section 2
+Roll no:22GG10052
+Name:Vedant Thakare
+Lab Test 1
+Description :finding the significant digits
+*/
 #include<stdio.h>
-int main ()
+int main()
 {
-    double alpha,rho,Rs,Ts,D,Tp;
-    // The below lines are for the user to enter the values of alpha,rho,Rs,Ts,D,Tp
-    printf("Enter alpha\n");
-    scanf("%le",&alpha);
-    printf("Enter sigma\n");
-    scanf("%le",&rho);
-    printf("Enter Rs\n");
-    scanf("%le",&Rs);
-    printf("Enter Ts\n");
-    scanf("%le",&Ts);
-    printf("Enter D\n");
-    scanf("%le",&D);
-    Tp = Ts*sqrt((Rs*sqrt((1-alpha)/rho))/(2*D));
-    // The below line is for displaying the value of Tp
-    printf("The value of Tp is %le",Tp);
+    int n,i,b=0,count=0,a,f,c,d;
+    printf("Enter the number \n");
+    scanf("%d",&n);
+    if(n<0)
+    {
+        n=-n;
+    }
+    while(n>0)
+    {
+        a=n%10;
+        n/=10;
+        b=10*b+a;
+    }
+    if(n%2==0)
+    {
+     printf("Most significant digits to least significant digits:\n");
+     f=10;
+     while(n>0)
+     {
+         
+     
+     printf("%d ",n);
+     }
+
+    }
+    else
+    {
+        printf("Least significant digits to most significant digits:\n");
+        printf("%d ",n);
+        while(f>1)
+        {
+
+
+        f=1000;
+        d=n%f;
+        f=f/10;
+        printf("%d ",d);
+        }
+        printf("/n");
+
+
+
+    }
+    printf("reverse of the number :%d",b);
+
+
+    printf("%d",b);
     return 0;
 }
-// After testing the program when the value of the table are entered,the value of Tp is coming out to be 5.742861e-13
-
