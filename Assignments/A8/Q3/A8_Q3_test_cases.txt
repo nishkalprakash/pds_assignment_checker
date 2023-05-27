@@ -1,8 +1,3 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;321;123
-10;101;101
-10;993;993
-10;100;100
-# ```
+#TC_GENERATED
+10;~~Student Records:~~<Print in the order read>~~~~Sorted Student Records:~~Student Records:~~Roll No: 21CS91R01~~Marks: 99.00 99.00 100.00~~Total: 298.00~~Roll No: 19CS91R05~~Marks: 100.00 99.00 98.00~~Total: 297.00~~Roll No: 21CS91R05~~Marks: 98.00 99.00 97.00~~Total: 294.00;3~~19CS91R05 100 99 98~~21CS91R01 99 99 100~~21CS91R05 98 99 97
+10;~~Student Records:~~<Print in the order read>~~~~Sorted Student Records:~~Student Records:~~Roll No: 22CS60R16~~Marks: 55.00 66.00 77.00~~Total: 198.00~~Roll No: 22CS60R17~~Marks: 33.00 44.00 55.00~~Total: 132.00~~Roll No: 22CS60R14~~Marks: 22.00 33.00 44.00~~Total: 99.00~~Roll No: 22CS60R15~~Marks: 11.00 22.00 33.00~~Total: 66.00;4~~22CS60R14 22 33 44~~22CS60R15 11 22 33~~22CS60R17 33 44 55~~22CS60R16 55 66 77
