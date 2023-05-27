@@ -68,3 +68,4 @@ Uploading Kavita_Thakur_-_22NA30019_-_A8_Q2.c ...done.
 Uploading Abhimanyu_Dev_Upadhyay_-_22PH10002_-_A8_Q2.c ...done.
 Uploading Sagarneel_Ghoshal_-_22PH10040_-_A8_Q2.c ...done.
 Query submitted.  Waiting for the server's response.
+http://moss.stanford.edu/results/8/8983290454811
