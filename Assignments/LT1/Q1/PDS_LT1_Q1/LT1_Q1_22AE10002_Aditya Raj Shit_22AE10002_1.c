@@ -20,16 +20,16 @@ int main(){
     printf("Enter four coordinates below: \n");
 
     printf("    (x1,y1) : ");
-    scanf("%lf%lf",&x1,&y1);
+    scanf("%lf,%lf",&x1,&y1);
 
     printf("    (x2,y2) : ");
-    scanf("%lf%lf",&x2,&y2);
+    scanf("%lf,%lf",&x2,&y2);
 
     printf("    (x3,y3) : ");
-    scanf("%lf%lf",&x3,&y3);
+    scanf("%lf,%lf",&x3,&y3);
 
     printf("    (x4,y4) : ");
-    scanf("%lf%lf",&x4,&y4);
+    scanf("%lf,%lf",&x4,&y4);
 
 
     //Calculating length of sides possible.

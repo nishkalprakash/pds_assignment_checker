@@ -5,16 +5,16 @@ int main()
     float x1,y1,x2,y2,x3,y3,x4,y4 ,area1 ,area2,area3,area4 ,peri ,max ;
     printf("Please enter the points\n");
     printf("(x1,y1) : ") ;
-    scanf("%f %f",&x1,&y1) ;
+    scanf("%f,%f",&x1,&y1) ;
     printf("\n") ;
     printf("(x2,y2) : ") ;
-    scanf("%f %f",&x2,&y2) ;
+    scanf("%f,%f",&x2,&y2) ;
     printf("\n") ;
     printf("(x3,y3) : ") ;
-    scanf("%f %f",&x3,&y3) ;
+    scanf("%f,%f",&x3,&y3) ;
     printf("\n") ;
     printf("(x4,y4) : ") ;
-    scanf("%f %f",&x4,&y4) ;
+    scanf("%f,%f",&x4,&y4) ;
     printf("\n") ; //Here i am calculating the area using formula of coordinate geometry for each case : 1,2,3 ; 1,2,4 ; 1,3,4 ; 2,3,4 //
     //these represent the various combinations of the points possible to create the triangle //
 

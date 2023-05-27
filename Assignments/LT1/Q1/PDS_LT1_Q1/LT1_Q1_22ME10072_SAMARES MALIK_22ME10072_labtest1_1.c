@@ -7,13 +7,13 @@ int main(){
     float a1,a2,a3,b1,b2,b3,c1,c2,c3,d1,d2,d3;
     float max_area;
     printf("(x1,y1) = ");
-    scanf("%d%d",&x1,&y1);
+    scanf("%d,%d",&x1,&y1);
     printf("\n(x2,y2) = ");
-    scanf("%d%d",&x2,&y2);
+    scanf("%d,%d",&x2,&y2);
     printf("\n(x3,y3) = ");
-    scanf("%d%d",&x3,&y3);
+    scanf("%d,%d",&x3,&y3);
     printf("\n(x4,y4) = ");
-    scanf("%d%d",&x4,&y4);
+    scanf("%d,%d",&x4,&y4);
     a1 = sqrt(((x1-x2)*(x1-x2))+((y1-y2)*(y1-y2)));
     a2 = sqrt(((x2-x3)*(x2-x3))+((y2-y3)*(y2-y3)));
     a3 = sqrt(((x3-x1)*(x3-x1))+((y3-y1)*(y3-y1)));

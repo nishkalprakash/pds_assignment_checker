@@ -7,13 +7,13 @@ int main()
     float x1, x2, x3, x4;
     float y1, y2, y3, y4;
     printf("Type the 1st point (x1, y1) = \n");
-    scanf("%f %f", &x1, &y1);
+    scanf("%f,%f", &x1, &y1);
     printf("Type the 2nd point (x2, y2) = \n");
-    scanf("%f %f", &x2, &y2);
+    scanf("%f,%f", &x2, &y2);
     printf("Type the 3rd point (x3, y3) = \n");
-    scanf("%f %f", &x3, &y3);
+    scanf("%f,%f", &x3, &y3);
     printf("Type the 4th point (x4, y4) = \n");
-    scanf("%f %f", &x4, &y4);
+    scanf("%f,%f", &x4, &y4);
 
     float area1, area2, area3, area4;
     // Calculating the area of triangle with the help of determinant

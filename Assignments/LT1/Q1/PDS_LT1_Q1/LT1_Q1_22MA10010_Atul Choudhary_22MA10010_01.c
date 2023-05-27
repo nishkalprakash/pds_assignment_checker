@@ -7,13 +7,13 @@ int main()
     float s1,s2,s3,s4,minar=99999;
     printf("enter the coordinates :");
     printf("(x1, y1)");
-    scanf("%d%d" ,&x1,&y1);
+    scanf("%d,%d" ,&x1,&y1);
     printf("(x2, y2)\n");
-    scanf("%d%d" ,&x2,&y2);
+    scanf("%d,%d" ,&x2,&y2);
     printf("(x3, y3)\n");
-    scanf("%d%d" ,&x3,&y3);
+    scanf("%d,%d" ,&x3,&y3);
     printf("(x4, y4)\n");
-    scanf("%d%d" ,&x4,&y4);
+    scanf("%d,%d" ,&x4,&y4);
 
 
 

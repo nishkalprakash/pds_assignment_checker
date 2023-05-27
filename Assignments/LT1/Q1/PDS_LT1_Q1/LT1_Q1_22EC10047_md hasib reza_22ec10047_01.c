@@ -7,8 +7,8 @@ int main(){
 int x1,y1,x2,y2,x3,y3,x4,y4;
 float A1,A2,A3,A4;          // A1,A2,A3,A4 are area of all four possible triangle
 float P1,P2,P3,P4;          //P1,P2,P3,P4 are perimeter of all four possible triangle
+scanf("%d,%d%d,%d%d,%d%d,%d",&x1,&y1,&x2,&y2,&x3,&y3,&x4,&y4);
 printf("ENTER THE POINRS :\n (%d,%d)=\n (%d,%d)=\n (%d,%d)=\n (%d,%d)=\n",x1,y1,x2,y2,x3,y3,x4,y4);
-scanf("%d%d%d%d%d%d%d%d",&x1,&x2,&x3,&x4,&y1,&y2,&y3,&y4);
 
 
 A1=abs(1/2*(x2*y3+x3*y1+x1*y2-x2*y1-x1*y3-x3*y2));

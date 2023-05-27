@@ -208,7 +208,7 @@ def pds_checker(a, q, s=None):
                             mark, test_comment, test = line
                             mark = float(mark)
                             print(f"Test_Case_{i+1}:".center(50, "-"))
-                            # print(f"Input: {test}")
+                            print(f"Input: {test}")
                             print(f"Desired Output: \n{test_comment}")
                             print(f"Program Output:")
 

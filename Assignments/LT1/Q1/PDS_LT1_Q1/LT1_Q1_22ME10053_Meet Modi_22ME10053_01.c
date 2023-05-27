@@ -11,16 +11,16 @@ int main(){
     double x1,x2,x3,x4,y1,y2,y3,y4;
     printf("Enter the four points : \n");
     printf("(x1,y1) = ");
-    scanf("%lf%lf",&x1,&y1);
+    scanf("%lf,%lf",&x1,&y1);
     printf("\n");
     printf("(x2,y2) = ");
-    scanf("%lf%lf",&x2,&y2);
+    scanf("%lf,%lf",&x2,&y2);
     printf("\n");
     printf("(x3,y3) = ");
-    scanf("%lf%lf",&x3,&y3);
+    scanf("%lf,%lf",&x3,&y3);
     printf("\n");
     printf("(x4,y4) = ");
-    scanf("%lf%lf",&x4,&y4);
+    scanf("%lf,%lf",&x4,&y4);
     printf("\n");
 
     double a1,b1,c1;

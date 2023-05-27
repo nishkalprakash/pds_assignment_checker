@@ -9,25 +9,25 @@ int main()
     scanf("%f",&x1);
 
     printf("y1 = \n");
-    scanf("%f",&y1);
+    scanf(",%f",&y1);
 
     printf("x2 = \n");
     scanf("%f",&x2);
 
     printf("y2 = \n");
-    scanf("%f",&y2);
+    scanf(",%f",&y2);
 
     printf("x3 = \n");
     scanf("%f",&x3);
 
     printf("y3 = \n");
-    scanf("%f",&y3);
+    scanf(",%f",&y3);
 
     printf("x4 = \n");
     scanf("%f",&x4);
 
     printf("y4= \n");
-    scanf("%f",&y4);
+    scanf(",%f",&y4);
 
     A1 = (x1*(y2-y3) - y1*(x2-x3) + (x2*y3 - x3*y2));
 

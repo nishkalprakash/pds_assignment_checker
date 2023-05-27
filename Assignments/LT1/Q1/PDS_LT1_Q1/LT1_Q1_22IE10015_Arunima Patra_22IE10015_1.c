@@ -10,13 +10,13 @@ int x1,x2,x3,x4,y1,y2,y3,y4;
 float area1,area2,area3,area4,perimeter1,perimeter2,perimeter3,perimeter4;
 int p=0;
 printf("Enter the value of (x1,y1):");
-scanf("%d%d", &x1, &y1);
+scanf("%d,%d", &x1, &y1);
 printf("Enter the value of (x2,y2):");
-scanf("%d%d", &x2, &y2);
+scanf("%d,%d", &x2, &y2);
 printf("Enter the value of (x3,y3):");
-scanf("%d%d", &x3, &y3);
+scanf("%d,%d", &x3, &y3);
 printf("Enter the value of (x4,y4):");
-scanf("%d%d", &x4, &y4);
+scanf("%d,%d", &x4, &y4);
 area1=0.5*(x1*(y2-y3)+ x2*(y3-y1)+ x3*(y1-y2));
 if(area1>0){
     area1=area1;

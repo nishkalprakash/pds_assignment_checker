@@ -10,16 +10,16 @@ int main()
 {
     float x1,x2,x3,x4,y1,y2,y3,y4,a1,a2,a3,a4,p1,p2,p3,p4;
     printf("Enter the coordinate for first point:\n");
-    scanf("%f%f",&x1,&y1);
+    scanf("%f,%f",&x1,&y1);
 
     printf("Enter the coordinate for second point:\n");
-    scanf("%f%f",&x2,&y2);
+    scanf("%f,%f",&x2,&y2);
 
     printf("Enter the coordinate for third point:\n");
-    scanf("%f%f",&x3,&y3);
+    scanf("%f,%f",&x3,&y3);
 
     printf("Enter the coordinate for fourth point:\n");
-    scanf("%f%f",&x4,&y4);
+    scanf("%f,%f",&x4,&y4);
 
     a1=x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2)*(1/2);               //calculate the area of first 3 points
     a2=x2*(y3-y4)+x3*(y4-y2)+x4*(y2-y3)*(1/2);
