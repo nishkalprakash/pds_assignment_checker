@@ -9,7 +9,7 @@ float x1, x2, x3, x4, y1, y2, y3, y4 ;                                          
 
 printf("enter the coordinates of points in this order : x1, x2, x3, x4, y1, y2, y3, y4") ;
 
-scanf("%f %f %f %f %f %f %f %f", &x1, &x2, &x3, &x4, &y1, &y2, &y3, &y4) ;                                                   // take the input from user
+scanf("%f,%f %f,%f %f,%f %f,%f", &x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4) ;                                                   // take the input from user
 
 float A1, A2, A3, A4 ;
 

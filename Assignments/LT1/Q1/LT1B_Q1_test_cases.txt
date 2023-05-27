@@ -1,5 +1,5 @@
 #TC_GENERATED
-10;IN:~~(x1,y1) = -1,1~~(x2,y2) =  1,1~~(x3,y3) =  1,-1~~(x4,y4) = -1,-1~~~~Exp OUT:~~Points having the maximum area: (-1,1),(1,1),(1,-1)~~~~Perimeter = 6.82~~~~~~;-1 1 1 1 1 -1 -1 -1
-10;IN:~~(x1,y1) = 1, 1~~(x2,y2) = 2, 2~~(x3,y3) = 3, 3~~(x4,y4) = 4, 4~~~~Exp OUT:~~Points having the maximum area: (1,1) (2,2) (3,3)~~~~Perimeter = 0 (since there is no triangle)~~~~~~;1 1 2 2 3 3 4 4
-10;IN:~~(x1,y1) = -1,1~~(x2,y2) =  1,1~~(x3,y3) = -2,0~~(x4,y4) =  2,0~~~~Exp OUT:~~Points having the maximum area: (-1,1), (-2,0), (2,0) ~~~~Perimeter = 8.57~~~~~~~~;-1 1 1 1 -2 0 2 0
-10;IN:~~(x1,y1) = 0, 0~~(x2,y2) = 1, 1~~(x3,y3) = -1,1~~(x4,y4) = 0, 4~~~~Exp OUT:~~Points having the maximum area: (1,1),(-1,1), (0,4) ~~~~Perimeter = 8.32~~~~;0 0 1 1 -1 1 0 4
+10;~~Points having the maximum area: (-1,1),(1,1),(1,-1)~~~~Perimeter = 6.82~~;-1,1~~1,1~~1,-1~~-1,-1
+10;~~Points having the maximum area: (1,1) (2,2) (3,3)~~~~Perimeter = 0 (since there is no triangle)~~;1, 1~~2, 2~~3, 3~~4, 4
+10;~~Points having the maximum area: (-1,1), (-2,0), (2,0) ~~~~Perimeter = 8.57~~~~;-1,1~~1,1~~-2,0~~2,0
+10;~~Points having the maximum area: (1,1),(-1,1), (0,4) ~~~~Perimeter = 8.32;0, 0~~1, 1~~-1,1~~0, 4
