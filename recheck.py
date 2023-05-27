@@ -25,7 +25,7 @@ if recheck:
     # pull=REPORT
     if(data is not None):
         rep = pull(A_Q_REPORT_PATH_.format(**aq))
-        rep = [r for r in rep if r[0] != roll]
+        rep = [r if r[0] != roll else '#'+r for r in rep]
         push(A_Q_REPORT_PATH_.format(**aq), rep, attr='w+')
     pds_driver(a, q)
     data = get_std_roll_to_m_c_dict(a, q, scale=100).get(roll)
