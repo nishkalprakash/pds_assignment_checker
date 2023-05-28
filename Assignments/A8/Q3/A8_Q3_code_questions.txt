@@ -1,4 +1,6 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;Took the input n correctly
+10;Defined the Structure correctly
+10;Read the data correctly
+10;Printed the data correctly
+10;Sorted the data correctly
+10;Printed the sorted data correctly
