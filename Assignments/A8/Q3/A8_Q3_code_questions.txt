@@ -1,6 +1,5 @@
-10;Took the input n correctly
+5;Took the input n correctly
 10;Defined the Structure correctly
 10;Read the data correctly
-10;Printed the data correctly
-10;Sorted the data correctly
+20;Sorted the data correctly
 10;Printed the sorted data correctly
