@@ -207,7 +207,7 @@ def push_to_sheets(cauth, ws_name, gdf):
 
 #%% Auth
 # ws2_name = "Nishkal - Student Grades"
-ws_name = "PDS Lab Grades"
+ws_name = "Auto_grade"
 cauth = auth()
 # my_students = pull(path=r'var\my_students_sorted.txt')
 # push_to_sheets(cauth, ws_name, gdf.loc[my_students, ~gdf.columns.isin(agg_cols)])
