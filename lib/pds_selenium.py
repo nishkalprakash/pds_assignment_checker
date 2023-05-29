@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 
 from pathlib import Path
 from lib.pds_globals import (
+    A_,
     A_Q_PATH_,
     A_Q_PDS_FILE_PATH_,
     A_Q_PDS_QUIZ_,
@@ -247,15 +248,18 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
                         f.find_element(By.TAG_NAME,'a').click()
                     # while not fp.exists():
                     #     print('PDS file not found. Downloading...')
-                        sleep(.5)
+                        sleep(1)
                     print(fname.name+' downloaded')
                     try:
                         if Path(fp).read_text().strip() != "":
                             if not fname.exists():
                                 fp.rename(fname)
+                                sleep(0.5)
                             else:
-                                # fp exists in the folder, delete fp
-                                fp.unlink()
+                                # fp exists in the folder, delete fp if fp is not A_
+                                if fp.name != A_.format(a=a):
+                                    fp.unlink()
+                                # fp.unlink()
                         else:
                             fname.write_text(c)
                             print('Empty FILE FOUND for {r} - {n} - CODE CREATED FROM COMMENT BOX'.format(**nrd))
@@ -264,6 +268,7 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
                 elif c:
                     
                     fname.write_text(c)
+                    sleep(0.5)
                     print('No FILE FOUND for {r} - {n} - CODE CREATED FROM COMMENT BOX'.format(**nrd))
                 else:
                     print('No Submission for {r} - {n}'.format(**nrd))
@@ -273,7 +278,9 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
                 fp=Path(A_PATH_.format(a=a))/fnf
                 if fp.exists():
                     print("Deleting "+fp.name)
-                    fp.unlink()
+                    # fp exists in the folder, delete fp if fp is not A_
+                    if fp.name != A_.format(a=a):
+                        fp.unlink() 
 
         except Exception as e:
             print(str(e))
