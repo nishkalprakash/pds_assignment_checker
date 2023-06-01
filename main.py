@@ -214,44 +214,46 @@ def pds_checker(a, q, s=None):
 
                             if platform == 'win32':
                                 cmd = f"a.exe"
-                                # subprocess.check_output(cmd, shell=True, timeout=2)
-                                ### HACK: MANUAL CHECKING
-                                # system(cmd)
-                                ### END HACK
-                                #"""
-                                try:
-                                    proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=.5)
-                                    out=proc.stdout
-                                   
-                                except TimeoutExpired:
-                                    out=f'[ERROR: SEGMENTATION_FAULT or RUNTIMEOUT.{BR}It may be due one of the following:{BR}+ Waits for more user input than expected/defined in the question or{BR}+ Code throws a math exception during runtime or{BR}+ Runs into an infinite loop or{BR}or something else completely, we will never know...{BR}]'
-                                    # comments.append(f'{BR}Code goes into an Infinite Loop')
-                                    # raise e
-                                except Exception as e:
-                                    print(str(e))
-                                    raise e
-                                try:
-                                    proc.kill()
-                                except (AttributeError,UnboundLocalError):
-                                    pass
-                                except Exception as e:
-                                    print(str(e))
-                                    raise e
-                                    pass
-                                print(out)
-                                out=out.replace('\n',BR)
-                                if len(out)>(lim:=500): out=out[:lim]+"..."
-                                
-                                #"""
-                                # try:
-                                ## Try to Kill the process after execution
-                                # cmd_kill=f"taskkill -im {cmd} -f"
-                                # cmd_kill=f"""wmic process where "name='{cmd}'" delete"""
-                                # run(cmd_kill,text=True)
-                                # except Exception as e:
-                                # print(str(e))
                             else:
-                                system(f"timeout 1s echo {test} | ./a.out")
+                                cmd = f"./a.out"
+                            # subprocess.check_output(cmd, shell=True, timeout=2)
+                            ### HACK: MANUAL CHECKING
+                            # system(cmd)
+                            ### END HACK
+                            #"""
+                            try:
+                                proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=.5)
+                                out=proc.stdout
+                                
+                            except TimeoutExpired:
+                                out=f'[ERROR: SEGMENTATION_FAULT or RUNTIMEOUT.{BR}It may be due one of the following:{BR}+ Waits for more user input than expected/defined in the question or{BR}+ Code throws a math exception during runtime or{BR}+ Runs into an infinite loop or{BR}or something else completely, we will never know...{BR}]'
+                                # comments.append(f'{BR}Code goes into an Infinite Loop')
+                                # raise e
+                            except Exception as e:
+                                print(str(e))
+                                raise e
+                            try:
+                                proc.kill()
+                            except (AttributeError,UnboundLocalError):
+                                pass
+                            except Exception as e:
+                                print(str(e))
+                                raise e
+                                pass
+                            print(out)
+                            out=out.replace('\n',BR)
+                            if len(out)>(lim:=500): out=out[:lim]+"..."
+                            
+                            #"""
+                            # try:
+                            ## Try to Kill the process after execution
+                            # cmd_kill=f"taskkill -im {cmd} -f"
+                            # cmd_kill=f"""wmic process where "name='{cmd}'" delete"""
+                            # run(cmd_kill,text=True)
+                            # except Exception as e:
+                            # print(str(e))
+                            # else:
+                                # system(f"timeout 1s echo {test.replace(BR,'\n')} | ./a.out")
 
                             ## HACK: START: Support to open out file in case an external file is being created
                             if Path("outfile.txt").exists():
