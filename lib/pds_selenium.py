@@ -96,7 +96,7 @@ def init_selenium(def_dwnld_dir=TMP):
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
     # options.add_experimental_option("detach", True)
-    options.headless = True
+    # options.headless = True
     # options.add_argument("--disable-gpu")
     # options.add_argument("--window-size=1366,768")
     # options.add_argument("--disable-dev-shm-usage")
