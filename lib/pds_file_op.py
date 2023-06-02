@@ -409,9 +409,9 @@ def set_plag_files(a=None, ql=None):
         a, ql = get_a_ql_from_user()
     for q in ql.split():
         a_q_plag = Path(A_Q_PLAG_PATH_.format(a=a, q=q))
-        ## HACK END
-        push(a_q_plag, get_students(sort_by_name=1), attr="w+")
-        print(a_q_plag, " file created")
+        if not a_q_plag.exists():
+            push(a_q_plag, get_students(sort_by_name=1), attr="w+")
+            print(a_q_plag, " file created")
     plag_email = Path(A_PLAG_EMAIL_PATH_.format(a=a))
     if not plag_email.exists():
         plag_email.touch()
