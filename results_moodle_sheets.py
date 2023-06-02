@@ -147,7 +147,7 @@ agg_cols = []
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
-top=4
+top=6
 top8 = f"Top {top}A"
 agg_cols.append(top8)
 gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1)
@@ -216,7 +216,7 @@ cauth = auth()
 my_students = get_students(only_roll=1,path=r'var/mapping.txt')
 # gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
 gdf_my_students = gdf.loc[my_students,:]
-# gdf_my_students.sort_values(by="Total", ascending=False, inplace=True)
+gdf_my_students.sort_values(by=total, ascending=True, inplace=True)
 push_to_sheets(cauth, ws_name, gdf_my_students)
 
 # %%
