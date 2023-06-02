@@ -72,8 +72,8 @@ def insert(driver, elem, data):
         elem = driver.find_element(by='id',value=elem)
     elem.clear()
     if len(data) > 128:
-        for i in range(0, len(data), 64):
-            elem.send_keys(data[i : i + 64])
+        for i in range(0, len(data), 64//2):
+            elem.send_keys(data[i : i + 64//2])
     else:
         elem.send_keys(data)
 
@@ -95,14 +95,15 @@ def init_selenium(def_dwnld_dir=TMP):
 
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
+    # options.add_experimental_option("detach", True)
     # options.headless = True
-    options.add_argument("--disable-gpu")
-    options.add_argument("--window-size=1366,768")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--hide-scrollbars")
+    # options.add_argument("--disable-gpu")
+    # options.add_argument("--window-size=1366,768")
+    # options.add_argument("--disable-dev-shm-usage")
+    # options.add_argument("--hide-scrollbars")
     options.add_argument("--disable-extensions")
-    options.add_argument("--disable-infobars")
-    options.add_argument("--log-level=3")
+    # options.add_argument("--disable-infobars")
+    options.add_argument("--log-level=4")
     if def_dwnld_dir:
         def_dwnld_dir = Path(def_dwnld_dir)
         prefs = {

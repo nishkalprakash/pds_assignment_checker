@@ -26,7 +26,9 @@ from lib.pds_globals import A_Q_
 
 def upload_to_moodle(a, ql,roll=None):
     ## Initialize selenium
+    global driver
     driver = init_selenium()
+    # global driver
     # sleep(2)
     ## Go to course page
     driver_get_course(driver)
