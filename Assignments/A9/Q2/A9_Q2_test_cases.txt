@@ -1,8 +1,5 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;321;123
-10;101;101
-10;993;993
-10;100;100
-# ```
+#TC_GENERATED
+10;~~Identical Vectors;3~~2 4 6~~~~3~~4 8 12
+10;~~Identical Vectors;5~~2 4 6 8 10~~~~5~~-4 -8 -12 -16 -20
+10;~~Vectors are orthogonal;3~~1 0 0~~~~3~~0 1 0
+10;~~The vectors are neither similar nor orthogonal.;5~~1 2 3 4 5~~~~5~~-3 6 -9 12 -15
