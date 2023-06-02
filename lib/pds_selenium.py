@@ -96,7 +96,7 @@ def init_selenium(def_dwnld_dir=TMP):
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
     # options.add_experimental_option("detach", True)
-    # options.headless = True
+    options.headless = True
     # options.add_argument("--disable-gpu")
     # options.add_argument("--window-size=1366,768")
     # options.add_argument("--disable-dev-shm-usage")
@@ -249,27 +249,28 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
                         f.find_element(By.TAG_NAME,'a').click()
                     # while not fp.exists():
                     #     print('PDS file not found. Downloading...')
-                        sleep(1)
+                        sleep(0.1)
                     print(fname.name+' downloaded')
                     try:
                         if Path(fp).read_text().strip() != "":
                             if not fname.exists():
                                 fp.rename(fname)
-                                sleep(0.5)
+                                sleep(0.1)
                             else:
                                 # fp exists in the folder, delete fp if fp is not A_
                                 if fp.name != A_.format(a=a):
                                     fp.unlink()
                                 # fp.unlink()
                         else:
+                            sleep(1)
                             fname.write_text(c)
                             print('Empty FILE FOUND for {r} - {n} - CODE CREATED FROM COMMENT BOX'.format(**nrd))
                     except Exception as e:
                         print(str(e))
                 elif c:
                     
+                    sleep(0.1)
                     fname.write_text(c)
-                    sleep(0.5)
                     print('No FILE FOUND for {r} - {n} - CODE CREATED FROM COMMENT BOX'.format(**nrd))
                 else:
                     print('No Submission for {r} - {n}'.format(**nrd))
