@@ -1,0 +1,1 @@
+ls *.exe -Recurse | foreach {rm $_}
