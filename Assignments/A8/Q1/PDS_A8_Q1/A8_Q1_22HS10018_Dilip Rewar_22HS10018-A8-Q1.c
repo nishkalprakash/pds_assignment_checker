@@ -35,8 +35,8 @@ complex mult(complex a,complex b){
 
 complex divd(complex a, complex b){
     complex divd;
-    divd.real = (a.real*b.real + a.imag*b.imag)/(a.imag*a.imag + b.imag*b.imag);
-    divd.imag = (a.real*b.imag - a.imag*b.real)/(a.imag*a.imag + b.imag*b.imag);
+    divd.real = (a.real*b.real + a.imag*b.imag)/(b.imag*b.imag + b.imag*b.imag);
+    divd.imag = (-a.real*b.imag + a.imag*b.real)/(b.imag*b.imag + b.imag*b.imag);
     return divd;
 }
 
@@ -53,34 +53,38 @@ int main(){
     printf("\nEnter real part then imaginery part second complex number: ");
     scanf("%f %f",&z2.real,&z2.imag);
 
-    printf("\nComplex number 1 = %f + i %f",z1.real,z1.imag);
-    printf("\nComplex number 2 = %f + i %f",z2.real,z2.imag);
+    printf("\nComplex number 1 = %.2f + i %.2f",z1.real,z1.imag);
+    printf("\nComplex number 2 = %.2f + i %.2f",z2.real,z2.imag);
 
     complex add = addition(z1,z2);
-    printf("\nAddition: %f+ i %f",add.real,add.imag);
+    printf("\nAddition: %.2f+ i %.2f",add.real,add.imag);
 
     complex sub = minus(z1,z2);
-    printf("\nSubtraction: %f+ i %f",sub.real,sub.imag);
+    printf("\nSubtraction: %.2f+ i %.2f",sub.real,sub.imag);
 
     complex multiplication = mult(z1,z2);
-    printf("\nMultiplication: %f+ i %f",multiplication.real,multiplication.imag);
+    printf("\nMultiplication: %.2f+ i %.2f",multiplication.real,multiplication.imag);
 
     complex division = divd(z1,z2);
-    printf("\nDivison: %f + i %f",division.real,division.imag);
+    printf("\nDivison: %.2f + i %.2f",division.real,division.imag);
 
     float mod_z1 = mod(z1);
     float mod_z2 = mod(z2);
-    printf("Modulus of Complex number 1 is: %f",mod_z1);
-    printf("Modulus of Complex number 2 is: %f",mod_z2);
+    printf("\nModulus of Complex number 1 is: %.2f",mod_z1);
+    printf("\nModulus of Complex number 2 is: %.2f",mod_z2);
 
     complex z,z3;
     printf("\nEnter real part then imaginery part third complex number: ");
     scanf("%f %f",&z3.real,&z3.imag);
 
-    printf("\nComplex number 3 = %f + i %f",z3.real,z3.imag);
+    printf("\nComplex number 3 = %.2f + i %.2f",z3.real,z3.imag);
 
-    z = divd(sub,add)*z3 +(4.39);
-    printf("z= %f + i %f",z.real,z.imag);
+
+    z = mult(divd(minus(z1,z2),addition(z1,z2)),z3);
+    z.real+=4.39;
+    printf("\nz= %f + i %f",z.real,z.imag);
+    float mod_z = mod(z);
+    printf("\nModulus of z= %.2lf",mod_z);
 
 
     return 0;

@@ -27,7 +27,7 @@ int main()
     y=(pow(s2,0.5));
     q=z/(x*y);
     if(q==1||q==-1)
-        print("Identical vectors");
+        printf("Identical vectors");
     else if(q==0) printf("Vectors are Orthogonal");
     else printf("Vectors are neither identical nor orthogonal");
     return 0;

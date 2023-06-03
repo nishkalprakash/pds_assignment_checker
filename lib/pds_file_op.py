@@ -322,7 +322,7 @@ def get_std_roll_to_m_c_dict(a, q=None, cwd=False, DELIM=DELIM, ml=False,scale=0
     return d
 
 
-def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False):
+def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False,sort_by_score=False):
     """Returns the students list"""
     from lib.pds_globals import VAR
 
@@ -332,6 +332,14 @@ def get_students(path=None, only_roll=0, only_names=0, sort_by_name=False):
     std = pull(path)
     # 2nd column to upper
     std = [[i[0], i[1], i[2].upper()] for i in std]
+    if sort_by_score:
+        # Fetch roll number from var/std_score_desc.txt
+        # std_score_desc.txt is sorted by score
+        scr=pull(f"{VAR}/std_score_desc.txt")
+        std_dict = {i[2]: i for i in std}
+        std = [std_dict[roll] for roll in scr]
+
+
     if sort_by_name:
         std.sort(key=lambda x: x[1].lower())
 

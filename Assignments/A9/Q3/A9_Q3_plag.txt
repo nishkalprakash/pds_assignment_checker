@@ -1,7 +1,7 @@
 17230;Abhimanyu Dev Upadhyay;22PH10002
 16771;Abhiraj Ranjan;22MI10002
 16776;Aditya Akolkar;22EX10002
-16746;Aditya Kr. Singh;22MT30005
+# 16746;Aditya Kr. Singh;22MT30005 // Priyangshu_Barman_-_22AG30036_-_A9_Q3.c (97%)	Aditya_Kr._Singh_-_22MT30005_-_A9_Q3.c (97%)
 16749;Aditya Raj Shit;22AE10002
 17233;Akash Kumar;22EC10007
 16775;akhil nagara;22IM30022
@@ -46,12 +46,12 @@
 16757;Navaneeth Surla;22CS10077
 16763;Nayan Chauhan;22HS10038
 16720;Neeraj;22CY10036
-16808;Nivedita Pal;22MT30024
+# 16808;Nivedita Pal;22MT30024 // Priyangshu_Barman_-_22AG30036_-_A9_Q3.c (89%)	Nivedita_Pal_-_22MT30024_-_A9_Q3.c (79%)
 16788;Omkar Bhandare;22CS30016
 16723;Omkar Desai;22MF3IM06
 17240;pawan yadav;22NA10030
 16774;PIYUSH KUMAR BURNWAL;22IM10028
-16786;Priyangshu Barman;22AG30036
+# 16786;Priyangshu Barman;22AG30036 // Priyangshu_Barman_-_22AG30036_-_A9_Q3.c (97%)	Aditya_Kr._Singh_-_22MT30005_-_A9_Q3.c (97%)
 16772;RAHUL KUMAR;22GG10032
 16755;Raj Gupta;22ME30050
 16728;Rajpriya Rani;22CS10057

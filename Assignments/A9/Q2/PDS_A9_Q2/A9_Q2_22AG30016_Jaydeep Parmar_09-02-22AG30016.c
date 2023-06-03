@@ -9,16 +9,18 @@ int main()
     int vect[10];
     }s[2];
     int m;
-    scanf("%d %d",&n,&m);
-    if(n!=m)
-    {
-        printf("enter same dimension");
-        return 0;
-    }
+    scanf("%d",&n);
+    
     printf("enter 1st vector info\n");
     for(int i=0;i<n;i++)
     {
         scanf("%d",&s[1].vect[i]);
+    }
+    scanf("%d",&m);
+    if(n!=m)
+    {
+        printf("enter same dimension");
+        return 0;
     }
     printf("enter 2nd vector info\n");
     for(int i=0;i<n;i++)

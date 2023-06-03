@@ -79,7 +79,7 @@ def pds_checker(a, q, s=None):
             'A':{i[0] for i in x if i[1]=="A"},
             'B':{i[0] for i in x if i[1]=="B"}
         }
-    students = get_students()
+    students = get_students(sort_by_score=True)
     plag_students_roll_set = set(
         get_students(A_Q_PLAG_PATH_.format(a=a, q=q), only_roll=True))
     ## Getting the BASE number details from user and switching working dir to BASE_a
@@ -209,7 +209,7 @@ def pds_checker(a, q, s=None):
                             mark = float(mark)
                             print(f"Test_Case_{i+1}:".center(50, "-"))
                             print(f"Input: {test}")
-                            print(f"Desired Output: \n{test_comment}")
+                            print(f"Desired Output: \n{test_comment}\n---------\n")
                             print(f"Program Output:")
 
                             if platform == 'win32':
