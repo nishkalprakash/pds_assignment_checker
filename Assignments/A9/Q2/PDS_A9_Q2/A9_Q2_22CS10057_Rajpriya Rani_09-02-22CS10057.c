@@ -38,12 +38,13 @@ void main()
 {
     vector a,b;
     printf("enter dimensions of vectors :");
-    scanf("%d%d",&a.n,&b.n);
+    a.v=(float*)malloc((a.n)*sizeof(float));        //dynamic memory allocation
+    scanf("%d",&a.n);
+    read(a.n,&a);
+    scanf("%d",&b.n);
     if(a.n==b.n)
     {
-    a.v=(float*)malloc((a.n)*sizeof(float));        //dynamic memory allocation
     b.v=(float*)malloc((b.n)*sizeof(float));
-    read(a.n,&a);
     read(b.n,&b);
     double x=dot(a,b,a.n);
     printf("cos theta= %lf \n",x);

@@ -63,6 +63,7 @@ int main(){
 
     printf("\nEnter values for vector X1: ");
     vectorinput(&X1,n);
+    scanf("%d",&n);
 
     printf("\nEnter values for vector X2: ");
     vectorinput(&X2,n);

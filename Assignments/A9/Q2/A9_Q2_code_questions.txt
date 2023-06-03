@@ -1,4 +1,6 @@
-30;Logic is correct and gives expected output
-30;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;Definded a structure to store of n-dim vector
+10;Taken vector inputs
+10;Defined Function to store the vector
+10;Checked vector are same
+5;Checked for different vector sizes
+15;Checked vector are orthogonal

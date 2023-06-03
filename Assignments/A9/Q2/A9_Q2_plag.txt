@@ -7,7 +7,7 @@
 16775;akhil nagara;22IM30022
 16806;Anirudh Srivastava;22MI33002
 16812;ansh kakkar;22IM10009
-16721;Arman Barik;22ME30012
+# 16721;Arman Barik;22ME30012 // Arman_Barik_-_22ME30012_-_A9_Q2.c (97%)		Raj_Gupta_-_22ME30050_-_A9_Q2.c (97%)
 16793;Arunima Patra;22IE10015
 16739;ashank kushwaha;22AG10009
 17229;Ashish Ranjan kumar;22CE30004
@@ -53,7 +53,7 @@
 16774;PIYUSH KUMAR BURNWAL;22IM10028
 16786;Priyangshu Barman;22AG30036
 16772;RAHUL KUMAR;22GG10032
-16755;Raj Gupta;22ME30050
+# 16755;Raj Gupta;22ME30050 // Arman_Barik_-_22ME30012_-_A9_Q2.c (97%)		Raj_Gupta_-_22ME30050_-_A9_Q2.c (97%)
 16728;Rajpriya Rani;22CS10057
 16778;Ratan Kumar;22EC10067
 16787;Ratna kumari Thurimella;22AG10049

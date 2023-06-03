@@ -18,7 +18,7 @@
 17232;Ayush Chanderia;22ME10015
 16777;Bikram Mallik;22BT30010
 16805;Chandrabali Biswas;22EC30015
-16762;Dibya Ranjan Samal;22BT10007
+# 16762;Dibya Ranjan Samal;22BT10007 // Priyangshu_Barman_-_22AG30036_-_A9_Q1.c (89%)		Dibya_Ranjan_Samal_-_22BT10007_-_A9_Q1.c (90%)
 16813;Dilip Rewar;22HS10018
 16754;HARSH PATIDAR;22MF10015
 16797;Hindvee Vispute;22ME10034
@@ -51,7 +51,7 @@
 16723;Omkar Desai;22MF3IM06
 17240;pawan yadav;22NA10030
 16774;PIYUSH KUMAR BURNWAL;22IM10028
-16786;Priyangshu Barman;22AG30036
+# 16786;Priyangshu Barman;22AG30036 // Priyangshu_Barman_-_22AG30036_-_A9_Q1.c (89%)		Dibya_Ranjan_Samal_-_22BT10007_-_A9_Q1.c (90%)
 16772;RAHUL KUMAR;22GG10032
 16755;Raj Gupta;22ME30050
 16728;Rajpriya Rani;22CS10057
