@@ -3,13 +3,13 @@
 int main(){
     int x1 ,x2 ,x3 ,x4 ,y1 ,y2 ,y3, y4;
     printf("(x1,y1)= ");
-    scanf("%d %d",&x1,&y1);
+    scanf("%d, %d",&x1,&y1);
     printf("(x2,y2)= ");
-    scanf("%d %d",&x2,&y2);
+    scanf("%d, %d",&x2,&y2);
     printf("(x3,y3)= ");
-    scanf("%d %d",&x3,&y3);
+    scanf("%d, %d",&x3,&y3);
     printf("(x4,y4)= ");
-    scanf("%d %d",&x4,&y4);
+    scanf("%d, %d",&x4,&y4);
     float a,b,c,d,l1,l2,l3;
     double perimeter;
     a=.5*(x1*(y2-y3)-y1*(x2-x3)+(x2*y3-x3*y2));
