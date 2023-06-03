@@ -22,14 +22,16 @@ int main(){
  struct Vector V1,V2;
  printf("Enter dimension of vector V1: ");
  scanf("%d",&n1);
+  V1.vector=(float*)malloc(n1*sizeof(float));
+  createVector(V1);
  printf("Enter dimension of vector V2: ");
  scanf("%d",&n2);
- V1.vector=(float*)malloc(n1*sizeof(float));
+
  V2.vector=(float*)malloc(n2*sizeof(float));
 
  if(n1==n2){
  printf("Enter input for vector V1\n");
- createVector(V1);
+
  printf("Enter input for vector V2\n");
  createVector(V2);
 

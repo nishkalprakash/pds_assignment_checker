@@ -18,14 +18,16 @@ int main()
     int N1,N2,i;
     int sum;
     printf("enter dimension of vector V1,V2 \n");
-    scanf("%d%d",&N1,&N2);
+    scanf("%d",&N1);
     V1.dimension=N1;
-    V2.dimension=N2;
+    V2.dimension=N1;
 
     V1.e=(int*)malloc(N1*sizeof(int));
-    V2.e=(int*)malloc(N2*sizeof(int));
+    V2.e=(int*)malloc(N1*sizeof(int));
 
      readingvector(V1);
+    scanf("%d",&N2);
+
      readingvector(V2);
 
 

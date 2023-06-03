@@ -34,6 +34,7 @@ int main(){
     printf("\n");
 
     printf("Enter %d elements in vector 2 : ", n);
+    scanf("%d", &n); // taking input for dimension of n
 
    for(int i=0; i<n; i++){
 

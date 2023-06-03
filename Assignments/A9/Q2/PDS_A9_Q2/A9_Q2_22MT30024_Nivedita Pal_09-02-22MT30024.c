@@ -14,7 +14,7 @@ void readvectors(struct vector *v1,int n){
     int i;
     for(i=0;i<2;i++){
 
-        scanf("%s",vector[i].v)
+        scanf("%s",v1[i].v);
     }
 
 

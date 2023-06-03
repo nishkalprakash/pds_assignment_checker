@@ -78,13 +78,6 @@ int main(){
 
     scanf("%d" , &n ) ;
 
-    printf("enter the dimension of second vector :\n" ) ;
-
-    scanf("%d" , &m ) ;
-
-    if( n != m ) printf("dimensions should be same , but we will consider first one  ") ;
-
-
 
 
      struct vector x1, x2 ;
@@ -103,6 +96,13 @@ int main(){
               scanf("%d", &x1.p[i] ) ;
 
      }
+    printf("enter the dimension of second vector :\n" ) ;
+
+    scanf("%d" , &m ) ;
+
+    if( n != m ) printf("dimensions should be same , but we will consider first one  ") ;
+
+
 
      printf("enter the elements of second vector :\n") ;
 

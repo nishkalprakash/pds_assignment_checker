@@ -13,8 +13,7 @@ int main()
     scanf("%d",&n);
     int m;
     printf("enter the value of m");
-    scanf("%d",&m);
-    if(m!=n)
+    if(0)
     {
         printf("error enter the same dimension");
         return 0;
@@ -30,6 +29,8 @@ int main()
     {
         scanf("%d",&v1.v[i]);
     }
+    scanf("%d",&m);
+
     printf("\nthe second vector is\n");
     for(int i=0;i<n;i++)
     {

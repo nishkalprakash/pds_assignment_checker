@@ -12,6 +12,10 @@ int main(){
     vect vectors;
 printf("Enter the dimension of vector 1 : ");
 scanf("%d",&n);
+printf("Vector 1 : ");
+for(i=0;i<n;++i){
+    scanf("%f ",&vectors.v1[i]);
+    }
 printf("Enter the dimension of vector 2 : ");
 scanf("%d",&n1);
 if(n!=n1) {printf("Wrong Input! Enter Again!");
@@ -22,10 +26,7 @@ if(n==n1){
 printf("Enter two vectors of dimension %d : \n",n);
 
 
-printf("Vector 1 : ");
-for(i=0;i<n;++i){
-    scanf("%f ",&vectors.v1[i]);
-    }
+
 
 for(i=0;i<n;++i){
         printf("%f ",vectors.v1[i]);}
