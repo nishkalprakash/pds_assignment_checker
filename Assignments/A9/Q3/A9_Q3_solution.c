@@ -1,179 +1,184 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+// C Program for user login and enrollment using structures
+// Code Creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
 
-typedef struct User
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX_LENGTH 100
+
+// Structure to store userID and password
+typedef struct
 {
-   char *userId, *password;
+    char *userID;
+    char *password;
 } User;
 
-int checkSpaces(char *str)
+void terminate()
 {
-   int i;
-   for (i = 0; i < strlen(str); i++)
-   {
-       if (str[i] == 32)
-           return 1;
-   }
-   return 0;
+    printf("**EXITING**\n");
+    exit(0);
 }
 
-int validatePassword(char *password)
+// Function to check if userID exists
+int check_userID(User *users, int user_count, char *userID)
 {
-   int hasLower = 0;
-   int hasUpper = 0;
-   int hasDigit = 0;
-   int hasSpecial = 0;
-   for (size_t i = 0; i < strlen(password); i++)
-   {
-       if (password[i] >= 97 && password[i] <= 122)
-           hasLower = 1;
-       else if (password[i] >= 65 && password[i] <= 90)
-           hasUpper = 1;
-       else if (password[i] >= 49 && password[i] <= 57)
-           hasDigit = 1;
-       else if (password[i] == 126 || password[i] == 33 || password[i] == 64 ||
-                password[i] == 35 || password[i] == 36 || password[i] == 37 || password[i] == 38 ||
-                password[i] == 42)
-           hasSpecial = 1;
-   }
-   return hasLower && hasUpper && hasDigit && hasSpecial;
+    // Iterate over all users
+    for (int i = 0; i < user_count; i++)
+    {
+        // Check if userID matches
+        if (strcmp(users[i].userID, userID) == 0)
+        {
+            // Return 1 if userID exists
+            return 1;
+        }
+    }
+    // Return 0 if userID does not exist
+    return 0;
 }
 
-int checkDuplicate(User *users, int index, char *userId)
+// Function to check if password is valid
+void validate_password(char *password)
 {
-   int hasDuplicate = 0;
-   for (int i = 0; i < index; i++)
-   {
-       if (strcmp(users[i].userId, userId) == 0)
-       {
-           hasDuplicate = 1;
-           break;
-       }
-   }
-   return hasDuplicate;
+    // Check if password is less than 12 characters
+    if (strlen(password) < 12)
+    {
+        // Print password must be at least 12 characters message
+        printf("Invalid Password\n");
+        terminate();
+    }
+    // Check if password contains at least one lower case, upper case, number and special symbol
+    int lower = 0, upper = 0, number = 0, special = 0;
+    for (int i = 0; i < strlen(password); i++)
+    {
+        if (password[i] >= 'a' && password[i] <= 'z')
+            lower = 1;
+        else if (password[i] >= 'A' && password[i] <= 'Z')
+            upper = 1;
+        else if (password[i] >= '0' && password[i] <= '9')
+            number = 1;
+        else if (strchr("~!@#$%%^&*", password[i]))
+            special = 1;
+    }
+    if (!(lower && upper && number && special))
+    {
+        // Print password must contain at least one lower case, upper case, number and special symbol message
+        printf("Invalid Password\n");
+        terminate();
+    }
+}
+// Function to check if password matches and sign in
+void sign_in(User *users, int user_count, char *userID, char *password)
+{
+    // Iterate over all users
+    for (int i = 0; i < user_count; i++)
+    {
+        // Check if userID matches
+        if (strcmp(users[i].userID, userID) == 0)
+        {
+            // Check if password matches
+            if (strcmp(users[i].password, password) == 0)
+            {
+                // print <userID> signed in successfully if password matches
+                printf("%s signed in successfully.\n", userID);
+                terminate();
+            }
+        }
+    }
+    // terminate if password does not match
+    printf("Incorrect Password\n");
+    terminate();
 }
 
-void enrollment(User *u_list, int index)
+// Function to enroll a user
+void enroll(User *users, int user_count, char *userID, char *password, int MAX_USERS)
 {
-   char temp[100];
-   int l;
-   printf("Enter User ID:- ");
-   fgets(temp, 100, stdin);
-   l = strlen(temp);
-   temp[l - 1] = '\0';
-   l = l - 1;
-   if (checkSpaces(temp) == 1)
-   {
-       printf("Invalid UserID.\n");
-       printf("** EXITING **\n");
-       exit(0);
-   }
-   if (checkDuplicate(u_list, index, temp) == 1)
-   {
-       printf("%s already exists.\n", temp);
-       printf("** EXITING **\n");
-       exit(0);
-   }
-   u_list[index].userId = (char *)calloc(l, sizeof(char));
-   strncpy(u_list[index].userId, temp, l);
-   printf("Enter Password:- ");
-   fgets(temp, 100, stdin);
-   l = strlen(temp);
-   temp[l - 1] = '\0';
-   l = l - 1;
-   if (l < 12 || validatePassword(temp) == 0 || checkSpaces(temp) == 1)
-   {
-       printf("Invalid password.\n");
-       printf("** EXITING **\n");
-       exit(0);
-   }
-   u_list[index].password = (char *)calloc(l, sizeof(char));
-   strncpy(u_list[index].password, temp, l);
-   printf("%s enrolled successfully.\n", u_list[index].userId);
+    // Check if user_count is less than MAX_USERS
+    if (user_count < MAX_USERS)
+    {
+        // Allocate memory for userID and password
+        users[user_count].userID = (char *)calloc(strlen(userID) + 1, sizeof(char));
+        users[user_count].password = (char *)calloc(strlen(password) + 1, sizeof(char));
+        // Copy userID to users[user_count].userID
+        strcpy(users[user_count].userID, userID);
+        // Copy password to users[user_count].password
+        strcpy(users[user_count].password, password);
+        // Print <userID> enrolled successfully
+        printf("%s enrolled successfully\n", userID);
+    }
+    else
+    {
+        // Print enrollment unsuccessful message
+        printf("Max Users Capacity Reached!\n");
+        terminate();
+    }
 }
 
-int signIn(User *users, int index)
-{
-   char temp[100];
-   int length = 0, i = 0, flag = 0;
-
-   printf("Enter User ID:- ");
-   fgets(temp, 100, stdin);
-   length = strlen(temp);
-   temp[length - 1] = '\0';
-   length = length - 1;
-   for (i = 0; i < index; i++)
-   {
-       if (strcmp(temp, users[i].userId) == 0)
-       {
-           flag = 1;
-           break;
-       }
-   }
-   if (flag == 0)
-   {
-       printf("%s is not enrolled.\n", temp);
-       printf("** EXITING **\n");
-       exit(0);
-   }
-   printf("Enter Password:- ");
-   fgets(temp, 100, stdin);
-   length = strlen(temp);
-   temp[length - 1] = '\0';
-   length = length - 1;
-   if (length < 12 || validatePassword(temp) == 0 || checkSpaces(temp) == 1)
-   {
-       printf("Invalid password.\n");
-       printf("** EXITING **\n");
-       exit(0);
-   }
-   if (strcmp(users[i].password, temp) == 0)
-   {
-       printf("%s successfully logged in.\n", users[i].userId);
-       return 0;
-   }
-   else
-   {
-       printf("Wrong password.\n");
-       printf("** EXITING **\n");
-       exit(0);
-   }
-}
-
+// Main Function
 int main()
 {
-   int n, i = 0;
-   int choice = 0;
-   printf("Enter MAX no of users:- ");
-   scanf("%d", &n);
-   fflush(stdin);
-   User *users = (User *)calloc(n, sizeof(User));
-   do
-   {
-       printf("Choose one of the options.\n");
-       printf("\t 1. Enroll \n");
-       printf("\t 2. Sign-in \n");
-       printf("\t 3. Exit \n");
-       scanf("%d", &choice);
-       fflush(stdin);
-       if (choice == 1)
-       {
-           if (i == n)
-               printf("Cannot enroll any other user.\n");
-           else
-           {
-               enrollment(users, i);
-               i++;
-           }
-       }
-       else if (choice == 2)
-       {
-           signIn(users, i);
-       }
-       else if (choice != 3)
-           printf("Invalid Choice.\n");
-   } while (choice != 3);
-   printf("** EXITING **\n");
-   return 0;
+    // Ask user for max number of users
+    int MAX_USERS, user_count = 0;
+    char temp_userID[MAX_LENGTH], temp_password[MAX_LENGTH];
+    printf("Enter maximum number of users: ");
+    scanf("%d", &MAX_USERS);
+    // Allocate memory for users
+    User *users = (User *)calloc(MAX_USERS, sizeof(User));
+
+    // Write a menu driven program
+    int choice;
+
+    do
+    {
+        printf("\t(1) Enroll\n\t(2) Sign-in\n\t(3) Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        getchar(); // To consume the newline character
+        switch (choice)
+        {
+        case 1:
+            // Enroll
+            // Ask user for userID and store in temp_userID
+            printf("Enter userID: ");
+            scanf("%s", temp_userID);
+            // Check if user exists
+            if (check_userID(users, user_count, temp_userID))
+            {
+                printf("%s already exists\n", temp_userID);
+                terminate();
+            }
+
+            // Store password in temp_password
+            printf("Enter password: ");
+            scanf("%s", temp_password);
+            validate_password(temp_password);
+            enroll(users, user_count, temp_userID, temp_password, MAX_USERS);
+            // Increment user_count
+            user_count++;
+            break;
+        case 2:
+            // Sign-in
+            // Ask user for userID and store in temp_userID
+            printf("Enter userID: ");
+            scanf("%s", temp_userID);
+            // Check if user exists
+            if (!check_userID(users, user_count, temp_userID))
+            {
+                printf("%s is not enrolled\n", temp_userID);
+                terminate();
+            }
+            // Ask user for password and store in temp_password
+            printf("Enter password: ");
+            scanf("%s", temp_password);
+            // Call signIn function
+            validate_password(temp_password);
+            sign_in(users, user_count, temp_userID, temp_password);
+            break;
+
+        default:
+            // Print Invalid Input
+            printf("Invalid Input\n");
+            break;
+        }
+    } while (choice != 3);
 }
