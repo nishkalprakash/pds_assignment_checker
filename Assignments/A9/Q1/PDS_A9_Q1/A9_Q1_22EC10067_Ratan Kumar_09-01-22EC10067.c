@@ -32,7 +32,7 @@ int main()
     int val;
     val = fibo(n,6);
     if(val==n){
-        printf("%d is a Fibonacci number",n);
+        printf("%d is a Fibonacci numbexgr",n);
     }
 
     return 0;
