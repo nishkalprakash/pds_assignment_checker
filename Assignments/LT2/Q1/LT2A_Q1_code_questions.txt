@@ -1,0 +1,5 @@
+10;Read four coordinates
+10;Area of the triangle formula applied
+20;Computed all possible Areas
+10;Computed and printed min area
+10;Printed the coordinates of the smallest triange
