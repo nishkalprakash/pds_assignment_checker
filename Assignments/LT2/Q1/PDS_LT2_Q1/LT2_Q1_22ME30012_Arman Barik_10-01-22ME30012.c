@@ -22,8 +22,8 @@ void read(Person* X)
     scanf("%s", X->passport_no);
     scanf("%s", X->nationality);
     scanf("%d",&(X->DOB->dd));
-    scanf("%d",&(X->DOB->mm));
-    scanf("%d",&(X->DOB->yyyy));
+    scanf("-%d",&(X->DOB->mm));
+    scanf("-%d",&(X->DOB->yyyy));
 }
 void print(Person* X)
 {

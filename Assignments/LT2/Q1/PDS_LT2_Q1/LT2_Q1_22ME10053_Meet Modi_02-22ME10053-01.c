@@ -22,16 +22,16 @@ typedef struct{
 
 void read(Person *a){
     printf("Enter the details one by one as per input clicking enter after reading a string since ch is used to absorb newline char :\n");
-    fflush(stdin);
-    char ch = getchar();
+    // fflush(stdin);
+    // char ch = getchar();
     scanf("%[^\n]",a->name);
-    char c = getchar();
-    scanf("%[^\n]",a->passport_no);
-    char c1 = getchar();
-    scanf("%[^\n]",a->nationality);
-    char c2 = getchar();
+    // char c = getchar();
+    scanf("%s",a->passport_no);
+    // char c1 = getchar();
+    scanf("%s",a->nationality);
+    // char c2 = getchar();
     printf("Enter the dob as a string :\n");
-    scanf("%[^\n]",(*a).dob.date);
+    scanf("%s",(*a).dob.date);
 }
 
 // Printing the inputs
@@ -50,6 +50,8 @@ int main(){
     Person *Persons=NULL;
     printf("Enter the value of no of persons :\n");
     scanf("%d",&n);
+    char ch = getchar();
+
     Persons =(Person*)calloc(n,sizeof(Person));
     int i,j,k;
     for(i=0;i<n;i++){

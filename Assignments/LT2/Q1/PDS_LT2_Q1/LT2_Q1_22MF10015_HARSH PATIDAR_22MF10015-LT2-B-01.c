@@ -72,7 +72,7 @@ int main()
     printf("Merged persons with Indian nationality:\n");
     for (int i = 0; i < m + n; i++)
     {
-        if (strcmp(personsMerged[i].Nationality, "INDIA") == 0)
+        if (strcmp(personsMerged[i].Nationality, "India") == 0)
         {
             printf("** Person %d **\n", i + 1);
             printPerson(&personsMerged[i]);

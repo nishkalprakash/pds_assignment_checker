@@ -6,7 +6,7 @@ Lab test 2*/
 #include<stdio.h>
 float mean(int *a,int n)
 {
-    if(n==0)
+    if(n<=0)
     {
         return a[0];
     }

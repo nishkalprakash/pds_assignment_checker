@@ -25,7 +25,7 @@ void read(person persons[n]){
     printf("Enter the nationality : \n");
     scanf("%s",persons[i].nationality);
     printf("Enter the dob : \n");
-    scanf("%d%d%d",&persons[i].dob.day,&persons[i].dob.month,&persons[i].dob.year);
+    scanf("%d-%d-%d",&persons[i].dob.day,&persons[i].dob.month,&persons[i].dob.year);
     }
     return;
 }
@@ -42,11 +42,14 @@ void print(person persons[n]){
 int main(){
     printf("Enter the number of person for n record  : \n");
     scanf("%d",&n);
+    getchar();
     person persons[n];
     read(persons);
     print(persons);
     printf("Enter the number of persons for another m records: \n");
     scanf("%d",&m);
+    getchar();
+
     person persons2[m];
     read(persons2);
     print(persons2);

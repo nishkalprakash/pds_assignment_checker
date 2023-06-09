@@ -21,11 +21,11 @@ void read(Person *person) {
     printf("Enter name: ");
     fgets(person->name, sizeof(person->name), stdin);
     printf("Enter passport number: ");
-    fgets(person->passport_no, sizeof(person->passport_no), stdin);
+    // fgets(person->passport_no, sizeof(person->passport_no), stdin);
     printf("Enter nationality: ");
-    fgets(person->nationality, sizeof(person->nationality), stdin);
+    // fgets(person->nationality, sizeof(person->nationality), stdin);
     printf("Enter date of birth (dd-mm-yyyy): ");
-    scanf("%d-%d-%d", &person->dob.day, &person->dob.month, &person->dob.year);
+    scanf("%s %s %d-%d-%d",person->passport_no,person->nationality, &person->dob.day, &person->dob.month, &person->dob.year);
     getchar();
 
 }

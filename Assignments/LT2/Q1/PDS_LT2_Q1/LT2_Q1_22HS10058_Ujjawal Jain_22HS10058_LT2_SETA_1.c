@@ -18,7 +18,7 @@ void read(struct Person *per){
     scanf(" %[^\n]*s",(*per).name);
     scanf("%s",(*per).passport_no);
     scanf("%s",(*per).nationality);
-    scanf("%d %d %d",&(*per).d.dd,&(*per).d.mm,&(*per).d.yy);
+    scanf("%d-%d-%d",&(*per).d.dd,&(*per).d.mm,&(*per).d.yy);
 
 
 }

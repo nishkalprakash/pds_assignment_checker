@@ -14,14 +14,14 @@ struct person{
     gets(persons[i].name);
     gets(persons[i].passport_no);
 
- gets(persons[j].nationality);
+ gets(persons[i].nationality);
 
 
-    scanf("%d",&persons[j].d_o_b.dd);
+    scanf("%d",&persons[i].d_o_b.dd);
 
-    scanf("%d",&persons[j].d_o_b.mm);
+    scanf("%d",&persons[i].d_o_b.mm);
 
-    scanf("%d",&persons[j].d_o_b.yyyy);
+    scanf("%d",&persons[i].d_o_b.yyyy);
     }
 
  }

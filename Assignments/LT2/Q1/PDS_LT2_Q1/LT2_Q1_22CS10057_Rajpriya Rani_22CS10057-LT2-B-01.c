@@ -26,8 +26,8 @@ void read(Person *p,int i)        //function to read one data
     scanf("%s",p->nationality);
     printf("enter date of birth in format dd-mm-yyyy (without dash): ");
     scanf("%d",&p->dob[0]);
-    scanf("%d",&p->dob[1]);
-    scanf("%d",&p->dob[2]);
+    scanf("-%d",&p->dob[1]);
+    scanf("-%d",&p->dob[2]);
 }
 
 void print(Person *p,int i)       //function to print one data

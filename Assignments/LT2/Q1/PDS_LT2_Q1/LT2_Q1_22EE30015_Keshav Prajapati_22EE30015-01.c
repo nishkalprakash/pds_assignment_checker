@@ -34,5 +34,5 @@ int main()
 
     printf("Mean : %0.2f ", mean(a, n));
 
-    return0;
+    return 0;
 }

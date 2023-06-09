@@ -2,7 +2,7 @@
 
 #include<math.h>
 
-int sum(int n)
+int sum(int n);
 
 float mean(int *a , int n)
 

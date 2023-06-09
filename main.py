@@ -241,7 +241,13 @@ def pds_checker(a, q, s=None):
                                 raise e
                                 pass
                             print(out)
-                            out=out.replace('\n',BR)
+                            try:
+                                out=out.replace('\n',BR)
+                            except Exception as e:
+                                print(str(e))
+                                out=''
+                                # raise e
+                                pass
                             if len(out)>(lim:=500): out=out[:lim]+"..."
                             
                             #"""
