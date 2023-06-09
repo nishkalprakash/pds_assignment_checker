@@ -249,7 +249,7 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
                         f.find_element(By.TAG_NAME,'a').click()
                     # while not fp.exists():
                     #     print('PDS file not found. Downloading...')
-                        sleep(0.1)
+                        sleep(1)
                     print(fname.name+' downloaded')
                     try:
                         if Path(fp).read_text().strip() != "":
