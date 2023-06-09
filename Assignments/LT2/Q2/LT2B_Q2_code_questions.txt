@@ -1,5 +1,7 @@
-10;Read an integer
-10;Check for odd or even
-20;Printed the sub-integers from least significant to most significant if odd and vice versa
-10;Computed the reverse of the digits
-10;Printed the absolute difference between them
+5;Read Input (scanf for n, p and q)
+10;Random array init
+5;Used malloc/calloc to initialize array
+10;function to calculate max defined
+15;recursive implementation of max
+10;Printed the array
+5;printed the max

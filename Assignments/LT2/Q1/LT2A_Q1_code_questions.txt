@@ -1,5 +1,6 @@
-10;Read four coordinates
-10;Area of the triangle formula applied
-20;Computed all possible Areas
-10;Computed and printed min area
-10;Printed the coordinates of the smallest triange
+10;Read Input (scanf)
+5;Init array using malloc/calloc
+10;function to calculate mean defined
+15;recursive implementation of mean
+10;Printed the array
+10;printed the mean

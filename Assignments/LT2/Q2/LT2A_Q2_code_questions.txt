@@ -1,5 +1,8 @@
-10;Read an integer
-10;Check for odd or even
-20;Printed the sub-integers from most significant to least significant if odd and vice versa
-10;Computed the reverse of the digits
-10;Printed the absolute difference between them
+10;Stucture to store data defined
+10;Allocated memory using malloc/calloc
+10;Taken n inputs from user
+5;Taken DOB as input
+5;Deleted records who have Year greater than DOB
+5;Printed the deleted records
+10;Reallocated the deleted memory
+5;Printed the remaining records
