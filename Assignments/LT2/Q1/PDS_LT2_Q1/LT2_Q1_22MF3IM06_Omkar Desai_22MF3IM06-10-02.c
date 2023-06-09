@@ -1,108 +1,73 @@
 /*
+
 sec2
+
 name- Omkar Dilip Desai
+
 Roll no - 22MF3IM06
-q. no-02
-description-   */
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<string.h>
+q. no-01
 
+description-  finding mean using recurrsive function      */
 
+#include <stdio.h>
 
+#include <stdlib.h>
 
+#include <math.h>
 
-typedef struct{
+#include <string.h>
 
-char roll[11];
-char branch[3];
-char dob[10];
+float mean(int *num, int n, int start, int end)
+{
 
-}record;
+    float sum = 0;
 
+    if (start >= end)
+    {
 
+        float tt;
 
+        tt = ((float)(num[start]) / n);
 
-int main(){
-int n;
-int count=0;
-record *R;
-record  *R2;
-printf("ENTER THE NUMBER OF RECORDS \n");
-scanf("%d",&n);
-
-R=(record *)malloc(n*sizeof(record));
-printf("Enter the inputs\n");
-for(int i=0;i<n;i++){
-
-    scanf("%s %s %s",R[i].roll,R[i].branch,R[i].dob);
-}
-
-
-
-for(int i=0;i<n;i++){
-
-    printf("\n%s  %s  %s\n",R[i].roll,R[i].branch,R[i].dob);
-}
-
-
-
-int m;
-printf("ENTER THE YEAR\n");
-scanf("%d",&m);
-int term;
-term=m%1000;
-
-printf("%c\n",R[1].dob[12]);
-
-
-for(int i=0;i<n;i++){
-
-
-    if(R[i].dob[10]<term){
-        printf("Deleted record is %s   %s    %s  \n",R[i].roll,R[i].branch,R[i].dob);
-        count++;
-        strcpy(R[i].roll,"NULL");
+        return tt;
     }
 
+    sum = +((float)(num[start]) / n) + ((float)(num[end]) / n);
 
+    // printf("%f ",sum);
 
-
-
+    return sum + mean(num, n, start + 1, end - 1);
 }
 
+// float mean()
 
+int main()
+{
 
-for(int i=0;i<n-count;i++){
-for(int j=0;j<n;j++){
+    int *num;
 
-     if(!(strcmp(R[j].roll,"NULL"))){
+    int n;
 
+    printf("Enter the number of inputs\n");
 
-            R[i]=R[j];
-     break;
+    scanf("%d", &n);
 
+    num = (int *)malloc(n * sizeof(int));
 
-     }
-}
+    for (int i = 0; i < n; i++)
+    {
 
-}
+        scanf("%d", &num[i]);
+    }
 
-printf("AFTER DELETION \n");
+    for (int i = 0; i < n; i++)
+    {
 
-R=(record *)realloc(R,(n-count)*sizeof(record));
+        printf("%d", num[i]);
+    };
 
+    printf("the mean is %f \n", mean(num, n, 0, n - 1));
 
-for(int i=0;i<n-count;i++){
-
-    printf("%s  %s  %s\n",R[i].roll,R[i].branch,R[i].dob);
-}
-
-
-
-
-
-return 0;
+    return 0;
 }

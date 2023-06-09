@@ -7,7 +7,7 @@
 float mean(int*arr,int n){
     int i;
 if(n==1) return arr[n-1];
-float sum = arr[n-1] + mean(&arr,int n-1);
+float sum = arr[n-1] + mean(&arr,n-1);
 return sum;
 }
 

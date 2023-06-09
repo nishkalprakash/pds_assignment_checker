@@ -13,7 +13,7 @@
 #include <string.h>
 //Recursive function to calculate the mean
 float mean(int *a,int n){
-    if (n < 0) return 0;
+    if (n < 1) return 0;
     else {
         return a[n-1] + mean(a,n-1);
     }

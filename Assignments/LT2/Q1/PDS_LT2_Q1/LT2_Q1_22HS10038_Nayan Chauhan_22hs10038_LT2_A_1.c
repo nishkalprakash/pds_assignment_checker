@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 float mean(int *a, int n)
 {
     float m;
@@ -11,8 +12,8 @@ float mean(int *a, int n)
 int main()
 {
     int n;
-    int a[n];
     scanf("%d", &n);
+    int *a = (int *)calloc(n, sizeof(int));
     for(int i=0; i<n; i++){
         scanf("%d", &a[i]);
     }
