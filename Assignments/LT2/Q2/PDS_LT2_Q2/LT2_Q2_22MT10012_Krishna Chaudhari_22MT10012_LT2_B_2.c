@@ -13,12 +13,12 @@ int main()
 {
     srand(time(0));
     int n;
-    int list[n];
     int p,q;
     printf("enter the size of aray : \n");
     scanf("%d",&n);
     printf("Enter the lowest number p:");
     scanf("%d",&p);
+    int list[n];
 
     printf("Enter the largest number q:");
     scanf("%d",&q);

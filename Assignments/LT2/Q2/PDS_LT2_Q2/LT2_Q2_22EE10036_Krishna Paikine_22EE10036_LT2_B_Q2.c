@@ -9,7 +9,7 @@ Set - B
 #include <stdlib.h>
 #include <time.h>
 
-int max(int a*, int n)
+int max(int *a, int n)
 {
 
 }

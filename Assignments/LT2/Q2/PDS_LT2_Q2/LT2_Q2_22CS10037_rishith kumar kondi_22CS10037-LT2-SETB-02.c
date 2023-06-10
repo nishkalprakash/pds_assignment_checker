@@ -18,7 +18,7 @@ int main()
     scanf("%d %d",&p,&q);
     t=q-p+1;
     int a[n];
-    do{file:///home/sec2/Documents/22CS10037/labtest2/22CS10037-LT2-SETB-02.c
+    do{
 
         j=rand()%t+p;
         a[i]=j;i++;
