@@ -414,9 +414,9 @@ def pds_checker(a, q, s=None):
                                 elif code_marks[
                                         i] >= mark:  # in case of typing err0r
                                     code_marks[i] = mark
-                                    comments.append(
-                                        f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
-                                    )
+                                    # comments.append(
+                                    #     f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
+                                    # )
                             elif (
                                     mark < 0
                             ):  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given

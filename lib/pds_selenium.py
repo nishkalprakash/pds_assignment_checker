@@ -72,10 +72,11 @@ def insert(driver, elem, data):
         elem = driver.find_element(by='id',value=elem)
     elem.clear()
     if len(data) > 128:
-        for i in range(0, len(data), 64//2):
-            elem.send_keys(data[i : i + 64//2])
+        for i in range(0, len(data), 64//4):
+            elem.send_keys(data[i : i + 64//4])
     else:
         elem.send_keys(data)
+    # sleep(0.5)
 
 
 def moodle_login(driver):
