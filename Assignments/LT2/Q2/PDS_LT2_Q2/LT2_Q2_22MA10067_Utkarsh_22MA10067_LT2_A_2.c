@@ -41,9 +41,9 @@ int main()
         printf("\tBranch: ");
         scanf("%s",Rec[i].branch);
         printf("\tDate: ");
-        scanf("%d",&Rec[i].dob.dd);
+        scanf("%d/",&Rec[i].dob.dd);
         printf("\tMonth: ");
-        scanf("%d",&Rec[i].dob.mm);
+        scanf("%d/",&Rec[i].dob.mm);
         printf("\tYear: ");
         scanf("%d",&Rec[i].dob.yyyy);
         printf("\n");

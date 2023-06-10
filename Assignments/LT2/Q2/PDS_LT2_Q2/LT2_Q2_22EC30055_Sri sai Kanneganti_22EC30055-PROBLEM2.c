@@ -62,11 +62,11 @@ int main()
         for(int i=0;i<(n-m);i++)
         {
             printf("\n %s %s %d/%d/%d",a[i].roll,a[i].dep,a[i].dob.d,a[i].dob.mm,a[i].dob.y);
-        } else {
+        } 
          if(n==m){
             printf("\n no record remaining");
          }
-        }
+        
 
   return 0;
 }

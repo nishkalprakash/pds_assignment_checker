@@ -16,8 +16,8 @@ struct dob
 
 struct record
 {
-    char rollNO[10] ;
-    char branch[2] ;
+    char rollNO[11] ;
+    char branch[3] ;
     struct dob  avatar ;
 };
 

@@ -26,7 +26,7 @@ int main()
         printf("enter branch : ");
         scanf(" %s " , p[i].branch);
         printf("enter the dob : ");
-        scanf(" %d%d%d " , &p[i].dd,&p[i].mm,p[i].yyyy);
+        scanf(" %d/%d/%d " , &p[i].dd,&p[i].mm,p[i].yyyy);
     }
     printf("records of first person is : ");
     printf("dob is %d/%d/%d" ,p[i].dd , p[i].mm , p[i].yyyy );

@@ -35,7 +35,7 @@ int main()    //main method
         printf("Enter branch:");
         scanf("%s",&a[i].branch);
         printf("Enter date(dd/mm/yyyy):");
-        scanf("%d%d%d",&a[i].dob.dd,&a[i].dob.mm,&a[i].dob.yyyy);
+        scanf("%d/%d/%d",&a[i].dob.dd,&a[i].dob.mm,&a[i].dob.yyyy);
     }
     printf("\nEnter Y(year of birth):");
     scanf("%d",&Y);   //takes input from user (year of birth)

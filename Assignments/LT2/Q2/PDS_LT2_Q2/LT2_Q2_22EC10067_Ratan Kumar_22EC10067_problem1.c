@@ -42,7 +42,7 @@ int main()
             printf("Deleted Records:");
             printf("%s",arr[i].rollNo);
             printf("%s",arr[i].branch);
-            prinrf("%d",arr[i].dob);
+            printf("%d",arr[i].dob);
             sum++;
         }
 

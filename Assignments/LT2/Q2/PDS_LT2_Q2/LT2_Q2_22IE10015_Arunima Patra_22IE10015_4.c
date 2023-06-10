@@ -12,8 +12,8 @@ struct dob{
 
    };
 struct record{
-   char rollno[10];
-   char branch[2];
+   char rollno[11];
+   char branch[3];
 
     struct dob d;
 
@@ -23,6 +23,7 @@ int main(){
    int n,y;
    printf("Enter the value:");
    scanf("%d", &n);
+   getchar();
    if(n>100){
     printf("Invalid value");
    }
@@ -30,7 +31,7 @@ int main(){
    struct record *s;
    s=(struct record*) malloc(n*sizeof(struct record));
    for(int i=0; i<n; i++){
-      scanf("%s %s %d %d %d", &s[i].rollno, &s[i].branch,&s[i].d.dd, &s[i].d.mm, &s[i].d.yyyy );
+      scanf("%s %s %d/%d/%d", &s[i].rollno, &s[i].branch,&s[i].d.dd, &s[i].d.mm, &s[i].d.yyyy );
    }
 
 

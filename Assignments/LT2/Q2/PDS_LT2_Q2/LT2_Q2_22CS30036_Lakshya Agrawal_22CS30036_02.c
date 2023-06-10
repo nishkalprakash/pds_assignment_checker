@@ -80,6 +80,7 @@ int main()
 {
     int n;
     scanf("%d",&n);
+    getchar();
 
     if(n<=0 || n>=101)
     {

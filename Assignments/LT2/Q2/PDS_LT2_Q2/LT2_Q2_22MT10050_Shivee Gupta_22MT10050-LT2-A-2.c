@@ -52,7 +52,7 @@ int main(){
        stud[i].branch = stud[i+1].branch;
        stud[i].dob.dd = stud[i+1].dob.dd;
        stud[i].dob.mm = stud[i+1].dob.dd;
-       stud[i].dob.yyyy) = stud[i+1].dob.dd;
+       stud[i].dob.yyyy = stud[i+1].dob.dd;
     }
 
     }

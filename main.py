@@ -222,11 +222,11 @@ def pds_checker(a, q, s=None):
                             ### END HACK
                             #"""
                             try:
-                                proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=.5)
+                                proc=run(cmd,input=test.replace(BR,'\n'), capture_output=True, text=True,timeout=3)
                                 out=proc.stdout
                                 
                             except TimeoutExpired:
-                                out=f'[ERROR: SEGMENTATION_FAULT or RUNTIMEOUT.{BR}It may be due one of the following:{BR}+ Waits for more user input than expected/defined in the question or{BR}+ Code throws a math exception during runtime or{BR}+ Runs into an infinite loop or{BR}or something else completely, we will never know...{BR}]'
+                                out=f'[ERROR: SEGMENTATION_FAULT or RUNTIMEOUT]'
                                 # comments.append(f'{BR}Code goes into an Infinite Loop')
                                 # raise e
                             except Exception as e:
@@ -414,9 +414,9 @@ def pds_checker(a, q, s=None):
                                 elif code_marks[
                                         i] >= mark:  # in case of typing err0r
                                     code_marks[i] = mark
-                                    # comments.append(
-                                    #     f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
-                                    # )
+                                    comments.append(
+                                        f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
+                                    )
                             elif (
                                     mark < 0
                             ):  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given

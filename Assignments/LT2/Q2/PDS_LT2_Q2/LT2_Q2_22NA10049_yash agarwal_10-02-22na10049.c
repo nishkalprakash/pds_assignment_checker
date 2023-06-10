@@ -18,6 +18,7 @@ int main()
   int size;
   printf("Enter the number of records: ");
   scanf("%d",&size);
+  getchar();
   if(size>=100)
   {
       printf("Invalid value of N");
@@ -28,9 +29,9 @@ int main()
 
   for(int i=0;i<size;i++)
   {
-    scanf("%s \n",p[i].RollNo);
-    scanf("%s \n",p[i].branch);
-    scanf("%s \n",p[i].dob);
+    scanf("%s",p[i].RollNo);
+    scanf("%s",p[i].branch);
+    scanf("%s",p[i].dob);
      // input
        //gets((p+i)->RollNo);
         //gets((p+i)->branch);
@@ -80,7 +81,7 @@ int main()
 
     }
     //here i have tried to reallocate the memory but it is showing segementation fault may be beacuse it is not able to find the sufficient memory
-    p=(struct students *)realloc(size-m,size*(sizeof(struct students *)));
+    // p=(struct students *)realloc(size-m,size*(sizeof(struct students *)));
 
 
 

@@ -32,6 +32,7 @@ for (int i = 0; i < n; i++)
 printf("%s %s %s\n", students[i].rollno, students[i].branch , students[i].dob);
 printf("\n");
 }
+}
 
 
 

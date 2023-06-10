@@ -15,6 +15,7 @@ int n;
 scanf("%d",&n);
 if (n > 100){
     printf("Invalid value of N");
+    return 0;
 }
 
 rec r[n];

@@ -43,18 +43,18 @@ int main() {
     for (int i = 0; i < n; i++) {
 
 
-        fgets(records[i].rollno, sizeof(records[i].rollno), stdin);
+        // fgets(records[i].rollno, sizeof(records[i].rollno), stdin);
 
-        records[i].rollno[strcspn(records[i].rollno, "\n")] = '\0';
-
-
-        fgets(records[i].branch, sizeof(records[i].branch), stdin);
-
-        records[i].branch[strcspn(records[i].branch, "\n")] = '\0';
+        // records[i].rollno[strcspn(records[i].rollno, "\n")] = '\0';
 
 
+        // fgets(records[i].branch, sizeof(records[i].branch), stdin);
 
-        scanf("%d/%d/%d", &records[i].dob.day, &records[i].dob.month, &records[i].dob.year);
+        // records[i].branch[strcspn(records[i].branch, "\n")] = '\0';
+
+
+
+        scanf("%s %s %d/%d/%d",records[i].rollno, records[i].branch,&records[i].dob.day, &records[i].dob.month, &records[i].dob.year);
 
         getchar();
 

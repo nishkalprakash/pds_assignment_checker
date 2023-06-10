@@ -16,11 +16,9 @@ void read(student*s,int n)
     for(int i=0;i<n;i++)
     {
         printf("Enter Roll no of %dth student:\n",i+1);
-        gets(s[i].rollNo);
         printf("Enter branch of %dth student:\n",i+1);
-        gets(s[i].branch);
         printf("Enter dob of %dth student:\n",i+1);
-        gets(s[i].dob);
+        scanf("%s %s %s",s[i].rollNo,s[i].branch,s[i].dob);
     }
 }
 int delete(student *s,int year,int n)

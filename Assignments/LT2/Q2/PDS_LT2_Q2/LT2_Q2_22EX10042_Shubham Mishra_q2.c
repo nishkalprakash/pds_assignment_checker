@@ -41,8 +41,8 @@
         scanf("%s",&ptr1[i].branch);
 
          printf("enter the dob\n");
-         scanf("%d",&(ptr2[i].dd));
-          scanf("%d",&(ptr2[i].mm));
+         scanf("%d/",&(ptr2[i].dd));
+          scanf("%d/",&(ptr2[i].mm));
            scanf("%d",&(ptr2[i].yy));
 
      }

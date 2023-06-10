@@ -13,8 +13,8 @@ typedef struct
 
 typedef struct
 {
-    char rollNo[10];
-    char branch[2];
+    char rollNo[11];
+    char branch[3];
     DOB dob;
 }record;
 

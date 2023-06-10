@@ -33,8 +33,8 @@ int main()
     {
         scanf("%s",&ar[i].rollNo);
         scanf("%s",&ar[i].branch);
-        scanf("%d",&ar[i].d1.d);
-        scanf("%d",&ar[i].d1.m);
+        scanf("%d/",&ar[i].d1.d);
+        scanf("%d/",&ar[i].d1.m);
         scanf("%d",&ar[i].d1.y);
     }
     printf("The records\n");

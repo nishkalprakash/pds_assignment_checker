@@ -72,7 +72,7 @@ int main()
                 a[j].dob.yyyy= a[j+1].dob.yyyy;
             }
     }
-    realloc(a,(n-m)*sizeof(rec));
+    // realloc(a,(n-m)*sizeof(rec));
     if (n-m == 0)
     {
         printf("\nNo remaining records");

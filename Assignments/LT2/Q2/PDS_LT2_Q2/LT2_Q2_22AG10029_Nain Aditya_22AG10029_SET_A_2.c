@@ -27,12 +27,13 @@ int main(){
     int n;
     records *r;
     scanf("%d",&n);
+    getchar();
     r=(records*)malloc(n*sizeof(records));
     for (int i =0 ;i<n;i++){
         scanf("%s",r[i].rollno);
         scanf("%s",r[i].branch);
-        scanf("%d",&r[i].dob.dd);
-        scanf("%d",&r[i].dob.mm);
+        scanf("%d/",&r[i].dob.dd);
+        scanf("%d/",&r[i].dob.mm);
         scanf("%d",&r[i].dob.yyyy);
     }
     int y;

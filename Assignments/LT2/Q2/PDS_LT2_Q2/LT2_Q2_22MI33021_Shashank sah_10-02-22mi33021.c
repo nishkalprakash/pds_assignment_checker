@@ -1,6 +1,8 @@
-/*name:shashank sah
-sec 2
-roll no :22mi33021
-lab test2 : Q2*/
-
-#i
+#include<stdio.h>
+int main(){
+    
+  struct record{
+  char rollno[100];
+  int name[100];
+  int dob[100];
+  };

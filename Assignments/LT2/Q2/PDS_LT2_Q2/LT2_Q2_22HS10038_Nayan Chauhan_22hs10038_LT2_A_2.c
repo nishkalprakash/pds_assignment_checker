@@ -15,10 +15,11 @@ int main()
     scanf("%d", &n);
     if(n<0||n>100) printf("Invalid Value of N");
     else{
-    scanf("%d", &n);
+    // scanf("%d");
+    getchar();
     p = (record *) malloc((n)*sizeof(record));
     for(int i =0; i<n; i++){
-        scanf("%s%s%d/%d/%d", p[i].rollNo, p[i].branch, &p[i].d, &p[i].m, &p[i].y);
+        scanf("%s %s %d/%d/%d", p[i].rollNo, p[i].branch, &p[i].d, &p[i].m, &p[i].y);
     }
     int year;
     scanf("%d", &year);

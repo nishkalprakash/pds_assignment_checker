@@ -19,8 +19,8 @@ int main()
     printf("Enter number of records to be entered : ");
     scanf("%d", &n);
 
-    for(int i = 1; i >0; i++)
-    {
+    // for(int i = 1; i >0; i++)
+    // {
         if(n<= 0 || n>100)
             printf("Invalid N");
         else
@@ -76,7 +76,7 @@ int main()
 
 
         }
-    }
+    // }
 
 
     return 0;

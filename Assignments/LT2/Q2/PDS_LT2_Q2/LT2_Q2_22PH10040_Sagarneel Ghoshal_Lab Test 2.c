@@ -15,7 +15,7 @@ struct dob{                          //defining structure for the date of birth
 };
 
 struct record{                        //defining structure for the records
-    char rollNo[10];
+    char rollNo[11];
     char branch[3];
     struct dob date;
 };
@@ -24,6 +24,7 @@ int main(){                           //main function
     int n,year,m=0;
     printf("Enter the number of records: ");           //taking in the number of records
     scanf("%d",&n);
+    getchar();
 
     struct record *recs,*recs2;
     recs=(struct record*)malloc(n*sizeof(struct record));             //allocating the memory
@@ -35,8 +36,8 @@ int main(){                           //main function
         printf("\nEnter branch of student %d: ",i+1);
         scanf("%s",recs[i].branch);
         printf("\nEnter Date of Birth of student %d: ",i+1);
-        scanf("%d",&recs[i].date.dd);
-        scanf("%d",&recs[i].date.mm);
+        scanf("%d/",&recs[i].date.dd);
+        scanf("%d/",&recs[i].date.mm);
         scanf("%d",&recs[i].date.yyyy);
     }
 
@@ -70,8 +71,8 @@ int main(){                           //main function
 
     recs2=(struct record*)malloc(diff*sizeof(struct record));
 
+    int j=0;
     for(i=0;i<n;i++){
-        int j=0;
         if(recs[i].date.yyyy>year){
                 recs2[j]=recs[i];
                 j++;
