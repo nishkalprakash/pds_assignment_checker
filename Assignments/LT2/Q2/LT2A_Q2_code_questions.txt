@@ -1,8 +1,7 @@
-10;Stucture to store data defined
-10;Allocated memory using malloc/calloc
-10;Taken n inputs from user
-5;Taken DOB as input
-5;Deleted records who have Year greater than DOB
-5;Printed the deleted records
+5;Allocated memory using malloc/calloc
+10;Stucture to store data defined 
+5;Used a different structure to store DOB
+10;Read n records from the user and Year value
+15;printed the deleted records for Year greater than DOB
 10;Reallocated the deleted memory
 5;Printed the remaining records
