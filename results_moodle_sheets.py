@@ -192,8 +192,8 @@ gdf.at["22MT30024","LT_01"] = gdf.at["22MT30024","LT_02"]
 
 fl=lambda x,y:x[y].replace('-',0).astype('float')
 total="3_Total"
-gdf[LT_total]=0.5*fl(gdf,"LT_01")+0.5*fl(gdf,"LT_02")
-gdf[total] = .5*fl(gdf,top8) + 0.5*fl(gdf,LT_total)
+gdf[LT_total]=0.4*fl(gdf,"LT_01")+0.6*fl(gdf,"LT_02")
+gdf[total] = .6*fl(gdf,top8) + 0.4*fl(gdf,LT_total)
 # gdf.drop(top8, axis=1, inplace=True)
 # if inital total was 0 then set the value to 0
 # gdf[total]=gdf[total].apply(lambda x:0 if x==20 else x) 
