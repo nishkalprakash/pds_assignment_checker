@@ -114,9 +114,30 @@ for i in missing:
     name = re.sub(r" +", " ", name)
     gdf.loc[i, "1_Roll"] = m[name]
 ## Set column 1_Roll to upper case
-gdf["1_Roll"] = gdf["1_Roll"].str.upper()
-gdf = gdf.set_index("1_Roll")
 
+
+#%% To handle non moodle users 
+
+# s={"1_Roll","2_Student"}
+
+# cols = sorted(set(gdf.columns.tolist())-s)
+
+bl=[{
+    "1_Roll": "21CH10006",
+    "2_Student": "Aditya Vishwanath Golewar",
+},{
+    "1_Roll": "21MI10007",
+    "2_Student": "Aman Singh",
+},{
+    "1_Roll": "21MI33025",
+    "2_Student": "Nenavath Adithya",
+}]
+
+bl_df=pd.DataFrame(bl)
+gdf=pd.concat([gdf,bl_df],ignore_index=True)
+gdf["1_Roll"] = gdf["1_Roll"].str.upper()
+gdf.fillna("-", inplace=True)
+gdf = gdf.set_index("1_Roll")
 #%% Add Viva data here
 # viva=get_worksheet(cauth,sp=get_spreadsheet(cauth,url=viva_marks_url),title="Sheet1")
 # #%%
@@ -149,8 +170,10 @@ agg_cols = []
 c='A'
 top=6
 top8 = f"Top {top}A"
+LT_total = f"LT_Total"
 agg_cols.append(top8)
 gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1)
+
 # c='LT'
 # top8 = f"LT1 & 2"
 # agg_cols.append(top8)
@@ -162,9 +185,15 @@ gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: 
 #%% compute total
 # gdf.drop("zTotal", axis=1, inplace=True)
 #%%
+#%% To handle medical case
+gdf.at["22MT30024","LT_01"] = gdf.at["22MT30024","LT_02"]
+
+
+
 fl=lambda x,y:x[y].replace('-',0).astype('float')
 total="3_Total"
-gdf[total] = .5*fl(gdf,top8) + .25*fl(gdf,"LT_01") + .25*fl(gdf,"LT_01")
+gdf[LT_total]=0.5*fl(gdf,"LT_01")+0.5*fl(gdf,"LT_02")
+gdf[total] = .5*fl(gdf,top8) + 0.5*fl(gdf,LT_total)
 # gdf.drop(top8, axis=1, inplace=True)
 # if inital total was 0 then set the value to 0
 # gdf[total]=gdf[total].apply(lambda x:0 if x==20 else x) 
@@ -215,7 +244,7 @@ cauth = auth()
 ##
 my_students = get_students(only_roll=1,path=r'var/mapping.txt')
 # gdf_my_students = gdf.loc[my_students, ~gdf.columns.isin(agg_cols)]
-gdf_my_students = gdf.loc[my_students,:]
+gdf_my_students = gdf
 gdf_my_students.sort_values(by=total, ascending=True, inplace=True)
 push_to_sheets(cauth, ws_name, gdf_my_students)
 
