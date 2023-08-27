@@ -1,6 +1,6 @@
 //Roll No:<23MT10034>
 //Name:<N Chandra Siddharth>
-include<stdio.h>
+#include<stdio.h>
 int main ()
 {
   float y;
