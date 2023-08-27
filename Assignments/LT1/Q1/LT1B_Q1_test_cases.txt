@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;~~Points having the maximum area: (-1,1),(1,1),(1,-1)~~~~Perimeter = 6.82~~;-1,1~~1,1~~1,-1~~-1,-1
-10;~~Points having the maximum area: (1,1) (2,2) (3,3)~~~~Perimeter = 0 (since there is no triangle)~~;1, 1~~2, 2~~3, 3~~4, 4
-10;~~Points having the maximum area: (-1,1), (-2,0), (2,0) ~~~~Perimeter = 8.57~~~~;-1,1~~1,1~~-2,0~~2,0
-10;~~Points having the maximum area: (1,1),(-1,1), (0,4) ~~~~Perimeter = 8.32;0, 0~~1, 1~~-1,1~~0, 4

@@ -1,3 +1,0 @@
-#TC_GENERATED
-10;~~Matrices before multiplication:~~Matrix A:~~2 3~~2 3~~Matrix B:~~1 2 3~~4 5 6~~Matrices after multiplication:~~Matrix A:~~2 3~~2 3~~Matrix B:~~1 2 3~~4 5 6~~Resultant Matrix:~~14 19 24~~14 19 24;2 2 2 3~~~~2 3~~2 3~~~~1 2 3~~4 5 6
-10;~~Matrices before multiplication:~~Matrix A:~~1 2 3~~1 1 1~~Matrix B:~~2 3 3~~1 1 1~~Error: Invalid matrix sizes for multiplication!;2 3 2 3~~~~1 2 3~~1 1 1~~~~2 3 3~~1 1 1

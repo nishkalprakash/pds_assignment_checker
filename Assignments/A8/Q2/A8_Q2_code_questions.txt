@@ -1,5 +1,0 @@
-10;Correct structure definition to store 2D matrix
-10;Creation of matrix
-10;Read and print of matrix
-20;Matrix multiplication logic
-10;Correct Resultant matrix

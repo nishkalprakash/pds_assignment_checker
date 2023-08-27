@@ -1,3 +1,0 @@
-#TC_GENERATED
-20;IN:~~Enter the number of students: 2~~~~Enter the marks for student 1:~~  Attendence [40]: 20~~  CT [20]: 10~~  Midsem [60]: 30~~  Endsem [100]: 50~~~~Enter the marks for student 2:~~  Attendence [40]: 40~~  CT [20]: 20~~  Midsem [60]: 60~~  Endsem [100]: 100~~~~~~Exp OUT:~~~~Student 1~~  Total marks: 50.00~~  Grade: D~~~~Student 2~~  Total marks: 100.00~~  Grade: EX~~~~;2 20 10 30 50 40 20 60 100
-20;IN:~~Enter the number of students: 1~~~~Enter the marks for student 1:~~  Attendence [40]: 10~~  CT [20]: 5 ~~  Midsem [60]: 10~~  Endsem [100]: 10~~~~Exp OUT:~~Student 1~~  Total marks: 16.50~~  Grade: F~~~~;1 10 5 10 10

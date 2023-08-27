@@ -1,7 +1,0 @@
--10;Header Comment Missing
-10;Input n taken
-10;outer loop run N times
-10;Inner loop for spaces run N-i times
-10;Increasing order numbers printed
-10;Decreasing order numbers printed
-10;Printed Numbers with % 10

@@ -1,5 +1,0 @@
-10;Read 5 integers
-10;Checked for exactly 3 odd numbers
-10;Checked for exactly 3 even numbers
-20;Printed odd numbers in ascending order
-10;Printed largest number in case of even

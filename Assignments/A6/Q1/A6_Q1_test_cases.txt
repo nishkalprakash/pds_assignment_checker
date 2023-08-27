@@ -1,1 +1,0 @@
-10;Degrees = 30.000000~~### Iterative Method ###~~sin(30.0000) = 0.500000000~~CPU time: 1.004000000 seconds~~~~### Recursive Method ###~~sin(30.0000) = 0.500000000~~CPU time: 1.002000000 seconds~~Recursive method is faster by 0.002000000 seconds~~;30

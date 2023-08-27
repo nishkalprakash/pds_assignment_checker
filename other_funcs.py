@@ -148,7 +148,7 @@ if __name__ == "__main__":
     ## TODO: update assignment reports with plag from moodle
     # format_plag_email_file()
     # results_edit()
-    generate_test_cases()
+    # generate_test_cases()
     pass
 
 

@@ -1,7 +1,0 @@
-#TC_GENERATED
-10;~~Value of n: 23~~Nearest Fibonacci number: 21;23
-10;~~Value of n: 4~~Nearest Fibonacci number: 3;4
-10;~~Value of n: -8~~Please give positive number;-8
-10;~~Value of n: 89~~89 is a Fibonacci number;89
-10;~~Value of n: 5465456~~Nearest Fibonacci number: 5702887;5465456
-10;~~Value of n: 65746587~~Nearest Fibonacci number: 63245986;65746587

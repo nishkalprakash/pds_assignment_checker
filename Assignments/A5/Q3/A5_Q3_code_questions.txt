@@ -1,8 +1,0 @@
-# Grading criteria out of 60 given below
-5;Input taken from user
-5;Correct definition of swap() function
-10;Correct definition of reverse() function
-10;Correct definition of cyclicShift() function
-10;Correct implementation of reverse() function
-10;Correct implementation of cyclicShift() function
-10;Correct output printed

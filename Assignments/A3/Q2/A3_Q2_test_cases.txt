@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;IN:~~ 21   123~~~~Exp OUT:~~Wrong Input~~~~; 21   123
-10;IN:~~-659  956~~~~Exp OUT:~~Not a Perfect Pair~~~~;-659  956
-10;IN:~~-563 -365~~~~Exp OUT:~~Perfect Pair~~~~;-563 -365
-10;IN:~~ 24    42~~~~Exp OUT:~~Perfect Pair~~~~; 24    42

@@ -2,7 +2,8 @@ from lib.pds_globals import VAR
 
 import pygsheets
 
-progress_monitor_url="https://docs.google.com/spreadsheets/d/1Q9IihjjX7Ffm2d63MYwdwBG5dMk_bY8ADyTDFdkJnco/edit?usp=sharing"
+progress_monitor_url="https://docs.google.com/spreadsheets/d/1PVgfK5sh9hGvfgxzr2812L09tH9uhakgqrMm-RPmAGc" # A23
+# progress_monitor_url="https://docs.google.com/spreadsheets/d/1Q9IihjjX7Ffm2d63MYwdwBG5dMk_bY8ADyTDFdkJnco/edit?usp=sharing" # S23
 # progress_monitor_url="https://docs.google.com/spreadsheets/d/1Sl_v0iwNDjcqqaq31gARLXKsl7WRmXiOr-KEFbKyp7A"
 # viva_marks_url="https://docs.google.com/spreadsheets/d/1JmXAW0GQzfDOA87-emeyXMLj1IFFFWdyNvx7wQS4JlI/"
 

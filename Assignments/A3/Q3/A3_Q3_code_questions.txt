@@ -1,4 +1,0 @@
-10;9 points taken as input
-10;points printed on the screen
-20;checked for collinear
-20;printed in collated sequence

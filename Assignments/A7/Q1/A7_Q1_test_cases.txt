@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;~~5 Random Number: <Random numbers>~~<The perfect numbers>;5
-10;~~5 Random Number: <Random numbers>~~<The perfect numbers>;5
-10;~~0 Random Number: <Random numbers>~~<The perfect numbers>;0
-10;~~10 Random Number: <Random numbers>~~<The perfect numbers>;10

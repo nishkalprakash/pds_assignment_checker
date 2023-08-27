@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;~~MarcelinoWynnstan enrolled successfully.~~~~MarcelinoWynnstan already exists.~~~~**EXITING**;2 ~~1 ~~MarcelinoWynnstan~~MarcelinoWynnstan@132 ~~1~~MarcelinoWynnstan
-10;~~Invalid Password.~~~~** EXITING **;2~~1~~KealaSean~~keala767sean@123
-10;~~HyperionBrice enrolled successfully.~~~~HyperionBrice signed in successfully.~~~~** EXITING *;3~~1~~HyperionBrice~~briceHyperion@2645~~2~~HyperionBrice~~briceHyperion@2645
-10;~~HyperionBrice enrolled successfully.~~~~KealSeana is not enrolled.~~~~** EXITING **;3~~1~~HyperionBrice      ~~briceHyperion@1737 ~~2~~KealSeana      

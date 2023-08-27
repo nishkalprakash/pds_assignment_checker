@@ -1,6 +1,0 @@
-10;Input taken
-10;digits counted
-10;extracted digits
-10;checked for wrong Input
-10;checked for negative numbers
-10;printed output

@@ -1,7 +1,0 @@
-# Grading criteria given below
-10;Input taken
-10;Input validated
-10;Broke n into p & q
-10;Iterated over possible prime values of p & q
-10;Printed result if both p & q are prime
-10;Used primeCheck function

@@ -1,7 +1,0 @@
-5;Read Input (scanf for n, p and q)
-10;Random array init
-5;Used malloc/calloc to initialize array
-10;function to calculate max defined
-15;recursive implementation of max
-10;Printed the array
-5;printed the max

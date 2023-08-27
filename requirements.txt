@@ -1,2 +1,4 @@
 selenium
 webdriver_manager
+pygsheets
+ipykernel

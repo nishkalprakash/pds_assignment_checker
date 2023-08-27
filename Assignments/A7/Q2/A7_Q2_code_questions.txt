@@ -1,5 +1,0 @@
-5;Read values of Matrix A and B
-20;Swapped the values of A and B
-5;Printed the swapped array A and B
-25;Computed C = A x B
-5;Printed the array C

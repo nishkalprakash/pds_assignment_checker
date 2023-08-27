@@ -6,6 +6,7 @@ if a variable is suffixed by a '_' its a placeholder and VARIABLE_.format(x=,y=)
 
 from pathlib import Path
 
+MOODLE_COURSE_ID = 544
 
 
 HOME = "Assignments"
@@ -21,14 +22,14 @@ MOODLE_A_NAME_ = "LT-{a}:"
 # MOODLE_A_NAME_ = "Test-1: Set-{a}"
 # MOODLE_A_NAME_ = "Test-2: Set-{a}"
 
-# MOODLE_A_NAME_ = "Lab-{a}:"  # COMMENT THIS FOR LT
+MOODLE_A_NAME_ = "Lab-{a}:"  # COMMENT THIS FOR LT
 
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 
 # Base is the assignment type
 BASE = "LT"
 
-# BASE = "A"  # COMMENT THIS FOR LT
+BASE = "A"  # COMMENT THIS FOR LT
 
 Q_BASE = "Q"
 
@@ -86,7 +87,6 @@ A_Q_REPORT_ = A_Q_ + "_report.csv"
 A_Q_REPORT_PATH_ = A_Q_PATH_ + "/" + A_Q_REPORT_
 
 
-MOODLE_COURSE_ID = 529
 
 ## SUBMISSION FEAUTRE
 A_Q_SUB_ = A_Q_ + "_submissions.csv"
@@ -114,12 +114,13 @@ TEST_DEMO = f"""
 10{DELIM}101{DELIM}101
 10{DELIM}993{DELIM}993
 10{DELIM}100{DELIM}100
+10{DELIM}100{DELIM}100
 # ```
 """.strip()
 
 CODE_DEMO =f"""
-30{DELIM}Logic is correct and gives expected output
-30{DELIM}Efficient and Optimal steps used to get to output
+25{DELIM}Logic is correct and gives expected output
+25{DELIM}Efficient and Optimal steps used to get to output
 -5{DELIM}Comments missing, logic hard to understand
 -5{DELIM}Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
 """.strip()

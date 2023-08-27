@@ -1,4 +1,0 @@
-10;Input taken
-10;Dynamically allocated array
-20;Random numbers generated and stored
-20;Checked for perfect number

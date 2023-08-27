@@ -1,6 +1,0 @@
-10;Stucture Person defined
-5;Allocated memory using malloc/calloc
-10;Function to read and print
-15;Taken n inputs from user and printed and Taken Persons2 inputs from user
-10;Merged Persons and Persons2 in Persons_merged
-10;Printed records who have nationality as Indian

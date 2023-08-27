@@ -1,5 +1,0 @@
-10;Read an integer
-10;Check for odd or even
-20;Printed the sub-integers from most significant to least significant if odd and vice versa
-10;Computed the reverse of the digits
-10;Printed the absolute difference between them

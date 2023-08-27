@@ -1,6 +1,0 @@
-10;Taken Input in Degrees 
-10;Converted proporly into Radians
-20;Calculated the value of sin(x) using Iterative method
-20;Calculated the value of sin(x) using Recursinve Method
-20;Calculated the time difference between the two methods
-10;Printed the results

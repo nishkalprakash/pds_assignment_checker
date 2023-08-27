@@ -1,5 +1,0 @@
-#TC_GENERATED
-10;~~List = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]~~Max = 1;10~~1 1
-10;~~List = [-1, 0, 2, -2, 2]~~Max = 2;5~~-2 2
-10;~~List = [10]~~Max = 10;1 ~~10 10
-10;~~p should be less than or equal to q;1000 ~~50 10
