@@ -1,10 +1,10 @@
-#nclude <stdio.h>
+#include <stdio.h>
 int main()
 {
   int r,t;
   float ir,lm,i;
   scanf("%d",&r);
-  printf(i"Amount:%d\n",r);
+  printf("Amount:%d\n",r);
   scanf("%d",&t);
   printf("Duration:%d\n",t);
   scanf("%f",&ir);
