@@ -2,3 +2,5 @@ selenium
 webdriver_manager
 pygsheets
 ipykernel
+# for moodle to sheets
+pandas

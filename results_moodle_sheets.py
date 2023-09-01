@@ -122,19 +122,19 @@ for i in missing:
 
 # cols = sorted(set(gdf.columns.tolist())-s)
 
-bl=[{
-    "1_Roll": "21CH10006",
-    "2_Student": "Aditya Vishwanath Golewar",
-},{
-    "1_Roll": "21MI10007",
-    "2_Student": "Aman Singh",
-},{
-    "1_Roll": "21MI33025",
-    "2_Student": "Nenavath Adithya",
-}]
+# bl=[{
+#     "1_Roll": "21CH10006",
+#     "2_Student": "Aditya Vishwanath Golewar",
+# },{
+#     "1_Roll": "21MI10007",
+#     "2_Student": "Aman Singh",
+# },{
+#     "1_Roll": "21MI33025",
+#     "2_Student": "Nenavath Adithya",
+# }]
 
-bl_df=pd.DataFrame(bl)
-gdf=pd.concat([gdf,bl_df],ignore_index=True)
+# bl_df=pd.DataFrame(bl)
+# gdf=pd.concat([gdf,bl_df],ignore_index=True)
 gdf["1_Roll"] = gdf["1_Roll"].str.upper()
 gdf.fillna("-", inplace=True)
 gdf = gdf.set_index("1_Roll")
@@ -168,7 +168,7 @@ agg_cols = []
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
-top=6
+top=1
 top8 = f"Top {top}A"
 LT_total = f"LT_Total"
 agg_cols.append(top8)
@@ -186,14 +186,15 @@ gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: 
 # gdf.drop("zTotal", axis=1, inplace=True)
 #%%
 #%% To handle medical case
-gdf.at["22MT30024","LT_01"] = gdf.at["22MT30024","LT_02"]
+# gdf.at["22MT30024","LT_01"] = gdf.at["22MT30024","LT_02"]
 
 
 
 fl=lambda x,y:x[y].replace('-',0).astype('float')
 total="3_Total"
-gdf[LT_total]=0.4*fl(gdf,"LT_01")+0.6*fl(gdf,"LT_02")
-gdf[total] = .6*fl(gdf,top8) + 0.4*fl(gdf,LT_total)
+# gdf[LT_total]=0.4*fl(gdf,"LT_01")+0.6*fl(gdf,"LT_02")
+# gdf[total] = .6*fl(gdf,top8) + 0.4*fl(gdf,LT_total)
+gdf[total] = fl(gdf,top8)
 # gdf.drop(top8, axis=1, inplace=True)
 # if inital total was 0 then set the value to 0
 # gdf[total]=gdf[total].apply(lambda x:0 if x==20 else x) 
