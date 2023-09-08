@@ -1,4 +1,6 @@
-25;Logic is correct and gives expected output
-25;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+10;Scanf taken correctly (in the correct order)
+15;Computed fare based on distance
+15;Computed fare based on hours
+10;Printed the total fare
+-5;Code not properly formatted (indentation, spacing, etc.)
+-5;Code logic not commented (including name and roll number)

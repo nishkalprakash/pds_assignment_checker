@@ -1,9 +1,6 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-10;321;123
-10;101;101
-10;993;993
-10;100;100
-10;100;100
-# ```
+#TC_GENERATED
+10;~~Enter km and hrs: 5 0~~Fare: Rs. 20;5 0
+10;~~Enter km and hrs: 7 5~~Fare: Rs. 220;7 5
+10;~~Enter km and hrs: 13 5~~Fare: Rs. 268;13 5
+10;~~Enter km and hrs: 17 15~~Fare: Rs. 598;17 15
+10;~~Enter km and hrs: 5 30~~Fare: Rs. 820;5 30
