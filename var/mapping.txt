@@ -60,7 +60,6 @@
 18037;dhanraj patil;23EE10016
 18038;Nishant Kumar;23EX10024
 18039;kavya rai;23CS10031
-18040;Rishab Yadav;23NA10036
 18041;pramod Kumar;23PH10032
 18042;Anshuman Acharya;23CH10006
 18043;Swaraj Dian;23EC30056
