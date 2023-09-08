@@ -36,7 +36,7 @@
 18011;Kshetrimayum Abo;23CS30029
 17752;Kushagra Poonia;23EE10036
 17724;Lalit Karthikeyan M A;23ME10044
-18034;Lokesh Ingale;23HS10030
+#1 18034;Lokesh Ingale;23HS10030
 17744;Mohammad Aasim Ansari;23AE30013
 17742;Naveen Eslavath;23MI31012
 17730;Nayandeep Deb;23MA10036
@@ -67,7 +67,7 @@
 18009;Shaurya Singh Raghaw;23AG30039
 17735;Shikhar Burman;23CS30049
 18020;Shine Srivastava;23MF3IM17
-18019;Shobhit kumar;23HS10050
+#1 18019;Shobhit kumar;23HS10050
 18047;Shravani Khot;23ME30058
 18035;Shrey Patel;23CS10051
 18025;shreyash dhakate;23IM30025
