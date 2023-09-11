@@ -20,7 +20,7 @@ else:
     print(*data.values(), sep='\n####\n')
     # copy(data['c'])
 
-    recheck = def_input("Recheck? ([1]/0)", 0)
+    recheck = def_input("Recheck? (1/[0])", 0)
 if recheck:
     # pull=REPORT
     if(data is not None):
@@ -38,6 +38,6 @@ if recheck:
 
 ## Open moodle and paste for that roll number only
 # ask user if they want to upload to moodle
-upload = def_input("Upload to moodle? ([1]/0)", 0)
+upload = def_input("Upload to moodle? (1/[0])", 0)
 if upload:
     upload_to_moodle(a, ql, roll=roll)
