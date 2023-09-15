@@ -168,7 +168,7 @@ agg_cols = []
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
-top=1
+top=2
 top8 = f"Top {top}A"
 LT_total = f"LT_Total"
 agg_cols.append(top8)
