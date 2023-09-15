@@ -33,7 +33,9 @@ Uploading puneet_gupta_-_23CY10029_-_A4_Q1.c ...done.
 Uploading saketh_akella_-_23EC10006_-_A4_Q1.c ...done.
 Uploading Sri_Sai_Karthik_Pranav_Mummidi_-_23EC10046_-_A4_Q1.c ...done.
 Uploading Sai_Pranav_Murari_Ramaraju_-_23EC10066_-_A4_Q1.c ...done.
-Uploading Raju_Singh_-_23EC30036_-_A4_Q1.c ...done.
+Uploading Dhritish_Mondal_-_23EC30016_-_A4_Q1.c ...done.
+Uploading Raju_Kumar_-_23EC30036_-_A4_Q1.c ...done.
+Uploading Raju_Kumar_-_23EC30036_-_A4_Q1.c ...done.
 Uploading Swaraj_Dian_-_23EC30056_-_A4_Q1.c ...done.
 Uploading dhanraj_patil_-_23EE10016_-_A4_Q1.c ...done.
 Uploading Kushagra_Poonia_-_23EE10036_-_A4_Q1.c ...done.
@@ -49,6 +51,7 @@ Uploading Lokesh_Ingale_-_23HS10030_-_A4_Q1.c ...done.
 Uploading Shobhit_kumar_-_23HS10050_-_A4_Q1.c ...done.
 Uploading Avik_Ghosh_-_23IE10011_-_A4_Q1.c ...done.
 Uploading om_jadon_-_23IE10031_-_A4_Q1.c ...done.
+Uploading Ayush_Kumar_-_23IM10008_-_A4_Q1.c ...done.
 Uploading shreyash_dhakate_-_23IM30025_-_A4_Q1.c ...done.
 Uploading Aryan_Raina_-_23MA10016_-_A4_Q1.c ...done.
 Uploading Nayandeep_Deb_-_23MA10036_-_A4_Q1.c ...done.
@@ -80,4 +83,4 @@ Uploading Ritvik_Puvvada_-_23NA30028_-_A4_Q1.c ...done.
 Uploading Bhoomik_Modi_-_23PH10013_-_A4_Q1.c ...done.
 Uploading pramod_Kumar_-_23PH10032_-_A4_Q1.c ...done.
 Query submitted.  Waiting for the server's response.
-http://moss.stanford.edu/results/3/6873847058481
+http://moss.stanford.edu/results/6/4025984740323
