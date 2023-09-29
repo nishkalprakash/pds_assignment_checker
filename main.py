@@ -282,16 +282,17 @@ def pds_checker(a, q, s=None):
                                 test_marks[i] = float(inp)
                                 if test_marks[i] < mark:
                                     comments.append(
-                                        f"{BR}FAILED: Test Case {i+1}: {BR}INPUT:{test}{BR}Desired Output:{BR}{test_comment} {BR}  Mark/s obtained: {test_marks[i]:g} out of {mark:g}{BR}"
+                                        f"{BR}FAILED: Test Case {i+1}: {BR}INPUT:{test}{BR}Desired Output:{BR}{test_comment}"
                                     )
                                     if platform == 'win32':
                                         comments.append(f'{BR}Your output:{BR}{out}')
+                                    comments.append(f"{BR}  Mark/s obtained: {test_marks[i]:g} out of {mark:g}{BR}")
                                 elif test_marks[
                                         i] >= mark:  # in case of typing errpr
                                     test_marks[i] = mark
-                                    # comments.append(
-                                    #     f"{BR}PASSED: Test Case {i+1}: {BR}INPUT:{test}{BR}Desired Output:{BR}{test_comment}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
-                                    # )
+                                    comments.append(
+                                        f"{BR}PASSED: Test Case {i+1}: {BR}INPUT:{test}{BR}Desired Output:{BR}{test_comment}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
+                                    )
                             """
                             else:  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
                                 test_marks[i] = float(
@@ -367,6 +368,8 @@ def pds_checker(a, q, s=None):
                     if max_test_marks == sum(test_marks):
                         # short = 'ss'
                         # comments.pop(" TEST CASES ".center(30, "="))
+                                                # delete previous comments
+                        comments=comments[:-(len(test_cases))]
                         comments.append(
                                 f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}"
                             )
@@ -416,9 +419,9 @@ def pds_checker(a, q, s=None):
                                         i] >= mark:  # in case of typing err0r
                                     code_marks[i] = mark
                                     # NOTE: Uncomment this to give a comment for each passed code case
-                                    # comments.append(
-                                    #     f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
-                                    # )
+                                    comments.append(
+                                        f"{BR}PASSED: Code Case {i+1}:{BR}{ques}{BR}  Mark/s obtained: {mark:g} out of {mark:g}{BR}"
+                                    )
                             elif (
                                     mark < 0
                             ):  # This case is for -ve marking, defaults to zero, adds a comment if -ve marks given
@@ -436,7 +439,8 @@ def pds_checker(a, q, s=None):
                                     )
                     max_code_marks = sum(i for i in code_marks_list if "%" not in str(i) and i > 0)
                     if  max_code_marks == sum(code_marks):
-                        
+                        # delete previous comments
+                        comments=comments[:-(len([i for i in code_marks_list if "%" not in str(i) and i > 0]))]
                         comments.append(
                                 f"PASSED: All code cases - Marks : {max_code_marks:g} out of {max_code_marks:g}"
                             )

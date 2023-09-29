@@ -4,4 +4,4 @@
 10;b) Computed checksum of encoded number correctly
 10;c) Double Encoded checksum the correctly
 -50%;Strings/arrays used
--2;Int used instead of long int
+-10;Int used instead of long int
