@@ -10,7 +10,7 @@ int main() {
 
     int originalNumber = n;
     int encodedNumber = 0;
-    long int position = 1;
+    long long int position = 1;
     int checksum = 0;
 
     // Step 2: Encode each digit in the number and construct the encoded number
@@ -44,7 +44,7 @@ int main() {
     checksum = encodedNumber * 100 + checksum;
 
     // Step 5: Double encode the number by inserting a 0 after each digit
-    long doubleEncodedNumber = 0;
+    long long int doubleEncodedNumber = 0;
     position = 10;
     
     int copychecksum=checksum;
@@ -58,7 +58,7 @@ int main() {
     }
 
     // Step 6: Print the results with the correct variable names
-    printf("\n input: %d -> encoded: %d -> with checksum %d -> double encoded: %ld\n",
+    printf("\n input: %d -> encoded: %d -> with checksum %d -> double encoded: %lld\n",
            originalNumber, encodedNumber, checksum, doubleEncodedNumber);
 
     return 0;
