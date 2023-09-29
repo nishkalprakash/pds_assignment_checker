@@ -80,7 +80,7 @@ def pds_checker(a, q, s=None):
             'B':{i[0] for i in x if i[1]=="B"}
         }
     # students = get_students(sort_by_score=True)
-    students = get_students(sort_by_score=False)
+    students = get_students(sort_by_score=True)
     plag_students_roll_set = set(
         get_students(A_Q_PLAG_PATH_.format(a=a, q=q), only_roll=True))
     ## Getting the BASE number details from user and switching working dir to BASE_a

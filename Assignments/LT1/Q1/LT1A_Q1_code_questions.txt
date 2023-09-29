@@ -1,0 +1,7 @@
+-50%;Strings/arrays used
+-2;Int used instead of long int
+10;Input taken
+10;Checked for number greater than 9999
+10;a) Encoded number correctly
+10;b) Computed checksum of encoded number correctly
+10;c) Double Encoded checksum the correctly
