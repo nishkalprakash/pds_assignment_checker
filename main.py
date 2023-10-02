@@ -536,11 +536,7 @@ def pds_driver(a=None,ql=None):
     base_home = Path.cwd()
     s=None
     if a is None:
-        a, ql = get_a_ql_from_user()
-    if BASE == "LT":
-        s=def_input("Enter the Set","A")
-        # assert that s is A or B
-        assert s in ["A","B"], "Set can only be A or B"
+        a, ql, s = get_a_ql_from_user()
     # print(a)
     # print(ql)
     ## Set base to the required directory

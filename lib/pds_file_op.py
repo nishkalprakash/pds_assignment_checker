@@ -156,7 +156,12 @@ def get_a_ql_from_user(q=True):
     last_q = max(q_tup,key=lambda x:x[1])[0].name.removeprefix(Q_BASE) if ll else '1'
     ql = def_input(f"Please enter the {Q_BASE} number", last_q)
     # return a, ql.strip().split()
-    return a, ql.strip().split()
+    s=None
+    if BASE == "LT":
+        s=def_input("Enter the Set","A")
+        # assert that s is A or B
+        assert s in ["A","B"], "Set can only be A or B"
+    return a, ql.strip().split(), s
 
 
 def pull(path, DELIM=DELIM):

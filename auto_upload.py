@@ -12,6 +12,7 @@ from lib.pds_file_op import (
     get_map_roll_to_name,
     get_std_roll_to_m_c_dict,
     print,
+    pull
 )
 from lib.pds_selenium import (
     driver_get_course,
@@ -24,7 +25,7 @@ from lib.pds_selenium import (
 from lib.pds_globals import A_Q_
 
 
-def upload_to_moodle(a, ql,roll=None):
+def upload_to_moodle(a, ql,s=None,roll=None):
     ## Initialize selenium
     global driver
     driver = init_selenium()
@@ -36,6 +37,14 @@ def upload_to_moodle(a, ql,roll=None):
     # h4="//h4[contains(text(),'Attempt number 1 for ')]"
     xp="descendant::div[@class='comment']//%s[contains(concat(' ',normalize-space(@id),' '),'-%s')]"
     q_topics = [i for i in driver_get_topics_from_a(driver,a) if i['q'] in ql]
+    if s:
+        # get the mapping for roll;set from var/LT{a}.txt
+        x = pull(f"var/LT{a}.txt")
+        # get a dict {set_attempt:set(roll_no)}
+        std_dict_set = {
+            'A':{i[0] for i in x if i[1]=="A"},
+            'B':{i[0] for i in x if i[1]=="B"}
+        }
     for q_topic in q_topics:
         q=q_topic['q']
         nr_nxt=driver_get_heading_element_list(driver,q_topic)
@@ -47,6 +56,8 @@ def upload_to_moodle(a, ql,roll=None):
             next_div=nrd.pop('next_div')
             r=nrd['r']
             if roll is not None and r!=roll:
+                continue
+            if s and r not in std_dict_set[s]:
                 continue
             cm=next_div.find_element(by=By.XPATH,value=xp%('div','comment_ideditable'))
             mks=next_div.find_element(by=By.XPATH,value=xp%('input','mark'))
@@ -79,5 +90,5 @@ def upload_to_moodle(a, ql,roll=None):
  
     
 if __name__ == "__main__":
-    a, ql = get_a_ql_from_user()
-    upload_to_moodle(a,ql)
+    a, ql, s = get_a_ql_from_user()
+    upload_to_moodle(a,ql,s)
