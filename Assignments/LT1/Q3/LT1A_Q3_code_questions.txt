@@ -1,4 +1,4 @@
 10;Input has been taken correctly
 20;Logic is correct and gives expected output
-10:Have used nested loops
+10;Have used nested loops
 10;Output Printed
