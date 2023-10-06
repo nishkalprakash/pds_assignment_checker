@@ -168,7 +168,7 @@ agg_cols = []
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
-top=3
+top=4
 top8 = f"Top {top}A"
 LT_total = f"LT_Total"
 agg_cols.append(top8)
@@ -187,6 +187,9 @@ gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: 
 #%%
 #%% To handle medical case
 # gdf.at["22MT30024","LT_01"] = gdf.at["22MT30024","LT_02"]
+
+# A6 - Give average from A2-A5 - 23MI10014 - Bhumika Goyal (offical leave)
+gdf.at["23MI10014","A_06"] = gdf.loc["23MI10014","A_02":"A_05"].mean()
 
 
 
