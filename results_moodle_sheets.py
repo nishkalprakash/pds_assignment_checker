@@ -190,6 +190,7 @@ gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: 
 
 # A6 - Give average from A2-A5 - 23MI10014 - Bhumika Goyal (offical leave)
 gdf.at["23MI10014","A_06"] = gdf.loc["23MI10014","A_02":"A_05"].mean()
+gdf.at["23EE10076","A_06"] = gdf.loc["23EE10076","A_02":"A_05"].mean()
 
 
 
