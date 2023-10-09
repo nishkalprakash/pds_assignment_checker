@@ -186,12 +186,13 @@ gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: 
 # gdf.drop("zTotal", axis=1, inplace=True)
 #%%
 #%% To handle medical case
-# gdf.at["22MT30024","LT_01"] = gdf.at["22MT30024","LT_02"]
-
 # A6 - Give average from A2-A5 - 23MI10014 - Bhumika Goyal (offical leave)
-gdf.at["23MI10014","A_06"] = gdf.loc["23MI10014","A_02":"A_05"].mean()
-gdf.at["23EE10076","A_06"] = gdf.loc["23EE10076","A_02":"A_05"].mean()
+## DONE : Directly Updated in moodle
+# gdf.at["23MI10014","A_06"] = gdf.loc["23MI10014","A_02":"A_05"].replace('-',0).astype('float').mean()
 
+# A6 - Give average from A2-A5 - 23EE10076 - Pradeep V  (Medical Leave) (leg fracture)
+## DONE : Directly Updated in moodle
+# gdf.at["23EE10076","A_06"] = gdf.loc["23EE10076","A_02":"A_05"].replace('-',0).astype('float').mean()
 
 
 fl=lambda x,y:x[y].replace('-',0).astype('float')
