@@ -1,4 +1,3 @@
-25;Logic is correct and gives expected output
-25;Efficient and Optimal steps used to get to output
--5;Comments missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed
+15;Displayed Stds having same age.
+15;Displayed Stds having same marks.
+20;Displayed Sorted by roll.
