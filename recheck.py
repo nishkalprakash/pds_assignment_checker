@@ -27,7 +27,7 @@ if recheck:
         rep = pull(A_Q_REPORT_PATH_.format(**aq))
         rep = [r if r[0] != roll else ['# '+r[0]]+r[1:] for r in rep]
         push(A_Q_REPORT_PATH_.format(**aq), rep, attr='w+')
-    pds_driver(a, q)
+    pds_driver(a, q, s)
     data = get_std_roll_to_m_c_dict(a, q, scale=100).get(roll)
 
     # copy(data['c'])
@@ -40,4 +40,4 @@ if recheck:
 # ask user if they want to upload to moodle
 upload = def_input("Upload to moodle? (1/[0])", 0)
 if upload:
-    upload_to_moodle(a, ql, roll=roll)
+    upload_to_moodle(a, ql,s, roll=roll)

@@ -532,9 +532,9 @@ def pds_checker(a, q, s=None):
     print("Report has been generated.")
     return 0
 
-def pds_driver(a=None,ql=None):
+def pds_driver(a=None,ql=None, s=None):
     base_home = Path.cwd()
-    s=None
+    # s=None
     if a is None:
         a, ql, s = get_a_ql_from_user()
     # print(a)
