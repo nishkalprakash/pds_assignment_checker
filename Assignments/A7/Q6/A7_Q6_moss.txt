@@ -1,0 +1,27 @@
+Checking files . . .
+OK
+Uploading Mohammad_Aasim_Ansari_-_23AE30013_-_A7_Q6.c ...done.
+Uploading Aninda_Bera_-_23AG10007_-_A7_Q6.c ...done.
+Uploading komali_nagendla_-_23AG10027_-_A7_Q6.c ...done.
+Uploading Priyanshu_Verma_-_23CE10045_-_A7_Q6.c ...done.
+Uploading Shashank_Sahil_-_23CE10065_-_A7_Q6.c ...done.
+Uploading VIKASH_SIYAK_-_23CE10085_-_A7_Q6.c ...done.
+Uploading karina_dhaka_-_23CE30018_-_A7_Q6.c ...done.
+Uploading Niveditha_K_-_23CH10046_-_A7_Q6.c ...done.
+Uploading Raunak_Dariyal_-_23CH30027_-_A7_Q6.c ...done.
+Uploading NITHYASRI_GOGULA_-_23EC10026_-_A7_Q6.c ...done.
+Uploading Raju_Kumar_-_23EC30036_-_A7_Q6.c ...done.
+Uploading ANSH_KUMAR_-_23EX10004_-_A7_Q6.c ...done.
+Uploading Kajal_Kumari_-_23GG10021_-_A7_Q6.c ...done.
+Uploading Samriddhi_Ahuja_-_23GG10041_-_A7_Q6.c ...done.
+Uploading Lokesh_Ingale_-_23HS10030_-_A7_Q6.c ...done.
+Uploading Shobhit_kumar_-_23HS10050_-_A7_Q6.c ...done.
+Uploading Gargi_Mukherjee_-_23ME10025_-_A7_Q6.c ...done.
+Uploading Siddharth_Behera_-_23ME10082_-_A7_Q6.c ...done.
+Uploading Aarya_Majali_-_23ME30001_-_A7_Q6.c ...done.
+Uploading Anubhab_Sharma_-_23MF10004_-_A7_Q6.c ...done.
+Uploading Bhumika_Goyal_-_23MI10014_-_A7_Q6.c ...done.
+Uploading Naveen_Eslavath_-_23MI31012_-_A7_Q6.c ...done.
+Uploading Sreetama_Das_-_23MI33022_-_A7_Q6.c ...done.
+Query submitted.  Waiting for the server's response.
+http://moss.stanford.edu/results/8/3927837902187
