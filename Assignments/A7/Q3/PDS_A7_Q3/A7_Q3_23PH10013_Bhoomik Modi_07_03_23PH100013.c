@@ -53,7 +53,7 @@ int dist2city (int dist[5][5])
 {	
 	char s,t;
 	printf("Enter the two cities(With out leaving space) :  \n");
-	scanf("%c%c",&s,&t);
+	scanf("%c %c",&s,&t);
 	if(dist[s-65][t-65]!=-1)
 	printf("\nThe distance between %c and %c  is : %d \n",s,t,dist[s-65][t-65]);
 	else
@@ -65,7 +65,7 @@ int DistThr1city(int dist[5][5])
 	printf("Enter the two cities(With out leaving space) :  \n");
 	char k;
 	scanf("%c",&k);// To neutralize the line entered
-	scanf("%c%c",&r,&s);
+	scanf("%c %c",&r,&s);
 	int min=100000;
 	char mi;
 	for (int i=0;i<5;i++)

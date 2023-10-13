@@ -40,11 +40,11 @@ int main(){
 void dist2city(){
   char s,t;
   do {printf("give start city(out of A,B,C,D,E in capital) :");
-      s=getchar();getchar();}
+      s=getchar();}
   while((s>'E')||(s<'A'));
 
   do {printf("give destination city(out of A,B,C,D,E in capital) :");
-      t=getchar();getchar();}
+      t=getchar();}
   while((t>'E')||(t<'A')||(t==s));
   int i;int j;
   i=s-'A';
@@ -59,11 +59,11 @@ void dist2city(){
 void distThr1city(){
   char s,r;
   do {printf("give start city(out of A,B,C,D,E in capital) :");
-      s=getchar();getchar();}
+      s=getchar();}
   while((s>'E')||(s<'A'));
 
   do {printf("give destination city(out of A,B,C,D,E in capital) :");
-      r=getchar();getchar();}
+      r=getchar();}
   while((r>'E')||(r<'A')||(r==s));
   int i;int j;
   i=s-'A';

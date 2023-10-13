@@ -11,9 +11,9 @@ void dist2city() {
   char s, t;
   // i am taking in input via %s because if we use %c we will get '\n' ' ' etc into the next character
   printf("Enter starting city (A to E): ");
-  scanf("%s", &s);
+  scanf("%c", &s);
   printf("Enter ending city (A to E): ");
-  scanf("%s", &t);
+  scanf("%c", &t);
 
   // d stores the distance between s and t
   int d = dist[s-'A'][t-'A'];
@@ -28,9 +28,9 @@ void dist2city() {
 void distThr1city() {
   char s, t;
   printf("Enter starting city (A to E): ");
-  scanf("%s", &s);
+  scanf("%c", &s);
   printf("Enter ending city (A to E): ");
-  scanf("%s", &t);
+  scanf("%c", &t);
 
   // initialize mnd with a large number so that it updates atleast once if there is a path
   int mc, mnd = 1e9+7;

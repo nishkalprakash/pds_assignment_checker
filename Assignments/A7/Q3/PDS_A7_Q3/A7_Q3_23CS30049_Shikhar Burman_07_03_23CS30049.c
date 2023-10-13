@@ -9,7 +9,7 @@ void dist2city(int dist[][5])
 {
     char s[2];
     printf("enter 2 characters in range A to E: ");
-    scanf("%s", s);
+    scanf("%c%c", &s[0],&s[1]);
 
     for (int i = 0; i < 2; i++)
     {
@@ -34,7 +34,8 @@ void DistThr1city(int dist[][5])
     do
     {
         printf("enter 2 distinct characters in range A to E: ");
-        scanf("%s", s);
+    scanf("%c%c", &s[0],&s[1]);
+//        scanf("%s", s);
         if (s[0] == s[1])
             printf("make sure the characters are distinct!\n");
     } while (s[0] == s[1]);

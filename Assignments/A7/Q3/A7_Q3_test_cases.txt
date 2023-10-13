@@ -1,2 +1,4 @@
-25;<Output Based on random number>;A B A D
-25;<Output Based on random number>;B C A B
+#25;<Output Based on random number>;ABAD
+25;<5 - prints inital dist~~5 - prints -1 dist~~5 - prints dist between A B~~5 - prints dist between A D thru C,B,E~~5 - prints min distance>;ABAD
+#25;<Output Based on random number>;BCAB
+25;<5 - prints inital dist~~5 - prints -1 dist~~5 - prints dist between B C~~5 - prints dist between A B thru C,D,E~~5 - prints min distance>;BCAB

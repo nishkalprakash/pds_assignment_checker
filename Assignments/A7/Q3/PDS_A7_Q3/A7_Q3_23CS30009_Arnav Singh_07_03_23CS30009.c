@@ -54,7 +54,7 @@ void dist2city(int dist[][5]){
   scanf("%c", &s);
   printf("Enter 2nd city (A-E): ");
   scanf("%c", &t);
-  scanf("%c", &t);
+  // scanf("%c", &t);
   distst=dist[s-65][t-65];  //As ASCII of A is 65
   if (distst==-1) printf("From %c to %c unreachable\n", s, t);
   else printf("From %c to %c %dkm\n", s, t, distst);
@@ -66,10 +66,10 @@ void DistThr1city(int dist[][5]){
   int distst1, distst2, max=-1;
   printf("Enter 1st city (A-E): ");
   scanf("%c", &s);
-  scanf("%c", &s);
+  // scanf("%c", &s);
   printf("Enter 2nd city (A-E): ");
   scanf("%c", &r);
-  scanf("%c", &r);
+  // scanf("%c", &r);
   for (char i='A'; i<='E'; i++){
     distst1=0;
     distst2=0;

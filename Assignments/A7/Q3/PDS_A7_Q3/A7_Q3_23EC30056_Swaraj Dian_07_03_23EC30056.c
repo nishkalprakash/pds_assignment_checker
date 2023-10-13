@@ -10,7 +10,7 @@ void dist2city()//Function 1
   char s,t;
   int distance;
   printf("Enter 2 Characters from A-E: ");
-  scanf("%c%c",&s,&t);
+  scanf("%c %c",&s,&t);
   if ((s>='A')&&(s<='E')&&(t>='A')&&(t<='E'))//checking for validity
     {
       distance=dist[s-'A'][t-'A'];//distace between cityies

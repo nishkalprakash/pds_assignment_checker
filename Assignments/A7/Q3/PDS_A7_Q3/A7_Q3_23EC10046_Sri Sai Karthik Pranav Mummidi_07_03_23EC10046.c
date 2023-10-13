@@ -19,7 +19,7 @@ int dist2city(){
   if(p='d') l=3;
   if(p='e') l=4;
   if(dist[k][l]>0){
-   printf("the distance between %c and %c= %d",p,q,dist[k][l]);}
+   printf("the distance between %c and %c= %d\n",p,q,dist[k][l]);}
   else {
     printf("interconnected cities");}
 }
@@ -42,7 +42,7 @@ int distthr1city(){
   for(int i=0;i<5;i++){
     if(dist[k][i]>0&&dist[i][l]>0){
       sum=dist[k][i]+dist[i][l];
-      printf("distance from %c to %c via %d=%d",p,q,i,sum);}
+      printf("distance from %c to %c via %d=%d\n",p,q,i,sum);}
     else {
       printf("from %c to %c via %d is unreachable",p,q,i);}
     if(sum<min){
@@ -66,7 +66,7 @@ int main(){
     for(int j=0;j<5;j++){
       if(j>i){
 	if(dist[i][j]>0){
-	  printf("distance between %d and %d=%d",i,j,dist[i][j]);}
+	  printf("distance between %d and %d=%d\n",i,j,dist[i][j]);}
         else {
 	  printf("interconnected cities");}}}}
   dist2city();
