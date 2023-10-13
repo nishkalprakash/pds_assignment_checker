@@ -22,7 +22,7 @@ void DistThe1city()
   scanf("%c %c",&s,&h);
   for(i=0;i<5;i++)
     {
-      if(i=(s-65)||i=(h-65))
+      if(i==(s-65)||i==(h-65))
 	continue;
       if(dist[s-65][i+65]==-1 || dist[i+65][h-65]==-1)
 	{

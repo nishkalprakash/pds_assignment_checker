@@ -79,7 +79,7 @@ for(i=0;i<5;i++)
      A=0;
    if (c2=='B')
   B=1;
-   if(c3==
+  //  if(c3==
 
    return 0;
 }

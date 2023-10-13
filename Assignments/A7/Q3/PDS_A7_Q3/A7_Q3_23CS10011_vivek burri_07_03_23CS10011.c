@@ -35,7 +35,7 @@ int main(){
 void dist2city (int dist[5][5]){
   char s,t,i,j;
   printf("enter characters");
-  scanf("%c %c",&s,&t);
+  scanf("%c%c",&s,&t);
   i=s-'A';
   j=t-'A';
   printf("direct distace is %d",dist[i][j]);

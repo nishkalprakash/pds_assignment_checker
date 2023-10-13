@@ -54,7 +54,7 @@ int main ()
 }
   
   dist2city(s,t);
-  { printf ("%d ", dis);}
+  // printf ("%d ", dis);
   
   return 0;
 }

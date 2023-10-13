@@ -11,11 +11,11 @@ void dist3(char s,char t);
 int main(){
   char s,t;
 
-
+  srand(time(0));
   for(int i=0;i<5;i++){
     for(int j=0;j<5;j++){
       if(i==j){dist[i][j]=0;}            //creating matrix
-      if(i<j){dist[i][j]=rand()%980+20;}
+      if(i<j){dist[i][j]=rand()%180+20;}
       if(i>j){dist[i][j]=dist[j][i];}
     }
   }
@@ -41,7 +41,7 @@ for(int i=0;i<5;i++){
    printf("\n");
  }
  printf("enter the cities \n");
- scanf("%c %c",&s,&t);
+ scanf("%c%c",&s,&t);
  // scanf("%c",&t);
  dist2(s,t);
  dist3(s,t);

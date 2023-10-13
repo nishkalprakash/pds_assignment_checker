@@ -13,7 +13,7 @@ int dist2city(int dist[][5]){
   char key1, key2;
   
   printf("Enter the characters in range A to E : ");
-  scanf("%c %c", &key1, &key2);
+  scanf("%c%c", &key1, &key2);
 
   if(key1 == key2) return 0;
 
@@ -37,7 +37,7 @@ int distthr1city(int dist[][5]){
   char key1, key2, key3;
   
   printf("Enter the characters in range A to E : ");
-  scanf("%c %c", &key1, &key2);
+  scanf("%c%c", &key1, &key2);
 
   printf("Enter the characters via which to go in range A to E : ");
   scanf("%c", &key3);

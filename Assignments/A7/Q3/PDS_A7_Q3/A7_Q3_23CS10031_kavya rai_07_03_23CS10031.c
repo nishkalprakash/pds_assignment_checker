@@ -5,7 +5,7 @@ int Dist2city()
 {char r,c,v;
  int i=0,j=0;
  printf("Enter the two char with a space in between(between A to E) :");
- scanf("%c%c%c",&r,&v,&c);
+ scanf("%c%c",&r,&c);
  if(r=='A')i=0;
  else if(r=='B')i=1;
  else if(r=='C')i=2;

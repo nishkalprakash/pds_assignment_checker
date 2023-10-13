@@ -2,14 +2,14 @@
 #include<stdlib.h>
 int dist[5][5];
 
-void dist2city()
-{
-  char c1,c2;
-  printf("enter the character1: ");
-  scanf("%c",&c1);
-   printf("enter the character2: ");
-  scanf("%c",&c2);
-  distance between 
+// void dist2city()
+// {
+//   char c1,c2;
+//   printf("enter the character1: ");
+//   scanf("%c",&c1);
+//    printf("enter the character2: ");
+//   scanf("%c",&c2);
+//   distance between 
 
 int main()
 {
