@@ -5,9 +5,9 @@
 
 int main()
 {
-  int i,n,num,num1,rnum=0,d=0;
-  printf("enter no of digits of number");
-  scanf("%d",&n);
+  int i,n=6,num,num1,rnum=0,d=0;
+  // printf("enter no of digits of number");
+  // scanf("%d",&n);
   printf("\nEnter number to be checked");
   scanf("%d",&num);
   num1=num;
