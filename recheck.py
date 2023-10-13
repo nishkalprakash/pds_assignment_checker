@@ -5,7 +5,7 @@ from lib.pds_globals import A_Q_REPORT_PATH_
 
 from main import pds_driver
 
-a, ql = get_a_ql_from_user()
+a, ql, s = get_a_ql_from_user()
 q = ql[0]
 aq = {'a': a, 'q': q}
 roll = def_input("Enter Roll Number:", '22CS30056')
