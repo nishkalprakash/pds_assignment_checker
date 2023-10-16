@@ -114,7 +114,7 @@ int distThr1city()
 	      printf("\nFrom %c to %c via %c unreachable\n", s+'A', t+'A', i+'A');
 	    }
 	  int distance = dist[s][i] + dist[i][t];
-	  printf("\nFrom %c to %c via %c  %d\n", s+'A', t+'A', i+'A', distance;
+	  printf("\nFrom %c to %c via %c  %d\n", s+'A', t+'A', i+'A', distance);
 		 if (distance < min_dist) min_dist = distance;
 	}
     }
