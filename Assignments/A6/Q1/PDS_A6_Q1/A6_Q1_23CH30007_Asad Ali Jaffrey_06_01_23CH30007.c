@@ -17,16 +17,16 @@ int arr[100],size=0;
 
 int main() {
 
-  int flag=0,choice;
+  int flag=1,choice;
 
-  while (flag==0) {
+  while (flag==1) {
     flag=0;
     printf(" i. 1 ---- Fill\n ii. 2 ---- Exchange\n iii. 3 ---- Rotate right\n iv. 4 ---- Rotate left\n v. 5 ---- Segregate\n vi. 6 ---- Search\n vii. 7 ---- Fold\n viii. 8 ---- Analyze\n ix. 0,9 or any higher number ---- Exit\n");
     scanf("%d",&choice);
 
     switch (choice) {
     case 1 :  fill(arr); flag=1;break; 
-    case 2 : exchange(arr); break;
+    case 2 : exchange(arr); flag=1;break;
     case 3 : rotate_right(arr); flag=1; break;
     case 4 :  rotate_left(arr); flag=1; break;
     case 5 :  rotate_left(arr); flag=1; break;
