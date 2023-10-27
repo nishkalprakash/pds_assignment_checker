@@ -69,14 +69,14 @@ gdf = gdf.rename(columns=lambda x: x.strip())
 
 #%% For header cleaning
 hdf = pd.DataFrame([gdf.columns.values.tolist()])
-hdf = hdf.replace("Assignment\: ", "", regex=True)
+hdf = hdf.replace(r"Assignment\: ", "", regex=True)
 hdf = hdf.replace("Assignment ", "A", regex=True)
 hdf = hdf.replace(" - Question ", "_Q", regex=True)
 hdf = hdf.replace(" submission", "", regex=True)
-hdf = hdf.replace("Lab\-test ", "LT", regex=True)
-hdf = hdf.replace("Lab\-test\-", "LT", regex=True)
+hdf = hdf.replace(r"Lab\-test ", "LT", regex=True)
+hdf = hdf.replace(r"Lab\-test\-", "LT", regex=True)
 hdf = hdf.replace("Lab Test ", "LT", regex=True)
-hdf = hdf.replace(" \(Real\)", "", regex=True)
+hdf = hdf.replace(r" \(Real\)", "", regex=True)
 # hdf = hdf.replace("Course total", "zTotal", regex=True)
 hdf = hdf.replace("ID number", "1_Roll", regex=True)
 hdf = hdf.replace("Student", "2_Student", regex=True)
@@ -169,22 +169,21 @@ agg_cols = []
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
 top=4
-top8 = f"Top {top}A"
-LT_total = f"LT_Total"
-agg_cols.append(top8)
-gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1)
+A_top = f"Top {top}A"
+agg_cols.append(A_top)
+gdf[A_top] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1)
 
-# c='LT'
-# top8 = f"LT1 & 2"
-# agg_cols.append(top8)
-# gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float')
+c='LT'
+LT_total = f"LT_Total"
+# LT_top = f"LT1"
+agg_cols.append(LT_total)
+gdf[LT_total] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float')
 
 # .mean(axis=1)
 
 
 #%% compute total
 # gdf.drop("zTotal", axis=1, inplace=True)
-#%%
 #%% To handle medical case
 # A6 - Give average from A2-A5 - 23MI10014 - Bhumika Goyal (offical leave)
 ## DONE : Directly Updated in moodle
@@ -198,8 +197,8 @@ gdf[top8] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: 
 fl=lambda x,y:x[y].replace('-',0).astype('float')
 total="3_Total"
 # gdf[LT_total]=0.4*fl(gdf,"LT_01")+0.6*fl(gdf,"LT_02")
-# gdf[total] = .6*fl(gdf,top8) + 0.4*fl(gdf,LT_total)
-gdf[total] = fl(gdf,top8)
+gdf[total] = .5*fl(gdf,A_top) + 0.5*fl(gdf,LT_total)
+# gdf[total] = fl(gdf,top8)
 # gdf.drop(top8, axis=1, inplace=True)
 # if inital total was 0 then set the value to 0
 # gdf[total]=gdf[total].apply(lambda x:0 if x==20 else x) 
