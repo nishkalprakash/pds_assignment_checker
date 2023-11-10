@@ -177,7 +177,7 @@ c='LT'
 LT_total = f"LT_Total"
 # LT_top = f"LT1"
 agg_cols.append(LT_total)
-gdf[LT_total] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float')
+gdf[LT_total] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').sum(axis=1)
 
 # .mean(axis=1)
 
