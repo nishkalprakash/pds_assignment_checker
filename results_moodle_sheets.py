@@ -171,13 +171,15 @@ c='A'
 top=6
 A_top = f"Top {top}A"
 agg_cols.append(A_top)
-gdf[A_top] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1)
+gdf[A_top] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1).round(2)
 
 c='LT'
 LT_total = f"LT_Total"
 # LT_top = f"LT1"
+## LT_02 is out of 45 marks, scale to 100 
+gdf['LT_02'] = (gdf['LT_02'].replace('-',0).astype('float')*100/45).round(2)
 agg_cols.append(LT_total)
-gdf[LT_total] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').sum(axis=1)
+gdf[LT_total] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').mean(axis=1).round(2)
 
 # .mean(axis=1)
 
