@@ -1,7 +1,0 @@
-10;Initialized the distance matrix
-10;Printed the distance martrix using -1
-10;Printed the distance between 2 points
-10;Printed the intermediate distances
-10;Printed the shortest distance
--5;Comments (header comment) missing, logic hard to understand
--5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed

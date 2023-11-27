@@ -414,7 +414,7 @@ def get_map_roll_to_name(rev=None, moodle=None,name_as_value=None):
     if rev:
         key, val = val, key
         # n_index=1
-    return {x[key]: x[val] for x in pull(f"{VAR}/mapping.txt")}
+    return {x[key].upper(): x[val] for x in pull(f"{VAR}/mapping.txt")}
 
 
 def set_plag_files(a=None, ql=None):

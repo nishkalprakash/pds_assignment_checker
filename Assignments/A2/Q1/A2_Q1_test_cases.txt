@@ -1,6 +1,0 @@
-#TC_GENERATED
-10;~~Integral part=123~~Fractional part=0.234001;123.234
-10;~~Integral part=0~~Fractional part=0.123000;0.123
-10;~~Integral part=456~~Fractional part=0.000000;456
-10;~~Integral part=0~~Fractional part=0.000000;0
-10;~~Integral part=12345~~Fractional part=0.123047(if double used then 0.123450);12345.12345

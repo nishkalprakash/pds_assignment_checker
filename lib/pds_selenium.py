@@ -69,7 +69,10 @@ def driver_get_course(driver, course_id=None):
 
 def insert(driver, elem, data):
     if type(elem) is str:
-        elem = driver.find_element(by='id',value=elem)
+        elem = driver.find_element(by='id',value=elem)\
+        # Check if element contains text, return if it does
+        if elem.get_attribute('value'):
+            return False
     elem.clear()
     if len(data) > 128:
         for i in range(0, len(data), 64//4):
@@ -77,6 +80,7 @@ def insert(driver, elem, data):
     else:
         elem.send_keys(data)
     # sleep(0.5)
+    return True
 
 
 def moodle_login(driver):

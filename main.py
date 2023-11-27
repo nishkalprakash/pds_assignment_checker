@@ -80,7 +80,7 @@ def pds_checker(a, q, s=None):
             'B':{i[0] for i in x if i[1]=="B"}
         }
     # students = get_students(sort_by_score=True)
-    students = get_students(sort_by_score=True)
+    students = get_students(sort_by_score=False)
     plag_students_roll_set = set(
         get_students(A_Q_PLAG_PATH_.format(a=a, q=q), only_roll=True))
     ## Getting the BASE number details from user and switching working dir to BASE_a
@@ -154,7 +154,7 @@ def pds_checker(a, q, s=None):
             f" {ctr} - Working for student - {std_roll} - {std_name} ".center(
                 100, "*"))
         try:
-            if std_roll not in plag_students_roll_set:
+            if False or std_roll not in plag_students_roll_set:
                 comments.append(PLAG_COMMENT)
                 print("<PLAG DETECTED>")
             else:
@@ -162,7 +162,7 @@ def pds_checker(a, q, s=None):
                     file_exists = True
                     c = next(
                         home.glob(
-                            A_Q_PDS_FILE_.format(a=a,
+                            "{n}_{f}".format(a=a,
                                                  q=q,
                                                  r=std_roll,
                                                  n=std_name,
@@ -489,14 +489,7 @@ def pds_checker(a, q, s=None):
                 # comments.append("")  # Hack for extra spacing
                 comments.insert(
                     0,
-                    random.choice("""Good work
-                        Keep it up
-                        Keep up the good work
-                        Great Job
-                        Clean Code
-                        Perfect
-                        Good
-                        Nice work""".split("\n")).strip(),
+                    random.choice("""Good work""".split("\n")).strip(),
                 )
             comm = f"{BR}".join(comments).strip(f"{BR}")
             report_entry = [

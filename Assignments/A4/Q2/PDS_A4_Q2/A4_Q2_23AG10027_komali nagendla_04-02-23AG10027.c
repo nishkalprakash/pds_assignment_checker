@@ -1,1 +1,0 @@
-#include<stdio.h>#include<stdlib.h>int main(){  int i,max;  for(i=0;i<20;i++)    {      printf("%d\n",rand() % 50);    }  max=i;  printf("enter the maximum number:%d",max);  return 0;}

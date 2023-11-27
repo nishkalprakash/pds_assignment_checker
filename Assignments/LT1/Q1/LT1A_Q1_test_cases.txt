@@ -1,3 +1,0 @@
-#TC_GENERATED
-25;~~a) encrypted  10~~b) With checksum 1001~~c) Double encoded number  10000010;9
-25;~~a) encrypted: 10345~~b) With checksum 1034513~~c) Doubly encoded number (using long long int) 10003040501030 / (using long int)61668646;9234

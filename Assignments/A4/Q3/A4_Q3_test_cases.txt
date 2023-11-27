@@ -1,6 +1,0 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-25;Not a palindrome;123123
-25;a palindrome;123321
-# ```

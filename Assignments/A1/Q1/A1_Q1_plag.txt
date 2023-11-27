@@ -1,0 +1,160 @@
+10093;Rushi Yerawar;19CH30029
+12639;Vaibhav Gupta;20IE10041
+12717;Deep Lathiya;20AE10052
+13465;sajidakousar Shaik;20CS30048
+13502;sreeya chidere;19MT30006
+15493;Praneeth Raj Kotipalli;21CS10038
+15547;Animesh Kumar;22CS30009
+15551;Nived Shah;22CS10049
+15553;Tejasree Sai Angalakuduru;22CS10009
+15599;Harsh Chattar;22CS30028
+15620;Dhanunjay Gurram;22CS10029
+15631;Sayandeep Bhowmick;22CS10069
+15638;Saras Wagh;22CS30048
+15648;Aditya Kumar Bharti;22CS30007
+15660;Harshit Singh;22CS10031
+15666;Shreya Bose;22CS30050
+15671;Nishnath Parimi;22CS10050
+15674;hemant magwana;22CS30029
+15677;sharvari wanjari;22CS30049
+15693;Harshit Jain;22CS10030
+15717;Ankita Mishra;22CS10010
+15773;Banavath Sai kumar;22CS10014
+15824;Neeharika Gunupuru;22CS10028
+15838;Trilochan Nerella;22CS10048
+15858;Meghanandh Manvith Prabhash Golla;22CS30027
+15885;Saptarshi Sarkar;22CS30047
+15891;Priyanshu Gourav;22CS10083
+15905;Arudeep Kumar;22CS10011
+15910;Devanshu Agrawal;22CS30066
+15942;Shashwat Singh Ranka;22CS10071
+15945;Hemanth Pitchuka 22CS10051;22CS10051
+15948;HEYRAMB AGRAWAL;22cs30030
+15977;Saketh Amballa;22CS10007
+15993;vamshinath Gullolla;22cs10027
+15995;Ramesh Nenavath;22CS10047
+15999;Gayathri Anant;22CS30026
+16002;Sachish Singla;22CS30046
+16052;Sumith Satkuri;22CS10067
+16054;Shshank Mittal;22CS30051
+16059;Shivam Choudhury;22CS10072
+16072;Aritra Maji;22CS30011
+16083;Antik Sur;22CS10085
+16089;Ishaan Jain;22CS10032
+16091;Ayush Rawat;22CS10012
+16135;Pothuri Vignesh;22CS10052
+16145;venkata yaswanth jada;22CS30031
+16150;Karan Sethi;22CS30034
+16161;Srinjoy Das;22CS30054
+16178;SUJAN JAIN;22CS10075
+16180;Ashish Kumar;22CS30014
+16206;PREETHAM Battula;22cs10015
+16228;Ram Preetham Kanchi;22CS10035
+16244;Sathvik Pratapagiri;22CS10053
+16284;Jatin Mahawar;22CS30032
+16293;Soham Kottawar;22CS30052
+16302;Pranesh Vijay B;22CS10013
+16315;udaykiran jadhav;22cs10033
+16316;Arpit Sodhani;22CS30012
+16325;sainaga pranav shivva;22CS10073
+16335;SRINIVAS SRIKANTAM;22CS30053
+16352;Chandransh Singh;22CS30017
+16556;Tanishka Rahate;22CS30044
+16557;shasank gedda;22CS10025
+16562;Sahil Asawa;22CS10065
+16564;Devisri Prasad Nagalla;22CS10045
+16585;Ojas Dubey;22CS30039
+16597;Vistrinna Gogoi;22CS10080
+16610;Sreejanya Mallu;22CS10040
+16611;Sasank Kumar Dadi;22CS10020
+16615;Adhithya Darapu;22CS30019
+16621;TEJARAAM VANGAPANDU;22CS30059
+16632;Divya Routhu;22CS10060
+16651;Sri Chaitanya Byreddi;22CS10018
+16655;Vaasu Singla;22CS10078
+16661;Swaminathan Karthikeyan;22CS30057
+16683;Maryam bano;22cs30037
+16728;Rajpriya Rani;22CS10057
+16742;Sumit Kumar;22CS30056
+16757;Navaneeth Surla;22CS10077
+16759;rishith kumar kondi;22CS10037
+16788;Omkar Bhandare;22CS30016
+16801;Lakshya Agrawal;22CS30036
+16804;Krish Debroy;22CS10086
+16814;RITABRATA BHARATI;22CS10059
+16835;Pranav Jha;22CS30061
+16876;Sagnibha Roy;22CS10064
+16887;Abhik Sing;22CS30003
+16891;ARAVIND GAVINIKADI;22cs10024
+16898;Varun Mupparaju;22CS10044
+16901;Sai Mounya Dumpala;22CS30023
+16924;Aashirwad Mishra;22CS30001
+16935;Deetosh Kuila;22CS30021
+16945;Gaurav Roy;22CS10082
+16961;Aditya Panda;22CS10002
+16968;Parth Patil;22CS30041
+16989;devi lakshman emandi;22CS10022
+17005;Nikhil kumar Marati;22CS10042
+17007;SADANALA SANJANA RAM;22CS10062
+17026;akshat pandey;22CS10005
+17035;Devi Abhijna Ganta;22CS30024
+17045;Abhinav Akarsh;22CS30004
+17111;Jayanth Kumar Reddy D V V;22CS30018
+17114;kasyap kovvuru;22CS10039
+17125;Ayush Mundada;22CS30038
+17139;Utsavi Gohil;22CS30058
+17162;Krishna Teja Sandeep Vetcha;22CS10079
+17166;Pranav Vardhan Chiluveru;22CS10019
+17245;Raaja Das;22CS30043
+17851;Eswara Adithya Chevuri;22CS10023
+17852;Sarmada Alla;22CS10006
+17853;sayali kale;22cs10034
+17854;Sharanya Chakraborty;22CS10088
+17855;Pranaya Chowdary;22CS10070
+17856;Sai Deepak Reddy Mara;22CS10066
+17857;Pracheta Saha;22CS30042
+17858;AASHRAY TANDON;22cs30002
+17859;Rishabh S;22CS10058
+17860;Jeevan Varma Konduri;22CS10038
+17861;Mohan Balasubramanyam Kondapalli;22CS10036
+17862;Aayush More;22CS30063
+17863;Aditya Jhajhria;22cs30006
+17864;Aman Antil;22CS30008
+17865;Diganta Mandal;22CS30062
+17867;deepika pushadapu;22CS10056
+17868;Praveen Kumar;22CS10054
+17869;Shiva Chaitanya;22CS10084
+17870;Mayash Nayak;22CS30064
+17871;Gopal Ji;22CS10026
+17872;Siddharth Ambedkar;22CS10074
+17873;Vivan Singh;22CS30060
+17874;Roshan Savalapurapu;22CS10068
+17875;Revanthi Sunnam;22CS10076
+17876;Lubesh Kumar Sharma;22cs30065
+17877;Bhavya Ajay Chandak;22CS10016
+17882;Pallav Agrawal;22cs30040
+17883;Ajitesh Jamulkar;22CS10004
+17886;Rishit Garg;22CS30045
+17889;Tuhin Mondal;22CS10087
+17890;Aryan Sanghi;22CS30013
+17891;Saishree Pradhan;22CS10089
+17892;ansh sahu;22cs30010
+17893;GAURANG GUPTA;22CS30025
+17894;Keerthi Chandrika Karanam;22CS30035
+17895;Aviral Singh;22CS30015
+17896;Jaswanth Mantri;22CS10041
+17897;Keerthana Vuriti;22CS10081
+17898;Venkata Sai Abhinav Meda;22CS10043
+17899;Abhinav Kumar Singh;22CS30005
+17900;Agniva Saha;22CS10003
+17901;Dev Butani;22CS30022
+17902;Devansha Dhanker;22CS10021
+17903;Tharun Selvam K;22CS30033
+17905;Vishwa Gangadhar S;22CS10061
+17906;Malav Anand;22CS10008
+17910;Stitipragya Behera;22CS30055
+17914;Suchith Reddy Sadda;22CS10063
+17916;Deepesh singh;22CS30020
+17927;mahesh bhukya;22cs10017
+17943;Tharunkumar Adavath;22CS10001
+18332;Nakul Sharma;22cs10046

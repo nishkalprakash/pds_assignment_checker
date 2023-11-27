@@ -25,56 +25,69 @@ from lib.pds_selenium import (
 from lib.pds_globals import A_Q_
 
 
-def upload_to_moodle(a, ql,s=None,roll=None):
+def upload_to_moodle(a, q,s=None,roll=None):
     ## Initialize selenium
     global driver
     driver = init_selenium()
     # global driver
     # sleep(2)
     ## Go to course page
-    driver_get_course(driver)
+    # driver_get_course(driver)
+    driver.get("https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id=12826&action=grading")
     # map_n_r=get_map_roll_to_name(rev=True)
     # h4="//h4[contains(text(),'Attempt number 1 for ')]"
-    xp="descendant::div[@class='comment']//%s[contains(concat(' ',normalize-space(@id),' '),'-%s')]"
-    q_topics = [i for i in driver_get_topics_from_a(driver,a) if i['q'] in ql]
-    if s:
-        # get the mapping for roll;set from var/LT{a}.txt
-        x = pull(f"var/LT{a}.txt")
-        # get a dict {set_attempt:set(roll_no)}
-        std_dict_set = {
-            'A':{i[0] for i in x if i[1]=="A"},
-            'B':{i[0] for i in x if i[1]=="B"}
-        }
-    for q_topic in q_topics:
-        q=q_topic['q']
-        nr_nxt=driver_get_heading_element_list(driver,q_topic)
-        m_elem=nr_nxt[0]['next_div'].find_element(by=By.XPATH,value=xp.replace('@id','@name')%('input','maxmark'))
-        max_m=float(m_elem.get_attribute('value'))
-        s_m_c = get_std_roll_to_m_c_dict(a, q,scale=max_m)
-        for i,nrd in enumerate(nr_nxt):
+    # xp="descendant::div[@class='comment']//%s[contains(concat(' ',normalize-space(@id),' '),'-%s')]"
+    # q_topics = [i for i in driver_get_topics_from_a(driver,a) if i['q'] in ql]
+    # if s:
+    #     # get the mapping for roll;set from var/LT{a}.txt
+    #     x = pull(f"var/LT{a}.txt")
+    #     # get a dict {set_attempt:set(roll_no)}
+    #     std_dict_set = {
+    #         'A':{i[0] for i in x if i[1]=="A"},
+    #         'B':{i[0] for i in x if i[1]=="B"}
+    #     }
+    # for q_topic in q_topics:
+    #     q=q_topic['q']
+    #     nr_nxt=driver_get_heading_element_list(driver,q_topic)
+    #     m_elem=nr_nxt[0]['next_div'].find_element(by=By.XPATH,value=xp.replace('@id','@name')%('input','maxmark'))
+    #     max_m=float(m_elem.get_attribute('value'))
+    s_m_c = get_std_roll_to_m_c_dict(a, q, scale=30)
+    mapping = get_map_roll_to_name(moodle=True)
+    for std in  s_m_c:
+        m = s_m_c[std]['m']
+        c = s_m_c[std]['c']
+        if insert(driver, f"quickgrade_{mapping[std]}", f"{m}"):
+            insert(driver, f"quickgrade_comments_{mapping[std]}", c)
+            print(f"Done for {std}")
+        else:
+            print(f"Already done for {std}")
+        sleep(0.1)
+
+    input("Save?...")
+    driver.find_element(By.ID,"id_savequickgrades").click()
+        # for i,nrd in enumerate(nr_nxt):
         # try:
-            next_div=nrd.pop('next_div')
-            r=nrd['r']
-            if roll is not None and r!=roll:
-                continue
-            if s and r not in std_dict_set[s]:
-                continue
-            cm=next_div.find_element(by=By.XPATH,value=xp%('div','comment_ideditable'))
-            mks=next_div.find_element(by=By.XPATH,value=xp%('input','mark'))
+            # next_div=nrd.pop('next_div')
+            # r=nrd['r']
+            # if roll is not None and r!=roll:
+                # continue
+            # if s and r not in std_dict_set[s]:
+                # continue
+            # cm=next_div.find_element(by=By.XPATH,value=xp%('div','comment_ideditable'))
+            # mks=next_div.find_element(by=By.XPATH,value=xp%('input','mark'))
         
         # for i,elem in enumerate(nrt):
 
             ## Upload data to moodle
-            insert(driver,mks, f"{s_m_c[r]['m']}")
-            insert(driver,cm, f"{s_m_c[r]['c']}")
-            print(f"{i} - Done for {r}")
-            if r==roll:
-                break
-        ## Save changes
-        sleep(2)
-        print(f'{f"Done for {A_Q_.format(a=a,q=q)}":*^50}')
-        driver.find_element(By.XPATH, value="//input[@type='submit' and @value='Save and go to next page']").click()
-        sleep(2)
+        # insert(driver,mks, f"{s_m_c[r]['m']}")
+        # insert(driver,cm, f"{s_m_c[r]['c']}")
+        # print(f"{i} - Done for {r}")
+        # # if r==roll:
+        #     # break
+        # # Save changes
+    print(f'{f"Done for {A_Q_.format(a=a,q=q)}":*^50}')
+        # driver.find_element(By.XPATH, value="//input[@type='submit' and @value='Save and go to next page']").click()
+        # sleep(2)
 
     ## Get the link to the assignemt_question
 
@@ -91,4 +104,5 @@ def upload_to_moodle(a, ql,s=None,roll=None):
     
 if __name__ == "__main__":
     a, ql, s = get_a_ql_from_user()
-    upload_to_moodle(a,ql,s)
+    for q in ql:
+        upload_to_moodle(a,q,s)

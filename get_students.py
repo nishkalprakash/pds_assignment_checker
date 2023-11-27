@@ -19,7 +19,7 @@ driver = init_selenium()
 #     f"https://moodlecse.iitkgp.ac.in/moodle/mod/assign/view.php?id={PAGE_ID}&action=grading"
 # )
 driver.get(
-    f"https://moodlecse.iitkgp.ac.in/moodle/enrol/users.php?id={MOODLE_COURSE_ID}&role=5"
+    f"https://moodlecse.iitkgp.ac.in/moodle/enrol/users.php?id={MOODLE_COURSE_ID}&role=5&perpage=200"
 )
 
 # def get_sel_items(val,a=''):
