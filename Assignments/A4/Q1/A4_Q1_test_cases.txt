@@ -1,6 +1,0 @@
-#TC_GENERATED
-10;~~Enter km and hrs: 5 0~~Fare: Rs. 20;5 0
-10;~~Enter km and hrs: 7 5~~Fare: Rs. 220;7 5
-10;~~Enter km and hrs: 13 5~~Fare: Rs. 268;13 5
-10;~~Enter km and hrs: 17 15~~Fare: Rs. 598;17 15
-10;~~Enter km and hrs: 5 30~~Fare: Rs. 820;5 30

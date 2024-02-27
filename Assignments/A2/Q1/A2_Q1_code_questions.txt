@@ -1,5 +1,0 @@
-10;Defined Variables
-10;Input taken using scanf
-10;Integer part calculated
-10;Fractional part calculated
-10;Output displayed

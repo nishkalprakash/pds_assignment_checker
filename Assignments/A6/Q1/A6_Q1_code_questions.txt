@@ -1,9 +1,0 @@
-10;Menu displayed using infinite loop
-5;Fill function working
-5;Exchange function working
-5;Rotate Right function working
-5;Rotate left function working
-5;Sort function working
-5;Search function working
-5;Analyze function working
-5;Exiting propoerly

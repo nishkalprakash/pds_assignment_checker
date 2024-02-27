@@ -1,6 +1,0 @@
-10;Scanf taken correctly (in the correct order)
-15;Computed fare based on distance
-15;Computed fare based on hours
-10;Printed the total fare
--5;Code not properly formatted (indentation, spacing, etc.)
--5;Code logic not commented (including name and roll number)

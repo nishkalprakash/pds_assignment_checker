@@ -1,3 +1,0 @@
-15;Displayed Stds having same age.
-15;Displayed Stds having same marks.
-20;Displayed Sorted by roll.

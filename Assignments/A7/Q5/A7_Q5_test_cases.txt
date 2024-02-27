@@ -1,5 +1,0 @@
-# Format: `{marks};{label};{test_case}`
-# * For Example:
-# ```csv
-50;<Gives output as required>;
-# ```

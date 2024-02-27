@@ -1,4 +1,0 @@
-10;scanf: Input taken
-20;Computed Interest
-10;Computed Total Amount (Principal + Interest)
-10;printf: Output displayed
