@@ -1,6 +1,6 @@
+# for moodle to sheets
 selenium
+ipykernel
 webdriver_manager
 pygsheets
-ipykernel
-# for moodle to sheets
 pandas
