@@ -36,6 +36,7 @@ Assignment*/done_intermediate.txt
 # !tmp/*.c
 # .vscode
 .vscode
+.conda/
 
 *lock*
 *.out
