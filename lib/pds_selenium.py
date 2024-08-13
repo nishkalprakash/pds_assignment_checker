@@ -160,6 +160,11 @@ def get_sel_items(driver,val,a='',t='userenrolment',d='div'):
         value=f'//table[contains(concat(" ",normalize-space(@class)," ")," {t} ")]/descendant::{d}[contains(concat(" ",normalize-space(@class)," ")," {val} ")]{a}'
         )
 
+def get_sel_items(driver,val,a='',t='userenrolment',d='div'):
+    return driver.find_elements(by=By.XPATH,
+        value=f'//table[contains(concat(" ",normalize-space(@class)," ")," {t} ")]/descendant::{d}[contains(concat(" ",normalize-space(@class)," ")," {val} ")]{a}'
+        )
+
 def extract_name_roll_tuple(elem):
     """Returns tuple (name,roll)"""
     a2=False

@@ -6,7 +6,7 @@ if a variable is suffixed by a '_' its a placeholder and VARIABLE_.format(x=,y=)
 
 from pathlib import Path
 
-MOODLE_COURSE_ID = 544
+MOODLE_COURSE_ID = 31
 
 
 HOME = "Assignments"
@@ -22,7 +22,7 @@ MOODLE_A_NAME_ = "LT-{a}:"
 # MOODLE_A_NAME_ = "Test-1: Set-{a}"
 # MOODLE_A_NAME_ = "Test-2: Set-{a}"
 
-# MOODLE_A_NAME_ = "Lab-{a}:"  # COMMENT THIS FOR LT
+MOODLE_A_NAME_ = "Lab-{a}:"  # COMMENT THIS FOR LT
 
 MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 

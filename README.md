@@ -1,7 +1,17 @@
 # PDS LAB Assignment Checker Tool
 
 ***
-
+## Getting started
+* Run the following command to install the required packages:
+```bash
+conda create -n pds python selenium  pandas ipykernel pygsheets -c conda-forge
+conda activate pds
+pip install -r requirements.txt
+```
+* To delete the environment
+```bash
+conda env remove -n pds
+```
 ## Requirements:
 
 * Python >=3.9 (should exist in path) (This code uses removeprefix() and walrus/assignment_operator ( `:=` operator ))
