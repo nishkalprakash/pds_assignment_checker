@@ -29,7 +29,7 @@ MOODLE_A_Q_NAME_ = MOODLE_A_NAME_ + "{q}"
 # Base is the assignment type
 BASE = "LT"
 
-# BASE = "A"  # COMMENT THIS FOR LT
+BASE = "A"  # COMMENT THIS FOR LT
 
 Q_BASE = "Q"
 

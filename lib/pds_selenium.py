@@ -183,6 +183,24 @@ def extract_name_roll_tuple(elem):
         n+='_attempt2'
     return (n,r)
 
+def extract_name_roll_tuple_24a(elem):
+    """Returns tuple (name,roll)"""
+    a2=False
+    t=elem.text.replace('Attempt number 1 for ','').strip()
+    if "Attempt number 2 for " in t:
+        t=elem.text.replace('Attempt number 2 for ','').strip()
+        a2=True
+    m=match(r'^(.+?) \(.+?\)$',t)
+    
+    if m:
+        n,r=m[1],''
+    else:
+        n,r=t,''
+
+    if a2:
+        n+='_attempt2'
+    return (n,r)
+
 
 def driver_get_heading_element_list(driver,q_topic):
     driver.get(A_Q_PDS_QUIZ_.format(**q_topic))
@@ -201,7 +219,7 @@ def driver_get_heading_element_list(driver,q_topic):
     
     nr_nxt={}
     for attempt in nrt+nrt2:
-        n,r=extract_name_roll_tuple(attempt)
+        n,r=extract_name_roll_tuple_24a(attempt)
         if not r:
           r=map_n_r[n.replace('_attempt2','')]
         r=r.upper()
@@ -238,7 +256,11 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
         try:
             next_div=nrd.pop('next_div')
             f=next_div.find_element('xpath','descendant::div[@class="attachments"]')
-            fn=f.text
+            try:
+                fn=f.find_element(By.TAG_NAME,'a').text
+            except Exception as e:
+                print("No file found for {r} - {n}".format(**nrd))
+                fn=''
             fnf=re.sub(r'([#\/:*?"<>|]|\.$)',"_",fn)
             if fnf == '':
                 fname = Path(A_Q_PDS_FILE_PATH_.format(a=a,q=q,f="TEXT_BOX",**nrd))
@@ -261,7 +283,7 @@ def driver_get_pds_from_quiz(driver,a,q_topic):
                         if Path(fp).read_text().strip() != "":
                             if not fname.exists():
                                 fp.rename(fname)
-                                sleep(0.1)
+                                sleep(0.2)
                             else:
                                 # fp exists in the folder, delete fp if fp is not A_
                                 if fp.name != A_.format(a=a):
