@@ -6,11 +6,11 @@ int main()
 int n,S1;
 long int S2;
 scanf("%d",&n);
-printf("%d",n);
+printf("\n%d",n);
 S1=n*(n+1)/2;
-printf("%d",S1);
+printf("\n%d",S1);
 S2=n*(n+1)*(n+2)/6;
-printf("%ld",S2);
+printf("\n%ld",S2);
 
 
 

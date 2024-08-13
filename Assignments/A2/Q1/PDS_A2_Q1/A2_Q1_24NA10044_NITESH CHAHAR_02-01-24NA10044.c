@@ -14,5 +14,5 @@ int main()
        s2=(n)*(n+1)*(2*n+1)/3;
        printf("s2 = %d\n",s2);
        s3=(n)*(n+1)*(3*n+1)/4;
-       return o;
+       return 0;
 }

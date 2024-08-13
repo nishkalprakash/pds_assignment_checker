@@ -1,6 +1,6 @@
 //program to find sum of first n numbers
 #include<stdio.h>;
-int main {
+int main() {
  printf("enter an integer between 99 and 1000:");
  scanf(%d,&n); 
  float s1;
@@ -31,4 +31,4 @@ int main {
  
 
 
-
+}

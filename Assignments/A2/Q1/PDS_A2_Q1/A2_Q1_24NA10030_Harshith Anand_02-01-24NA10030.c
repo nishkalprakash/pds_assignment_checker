@@ -6,9 +6,9 @@ int main()
 {
     int n,s1,s2,s3;
     char x,y,z;
-    
-    scanf("%d %d %d ",&s1,&s2,&s3);
-    scanf("%c %c %c",&x,&y,&z);
+    scanf("%d",&n);
+    //scanf("%d %d %d ",&s1,&s2,&s3);
+    //scanf("%c %c %c",&x,&y,&z);
     
     
     s1=n*(n+1)/2;

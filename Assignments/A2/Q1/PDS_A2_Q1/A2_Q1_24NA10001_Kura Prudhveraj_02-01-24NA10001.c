@@ -8,8 +8,9 @@ int main()
     S1 = (n)*(n+1)/2;
     long int S2;
     S2 = (n)*(n+1)*(2*n+1)/6;
-    
-    	printf("%d,%ld",S1,S2);
+    S3 =  n/100+(n/10)%10+n%10;
+    	printf("%d,%ld,%d",S1,S2,S3);
+    	
     
   return 0;
   }

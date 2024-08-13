@@ -8,9 +8,9 @@
 int main()
 {
 
-    int n, S1 , S2, S3, a, b, c;
+    long n, S1 , S2, S3, a, b, c;
  
-      scanf("%d", &n);
+      scanf("%ld", &n);
       
       n = 100*a + 10*b + c;
       
@@ -20,10 +20,10 @@ int main()
       
       S3 = a + b + c;
       
-      printf("%d", S1);
+      printf("%ld\n", S1);
       
-      printf("%d", S2);
+      printf("%ld\n", S2);
 
-      printf("%d", S3);
+      printf("%ld\n", S3);
       return(0);
  }
