@@ -7,6 +7,8 @@ from re import match
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
 
 from pathlib import Path
 from lib.pds_globals import (
@@ -77,6 +79,24 @@ def insert(driver, elem, data):
     else:
         elem.send_keys(data)
     # sleep(0.5)
+
+def insert_cm(driver, elem, data):
+    # if type(elem) is str:
+        # elem = driver.find_element(by='id',value=elem)
+    #elem.clear()
+    # elem.click()
+    driver.execute_script('arguments[0].click()', elem)
+    elem.send_keys(Keys.CONTROL + "a")  # select all
+    # clear the comment box by selecting all and deleting
+    
+
+    if len(data) > 128:
+        for i in range(0, len(data), 64//4):
+            # elem.click()
+            elem.send_keys(data[i : i + 64//4])
+    else:
+        # elem.click()
+        elem.send_keys(data)
 
 
 def moodle_login(driver):
