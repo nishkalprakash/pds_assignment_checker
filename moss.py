@@ -64,7 +64,8 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
 
-    moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(**aq)}" -b ../"{SOL_.format(**aq)}" '
+    moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(**aq)}" '
+    # moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(**aq)}" -b ../"{SOL_.format(**aq)}" '
 
     ## Only copy files that have the extensions .c, .C or .txt
     for f in chain(pds_folder_name.glob("*.[cC]"), pds_folder_name.glob("*.txt")):

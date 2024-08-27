@@ -1,6 +1,5 @@
 Checking files . . .
 OK
-Uploading ../A4_Q1_solution.c ...done.
 Uploading Kura_Prudhveraj_-_24NA10001_-_A4_Q1.c ...done.
 Uploading hitesh_yadav_-_24NA10004_-_A4_Q1.c ...done.
 Uploading Sanjana_Medara_-_24NA10005_-_A4_Q1.c ...done.
@@ -70,4 +69,4 @@ Uploading Vishal_Maurya_-_24NA10077_-_A4_Q1.c ...done.
 Uploading VISHAL_S_J_-_24NA10078_-_A4_Q1.c ...done.
 Uploading Vedant_Wakale_-_24NA10079_-_A4_Q1.c ...done.
 Query submitted.  Waiting for the server's response.
-http://moss.stanford.edu/results/7/3181285302588
+http://moss.stanford.edu/results/5/3676315076622
