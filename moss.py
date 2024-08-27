@@ -3,7 +3,7 @@
 ## Code Creator: Nishkal Prakash (nishkal@iitkgp.ac.in)
 import requests
 from lib.pds_selenium import get_assignments
-from lib.pds_globals import A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_HTML_PATH_, A_Q_MOSS_PATH_, A_Q_REPORT_, LIB, MT_DEMO, Q_
+from lib.pds_globals import A_MOSS_PATH_, A_PATH_, A_Q_, A_Q_MOSS_HTML_PATH_, A_Q_MOSS_PATH_, A_Q_REPORT_, LIB, MT_DEMO, Q_, SOL_PATH_
 from lib.pds_file_op import def_input, get_a_ql_from_user, get_map_roll_to_name, run_command, push
 
 
@@ -64,7 +64,7 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
         rmtree(moss_folder_name)
     mkdir(moss_folder_name)
 
-    moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(**aq)}" '
+    moss_command = f'perl "{m}" -l c -c "{A_Q_REPORT_.format(**aq)}" -b "{SOL_PATH_.format(**aq)}" '
 
     ## Only copy files that have the extensions .c, .C or .txt
     for f in chain(pds_folder_name.glob("*.[cC]"), pds_folder_name.glob("*.txt")):
@@ -96,7 +96,7 @@ for question in (i for i in Path().glob("*/") if i.is_dir()):
 
 moss_out = base/A_MOSS_PATH_.format(a=a)
 if not update_main_moss or moss_out.exists():
-    recheck = int(def_input("Combined moss results exists.\nDo you want to re-generate the combined moss report? [0]/1", 0))
+    recheck = int(def_input("Combined moss results exists.\nDo you want to re-generate the combined moss report? [0]/1", 1))
 if update_main_moss or recheck or not moss_out.exists():
     out = ["Hi,", "PFA the moss results."]
     for moss_results in Path().rglob("*moss.txt"):
