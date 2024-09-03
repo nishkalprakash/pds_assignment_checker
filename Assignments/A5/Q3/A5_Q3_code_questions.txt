@@ -1,0 +1,8 @@
+10;Main method defined
+10;Input taken
+10;Checked for invalid character in Input
+10;Printed Haystack and needele
+10;Printed total number of meathces
+10;Printed the longest repeating match count
+-5;Comments missing, logic hard to understand
+#-5;Proper Syntax and coding structure (eg. indentation, variable declation, etc) is not followed

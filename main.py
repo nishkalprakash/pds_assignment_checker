@@ -354,6 +354,22 @@ def pds_checker(a, q, s=None):
                                 f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}"
                             )
                         """
+                        max_test_marks = sum(i for i in test_marks_list if i > 0)
+                        if max_test_marks == sum(test_marks):
+                            # short = 'ss'
+                            # comments.pop(" TEST CASES ".center(30, "="))
+                                                    # delete previous comments
+                            comments=comments[:-3*(len(test_cases))]
+                            comments.append(
+                                    f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}"
+                                )
+                            # pass
+                        elif sum(test_marks) == 0:
+                            # comments=comments[:-(len(test_cases))]
+                            comments=comments[:-3*(len(test_cases))]
+                            comments.append(
+                                f"{BR}FAILED: All test cases - Marks Lost: {max_test_marks:g} out of {max_test_marks:g}"
+                            )
                     else:
                         print("The code didn't compile")
                         ## HACK: Start Support for Binary test marks
@@ -364,21 +380,13 @@ def pds_checker(a, q, s=None):
                         comments.append(
                             f"{BR}FAILED: Code didn't compile successfully{BR}  Mark/s obtained: {0:g} out of {max_test_marks:g}{BR}"
                         )
-                    max_test_marks = sum(i for i in test_marks_list if i > 0)
-                    if max_test_marks == sum(test_marks):
-                        # short = 'ss'
-                        # comments.pop(" TEST CASES ".center(30, "="))
-                                                # delete previous comments
-                        comments=comments[:-(len(test_cases))]
-                        comments.append(
-                                f"PASSED: All test cases - Marks : {max_test_marks:g} out of {max_test_marks:g}"
-                            )
-                        # pass
+                    
 
                     comments.append("")
                     comments.append(" CODE CASES ".center(30, "="))
                     comments.append("")
 
+                    short = None if short == '00' else short
                     for i, cq in enumerate(code_questions):
                         mark, ques = cq
                         if ("%" in mark):  # This case is for % marking, defaults to zero, adds a comment if -ve marks given
@@ -444,6 +452,18 @@ def pds_checker(a, q, s=None):
                         comments.append(
                                 f"PASSED: All code cases - Marks : {max_code_marks:g} out of {max_code_marks:g}"
                             )
+                    elif sum(code_marks) == 0:
+                        comments=comments[:-(len([i for i in code_marks_list if "%" not in str(i) and i > 0]))]
+                        comments.append(
+                            f"{BR}FAILED: All code cases - Marks Lost: {max_code_marks:g} out of {max_code_marks:g}"
+                        )
+                    # hack for A5_Q3
+                    elif sum(code_marks) == 10:
+                        comments=comments[:-(len([i for i in code_marks_list if "%" not in str(i) and i > 0]))+1]
+                        comments.append(
+                            f"{BR}FAILED: All OTHER code cases - Marks Lost: {max_code_marks-10:g} out of {max_code_marks:g}"
+                        )
+
                     
                     total_marks = sum((i for i in (test_marks + code_marks)
                                        if "%" not in str(i)))

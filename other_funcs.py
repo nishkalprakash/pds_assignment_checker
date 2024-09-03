@@ -113,7 +113,7 @@ def format_mystudents():
 
 def generate_test_cases():
     # def get_tcs:
-    a,ql=get_a_ql_from_user()
+    a,ql,s =get_a_ql_from_user()
     lt=BASE == "LT"
     if lt:
         s=def_input("Enter the Set","A")
@@ -151,10 +151,6 @@ if __name__ == "__main__":
     generate_test_cases()
     pass
 
-
-
-
-"""
 #### Code to merge all marks, not needed as done in excel
 ### ws=wks[0]
 ### for ws in wks:
@@ -170,6 +166,3 @@ if __name__ == "__main__":
 ###                 roll_to_mark_comm[r['rollno']]['m'] += int(r[m])
 ###             if r[c]:
 ###                 roll_to_mark_comm[r['rollno']]['c'] += f"Q{q} -> {r[c]}\n"
-"""
-
-

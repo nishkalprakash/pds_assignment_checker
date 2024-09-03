@@ -1,0 +1,9 @@
+#TC_GENERATED
+5;~~Haystack: 01100110101101010101100101010110~~Needle: 1010~~Total No of Matches: 6~~Longest repeating match count: 2~~        [11 : 19] - 10101010;01100110101101010101100101010110~~1010
+5;~~Haystack: 01100110101101010101100101010110~~Needle: 01~~Total No of Matches: 12~~Longest repeating match count: 4~~        [12 : 20] - 01010101~~        [22 : 30] - 01010101;01100110101101010101100101010110~~01
+5;~~Haystack: 1010110011001100~~Needle: 1110~~No repeating sequence found;1010110011001100~~1110
+5;~~Haystack: 101010101010101010101~~Needle: 101~~Total No of Matches: 10~~Longest repeating match count: 1~~        [0 : 3] - 101~~        [2 : 5] - 101~~        [4 : 7] - 101~~        [6 : 9] - 101~~        [8 : 11] - 101~~        [10 : 13] - 101~~        [12 : 15] - 101~~        [14 : 17] - 101~~        [16 : 19] - 101~~        [18 : 21] - 101;101010101010101010101~~101
+5;~~Haystack: 111111111111111111~~Needle: 1~~Total No of Matches: 18~~Longest repeating match count: 18~~        [0 : 18] - 111111111111111111;111111111111111111~~1
+5;~~Haystack: 1001~~Needle: 1001~~Total No of Matches: 1~~Longest repeating match count: 1~~        [0 : 4] - 1001;1001   ~~1001
+5;~~Haystack: 1111~~Needle: 10101~~Error: needle_len > haystack_len;1111~~10101
+5;~~Error: Invalid character in the haystack;10102101011
