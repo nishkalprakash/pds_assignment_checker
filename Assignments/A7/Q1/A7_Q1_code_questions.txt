@@ -1,0 +1,2 @@
+30;power function is correctly implemented
+30;factorial function is correctly implemented 

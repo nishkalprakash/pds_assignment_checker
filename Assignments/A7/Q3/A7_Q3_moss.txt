@@ -1,0 +1,42 @@
+Checking files . . .
+OK
+Uploading Kura_Prudhveraj_-_24NA10001_-_A7_Q3.c ...done.
+Uploading Somanath_M_Goudar_-_24NA10002_-_A7_Q3.c ...done.
+Uploading Siddhant_Chavda_-_24NA10003_-_A7_Q3.c ...done.
+Uploading hitesh_yadav_-_24NA10004_-_A7_Q3.c ...done.
+Uploading AASHRITH_VELLAMPALLI_-_24NA10007_-_A7_Q3.c ...done.
+Uploading Abhinav_Mishra_-_24NA10008_-_A7_Q3.c ...done.
+Uploading Aditya_Bajiya_-_24NA10009_-_A7_Q3.c ...done.
+Uploading Aditya_Chakraborty_-_24NA10010_-_A7_Q3.c ...done.
+Uploading Aditya_Bhide_-_24NA10011_-_A7_Q3.c ...done.
+Uploading Amrita_Singh_-_24NA10014_-_A7_Q3.c ...done.
+Uploading Ankit_kumar_Parvat_-_24NA10015_-_A7_Q3.c ...done.
+Uploading Anshu_Kumar_-_24NA10016_-_A7_Q3.c ...done.
+Uploading ARIHANT_GARG_-_24NA10017_-_A7_Q3.c ...done.
+Uploading Arjun_Agarwal_-_24NA10018_-_A7_Q3.c ...done.
+Uploading Arya_Dev_Mukherjee_-_24NA10019_-_A7_Q3.c ...done.
+Uploading Bhumi_Garg_-_24NA10021_-_A7_Q3.c ...done.
+Uploading Debojyoti_Das_-_24NA10022_-_A7_Q3.c ...done.
+Uploading Deepak_Jangir_-_24NA10023_-_A7_Q3.c ...done.
+Uploading Isha_K_-_24NA10031_-_A7_Q3.c ...done.
+Uploading Krish_Khanna_-_24NA10034_-_A7_Q3.c ...done.
+Uploading madduri_yasaswitha_-_24NA10037_-_A7_Q3.c ...done.
+Uploading Madhav_Gupta_-_24NA10038_-_A7_Q3.c ...done.
+Uploading Md_Waqib_Sk_-_24NA10039_-_A7_Q3.c ...done.
+Uploading Nishita_Gupta_-_24NA10042_-_A7_Q3.c ...done.
+Uploading Piyush_Dubey_-_24NA10046_-_A7_Q3.c ...done.
+Uploading Pratibha_Shakya_-_24NA10050_-_A7_Q3.c ...done.
+Uploading Pratik_Tiwary_-_24NA10051_-_A7_Q3.c ...done.
+Uploading Priyanshu_Ranjan_-_24NA10052_-_A7_Q3.c ...done.
+Uploading Mohana_Sathvika_-_24NA10055_-_A7_Q3.c ...done.
+Uploading Romir_Vyas_-_24NA10058_-_A7_Q3.c ...done.
+Uploading Ruhaan_Kakar_-_24NA10059_-_A7_Q3.c ...done.
+Uploading Rushil_Sinha_-_24NA10061_-_A7_Q3.c ...done.
+Uploading S_Akshay_-_24NA10062_-_A7_Q3.c ...done.
+Uploading Aryan_Shah_-_24NA10066_-_A7_Q3.c ...done.
+Uploading Shatakshi_Shukla_-_24NA10067_-_A7_Q3.c ...done.
+Uploading Shreya_Ashok_Kumar_-_24NA10069_-_A7_Q3.c ...done.
+Uploading Vijayalayan_V_-_24NA10076_-_A7_Q3.c ...done.
+Uploading Vishal_Maurya_-_24NA10077_-_A7_Q3.c ...done.
+Query submitted.  Waiting for the server's response.
+http://moss.stanford.edu/results/9/5558421370546
