@@ -6,7 +6,7 @@
 #define A 10
 #define B 10
 
-float generator(int x){
+float f(int x){
     int y,temp;   //generating the value y for a random number x
     for(int k=1;k<=x;k++){
     temp= (pow(k,2))/(2*k+1)- (pow((-1),k))*k;
@@ -27,7 +27,7 @@ int main(){
        
        int x=rand() % 100 + 1;
        
-       Filter[i]= generator(x); }
+       Filter[i]= f(x); }
        srand(42);
        int min = Filter[0];
        int max=Filter[0];
@@ -40,7 +40,7 @@ int main(){
        while(1){
           int x=rand() % 100 + 1;
           //printf( "random number x is : %d", x);
-         int y=generator(x);
+         int y=f(x);
                
                if(y>min || size_B<B){ //adding values into bin_b
                      
