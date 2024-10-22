@@ -55,3 +55,10 @@ sheets.google*
 moodle_chrome_data*
 
 .DS_STORE
+
+# Ignore all student files
+*.c
+*.C
+
+# dont ignore the solutions.c
+!*_solution.c
