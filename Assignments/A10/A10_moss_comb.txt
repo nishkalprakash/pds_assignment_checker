@@ -1,0 +1,12 @@
+Hi,
+
+PFA the moss results.
+
+A10_Q1:
+	http://moss.stanford.edu/results/9/9650485956549
+
+A10_Q2:
+	http://moss.stanford.edu/results/6/6476769520408
+
+A10_Q3:
+	http://moss.stanford.edu/results/2/289544925066
