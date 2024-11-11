@@ -17,6 +17,7 @@ if fetch:
     driver.get(
         f"https://moodlecse.iitkgp.ac.in/moodle/grade/export/txt/index.php?id={MOODLE_COURSE_ID}"
     )
+    sleep(2)
     driver.find_element(by='id',value="id_submitbutton").click()
     sleep(2)
     driver.close()
@@ -61,7 +62,7 @@ gdf = gdf.dropna(how="all", axis=1)
 ## replace na with 0
 gdf.fillna(0, inplace=True)
 gdf = gdf.apply(pd.to_numeric, errors="ignore")
-n = ["First name", "Surname"]
+n = ["First name", "Last name"]
 gdf.insert(3, "Student", gdf[n].agg(" ".join, axis=1))
 gdf = gdf.drop(n, axis=1)
 gdf = gdf.apply(lambda x: x.str.strip() if type(x) == "str" else x)
@@ -92,6 +93,11 @@ for col in hdf.values[0]:
     else:
         cols.append(col)
 cols
+#%%
+# rename column A06 to LT_01
+cols = [i.replace("A_06", "LT_01") for i in cols]
+# rename column A12 to LT_02
+cols = [i.replace("A_12", "LT_02") for i in cols]
 #%%
 gdf.columns = cols
 del hdf
@@ -168,7 +174,7 @@ agg_cols = []
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
-top=6
+top=5
 A_top = f"Top {top}A"
 agg_cols.append(A_top)
 gdf[A_top] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1).round(2)
@@ -177,7 +183,7 @@ c='LT'
 LT_total = f"LT_Total"
 # LT_top = f"LT1"
 ## LT_02 is out of 45 marks, scale to 100 
-gdf['LT_02'] = (gdf['LT_02'].replace('-',0).astype('float')*100/45).round(2)
+# gdf['LT_02'] = (gdf['LT_02'].replace('-',0).astype('float')*100/45).round(2)
 agg_cols.append(LT_total)
 gdf[LT_total] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').mean(axis=1).round(2)
 
