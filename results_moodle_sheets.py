@@ -174,7 +174,7 @@ agg_cols = []
         # if drop_individual_aq:
         #     gdf.drop(a_to_aq_dict[c], axis=1, inplace=True)
 c='A'
-top=5
+top=8
 A_top = f"Top {top}A"
 agg_cols.append(A_top)
 gdf[A_top] = gdf[a_to_aq_dict[c]].replace('-',0).astype('float').apply(lambda x: x.sort_values(ascending=False).iloc[:top].mean(),axis=1).round(2)
