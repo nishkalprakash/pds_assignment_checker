@@ -1,5 +1,0 @@
-10;Proper input taken
-20;Computed S1 (sum of first n natural numbers)
-20;Computed S2 (sum of squares of first n natural numbers)
-10;Computed S3 (sum of digits on n)
-#20;Printed S1, S2, S3

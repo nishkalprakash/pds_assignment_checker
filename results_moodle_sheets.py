@@ -149,31 +149,25 @@ gdf = gdf.set_index("1_Roll")
 # rename column A06 to LT_01
 
 #%% To handle medical case
-# A6 - Give average from A2-A5 - 23MI10014 - Bhumika Goyal (offical leave)
+# A6 - Give average from A2-A5 -
 ## DONE : Directly Updated in moodle
-# 24NA10012 - Akash Kundu A6 (LT1)
-gdf.at["24NA10012","A_06"] = gdf.loc["24NA10012","A_02":"A_05"].replace('-',0).astype('float').mean()
-# 24NA10022	Debojyoti Das A5
-gdf.at["24NA10022","A_05"] = gdf.loc["24NA10022","A_02":"A_04"].replace('-',0).astype('float').mean()
-# 24NA10024	Devaguptapu Hari Sai Teja A4-A7
-gdf.at["24NA10024","A_04"] = gdf.loc["24NA10024","A_02":"A_03"].replace('-',0).astype('float').mean()
-gdf.at["24NA10024","A_05"] = gdf.loc["24NA10024","A_02":"A_04"].replace('-',0).astype('float').mean()
-gdf.at["24NA10024","A_06"] = gdf.loc["24NA10024","A_02":"A_05"].replace('-',0).astype('float').mean()
-gdf.at["24NA10024","A_07"] = gdf.loc["24NA10024","A_02":"A_06"].replace('-',0).astype('float').mean()
-# 24NA10041	Mohd Zaid A8-A11
-gdf.at["24NA10041","A_08"] = gdf.loc["24NA10041","A_02":"A_07"].replace('-',0).astype('float').mean()
-gdf.at["24NA10041","A_09"] = gdf.loc["24NA10041","A_02":"A_08"].replace('-',0).astype('float').mean()
-gdf.at["24NA10041","A_10"] = gdf.loc["24NA10041","A_02":"A_09"].replace('-',0).astype('float').mean()
-gdf.at["24NA10041","A_11"] = gdf.loc["24NA10041","A_02":"A_10"].replace('-',0).astype('float').mean()
-# 24NA10047	Prabin Kumar Bhoi A7, A9-A11
-gdf.at["24NA10047","A_07"] = gdf.loc["24NA10047","A_02":"A_06"].replace('-',0).astype('float').mean()
-gdf.at["24NA10047","A_09"] = gdf.loc["24NA10047","A_02":"A_08"].replace('-',0).astype('float').mean()
-gdf.at["24NA10047","A_10"] = gdf.loc["24NA10047","A_02":"A_09"].replace('-',0).astype('float').mean()
-gdf.at["24NA10047","A_11"] = gdf.loc["24NA10047","A_02":"A_10"].replace('-',0).astype('float').mean()
-# 24NA10051	Pratik Tiwary A11
-gdf.at["24NA10051","A_11"] = gdf.loc["24NA10051","A_02":"A_10"].replace('-',0).astype('float').mean()
-# 24NA10074	Tushant Raghav A9
-gdf.at["24NA10074","A_09"] = gdf.loc["24NA10074","A_02":"A_08"].replace('-',0).astype('float').mean()
+
+gdf.at["#ROLL","A_06"] = gdf.loc["#ROLL","A_02":"A_05"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_05"] = gdf.loc["#ROLL","A_02":"A_04"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_04"] = gdf.loc["#ROLL","A_02":"A_03"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_05"] = gdf.loc["#ROLL","A_02":"A_04"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_06"] = gdf.loc["#ROLL","A_02":"A_05"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_07"] = gdf.loc["#ROLL","A_02":"A_06"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_08"] = gdf.loc["#ROLL","A_02":"A_07"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_09"] = gdf.loc["#ROLL","A_02":"A_08"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_10"] = gdf.loc["#ROLL","A_02":"A_09"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_11"] = gdf.loc["#ROLL","A_02":"A_10"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_07"] = gdf.loc["#ROLL","A_02":"A_06"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_09"] = gdf.loc["#ROLL","A_02":"A_08"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_10"] = gdf.loc["#ROLL","A_02":"A_09"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_11"] = gdf.loc["#ROLL","A_02":"A_10"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_11"] = gdf.loc["#ROLL","A_02":"A_10"].replace('-',0).astype('float').mean()
+gdf.at["#ROLL","A_09"] = gdf.loc["#ROLL","A_02":"A_08"].replace('-',0).astype('float').mean()
 
 # A6 - Give average from A2-A5 - 23EE10076 - Pradeep V  (Medical Leave) (leg fracture)
 ## DONE : Directly Updated in moodle
@@ -242,23 +236,14 @@ gdf[total] = .4*fl(gdf,A_top) + 0.6*fl(gdf,LT_total)
 # gdf["Total"]=gdf["Total"].apply(lambda x:x/2 if x<40 else x)
 # gdf.sort_values(by="Total", ascending=False, inplace=True)
 
-gdf.at["24NA10057",total] = 20.01
-gdf.at["24NA10043",total] = 20.54
-gdf.at["24NA10063",total] = 23.60
-gdf.at["24NA10051",total] = 23.71
-gdf.at["24NA10029",total] = 23.89
-gdf.at["24NA10056",total] = 24.00
-gdf.at["24NA10068",total] = 30.1
-gdf.at["24NA10014",total] = 72.2
-gdf.at["24NA10012",total] = 57.1
-gdf.at["24NA10001",total] = 39.3
-gdf.at["24NA10024",total] = 36.0
+# gdf.at["ROLL",total] = 20.01
+
 
 # create a new row with id 21AG30019 and set the value of column 3_Total to 0
 # first create the student
-gdf.loc["21AG30019"] = 0
-gdf.at["21AG30019",total] = 0
-gdf.at["21AG30019","2_Student"] = "Jasjeet Singh"
+# gdf.loc["21AG30019"] = 0
+# gdf.at["21AG30019",total] = 0
+# gdf.at["21AG30019","2_Student"] = "Jasjeet Singh"
 
 
 

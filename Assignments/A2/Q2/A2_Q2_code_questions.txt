@@ -1,4 +1,0 @@
-20;Inputs Taken (either hardcoded or by user)
-20;Computed Tp
-10;Printed Tp
-10;Comments given on Tp for both cases

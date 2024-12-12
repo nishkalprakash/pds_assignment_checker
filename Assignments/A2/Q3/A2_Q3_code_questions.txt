@@ -1,6 +1,0 @@
-10;Input Taken correctly
-10;Converted to degree from radian
-10;Computed distance
-10;Computed Xt
-10;Computed Yt
-10;Printed output
